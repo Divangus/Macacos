@@ -54,6 +54,8 @@ bool ModuleScene::Start()
 
 	App->enemies->AddEnemy(ENEMY_TYPE::MECH, 900, 195);
 
+	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 600, 195);
+
 
 	return ret;
 }
