@@ -18,6 +18,7 @@ enum class ENEMY_TYPE
 	BROWNSHIP,
 	MECH,
 	PURPLE,
+	ORANGE,
 };
 
 struct EnemySpawnpoint
