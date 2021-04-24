@@ -7,7 +7,12 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 {
 	front.PushBack({ 7, 21, 34, 42 });
 	front.PushBack({ 53, 20, 37, 43 });
-	//front.PushBack({ 38, 108, 31, 29 });
+	front.PushBack({ 99, 19, 45, 48 });
+	front.PushBack({ 151, 19, 43, 49 });
+	front.PushBack({ 203, 20, 36, 48 });
+	front.PushBack({ 6, 69, 35, 44 });
+	front.PushBack({ 49, 70, 44, 44 });
+	front.PushBack({ 103, 69, 40, 45 });
 	front.speed = 0.1f;
 	//front.pingpong = true;
 
