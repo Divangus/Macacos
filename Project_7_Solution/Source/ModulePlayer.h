@@ -37,7 +37,9 @@ public:
 	iPoint position;
 
 	// The speed in which we move the player (pixels per frame)
-	int speed = 2;
+	int speed = 1;
+
+	int LPosition = 0;
 
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;
@@ -47,13 +49,15 @@ public:
 	Animation* currentAnimation = nullptr;
 
 	// A set of animations
-	Animation idleAnim;
-	Animation upAnim;
-	Animation downAnim;
+	Animation idleAnimR;
+	Animation idleAnimL;
+	Animation upAnimR;
+	Animation downAnimR;
 	Animation rightAnim;
 	Animation leftAnim;
-	Animation jumpAnim;
+	Animation jumpAnimR;
 	Animation upleftAnim;
+	Animation attackAnim;
 
 	// The player's collider
 	Collider* collider = nullptr;
