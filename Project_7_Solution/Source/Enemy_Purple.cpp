@@ -5,25 +5,25 @@
 
 Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 {
-	front.PushBack({ 10, 1, 40, 46 });
-	front.PushBack({ 56, 1, 40, 46 });
-	front.PushBack({ 108, 1, 40, 46 });
-	front.PushBack({ 161, 1, 40, 46 });
-	front.PushBack({ 214, 1, 40, 46 });
-	front.PushBack({ 12, 50, 40, 46 });
-	front.PushBack({ 60, 50, 40, 46 });
-	front.PushBack({ 112, 50, 40, 46 });
+	front.PushBack({ 0, 26, 70, 75 });
+	front.PushBack({ 84, 26, 70, 75 });
+	front.PushBack({ 178, 26, 70, 75 });
+	front.PushBack({ 257, 26, 70, 75 });
+	front.PushBack({ 355, 26, 70, 75 });
+	front.PushBack({ 444, 26, 70, 75 });
+	front.PushBack({ 535, 26, 70, 75 });
+	front.PushBack({ 625, 26, 70, 75 });
 	front.speed = 0.1f;
 	//front.pingpong = true;
 
-	back.PushBack({ 213, 546, 40, 46 });
-	back.PushBack({ 163, 546, 40, 46 });
-	back.PushBack({ 111, 546, 40, 46 });
-	back.PushBack({ 62, 546, 40, 46 });
-	back.PushBack({ 18, 546, 40, 46 });
-	back.PushBack({ 211, 596, 40, 46 });
-	back.PushBack({ 160, 596, 40, 46 });
-	back.PushBack({ 112, 596, 40, 46 });
+	back.PushBack({ 981, 1050, 43, 75 });
+	back.PushBack({ 888, 1050, 70, 75 });
+	back.PushBack({ 789, 1050, 70, 75 });
+	back.PushBack({ 705, 1050, 70, 75 });
+	back.PushBack({ 621, 1050, 70, 75 });
+	back.PushBack({ 526, 1050, 70, 75 });
+	back.PushBack({ 431, 1050, 70, 75 });
+	back.PushBack({ 349, 1050, 70, 75 });
 	back.speed = 0.1f;
 	//back.pingpong = true;
 
