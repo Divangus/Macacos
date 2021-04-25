@@ -5,15 +5,21 @@
 
 Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 {
-	front.PushBack({ 5, 108, 31, 29 });
-	front.PushBack({ 4, 141, 31, 29 });
-	front.PushBack({ 38, 108, 31, 29 });
+	front.PushBack({ 266, 592, 40, 60 });
+	front.PushBack({ 192, 592, 40, 60 });
+	front.PushBack({ 264, 592, 40, 60 });
+	front.PushBack({ 264, 592, 40, 60 });
+	front.PushBack({ 264, 518, 40, 60 });
+	front.PushBack({ 264, 518, 40, 60 });
+	front.PushBack({ 264, 518, 40, 60 });
+	front.PushBack({ 264, 518, 40, 60 });
+	front.PushBack({ 264, 518, 40, 60 });
 	front.speed = 0.1f;
 	//front.pingpong = true;
 
-	back.PushBack({ 170, 108, 31, 29 });
-	back.PushBack({ 170, 141, 31, 29 });
-	back.PushBack({ 137, 108, 31, 29 });
+	back.PushBack({ 170, 108, 40, 60 });
+	back.PushBack({ 170, 141, 40, 60 });
+	back.PushBack({ 137, 108, 40, 60 });
 	back.speed = 0.1f;
 	//back.pingpong = true;
 
