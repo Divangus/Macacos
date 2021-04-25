@@ -35,11 +35,7 @@ bool ModuleScene::Start()
 	App->collisions->AddCollider({ 1375, 145, 111, 96 }, Collider::Type::WALL);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 600, 120);
-<<<<<<< Updated upstream
-	
-=======
 	App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 200, 100);
->>>>>>> Stashed changes
 
 
 	return ret;
