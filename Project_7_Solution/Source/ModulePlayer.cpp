@@ -153,10 +153,18 @@ update_status ModulePlayer::Update()
 	}
 	
 	//player limits
-	if (position.x < App->render->LimitPL) position.x = App->render->LimitPL;
-	if (position.x > 1371) position.x = 1371;
-	if (position.y > 150) position.y = 150;//bottom
-	if (position.y < 90) position.y = 90;//top
+	if (position.x < App->render->LimitPL) {
+		position.x = App->render->LimitPL;
+	}
+	if (position.x > 1371){
+		position.x = 1371;
+	}
+	if (position.y > 150) { //bottom
+		position.y = 150; 
+	}
+	if (position.y < 90) {//top
+		position.y = 90;
+	}
 	
 
 	//left
