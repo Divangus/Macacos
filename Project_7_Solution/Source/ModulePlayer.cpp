@@ -140,19 +140,24 @@ bool ModulePlayer::Start()
 
 update_status ModulePlayer::Update()
 {
-	//camera
-	if (position.x > (App->render->LimitPR))
-	{
-		if (App->render->camera.x < LIMIT_CAMERA)
-		{
-			App->render->camera.x += App->render->cameraSpeed;
-			App->render->LimitPR += speed;
-			App->render->LimitPL += speed;
-		}
-	}
-
 	// Moving the player with the camera scroll
 	App->player->position.x += 0;
+
+	//camera
+	if (position.x > (App->render->LimitPR)){
+		if (App->render->camera.x < LIMIT_CAMERA){
+			App->render->LimitPR += speed;
+			App->render->LimitPL += speed;
+			App->render->camera.x += App->render->cameraSpeed;
+		}
+	}
+	
+	//player limits
+	if (position.x < App->render->LimitPL) position.x = App->render->LimitPL;
+	if (position.x > 1371) position.x = 1371;
+	if (position.y > 150) position.y = 150;//bottom
+	if (position.y < 90) position.y = 90;//top
+	
 
 	//left
 	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
