@@ -165,7 +165,6 @@ update_status ModulePlayer::Update()
 	if (position.y < 90) {//top
 		position.y = 90;
 	}
-	
 
 	//left
 	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
