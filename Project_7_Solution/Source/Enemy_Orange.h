@@ -35,10 +35,8 @@ private:
 		back_melee_attack,		
 		front_gun_attack,
 		back_gun_attack,
-		front_getting_fronthit,
-		front_getting_backthit,
-		back_getting_fronthit,
-		back_getting_backhit,
+		front_getting_hit,
+		back_getting_hit,
 		front_iddle,
 		back_iddle;
 

@@ -75,16 +75,19 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 	back_gun_attack.PushBack({ 976, 946, 42, 66 });
 	back_gun_attack.speed = 0.1f;
 
+	front_getting_hit.PushBack({ 188, 12, 58, 66 });
+	front_getting_hit.PushBack({ 286, 12, 46, 66 });
+	front_getting_hit.PushBack({ 364, 12, 60, 66 });
+	front_getting_hit.PushBack({ 456, 12, 48, 66 });
+	front_getting_hit.speed = 0.1f;
 
+	back_getting_hit.PushBack({ 792, 818, 58, 66 });
+	back_getting_hit.PushBack({ 706, 818, 46, 66 });
+	back_getting_hit.PushBack({ 614, 818, 60, 66 });
+	back_getting_hit.PushBack({ 534, 818, 48, 66 });
+	back_getting_hit.speed = 0.1f;
 
-	//Movement
-	/*if (GetPosition_x() < Player.GetPosition_x() && GetPosition_y == Player.GetPosition_y()) {
-		path.PushBack({ 1.0f, 0.0f }, 150, &back);
-	}*/
-	path.PushBack({ -0.0f, 0.0f }, 150, &front);
-
-	path.PushBack({ 0.0f, -0.0f }, 150, &up_front);
-	path.PushBack({ 0.0f, 0.0f }, 150, &up_back);
+	path.PushBack({ 0.0f, -0.0f }, 150, &front_iddle);
 
 	collider = App->collisions->AddCollider({ 0, 0, 24, 24 }, Collider::Type::ENEMY, (Module*)App->enemies);
 }
