@@ -15,12 +15,33 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
+	int GetPosition_x();
+
+	int GetPosition_y();
+
 private:
 	// The path that will define the position in the world
 	Path path;
 
+	//The positinon of the enemy
+	iPoint position;
+
 	// Enemy animations
-	Animation front, back, melee_attack, shuriken_attack;
+	Animation front,
+		up_front,
+		back,
+		up_back,
+		front_melee_attack,
+		back_melee_attack,		
+		front_gun_attack,
+		back_gun_attack,
+		front_getting_fronthit,
+		front_getting_backthit,
+		back_getting_fronthit,
+		back_getting_backhit,
+		front_iddle,
+		back_iddle;
+
 };
 
 #endif // __ENEMY_ORANGE_H__

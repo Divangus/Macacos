@@ -326,3 +326,11 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		destroyed = true;
 	}
 }
+
+int ModulePlayer::GetPosition_x() {
+	return position.x;
+}
+
+int ModulePlayer::GetPosition_y() {
+	return position.y;
+}
