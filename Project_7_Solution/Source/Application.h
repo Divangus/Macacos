@@ -11,9 +11,11 @@ class ModuleInput;
 class ModuleTextures;
 class ModuleAudio;
 class ModulePlayer;
+class SceneIntro;
 class ModuleScene;
 class ModuleParticles;
 class ModuleCollisions;
+class ModuleFadeToBlack;
 class ModuleEnemies;
 class ModuleRender;
 class ModuleHacks;
@@ -49,11 +51,13 @@ public:
 	ModuleAudio* audio = nullptr;
 
 	ModulePlayer* player = nullptr;
+	SceneIntro* sceneIntro = nullptr;
 	ModuleScene* scene = nullptr;
 	ModuleEnemies* enemies = nullptr;
 	ModuleParticles* particles = nullptr;
 
 	ModuleCollisions* collisions = nullptr;
+	ModuleFadeToBlack* fade = nullptr;
 
 	ModuleRender* render = nullptr;
 	ModuleHacks* hacks = nullptr;
