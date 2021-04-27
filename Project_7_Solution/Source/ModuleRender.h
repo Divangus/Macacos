@@ -59,7 +59,7 @@ public:
 	int LimitPR = camera.w - 120;
 
 	// The speed at which the camera will be moving
-	int cameraSpeed = 3;
+	int cameraSpeed = 1;
 
 };
 
