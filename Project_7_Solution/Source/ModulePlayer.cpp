@@ -13,6 +13,7 @@
 
 ModulePlayer::ModulePlayer()
 {
+	
 	//right idle
 	idleAnimR.PushBack({ 30, 20, 77, 80 });
 	idleAnimR.PushBack({122, 19, 77, 80 });
@@ -173,8 +174,6 @@ bool ModulePlayer::Start()
 	texture = App->textures->Load("Assets/leonardo.png");
 	currentAnimation = &idleAnimR;
 
-	laserFx = App->audio->LoadFx("Assets/laser.wav");
-	explosionFx = App->audio->LoadFx("Assets/explosion.wav");
 
 	position.x = 40;
 	position.y = 120;
@@ -188,7 +187,7 @@ bool ModulePlayer::Start()
 
 update_status ModulePlayer::Update()
 {
-	// Moving the player with the camera scroll
+		// Moving the player with the camera scroll
 	App->player->position.x += 0;
 
 	//player limits
@@ -271,8 +270,8 @@ update_status ModulePlayer::Update()
 	//right and up
 	else if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
-		position.x += speed;
 		position.y -= speed;
+		position.x += speed;
 		if (currentAnimation != &upAnimR)
 		{
 			upAnimR.Reset();
@@ -286,7 +285,7 @@ update_status ModulePlayer::Update()
 	{
 		position.x += speed;
 		position.y += speed;
-		if (currentAnimation != &downAnimR && currentAnimation != &rightAnim)
+		if (currentAnimation != &downAnimR)
 		{
 			downAnimR.Reset();
 			currentAnimation = &downAnimR;
@@ -461,6 +460,7 @@ update_status ModulePlayer::PostUpdate()
 	if (god == true) {
 		GodMode();
 	}
+
 
 	return update_status::UPDATE_CONTINUE;
 }

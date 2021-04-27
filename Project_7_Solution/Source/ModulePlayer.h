@@ -50,6 +50,7 @@ private:
 	// It will be switched depending on the player's movement direction
 	Animation* currentAnimation = nullptr;
 
+
 	// A set of animations
 	Animation idleAnimR;
 	Animation idleAnimL;
