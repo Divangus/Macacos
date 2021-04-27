@@ -243,11 +243,11 @@ update_status ModulePlayer::Update()
 	}
 
 	//left and up
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 		position.y -= speed;
 		position.x -= speed;
-		if (currentAnimation != &upAnimL)
+		if (currentAnimation != &upAnimL && currentAnimation != &leftAnim)
 		{
 			upAnimL.Reset();
 			currentAnimation = &upAnimL;
@@ -404,7 +404,8 @@ update_status ModulePlayer::Update()
 		&& App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE 
 		&& App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
 		&& App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE 
-		&& App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE)
+		&& App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE
+		&& App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_IDLE)
 		{
 		if (currentAnimation != &idleAnimR
 			&& currentAnimation != &idleAnimL
