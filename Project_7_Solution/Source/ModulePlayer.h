@@ -12,7 +12,7 @@ class ModulePlayer : public Module
 {
 public:
 	// Constructor
-	ModulePlayer(bool startEnabled);
+	ModulePlayer();
 
 	// Destructor
 	~ModulePlayer();
