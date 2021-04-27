@@ -11,6 +11,8 @@ class Enemy
 {
 public:
 	// Constructor
+	ModuleEnemies(bool startEnabled);
+	
 	// Saves the spawn position for later movement calculations
 	Enemy(int x, int y);
 
