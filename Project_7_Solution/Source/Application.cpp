@@ -11,7 +11,6 @@
 #include "ModuleEnemies.h"
 #include "ModuleCollisions.h"
 #include "ModuleRender.h"
-#include "ModuleHacks.h"
 
 Application::Application()
 {
@@ -31,7 +30,6 @@ Application::Application()
 	modules[8] = collisions = new ModuleCollisions();
 
 	modules[9] = render = new ModuleRender();
-	modules[10] = hacks = new ModuleHacks();
 }
 
 Application::~Application()

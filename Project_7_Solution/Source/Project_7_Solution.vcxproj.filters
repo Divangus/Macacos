@@ -94,9 +94,6 @@
     <ClInclude Include="Enemy_Orange.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleHacks.h">
-      <Filter>Source Files\Modules\Gameplay</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Module.cpp">
@@ -158,9 +155,6 @@
     </ClCompile>
     <ClCompile Include="Enemy_Orange.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleHacks.cpp">
-      <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

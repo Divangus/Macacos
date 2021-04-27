@@ -1,8 +1,10 @@
 #include "Application.h"
 #include "Globals.h"
 #include "MemLeaks.h"
+#include "ModuleInput.h"
 
 #include "SDL/include/SDL.h"
+#include "SDL/include/SDL_Scancode.h"
 #pragma comment( lib, "SDL/libx86/SDL2.lib")
 #pragma comment( lib, "SDL/libx86/SDL2main.lib")
 
@@ -59,7 +61,7 @@ int main(int argc, char* argv[])
 					LOG("Application Update exits with error -----\n");
 					state = main_states::MAIN_EXIT;
 				}
-				else if (status == update_status::UPDATE_STOP)
+				else if (status == update_status::UPDATE_STOP || App->input->keys[SDL_SCANCODE_ESCAPE] == KEY_DOWN)
 				{
 					state = main_states::MAIN_FINISH;
 				}

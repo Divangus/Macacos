@@ -10,11 +10,10 @@ struct Collider
 	enum Type
 	{
 		NONE = -1,
-		WALL,
 		PLAYER,
 		ENEMY,
-		PLAYER_SHOT,
-		ENEMY_SHOT,
+		PLAYER_ATTACK,
+		ENEMY_ATTACK,
 
 		MAX
 	};
