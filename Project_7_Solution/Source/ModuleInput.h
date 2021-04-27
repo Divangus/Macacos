@@ -18,7 +18,7 @@ class ModuleInput : public Module
 {
 public:
 	// Constructor
-	ModuleInput(bool startEnabled);
+	ModuleInput();
 
 	// Destructor
 	~ModuleInput();
