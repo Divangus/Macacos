@@ -34,7 +34,7 @@ class ModuleEnemies : public Module
 {
 public:
 	// Constructor
-	ModuleEnemies(bool startEnabled);
+	ModuleEnemies();
 
 	// Destructor
 	~ModuleEnemies();
