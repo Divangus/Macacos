@@ -22,10 +22,10 @@ private:
 	// Enemy animations
 	Animation front, back,
 		front_hit, back_hit,
-		front_hit_ground, front_hit_ground_behind, front_ground,
-		front_hit_ground2, front_hit_ground_behind2,
-		back_hit_ground, back_hit_ground_behind, back_ground,
-		back_hit_ground2, back_hit_ground_behind2;
+		front_hit_ground, front_hit_ground_behind, front_ground, front_ground_behind,
+		front_recovery, front_recovery_behind,
+		back_hit_ground, back_hit_ground_behind, back_ground, back_ground_behind,
+		back_recovery, back_recovery_behind;
 };
 
 #endif // __ENEMY_PURPLE_H__

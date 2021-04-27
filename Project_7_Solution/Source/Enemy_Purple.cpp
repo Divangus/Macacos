@@ -48,20 +48,41 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	front_ground.PushBack({ 589, 1678, 92, 78 });
 	front_ground.speed = 0.0f;
 
-	front_hit_ground2.PushBack({ 495, 1678, 92, 78 });
-	front_hit_ground2.PushBack({ 406, 1678, 92, 78 });
-	front_hit_ground2.PushBack({ 326, 1678, 92, 78 });
-	front_hit_ground2.PushBack({ 235, 1678, 92, 78 });
-	front_hit_ground2.PushBack({ 148, 1678, 92, 78 });
-	front_hit_ground2.PushBack({ 68, 1678, 92, 78 });
-	front_hit_ground2.speed = 0.09f;
+	front_recovery.PushBack({ 495, 1678, 92, 78 });
+	front_recovery.PushBack({ 406, 1678, 92, 78 });
+	front_recovery.PushBack({ 326, 1678, 92, 78 });
+	front_recovery.PushBack({ 235, 1678, 92, 78 });
+	front_recovery.PushBack({ 148, 1678, 92, 78 });
+	front_recovery.PushBack({ 68, 1678, 92, 78 });
+	front_recovery.speed = 0.09f;
+
+	front_hit_ground_behind.PushBack({ 950, 1766, 74, 86 });
+	front_hit_ground_behind.PushBack({ 864, 1766, 74, 86 });
+	front_hit_ground_behind.PushBack({ 784, 1766, 74, 86 });
+	front_hit_ground_behind.PushBack({ 685, 1766, 74, 86 });
+	front_hit_ground_behind.speed = 0.06f;
+
+	front_ground_behind.PushBack({ 574, 1766, 94, 86 });
+	front_ground_behind.speed = 0.0f;
+
+	front_recovery_behind.PushBack({ 501, 1766, 74, 86 });
+	front_recovery_behind.PushBack({ 411, 1766, 74, 86 });
+	front_recovery_behind.PushBack({ 327, 1766, 74, 86 });
+	front_recovery_behind.PushBack({ 251, 1766, 74, 86 });
+	front_recovery_behind.PushBack({ 164, 1766, 74, 86 });
+	front_recovery_behind.speed = 0.08f;
 
 	path.PushBack({ -0.3f, 0.0f }, 150, &front);
 	path.PushBack({ 0.2f, 0.0f }, 30, &front_hit_ground);
 	path.PushBack({ 0.0f, 0.0f }, 60, &front_ground);
-	path.PushBack({ 0.0f, 0.0f }, 60, &front_hit_ground2);
-	path.PushBack({ -0.3f, 0.0f }, 150, &front);
+	path.PushBack({ 0.0f, 0.0f }, 60, &front_recovery);
 	path.PushBack({ 0.3f, 0.0f }, 150, &back);
+	path.PushBack({ -0.3f, 0.0f }, 30, &front);
+	path.PushBack({ -0.2f, 0.0f }, 30, &front_hit_ground_behind);
+	path.PushBack({ 0.0f, 0.0f }, 60, &front_ground_behind);
+	path.PushBack({ 0.0f, 0.0f }, 60, &front_recovery_behind);
+	path.PushBack({ 0.3f, 0.0f }, 150, &back);
+	
 
 	collider = App->collisions->AddCollider({ 0, 0, 70, 75 }, Collider::Type::ENEMY, (Module*)App->enemies);
 }
