@@ -15,16 +15,9 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
-	int GetPosition_x();
-
-	int GetPosition_y();
-
 private:
 	// The path that will define the position in the world
 	Path path;
-
-	//The positinon of the enemy
-	iPoint position;
 
 	// Enemy animations
 	Animation front,

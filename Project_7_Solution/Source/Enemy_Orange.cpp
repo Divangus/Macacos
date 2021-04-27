@@ -88,6 +88,9 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 	back_getting_hit.speed = 0.1f;
 
 	path.PushBack({ 0.0f, -0.0f }, 150, &front_iddle);
+	path.PushBack({ -1.0f, 0.0f }, 150, &front);
+	path.PushBack({ 0.0f, 0.0f }, 50, &front_melee_attack);
+	path.PushBack({ 1.0f, 0.0f }, 150, &back);
 
 	collider = App->collisions->AddCollider({ 0, 0, 24, 24 }, Collider::Type::ENEMY, (Module*)App->enemies);
 }
@@ -101,12 +104,4 @@ void Enemy_Orange::Update()
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
 	Enemy::Update();
-}
-
-int Enemy_Orange::GetPosition_x() {
-	return position.x;
-}
-
-int Enemy_Orange::GetPosition_y() {
-	return position.y;
 }

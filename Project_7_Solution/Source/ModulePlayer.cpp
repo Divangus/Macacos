@@ -353,6 +353,15 @@ update_status ModulePlayer::Update()
 			return update_status::UPDATE_STOP;
 	}
 
+	if (App->input->keys[SDL_SCANCODE_F2] == KEY_DOWN) {
+		if (god == true) {
+			god = false;
+		}
+		else {
+			god = true;
+		}
+	}
+
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -364,6 +373,10 @@ update_status ModulePlayer::PostUpdate()
 		App->render->Blit(texture, position.x, position.y, &rect);
 	}
 
+	if (god == true) {
+		GodMode();
+	}
+
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -373,4 +386,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	{
 
 	}
+}
+
+void ModulePlayer::GodMode() {
+	//Quan hi hagi vida la posarà al màxim
+	//Quan fagi mal matarà d'un cop
 }
