@@ -41,6 +41,8 @@ private:
 	// The speed in which we move the player (pixels per frame)
 	int speed = 1;
 
+	bool Player_Position;
+
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;
 	
@@ -60,6 +62,7 @@ private:
 	Animation jumpAnimR;
 	Animation jumpAnimL;
 	Animation attackAnimR;
+	Animation attackAnimL;
 
 	// The player's collider
 	Collider* collider = nullptr;

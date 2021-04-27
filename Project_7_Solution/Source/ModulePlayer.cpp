@@ -112,11 +112,12 @@ ModulePlayer::ModulePlayer()
 	jumpAnimR.PushBack({ 128,603,77,80 });
 	jumpAnimR.PushBack({ 213,608,77,80 });
 	jumpAnimR.PushBack({ 311,609,77,80 });
-	jumpAnimR.PushBack({413,605,77,80 });
+	jumpAnimR.PushBack({ 413,605,77,80 });
 	jumpAnimR.PushBack({ 505,599,77,80 });
 	jumpAnimR.PushBack({ 591,612,77,80 });
 	jumpAnimR.PushBack({ 681,616,77,80 });
 	jumpAnimR.PushBack({ 785,591,77,80 });
+	jumpAnimR.PushBack({ 30, 20, 77, 80 });
 	jumpAnimR.loop = false;
 	jumpAnimR.speed = 0.2f;
 
@@ -133,15 +134,26 @@ ModulePlayer::ModulePlayer()
 	jumpAnimL.loop = false;
 	jumpAnimL.speed = 0.2f;
 
-	//Attack
-	attackAnimR.PushBack({ 29,163,60,88 });
-	attackAnimR.PushBack({ 120,188,66,63 });
-	attackAnimR.PushBack({ 225,172,44,79 });
-	attackAnimR.PushBack({ 309,170,64,81 });
-	attackAnimR.PushBack({ 404,190,62,61 });
-	attackAnimR.PushBack({ 503,197,53,54 });
+	//right attack
+	attackAnimR.PushBack({ 29,165,77,88 });
+	attackAnimR.PushBack({ 120,165,77,88 });
+	attackAnimR.PushBack({ 269,165,77,88 });
+	attackAnimR.PushBack({ 309,165,77,88 });
+	attackAnimR.PushBack({ 403,165,77,88 });
+	attackAnimR.PushBack({ 503,165,77,80 });
+	attackAnimR.PushBack({ 30, 20, 77, 80 });
 	attackAnimR.loop = false;
 	attackAnimR.speed = 0.2f;
+
+	//left attack
+	attackAnimL.PushBack({1706,2254,77,80});
+	attackAnimL.PushBack({ 1609,2254,77,80 });
+	attackAnimL.PushBack({ 1526,2254,77,80 });
+	attackAnimL.PushBack({ 1422,2254,77,80 });
+	attackAnimL.PushBack({ 1329,2254,77,80 });
+	attackAnimL.PushBack({ 1240,2254,77,80 });
+	attackAnimL.loop = false;
+	attackAnimL.speed = 0.2f;
 
 }
 
@@ -164,6 +176,8 @@ bool ModulePlayer::Start()
 
 	position.x = 40;
 	position.y = 120;
+
+	Player_Position = true;
 
 	collider = App->collisions->AddCollider({ position.x, position.y, 40, 60 }, Collider::Type::PLAYER, this);
 
@@ -210,6 +224,7 @@ update_status ModulePlayer::Update()
 		{
 			leftAnim.Reset();
 			currentAnimation = &leftAnim;
+			Player_Position = false;
 		}
 	}
 
@@ -221,6 +236,7 @@ update_status ModulePlayer::Update()
 		{
 			rightAnim.Reset();
 			currentAnimation = &rightAnim;
+			Player_Position = true;
 		}
 	}
 
@@ -297,17 +313,25 @@ update_status ModulePlayer::Update()
 	//attack
 	if (App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_DOWN)
 	{
-		if (currentAnimation != &attackAnimR)
+		if (currentAnimation != &attackAnimR && currentAnimation != &attackAnimL)
 		{
-			attackAnimR.Reset();
-			currentAnimation = &attackAnimR;
+			if (Player_Position == true) {
+				attackAnimR.Reset();
+				currentAnimation = &attackAnimR;
+			}
+			if (Player_Position == false) {
+				attackAnimL.Reset();
+				currentAnimation = &attackAnimL;
+			}
+			
+
 		}
 	}
 		
 	//jump
 	else if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT)
 	{
-		position.y -= 2;
+		position.y -= 1;
 		if (currentAnimation != &jumpAnimR)
 		{
 			jumpAnimR.Reset();
@@ -336,8 +360,15 @@ update_status ModulePlayer::Update()
 			&& currentAnimation != &jumpAnimR
 			&& currentAnimation != &jumpAnimL)
 		{
-			idleAnimR.Reset();
-			currentAnimation = &idleAnimR;
+			if (Player_Position == true) {
+				idleAnimR.Reset();
+				currentAnimation = &idleAnimR;
+			}
+			if (Player_Position == false) {
+				idleAnimL.Reset();
+				currentAnimation = &idleAnimL;
+			}
+			
 		}
 	}
 		
