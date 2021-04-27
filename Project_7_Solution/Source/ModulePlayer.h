@@ -55,10 +55,12 @@ private:
 	Animation idleAnimL;
 	Animation upAnimR;
 	Animation downAnimR;
+	Animation upAnimL;
+	Animation downAnimL;
 	Animation rightAnim;
 	Animation leftAnim;
 	Animation jumpAnimR;
-	Animation upleftAnim;
+	Animation jumpAnimL;
 	Animation attackAnim;
 
 	// The player's collider
