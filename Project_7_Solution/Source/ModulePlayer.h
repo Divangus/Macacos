@@ -61,7 +61,7 @@ private:
 	Animation leftAnim;
 	Animation jumpAnimR;
 	Animation jumpAnimL;
-	Animation attackAnim;
+	Animation attackAnimR;
 
 	// The player's collider
 	Collider* collider = nullptr;
