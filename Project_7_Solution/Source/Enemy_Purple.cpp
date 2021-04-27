@@ -5,27 +5,29 @@
 
 Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 {
-	front.PushBack({ 0, 26, 70, 75 });
-	front.PushBack({ 84, 26, 70, 75 });
-	front.PushBack({ 178, 26, 70, 75 });
-	front.PushBack({ 257, 26, 70, 75 });
-	front.PushBack({ 355, 26, 70, 75 });
-	front.PushBack({ 444, 26, 70, 75 });
-	front.PushBack({ 535, 26, 70, 75 });
+	
 	front.PushBack({ 625, 26, 70, 75 });
+	front.PushBack({ 535, 26, 70, 75 });
+	front.PushBack({ 444, 26, 70, 75 });
+	front.PushBack({ 355, 26, 70, 75 });
+	front.PushBack({ 257, 26, 70, 75 });
+	front.PushBack({ 178, 26, 70, 75 });
+	front.PushBack({ 84, 26, 70, 75 });
+	front.PushBack({ 0, 26, 70, 75 });
 	front.speed = 0.1f;
-	//front.pingpong = true;
 
-	back.PushBack({ 981, 1050, 43, 75 });
-	back.PushBack({ 888, 1050, 70, 75 });
-	back.PushBack({ 789, 1050, 70, 75 });
-	back.PushBack({ 705, 1050, 70, 75 });
-	back.PushBack({ 621, 1050, 70, 75 });
-	back.PushBack({ 526, 1050, 70, 75 });
-	back.PushBack({ 431, 1050, 70, 75 });
+	/*stop.PushBack({ 351, 384, 47, 71 });
+	stop.speed = 0.0f;*/
+
 	back.PushBack({ 349, 1050, 70, 75 });
+	back.PushBack({ 431, 1050, 70, 75 });
+	back.PushBack({ 526, 1050, 70, 75 });
+	back.PushBack({ 621, 1050, 70, 75 });
+	back.PushBack({ 705, 1050, 70, 75 });
+	back.PushBack({ 789, 1050, 70, 75 });
+	back.PushBack({ 888, 1050, 70, 75 });
+	back.PushBack({ 981, 1050, 43, 75 });
 	back.speed = 0.1f;
-	//back.pingpong = true;
 
 	/*front_hit.PushBack({ 0, 1583, 75, 75 });
 	front_hit.PushBack({ 0, 1583, 75, 75 });
@@ -72,22 +74,23 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	front_recovery_behind.PushBack({ 164, 1766, 74, 86 });
 	front_recovery_behind.speed = 0.08f;
 
-	front_punch.PushBack({ 973, 1872, 51, 84 });
-	front_punch.PushBack({ 877, 1872, 84, 84 });
-	front_punch.PushBack({ 792, 1872, 84, 84 });
-	front_punch.PushBack({ 696, 1872, 84, 84 });
-	front_punch.PushBack({ 606, 1872, 84, 84 });
-	front_punch.PushBack({ 519, 1872, 84, 84 });
-	front_punch.PushBack({ 423, 1872, 84, 84 });
-	front_punch.PushBack({ 333, 1872, 84, 84 });
-	front_punch.PushBack({ 233, 1872, 84, 84 });
-	front_punch.PushBack({ 149, 1872, 84, 84 });
-	front_punch.speed = 0.2f;
+	front_punch.PushBack({ 973, 1879, 51, 75 });
+	front_punch.PushBack({ 877, 1879, 84, 75 });
+	front_punch.PushBack({ 792, 1879, 84, 75 });
+	front_punch.PushBack({ 696, 1879, 84, 75 });
+	front_punch.PushBack({ 606, 1879, 84, 75 });
+	front_punch.PushBack({ 519, 1879, 84, 75 });
+	front_punch.PushBack({ 423, 1879, 84, 75 });
+	front_punch.PushBack({ 333, 1879, 84, 75 });
+	front_punch.PushBack({ 233, 1879, 84, 75 });
+	front_punch.PushBack({ 149, 1879, 84, 75 });
+	front_punch.speed = 0.22f;
 
 	
-	path.PushBack({ -0.3f, 0.0f }, 150, &front);
-	path.PushBack({ 0.0f, 0.0f }, 60, &front_punch);
-	path.PushBack({ 0.3f, 0.0f }, 150, &back);
+	path.PushBack({ -0.8f, 0.0f }, 150, &front);
+	path.PushBack({ 0.0f, 0.0f }, 50, &front_punch);
+	path.PushBack({ 0.8f, 0.0f }, 150, &back);
+	//path.PushBack({ 0.0f, 0.0f }, 150, &stop);
 
 	/*path.PushBack({ -0.3f, 0.0f }, 150, &front);
 	path.PushBack({ 0.2f, 0.0f }, 30, &front_hit_ground);

@@ -20,7 +20,7 @@ private:
 	Path path;
 
 	// Enemy animations
-	Animation front, back,
+	Animation front, back, stop,
 		front_hit, back_hit, front_punch, back_punch,
 		front_hit_ground, front_hit_ground_behind, front_ground, front_ground_behind,
 		front_recovery, front_recovery_behind,
