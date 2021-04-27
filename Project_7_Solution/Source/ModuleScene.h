@@ -10,7 +10,7 @@ class ModuleScene : public Module
 {
 public:
 	//Constructor
-	ModuleScene(bool startEnabled);
+	ModuleScene();
 
 	//Destructor
 	~ModuleScene();
@@ -26,8 +26,6 @@ public:
 	// Called at the end of the application loop.
 	// Performs the render call of all the parts of the scene's background
 	update_status PostUpdate() override;
-	
-	bool CleanUp();
 
 public:
 	
