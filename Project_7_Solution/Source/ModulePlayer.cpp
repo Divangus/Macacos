@@ -134,14 +134,14 @@ ModulePlayer::ModulePlayer()
 	jumpAnimL.speed = 0.2f;
 
 	//Attack
-	attackAnim.PushBack({ 29,163,60,88 });
-	attackAnim.PushBack({ 120,188,66,63 });
-	attackAnim.PushBack({ 225,172,44,79 });
-	attackAnim.PushBack({ 309,170,64,81 });
-	attackAnim.PushBack({ 404,190,62,61 });
-	attackAnim.PushBack({ 503,197,53,54 });
-	attackAnim.loop = true;
-	attackAnim.speed = 0.2f;
+	attackAnimR.PushBack({ 29,163,60,88 });
+	attackAnimR.PushBack({ 120,188,66,63 });
+	attackAnimR.PushBack({ 225,172,44,79 });
+	attackAnimR.PushBack({ 309,170,64,81 });
+	attackAnimR.PushBack({ 404,190,62,61 });
+	attackAnimR.PushBack({ 503,197,53,54 });
+	attackAnimR.loop = false;
+	attackAnimR.speed = 0.2f;
 
 }
 
@@ -165,7 +165,7 @@ bool ModulePlayer::Start()
 	position.x = 40;
 	position.y = 120;
 
-	collider = App->collisions->AddCollider({ position.x, position.y, 77, 80 }, Collider::Type::PLAYER, this);
+	collider = App->collisions->AddCollider({ position.x, position.y, 40, 60 }, Collider::Type::PLAYER, this);
 
 	return ret;
 }
@@ -292,12 +292,12 @@ update_status ModulePlayer::Update()
 	}
 
 	//attack
-	if (App->input->keys[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN)
+	if (App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_DOWN)
 	{
-		if (currentAnimation != &attackAnim)
+		if (currentAnimation != &attackAnimR)
 		{
-			attackAnim.Reset();
-			currentAnimation = &attackAnim;
+			attackAnimR.Reset();
+			currentAnimation = &attackAnimR;
 		}
 	}
 		
@@ -324,10 +324,14 @@ update_status ModulePlayer::Update()
 
 	// If no up/down movement detected, set the current animation back to idle
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
+		&& App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE 
 		&& App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
 		&& App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE) {
-		if (currentAnimation != &idleAnimR)
+		if (currentAnimation != &idleAnimR
+			&& currentAnimation != &idleAnimL
+			&& currentAnimation != &attackAnimR
+			&& currentAnimation != &jumpAnimR
+			&& currentAnimation != &jumpAnimL)
 		{
 			idleAnimR.Reset();
 			currentAnimation = &idleAnimR;
@@ -370,7 +374,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		App->particles->AddParticle(App->particles->explosion, position.x + 5, position.y - 5, Collider::Type::NONE, 28);
 		App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, Collider::Type::NONE, 21);
 
-		App->audio->PlayFx(explosionFx);
 
 		destroyed = true;
 	}
