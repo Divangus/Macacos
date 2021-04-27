@@ -60,7 +60,7 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	front_hit_ground_behind.PushBack({ 864, 1766, 74, 86 });
 	front_hit_ground_behind.PushBack({ 784, 1766, 74, 86 });
 	front_hit_ground_behind.PushBack({ 685, 1766, 74, 86 });
-	front_hit_ground_behind.speed = 0.06f;
+	front_hit_ground_behind.speed = 0.07f;
 
 	front_ground_behind.PushBack({ 574, 1766, 94, 86 });
 	front_ground_behind.speed = 0.0f;
@@ -72,13 +72,24 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	front_recovery_behind.PushBack({ 164, 1766, 74, 86 });
 	front_recovery_behind.speed = 0.08f;
 
+	front_punch.PushBack({ 973, 1872, 51, 84 });
+	front_punch.PushBack({ 877, 1872, 84, 84 });
+	front_punch.PushBack({ 792, 1872, 84, 84 });
+	front_punch.PushBack({ 0, 1872, 84, 84 });
+	front_punch.PushBack({ 0, 1872, 84, 84 });
+	front_punch.PushBack({ 0, 1872, 84, 84 });
+	front_punch.PushBack({ 0, 1872, 84, 84 });
+	front_punch.PushBack({ 0, 1872, 84, 84 });
+	front_punch.PushBack({ 0, 1872, 84, 84 });
+	front_punch.PushBack({ 0, 1872, 84, 84 });
+
 	path.PushBack({ -0.3f, 0.0f }, 150, &front);
 	path.PushBack({ 0.2f, 0.0f }, 30, &front_hit_ground);
 	path.PushBack({ 0.0f, 0.0f }, 60, &front_ground);
 	path.PushBack({ 0.0f, 0.0f }, 60, &front_recovery);
 	path.PushBack({ 0.3f, 0.0f }, 150, &back);
 	path.PushBack({ -0.3f, 0.0f }, 30, &front);
-	path.PushBack({ -0.2f, 0.0f }, 30, &front_hit_ground_behind);
+	path.PushBack({ -0.2f, 0.0f }, 40, &front_hit_ground_behind);
 	path.PushBack({ 0.0f, 0.0f }, 60, &front_ground_behind);
 	path.PushBack({ 0.0f, 0.0f }, 60, &front_recovery_behind);
 	path.PushBack({ 0.3f, 0.0f }, 150, &back);
