@@ -82,12 +82,12 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	front_punch.PushBack({ 333, 1872, 84, 84 });
 	front_punch.PushBack({ 233, 1872, 84, 84 });
 	front_punch.PushBack({ 149, 1872, 84, 84 });
-	front_punch.speed = 0.1f;
+	front_punch.speed = 0.2f;
 
 	
 	path.PushBack({ -0.3f, 0.0f }, 150, &front);
-	path.PushBack({ 0.0f, 0.0f }, 120, &front_punch);
-	path.PushBack({ 1.2f, 0.0f }, 150, &back);
+	path.PushBack({ 0.0f, 0.0f }, 60, &front_punch);
+	path.PushBack({ 0.3f, 0.0f }, 150, &back);
 
 	/*path.PushBack({ -0.3f, 0.0f }, 150, &front);
 	path.PushBack({ 0.2f, 0.0f }, 30, &front_hit_ground);
