@@ -7,7 +7,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
 
-ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled)
+ModuleScene::ModuleScene()
 {
 
 }
@@ -56,12 +56,3 @@ update_status ModuleScene::PostUpdate()
 
 	return update_status::UPDATE_CONTINUE;
 }
-
-bool ModuleScene::CleanUp()
-{
-	App->player->Disable();
-	App->enemies->Disable();
-
-	return true;
-}
-
