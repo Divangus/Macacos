@@ -17,7 +17,7 @@ class ModuleParticles : public Module
 public:
 	// Constructor
 	// Initializes all the particles in the array to nullptr
-	ModuleParticles(bool startEnabled);
+	ModuleParticles();
 
 	//Destructor
 	~ModuleParticles();
