@@ -45,7 +45,31 @@ ModulePlayer::ModulePlayer()
 	upAnimR.PushBack({ 597, 1026, 77, 80 });
 	upAnimR.PushBack({ 690, 1028,77, 80 });
 	upAnimR.loop = true;
-	upAnimR.speed = 0.1f;
+	upAnimR.speed = 0.2f;
+
+	//left move upwards
+	upAnimL.PushBack({ 1707, 3118, 77, 80 });
+	upAnimL.PushBack({ 1616, 3117, 77, 80 });
+	upAnimL.PushBack({ 1524, 3117, 77, 80 });
+	upAnimL.PushBack({ 1430, 3118,77, 80 });
+	upAnimL.PushBack({ 1340, 3117, 77, 80 });
+	upAnimL.PushBack({ 1244, 3118, 77, 80 });
+	upAnimL.PushBack({ 1146, 3118, 77, 80 });
+	upAnimL.PushBack({ 1050, 3120,77, 80 });
+	upAnimL.loop = true;
+	upAnimL.speed = 0.2f;
+
+	//left move down
+	downAnimL.PushBack({ 1707, 3034, 77, 80 });
+	downAnimL.PushBack({ 1613, 3033, 77, 80 });
+	downAnimL.PushBack({ 1521, 3035, 77, 80 });
+	downAnimL.PushBack({ 1426, 3036, 77, 80 });
+	downAnimL.PushBack({ 1333, 3036, 77,80 });
+	downAnimL.PushBack({ 1236, 3034, 77, 80 });
+	downAnimL.PushBack({ 1144, 3034, 77, 80 });
+	downAnimL.PushBack({ 1049, 3034, 77, 80 });
+	downAnimL.loop = true;
+	downAnimL.speed = 0.2f;
 
 	// right move down
 	downAnimR.PushBack({ 38, 944, 77, 80 });
@@ -57,7 +81,7 @@ ModulePlayer::ModulePlayer()
 	downAnimR.PushBack({ 604,944 ,77 ,80 });
 	downAnimR.PushBack({ 700, 944, 77 ,80 });
 	downAnimR.loop = true;
-	downAnimR.speed = 0.1f;
+	downAnimR.speed = 0.2f;
 
 	// Move right
 	rightAnim.PushBack({ 38, 944, 77, 80 });
@@ -69,7 +93,7 @@ ModulePlayer::ModulePlayer()
 	rightAnim.PushBack({ 604,944 ,77 ,80 });
 	rightAnim.PushBack({ 700, 944, 77 ,80 });
 	rightAnim.loop = true;
-	rightAnim.speed = 0.1f;
+	rightAnim.speed = 0.2f;
 
 	//Move left
 	leftAnim.PushBack({ 1707, 3034, 77, 80 });
@@ -81,25 +105,33 @@ ModulePlayer::ModulePlayer()
 	leftAnim.PushBack({ 1144, 3034, 77, 80 });
 	leftAnim.PushBack({ 1049, 3034, 77, 80 });
 	leftAnim.loop = true;
-	leftAnim.speed = 0.1f;
+	leftAnim.speed = 0.2f;
 
-	//Jump
-	jumpAnimR.PushBack({ 29,607,48,64 });
-	jumpAnimR.PushBack({ 127,627,41,44 });
-	jumpAnimR.loop = true;
-	jumpAnimR.speed = 0.1f;
+	//Jump right
+	jumpAnimR.PushBack({ 29,607,77,80 });
+	jumpAnimR.PushBack({ 128,603,77,80 });
+	jumpAnimR.PushBack({ 213,608,77,80 });
+	jumpAnimR.PushBack({ 311,609,77,80 });
+	jumpAnimR.PushBack({413,605,77,80 });
+	jumpAnimR.PushBack({ 505,599,77,80 });
+	jumpAnimR.PushBack({ 591,612,77,80 });
+	jumpAnimR.PushBack({ 681,616,77,80 });
+	jumpAnimR.PushBack({ 785,591,77,80 });
+	jumpAnimR.loop = false;
+	jumpAnimR.speed = 0.2f;
 
-	//up left
-	upleftAnim.PushBack({ 1707, 3118, 49, 65 });
-	upleftAnim.PushBack({ 1616, 3117, 44, 66 });
-	upleftAnim.PushBack({ 1524, 3117, 40, 66 });
-	upleftAnim.PushBack({ 1430, 3118, 40, 65 });
-	upleftAnim.PushBack({ 1340, 3117, 40, 66 });
-	upleftAnim.PushBack({ 1224, 3118 ,44, 65 });
-	upleftAnim.PushBack({ 1146, 3118 ,52, 65 });
-	upleftAnim.PushBack({ 1050, 3120 ,55, 63 });
-	upleftAnim.loop = true;
-	upleftAnim.speed = 0.1f;
+	//Jump left
+	jumpAnimL.PushBack({ 29,607,77,80 });
+	jumpAnimL.PushBack({ 128,603,77,80 });
+	jumpAnimL.PushBack({ 213,608,77,80 });
+	jumpAnimL.PushBack({ 311,609,77,80 });
+	jumpAnimL.PushBack({ 413,605,77,80 });
+	jumpAnimL.PushBack({ 505,599,77,80 });
+	jumpAnimL.PushBack({ 591,612,77,80 });
+	jumpAnimL.PushBack({ 681,616,77,80 });
+	jumpAnimL.PushBack({ 785,591,77,80 });
+	jumpAnimL.loop = false;
+	jumpAnimL.speed = 0.2f;
 
 	//Attack
 	attackAnim.PushBack({ 29,163,60,88 });
@@ -109,7 +141,7 @@ ModulePlayer::ModulePlayer()
 	attackAnim.PushBack({ 404,190,62,61 });
 	attackAnim.PushBack({ 503,197,53,54 });
 	attackAnim.loop = true;
-	attackAnim.speed = 0.1f;
+	attackAnim.speed = 0.2f;
 
 }
 
@@ -143,15 +175,6 @@ update_status ModulePlayer::Update()
 	// Moving the player with the camera scroll
 	App->player->position.x += 0;
 
-	//camera
-	if (position.x > (App->render->LimitPR)){
-		if (App->render->camera.x < LIMIT_CAMERA){
-			App->render->LimitPR += speed;
-			App->render->LimitPL += speed;
-			App->render->camera.x += App->render->cameraSpeed;
-		}
-	}
-	
 	//player limits
 	if (position.x < App->render->LimitPL) {
 		position.x = App->render->LimitPL;
@@ -164,6 +187,16 @@ update_status ModulePlayer::Update()
 	}
 	if (position.y < 90) {//top
 		position.y = 90;
+	}
+	
+
+	//camera
+	if (position.x > (App->render->LimitPR)){
+		if (App->render->camera.x < LIMIT_CAMERA){
+			App->render->LimitPR += speed;
+			App->render->LimitPL += speed;
+			App->render->camera.x += App->render->cameraSpeed;
+		}
 	}
 
 	//left
@@ -193,10 +226,10 @@ update_status ModulePlayer::Update()
 	{
 		position.y -= speed;
 		position.x -= speed;
-		if (currentAnimation != &upleftAnim)
+		if (currentAnimation != &upAnimL)
 		{
-			upleftAnim.Reset();
-			currentAnimation = &upleftAnim;
+			upAnimL.Reset();
+			currentAnimation = &upAnimL;
 		}
 	}
 
@@ -213,7 +246,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//right and up
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	else if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
 		position.x += speed;
 		position.y -= speed;
@@ -225,7 +258,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//right and down
-	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+	else if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
 		position.x += speed;
 		position.y += speed;
@@ -259,7 +292,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//attack
-	if (App->input->keys[SDL_SCANCODE_F] == KEY_STATE::KEY_DOWN)
+	if (App->input->keys[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN)
 	{
 		if (currentAnimation != &attackAnim)
 		{
@@ -269,14 +302,16 @@ update_status ModulePlayer::Update()
 	}
 		
 	//jump
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT)
+	else if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT)
 	{
+		position.y -= 2;
 		if (currentAnimation != &jumpAnimR)
 		{
 			jumpAnimR.Reset();
 			currentAnimation = &jumpAnimR;
 		}
 	}
+
 	//down and up pressed
 	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
@@ -339,12 +374,4 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		destroyed = true;
 	}
-}
-
-int ModulePlayer::GetPosition_x() {
-	return position.x;
-}
-
-int ModulePlayer::GetPosition_y() {
-	return position.y;
 }
