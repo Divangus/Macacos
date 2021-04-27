@@ -84,7 +84,12 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	front_punch.PushBack({ 149, 1872, 84, 84 });
 	front_punch.speed = 0.1f;
 
+	
 	path.PushBack({ -0.3f, 0.0f }, 150, &front);
+	path.PushBack({ 0.0f, 0.0f }, 120, &front_punch);
+	path.PushBack({ 1.2f, 0.0f }, 150, &back);
+
+	/*path.PushBack({ -0.3f, 0.0f }, 150, &front);
 	path.PushBack({ 0.2f, 0.0f }, 30, &front_hit_ground);
 	path.PushBack({ 0.0f, 0.0f }, 60, &front_ground);
 	path.PushBack({ 0.0f, 0.0f }, 60, &front_recovery);
@@ -94,7 +99,7 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	path.PushBack({ -0.2f, 0.0f }, 40, &front_hit_ground_behind);
 	path.PushBack({ 0.0f, 0.0f }, 60, &front_ground_behind);
 	path.PushBack({ 0.0f, 0.0f }, 60, &front_recovery_behind);
-	path.PushBack({ 0.3f, 0.0f }, 150, &back);
+	path.PushBack({ 0.3f, 0.0f }, 150, &back);*/
 	
 
 	collider = App->collisions->AddCollider({ 0, 0, 70, 75 }, Collider::Type::ENEMY, (Module*)App->enemies);
