@@ -188,6 +188,9 @@ update_status ModulePlayer::Update()
 	if (position.y < 90) {//top
 		position.y = 90;
 	}
+	if (position.x < 0) {
+		position.x = 0;
+	}
 	
 
 	//camera
