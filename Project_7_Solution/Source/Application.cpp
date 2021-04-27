@@ -11,7 +11,6 @@
 #include "ModuleEnemies.h"
 #include "ModuleCollisions.h"
 #include "ModuleRender.h"
-#include "ModuleFadeToBlack.h"
 #include "ModuleHacks.h"
 
 Application::Application()
@@ -19,22 +18,20 @@ Application::Application()
 	// The order in which the modules are added is very important.
 	// It will define the order in which Pre/Update/Post will be called
 	// Render should always be last, as our last action should be updating the screen
-	modules[0] = window = new ModuleWindow(true);
-	modules[1] = input = new ModuleInput(true);
-	modules[2] = textures = new ModuleTextures(true);
-	modules[3] = audio = new ModuleAudio(true);
-	
-	modules[4] = sceneIntro = new SceneIntro(true);
-	modules[5] = scene = new ModuleScene(false);
-	modules[6] = player = new ModulePlayer(false);
-	modules[7] = particles = new ModuleParticles(true);
-	modules[8] = enemies = new ModuleEnemies(false);
+	modules[0] = window = new ModuleWindow();
+	modules[1] = input = new ModuleInput();
+	modules[2] = textures = new ModuleTextures();
+	modules[3] = audio = new ModuleAudio();
 
-	modules[9] = collisions = new ModuleCollisions(true);
+	modules[4] = scene = new ModuleScene();
+	modules[5] = player = new ModulePlayer();
+	modules[6] = particles = new ModuleParticles();
+	modules[7] = enemies = new ModuleEnemies();
 
-	modules[10] = render = new ModuleRender(true);
-	modules[11] = hacks = new ModuleHacks();
-	modules[12] = fade = new ModuleFadeToBlack(true);
+	modules[8] = collisions = new ModuleCollisions();
+
+	modules[9] = render = new ModuleRender();
+	modules[10] = hacks = new ModuleHacks();
 }
 
 Application::~Application()
@@ -78,13 +75,12 @@ update_status Application::Update()
 	return ret;
 }
  
- 
 bool Application::CleanUp()
 {
 	bool ret = true;
 
 	for (int i = NUM_MODULES - 1; i >= 0 && ret; --i)
-		ret = modules[i]->IsEnabled() ? modules[i]->CleanUp() : true;
+		ret = modules[i]->CleanUp();
 
 	return ret;
 }
