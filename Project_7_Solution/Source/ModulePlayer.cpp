@@ -380,7 +380,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//up and down pressed
-	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
 		if (currentAnimation != &upAnimL
 			&& currentAnimation != &downAnimL
