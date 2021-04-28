@@ -21,6 +21,7 @@ bool ModuleScene::Start()
 	bgTexture = App->textures->Load("Assets/background.png");
 	App->audio->PlayMusic("Assets/stage1.ogg", 1.0f);
 
+
 	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 200, 120);
 	App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 200, 100);
 
