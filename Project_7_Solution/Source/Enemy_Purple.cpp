@@ -105,7 +105,7 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	path.PushBack({ 0.3f, 0.0f }, 150, &back);*/
 	
 
-	collider = App->collisions->AddCollider({ 0, 0, 70, 75 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ 0, 0, 50, 63 }, Collider::Type::ENEMY, (Module*)App->enemies);
 }
 
 void Enemy_Purple::Update()
