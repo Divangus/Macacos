@@ -31,8 +31,8 @@ bool ModuleElements::Start() {
 	FireTexture = App->textures->Load("Assets/scene.png");
 
 	
-	position.x;
-	position.y;
+	position.x = 0;
+	position.y = 0;
 		
 
 	return ret;
