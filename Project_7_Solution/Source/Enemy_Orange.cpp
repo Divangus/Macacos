@@ -89,7 +89,6 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 
 	path.PushBack({ 0.0f, -0.0f }, 150, &front_iddle);
 	path.PushBack({ -1.0f, 0.0f }, 150, &front);
-	path.PushBack({ 0.0f, 0.0f }, 50, &front_melee_attack);
 	path.PushBack({ 1.0f, 0.0f }, 150, &back);
 
 	collider = App->collisions->AddCollider({ 0, 0, 50, 66 }, Collider::Type::ENEMY, (Module*)App->enemies);

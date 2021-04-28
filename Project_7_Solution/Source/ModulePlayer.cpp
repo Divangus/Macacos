@@ -11,7 +11,7 @@
 #include "SDL/include/SDL_scancode.h"
 
 
-ModulePlayer::ModulePlayer()
+ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 	
 	//right idle
@@ -183,6 +183,7 @@ bool ModulePlayer::Start()
 	Player_Position = true;
 
 	collider = App->collisions->AddCollider({position.x, position.y, 30, 55 }, Collider::Type::PLAYER, this);
+	colliderAttack = App->collisions->AddCollider({ position.x, position.y, 30, 55 }, Collider::Type::PLAYER_ATTACK, this);
 
 	return ret;
 }
@@ -196,18 +197,17 @@ update_status ModulePlayer::Update()
 	if (Player_Position == false) {
 		collider->SetPos(position.x+5, position.y + 25);
 	}
-	if (currentAnimation == &attackAnimR) {
-		collider->SetPos(position.x + 25, position.y + 28);
-	}
-	if (currentAnimation == &attackAnimL) {
-		collider->SetPos(position.x + 2, position.y + 28);
-	}
 	if (currentAnimation == &jumpAnimR) {
 		collider->SetPos(position.x + 5, position.y + 5);
 	}
 	if (currentAnimation == &jumpAnimL) {
 		collider->SetPos(position.x + 5, position.y + 5);
 	}
+	/*if (currentAnimation == &attackAnimR) {
+		colliderAttack->SetPos(position.x + 25, position.y + 25);
+	}*/
+
+		
 	
 
 	// Moving the player with the camera scroll
@@ -358,6 +358,8 @@ update_status ModulePlayer::Update()
 			if (Player_Position == true) {
 				attackAnimR.Reset();
 				currentAnimation = &attackAnimR;
+				colliderAttack->SetPos(position.x + 25, position.y + 25);
+				
 			}
 			if (Player_Position == false) {
 				attackAnimL.Reset();
@@ -432,10 +434,10 @@ update_status ModulePlayer::Update()
 		{
 		if (currentAnimation != &idleAnimR
 			&& currentAnimation != &idleAnimL
-			&& currentAnimation != &attackAnimR
-			&& currentAnimation != &attackAnimL
 			&& currentAnimation != &jumpAnimR
-			&& currentAnimation != &jumpAnimL)
+			&& currentAnimation != &jumpAnimL
+			&& currentAnimation != &attackAnimR
+			&& currentAnimation != &attackAnimL)
 		{
 			if (Player_Position == true) {
 				idleAnimR.Reset();
