@@ -27,13 +27,10 @@ public:
 	// Performs the render call of all the parts of the scene's background
 	update_status PostUpdate() override;
 
-public:
+private:
 	
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
-	
-	// The sprite rectangle for the ground
-	SDL_Texture* starsTexture = nullptr;
 };
 
 #endif
