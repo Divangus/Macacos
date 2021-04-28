@@ -121,7 +121,7 @@ ModulePlayer::ModulePlayer()
 	jumpAnimR.PushBack({ 871,591,77,80 });
 	jumpAnimR.PushBack({ 30, 0, 77, 90 });
 	jumpAnimR.loop = false;
-	jumpAnimR.speed = 0.2f;
+	jumpAnimR.speed = 0.3f;
 
 	//Jump left
 	jumpAnimL.PushBack({1718,2677,77,88 });
@@ -136,7 +136,7 @@ ModulePlayer::ModulePlayer()
 	jumpAnimL.PushBack({ 879,2685,77,80 });
 	jumpAnimL.PushBack({ 1708, 2087, 77, 88 });
 	jumpAnimL.loop = false;
-	jumpAnimL.speed = 0.2f;
+	jumpAnimL.speed = 0.3f;
 
 	//right attack
 	attackAnimR.PushBack({ 29,170,77,84 });
@@ -147,7 +147,7 @@ ModulePlayer::ModulePlayer()
 	attackAnimR.PushBack({ 503,170,77,88 });
 	attackAnimR.PushBack({ 30, 0, 77, 88 });
 	attackAnimR.loop = false;
-	attackAnimR.speed = 0.2f;
+	attackAnimR.speed = 0.3f;
 
 	//left attack
 	attackAnimL.PushBack({1706,2259,77,82});
@@ -158,7 +158,7 @@ ModulePlayer::ModulePlayer()
 	attackAnimL.PushBack({ 1240,2259,77,88 });
 	attackAnimL.PushBack({ 1708, 2087, 77, 90 });
 	attackAnimL.loop = false;
-	attackAnimL.speed = 0.2f;
+	attackAnimL.speed = 0.3f;
 
 }
 
@@ -350,14 +350,15 @@ update_status ModulePlayer::Update()
 	//jump
 	else if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT)
 	{
-		position.y -= 1;
 		if (currentAnimation != &jumpAnimR && currentAnimation != &jumpAnimL)
 		{
 			if (Player_Position == true) {
+				position.y -= 1;
 				jumpAnimR.Reset();
 				currentAnimation = &jumpAnimR;
 			}
 			else {
+				position.y -= 1;
 				jumpAnimL.Reset();
 				currentAnimation = &jumpAnimL;
 			}
