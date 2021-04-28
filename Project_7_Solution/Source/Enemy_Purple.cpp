@@ -6,27 +6,27 @@
 Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 {
 	
-	front.PushBack({ 630, 0, 41, 90 });
-	front.PushBack({ 540, 0, 45, 90 });
-	front.PushBack({ 450, 0, 40, 90 });
-	front.PushBack({ 360, 0, 27, 90 });
-	front.PushBack({ 270, 0, 39, 90 });
-	front.PushBack({ 180, 0, 48, 90 });
-	front.PushBack({ 90, 0, 38, 90 });
-	front.PushBack({ 0, 0, 36, 90 });
+	front.PushBack({ 630, 20, 41, 70 });
+	front.PushBack({ 540, 20, 45, 70 });
+	front.PushBack({ 450, 20, 40, 70 });
+	front.PushBack({ 360, 20, 27, 70 });
+	front.PushBack({ 270, 20, 39, 70 });
+	front.PushBack({ 180, 20, 48, 70 });
+	front.PushBack({ 90, 20, 38, 70 });
+	front.PushBack({ 0, 20, 36, 70 });
 	front.speed = 0.1f;
 
 	/*stop.PushBack({ 351, 384, 47, 71 });
 	stop.speed = 0.0f;*/
 
-	back.PushBack({ 352, 1024, 42, 90 });
-	back.PushBack({ 438, 1024, 46, 90 });
-	back.PushBack({ 534, 1024, 40, 90 });
-	back.PushBack({ 636, 1024, 28, 90 });
-	back.PushBack({ 714, 1024, 40, 90 });
-	back.PushBack({ 795, 1024, 49, 90 });
-	back.PushBack({ 895, 1024, 39, 90 });
-	back.PushBack({ 988, 1024, 36, 90 });
+	back.PushBack({ 352, 1044, 42, 70 });
+	back.PushBack({ 438, 1044, 46, 70 });
+	back.PushBack({ 534, 1044, 40, 70 });
+	back.PushBack({ 636, 1044, 28, 70 });
+	back.PushBack({ 714, 1044, 40, 70 });
+	back.PushBack({ 795, 1044, 49, 70 });
+	back.PushBack({ 895, 1044, 39, 70 });
+	back.PushBack({ 988, 1044, 36, 70 });
 	back.speed = 0.1f;
 
 
@@ -75,16 +75,16 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	front_recovery_behind.PushBack({ 164, 1766, 90, 90 });
 	front_recovery_behind.speed = 0.08f;
 
-	front_punch.PushBack({ 986, 1860, 38, 90 });
-	front_punch.PushBack({ 892, 1860, 42, 90 });
-	front_punch.PushBack({ 810, 1860, 34, 90 });
-	front_punch.PushBack({ 705, 1860, 49, 90 });
-	front_punch.PushBack({ 619, 1860, 45, 90 });
-	front_punch.PushBack({ 540, 1860, 34, 90 });
-	front_punch.PushBack({ 442, 1860, 42, 90 });
-	front_punch.PushBack({ 366, 1860, 31, 90 });
-	front_punch.PushBack({ 243, 1860, 61, 90 });
-	front_punch.PushBack({ 174, 1860, 40, 90 });
+	front_punch.PushBack({ 986, 1880, 38, 70 });
+	front_punch.PushBack({ 892, 1880, 42, 70 });
+	front_punch.PushBack({ 810, 1880, 34, 70 });
+	front_punch.PushBack({ 705, 1880, 49, 70 });
+	front_punch.PushBack({ 619, 1880, 45, 70 });
+	front_punch.PushBack({ 540, 1880, 34, 70 });
+	front_punch.PushBack({ 442, 1880, 42, 70 });
+	front_punch.PushBack({ 366, 1880, 31, 70 });
+	front_punch.PushBack({ 243, 1880, 61, 70 });
+	front_punch.PushBack({ 174, 1880, 40, 70 });
 	front_punch.speed = 0.22f;
 
 	
@@ -106,7 +106,7 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	path.PushBack({ 0.3f, 0.0f }, 150, &back);*/
 	
 
-	collider = App->collisions->AddCollider({ 0, 0, 50, 63 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ 0, 0, 50, 70 }, Collider::Type::ENEMY, (Module*)App->enemies);
 }
 
 void Enemy_Purple::Update()
