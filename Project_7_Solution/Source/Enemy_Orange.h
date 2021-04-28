@@ -33,6 +33,7 @@ private:
 		front_iddle,
 		back_iddle;
 
+	bool melee_attack = false;
 };
 
 #endif // __ENEMY_ORANGE_H__

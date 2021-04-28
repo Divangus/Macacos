@@ -8,6 +8,8 @@
 struct SDL_Texture;
 struct Collider;
 
+#define Max_HP 10;
+
 class ModulePlayer : public Module
 {
 public:
@@ -79,6 +81,8 @@ private:
 	uint explosionFx = 0;
 
 	bool god = false;
+
+	int HP = Max_HP;
 };
 
 #endif //!__MODULE_PLAYER_H__
