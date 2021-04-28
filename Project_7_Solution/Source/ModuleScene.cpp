@@ -7,16 +7,9 @@
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
 
-ModuleScene::ModuleScene() 
-{
-	//A_Iddle.PushBack({ 267, 238, 34, 80 });
-	//B_Iddle.PushBack({ 267, 331, 45,80 });
-}
+ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled) {}
 
-ModuleScene::~ModuleScene() 
-{
-
-}
+ModuleScene::~ModuleScene() {}
 
 // Load assets
 bool ModuleScene::Start()
