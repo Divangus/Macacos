@@ -15,146 +15,148 @@ ModulePlayer::ModulePlayer()
 {
 	
 	//right idle
-	idleAnimR.PushBack({ 30, 20, 77, 80 });
-	idleAnimR.PushBack({122, 19, 77, 80 });
-	idleAnimR.PushBack({ 216, 19, 77, 80 });
-	idleAnimR.PushBack({ 310, 19, 77, 80 });
-	idleAnimR.PushBack({ 404, 21, 77,80 });
-	idleAnimR.PushBack({ 498, 21, 77, 80 });
-	idleAnimR.PushBack({ 30, 20, 77, 80 });
+	idleAnimR.PushBack({ 30, 0, 77, 90 });
+	idleAnimR.PushBack({122, 0, 77, 90 });
+	idleAnimR.PushBack({ 216, 0, 77, 90 });
+	idleAnimR.PushBack({ 310, 0, 77, 90 });
+	idleAnimR.PushBack({ 404, 0, 77,90 });
+	idleAnimR.PushBack({ 498, 0, 77, 90 });
+	idleAnimR.PushBack({ 30, 0, 77, 90 });
 	idleAnimR.loop = false;
-	idleAnimR.speed = 0.02f;
+	idleAnimR.speed = 0.2f;
 
 	//left idle
-	idleAnimL.PushBack({ 1708, 2113, 77, 80 });
-	idleAnimL.PushBack({ 1616, 2111, 77, 80 });
-	idleAnimL.PushBack({ 1522, 2111, 77, 80 });
-	idleAnimL.PushBack({ 1428, 2111, 77, 80 });
-	idleAnimL.PushBack({ 1334, 2113, 77, 80 });
-	idleAnimL.PushBack({ 1240, 2113, 77, 80 });
-	idleAnimL.PushBack({ 1708, 2113, 77, 80 });
+	idleAnimL.PushBack({ 1708, 2087, 77, 90 });
+	idleAnimL.PushBack({ 1616,  2087, 77, 90 });
+	idleAnimL.PushBack({ 1522,   2087, 77, 90 });
+	idleAnimL.PushBack({ 1428, 2087, 77, 90 });
+	idleAnimL.PushBack({ 1334, 2087, 77, 90 });
+	idleAnimL.PushBack({ 1240,  2087, 77, 90 });
+	idleAnimL.PushBack({ 1708,2087, 77, 90 });
 	idleAnimL.loop = false;
-	idleAnimL.speed = 0.02f;
+	idleAnimL.speed = 0.2f;
 
 	// rigt move upwards
-	upAnimR.PushBack({ 39, 1026, 77, 80 });
-	upAnimR.PushBack({ 135, 1025, 77, 80 });
-	upAnimR.PushBack({ 231, 1025, 77, 80 });
-	upAnimR.PushBack({ 325, 1026,77, 80 });
-	upAnimR.PushBack({ 415, 1025, 77, 80 });
-	upAnimR.PushBack({507, 1026, 77, 80 });
-	upAnimR.PushBack({ 597, 1026, 77, 80 });
-	upAnimR.PushBack({ 690, 1028,77, 80 });
+	upAnimR.PushBack({ 39, 1010, 77, 90 });
+	upAnimR.PushBack({ 135, 1010, 77, 90 });
+	upAnimR.PushBack({ 231, 1010, 77, 90 });
+	upAnimR.PushBack({ 325, 1010,77, 90 });
+	upAnimR.PushBack({ 415, 1010, 77, 90 });
+	upAnimR.PushBack({ 507, 1010, 77, 90 });
+	upAnimR.PushBack({ 597, 1010, 77, 90 });
+	upAnimR.PushBack({ 690, 1010,77, 90 });
 	upAnimR.loop = true;
 	upAnimR.speed = 0.2f;
 
 	//left move upwards
-	upAnimL.PushBack({ 1707, 3118, 77, 80 });
-	upAnimL.PushBack({ 1616, 3117, 77, 80 });
-	upAnimL.PushBack({ 1524, 3117, 77, 80 });
-	upAnimL.PushBack({ 1430, 3118,77, 80 });
-	upAnimL.PushBack({ 1340, 3117, 77, 80 });
-	upAnimL.PushBack({ 1244, 3118, 77, 80 });
-	upAnimL.PushBack({ 1146, 3118, 77, 80 });
-	upAnimL.PushBack({ 1050, 3120,77, 80 });
+	upAnimL.PushBack({ 1707, 3097, 77, 90 });
+	upAnimL.PushBack({ 1616, 3097, 77, 90 });
+	upAnimL.PushBack({ 1524, 3097, 77, 90 });
+	upAnimL.PushBack({ 1430, 3097,77, 90 });
+	upAnimL.PushBack({ 1340, 3097, 77, 90 });
+	upAnimL.PushBack({ 1244, 3097, 77, 90 });
+	upAnimL.PushBack({ 1146, 3097, 77, 90 });
+	upAnimL.PushBack({ 1050, 3097,77, 90 });
 	upAnimL.loop = true;
 	upAnimL.speed = 0.2f;
 
 	//left move down
-	downAnimL.PushBack({ 1707, 3034, 77, 80 });
-	downAnimL.PushBack({ 1613, 3033, 77, 80 });
-	downAnimL.PushBack({ 1521, 3035, 77, 80 });
-	downAnimL.PushBack({ 1426, 3036, 77, 80 });
-	downAnimL.PushBack({ 1333, 3036, 77,80 });
-	downAnimL.PushBack({ 1236, 3034, 77, 80 });
-	downAnimL.PushBack({ 1144, 3034, 77, 80 });
-	downAnimL.PushBack({ 1049, 3034, 77, 80 });
+	downAnimL.PushBack({ 1707, 3020, 77,90 });
+	downAnimL.PushBack({ 1613, 3020, 77, 90 });
+	downAnimL.PushBack({ 1521, 3020, 77, 90 });
+	downAnimL.PushBack({ 1426, 3020, 77, 90 });
+	downAnimL.PushBack({ 1333, 3020, 77,90 });
+	downAnimL.PushBack({ 1236, 3028, 77, 90 });
+	downAnimL.PushBack({ 1144, 3028, 77, 90 });
+	downAnimL.PushBack({ 1049, 3028, 77, 90 });
 	downAnimL.loop = true;
 	downAnimL.speed = 0.2f;
 
 	// right move down
-	downAnimR.PushBack({ 38, 944, 77, 80 });
-	downAnimR.PushBack({ 134, 944 ,77, 80 });
-	downAnimR.PushBack({ 230, 944 ,77 ,80 });
-	downAnimR.PushBack({ 316 ,944 ,77 ,80 });
-	downAnimR.PushBack({ 412 ,944 ,77 ,80 });
-	downAnimR.PushBack({ 508 ,944 ,77 ,80 });
-	downAnimR.PushBack({ 604,944 ,77 ,80 });
-	downAnimR.PushBack({ 700, 944, 77 ,80 });
+	downAnimR.PushBack({ 38, 926, 77, 90 });
+	downAnimR.PushBack({ 134, 926 ,77, 90 });
+	downAnimR.PushBack({ 230, 926 ,77 ,90 });
+	downAnimR.PushBack({ 316 ,926 ,77 ,90 });
+	downAnimR.PushBack({ 412 ,926 ,77 ,90 });
+	downAnimR.PushBack({ 508 ,926 ,77 ,90 });
+	downAnimR.PushBack({ 604,926 ,77 ,90 });
+	downAnimR.PushBack({ 700, 926, 77 ,90 });
 	downAnimR.loop = true;
 	downAnimR.speed = 0.2f;
 
 	// Move right
-	rightAnim.PushBack({ 38, 944, 77, 80 });
-	rightAnim.PushBack({ 134, 944 ,77, 80 });
-	rightAnim.PushBack({ 230, 944 ,77 ,80 });
-	rightAnim.PushBack({ 316 ,944 ,77 ,80 });
-	rightAnim.PushBack({ 412 ,944 ,77 ,80 });
-	rightAnim.PushBack({ 508 ,944 ,77 ,80 });
-	rightAnim.PushBack({ 604,944 ,77 ,80 });
-	rightAnim.PushBack({ 700, 944, 77 ,80 });
+	rightAnim.PushBack({ 38, 926, 77, 90 });
+	rightAnim.PushBack({ 134, 926 ,77, 90 });
+	rightAnim.PushBack({ 230, 926 ,77 ,90 });
+	rightAnim.PushBack({ 316 ,926 ,77 ,90 });
+	rightAnim.PushBack({ 412 ,926 ,77 ,90 });
+	rightAnim.PushBack({ 508 ,926 ,77 ,90 });
+	rightAnim.PushBack({ 604,926 ,77 ,90 });
+	rightAnim.PushBack({ 700, 926, 77 ,90 });
 	rightAnim.loop = true;
 	rightAnim.speed = 0.2f;
 
 	//Move left
-	leftAnim.PushBack({ 1707, 3034, 77, 80 });
-	leftAnim.PushBack({ 1613, 3033, 77, 80 });
-	leftAnim.PushBack({ 1521, 3035, 77, 80 });
-	leftAnim.PushBack({ 1426, 3036, 77, 80 });
-	leftAnim.PushBack({ 1333, 3036, 77,80 });
-	leftAnim.PushBack({ 1236, 3034, 77, 80 });
-	leftAnim.PushBack({ 1144, 3034, 77, 80 });
-	leftAnim.PushBack({ 1049, 3034, 77, 80 });
+	leftAnim.PushBack({ 1707, 3013, 77, 90 });
+	leftAnim.PushBack({ 1613, 3013, 77, 90 });
+	leftAnim.PushBack({ 1521,3013, 77, 90 });
+	leftAnim.PushBack({ 1426, 3013, 77, 90 });
+	leftAnim.PushBack({ 1333,3013, 77,90 });
+	leftAnim.PushBack({ 1236, 3013, 77, 90 });
+	leftAnim.PushBack({ 1144, 3013, 77, 90 });
+	leftAnim.PushBack({ 1049, 3013, 77, 90 });
 	leftAnim.loop = true;
 	leftAnim.speed = 0.2f;
 
 	//Jump right
-	jumpAnimR.PushBack({ 29,607,77,80 });
-	jumpAnimR.PushBack({ 128,603,77,80 });
-	jumpAnimR.PushBack({ 213,608,77,80 });
-	jumpAnimR.PushBack({ 311,609,77,80 });
-	jumpAnimR.PushBack({ 413,605,77,80 });
-	jumpAnimR.PushBack({ 505,599,77,80 });
-	jumpAnimR.PushBack({ 591,612,77,80 });
-	jumpAnimR.PushBack({ 681,616,77,80 });
+	jumpAnimR.PushBack({ 29,592,77,88 });
+	jumpAnimR.PushBack({ 128,601,77,88 });
+	jumpAnimR.PushBack({ 213,601,77,88 });
+	jumpAnimR.PushBack({ 311,601,77,80 });
+	jumpAnimR.PushBack({ 413,601,77,80 });
+	jumpAnimR.PushBack({ 505,601,77,80 });
+	jumpAnimR.PushBack({ 591,601,77,80 });
+	jumpAnimR.PushBack({ 681,601,77,80 });
 	jumpAnimR.PushBack({ 785,591,77,80 });
-	jumpAnimR.PushBack({ 30, 20, 77, 80 });
+	jumpAnimR.PushBack({ 871,591,77,80 });
+	jumpAnimR.PushBack({ 30, 0, 77, 90 });
 	jumpAnimR.loop = false;
 	jumpAnimR.speed = 0.2f;
 
 	//Jump left
-	jumpAnimL.PushBack({1718,2699,77,80 });
-	jumpAnimL.PushBack({ 1629,2698,77,78 });
-	jumpAnimL.PushBack({ 1524,2702,77,80 });
-	jumpAnimL.PushBack({ 1437,2703,77,80 });
-	jumpAnimL.PushBack({ 1351,2699,77,80 });
-	jumpAnimL.PushBack({ 1258,2694,77,80 });
-	jumpAnimL.PushBack({ 1156,2702,77,80 });
-	jumpAnimL.PushBack({ 1058,2710,77,80 });
-	jumpAnimL.PushBack({ 975,2685,77,80 });
-	jumpAnimL.PushBack({ 1708, 2113, 77, 80 });
+	jumpAnimL.PushBack({1718,2677,77,88 });
+	jumpAnimL.PushBack({ 1629,2685,77,88 });
+	jumpAnimL.PushBack({ 1524,2685,77,88 });
+	jumpAnimL.PushBack({ 1437,2685,77,88 });
+	jumpAnimL.PushBack({ 1351,2685,77,88 });
+	jumpAnimL.PushBack({ 1258,2685,77,88 });
+	jumpAnimL.PushBack({ 1156,2685,77,88 });
+	jumpAnimL.PushBack({ 1058,2685,77,88 });
+	jumpAnimL.PushBack({ 975,2685,77,88 });
+	jumpAnimL.PushBack({ 879,2685,77,80 });
+	jumpAnimL.PushBack({ 1708, 2087, 77, 88 });
 	jumpAnimL.loop = false;
 	jumpAnimL.speed = 0.2f;
 
 	//right attack
-	attackAnimR.PushBack({ 29,165,77,88 });
-	attackAnimR.PushBack({ 120,165,77,88 });
-	attackAnimR.PushBack({ 269,165,77,88 });
-	attackAnimR.PushBack({ 309,165,77,88 });
-	attackAnimR.PushBack({ 403,165,77,88 });
-	attackAnimR.PushBack({ 503,165,77,80 });
-	attackAnimR.PushBack({ 30, 20, 77, 80 });
+	attackAnimR.PushBack({ 29,170,77,84 });
+	attackAnimR.PushBack({ 120,170,77,88 });
+	attackAnimR.PushBack({ 225,170,77,88 });
+	attackAnimR.PushBack({ 309,170,77,88 });
+	attackAnimR.PushBack({ 403,170,77,88 });
+	attackAnimR.PushBack({ 503,170,77,88 });
+	attackAnimR.PushBack({ 30, 0, 77, 88 });
 	attackAnimR.loop = false;
 	attackAnimR.speed = 0.2f;
 
 	//left attack
-	attackAnimL.PushBack({1706,2254,77,80});
-	attackAnimL.PushBack({ 1609,2254,77,80 });
-	attackAnimL.PushBack({ 1526,2254,77,80 });
-	attackAnimL.PushBack({ 1422,2254,77,80 });
-	attackAnimL.PushBack({ 1329,2254,77,80 });
-	attackAnimL.PushBack({ 1240,2254,77,80 });
-	attackAnimL.PushBack({ 1708, 2113, 77, 80 });
+	attackAnimL.PushBack({1706,2259,77,82});
+	attackAnimL.PushBack({ 1609,2259,77,88 });
+	attackAnimL.PushBack({ 1526,2259,77,88 });
+	attackAnimL.PushBack({ 1422,2259,77,88 });
+	attackAnimL.PushBack({ 1329,2259,77,88 });
+	attackAnimL.PushBack({ 1240,2259,77,88 });
+	attackAnimL.PushBack({ 1708, 2087, 77, 90 });
 	attackAnimL.loop = false;
 	attackAnimL.speed = 0.2f;
 
@@ -180,7 +182,7 @@ bool ModulePlayer::Start()
 
 	Player_Position = true;
 
-	collider = App->collisions->AddCollider({ position.x, position.y, 40, 60 }, Collider::Type::PLAYER, this);
+	collider = App->collisions->AddCollider({ position.x - 12, position.y +12, 50, 90 }, Collider::Type::PLAYER, this);
 
 	return ret;
 }
@@ -197,11 +199,11 @@ update_status ModulePlayer::Update()
 	if (position.x > 1371){
 		position.x = 1371;
 	}
-	if (position.y > 150) { //bottom
-		position.y = 150; 
+	if (position.y > 140) { //bottom
+		position.y = 140; 
 	}
-	if (position.y < 90) {//top
-		position.y = 90;
+	if (position.y < 80) {//top
+		position.y = 80;
 	}
 	if (position.x < 0) {
 		position.x = 0;
