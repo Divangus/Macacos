@@ -89,7 +89,7 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 
 	
 	path.PushBack({ -0.8f, 0.0f }, 150, &front);
-	path.PushBack({ 0.0f, 0.0f }, 50, &front_punch);
+	//path.PushBack({ 0.0f, 0.0f }, 50, &front_punch);
 	path.PushBack({ 0.8f, 0.0f }, 150, &back);
 	//path.PushBack({ 0.0f, 0.0f }, 150, &stop);
 

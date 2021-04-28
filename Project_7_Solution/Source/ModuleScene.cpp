@@ -7,7 +7,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
 
-ModuleScene::ModuleScene() {}
+ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled) {}
 
 ModuleScene::~ModuleScene() {}
 
