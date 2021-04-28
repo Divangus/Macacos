@@ -182,14 +182,35 @@ bool ModulePlayer::Start()
 
 	Player_Position = true;
 
-	collider = App->collisions->AddCollider({ position.x - 12, position.y +12, 50, 90 }, Collider::Type::PLAYER, this);
+	collider = App->collisions->AddCollider({position.x, position.y, 30, 55 }, Collider::Type::PLAYER, this);
 
 	return ret;
 }
 
 update_status ModulePlayer::Update()
 {
-		// Moving the player with the camera scroll
+	//player collider
+	if (Player_Position == true) {
+		collider->SetPos(position.x+5, position.y + 25);
+	}
+	if (Player_Position == false) {
+		collider->SetPos(position.x+5, position.y + 25);
+	}
+	if (currentAnimation == &attackAnimR) {
+		collider->SetPos(position.x + 25, position.y + 28);
+	}
+	if (currentAnimation == &attackAnimL) {
+		collider->SetPos(position.x + 2, position.y + 28);
+	}
+	if (currentAnimation == &jumpAnimR) {
+		collider->SetPos(position.x + 5, position.y + 5);
+	}
+	if (currentAnimation == &jumpAnimL) {
+		collider->SetPos(position.x + 5, position.y + 5);
+	}
+	
+
+	// Moving the player with the camera scroll
 	App->player->position.x += 0;
 
 	//player limits
@@ -428,8 +449,8 @@ update_status ModulePlayer::Update()
 		}
 	}
 		
-
-	collider->SetPos(position.x, position.y);
+	
+	
 
 	currentAnimation->Update();
 
