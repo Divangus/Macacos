@@ -49,29 +49,29 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 
 	back_iddle.PushBack({ 620, 946, 48, 66 });
 
-	front_melee_attack.PushBack({ 374, 75, 46, 64 });
-	front_melee_attack.PushBack({ 262, 75, 92, 64 });
-	front_melee_attack.PushBack({ 194, 75, 54, 64 });
-	front_melee_attack.PushBack({ 92, 75, 80, 64 });
-	front_melee_attack.PushBack({ 4, 75, 80, 64 });
+	front_melee_attack.PushBack({ 374, 73, 46, 66 });
+	front_melee_attack.PushBack({ 262, 73, 92, 66 });
+	front_melee_attack.PushBack({ 194, 73, 54, 66 });
+	front_melee_attack.PushBack({ 92, 73, 80, 66 });
+	front_melee_attack.PushBack({ 4, 73, 80, 66 });
 	front_melee_attack.speed = 0.1f;
 
-	front_gun_attack.PushBack({ 276, 140, 60, 64 });
-	front_gun_attack.PushBack({ 188, 140, 58, 64 });
-	front_gun_attack.PushBack({ 102, 140, 58, 64 });
+	front_gun_attack.PushBack({ 276, 138, 60, 66 });
+	front_gun_attack.PushBack({ 188, 138, 58, 66 });
+	front_gun_attack.PushBack({ 102, 138, 58, 66 });
 	front_gun_attack.PushBack({ 24, 135, 42, 66 });
 	front_gun_attack.speed = 0.1f;
 
-	back_melee_attack.PushBack({ 618, 880, 46, 64 });
-	back_melee_attack.PushBack({ 686, 880, 92, 64 });
-	back_melee_attack.PushBack({ 792, 880, 54, 64 });
-	back_melee_attack.PushBack({ 868, 880, 80, 64 });
-	back_melee_attack.PushBack({ 954, 880, 80, 64 });
+	back_melee_attack.PushBack({ 618, 878, 46, 66 });
+	back_melee_attack.PushBack({ 686, 878, 92, 66 });
+	back_melee_attack.PushBack({ 792, 878, 54, 66 });
+	back_melee_attack.PushBack({ 868, 878, 80, 66 });
+	back_melee_attack.PushBack({ 954, 878, 80, 66 });
 	back_melee_attack.speed = 0.1f;
 
-	back_gun_attack.PushBack({ 704, 946, 60, 64 });
-	back_gun_attack.PushBack({ 792, 946, 58, 64 });
-	back_gun_attack.PushBack({ 882, 946, 58, 64 });
+	back_gun_attack.PushBack({ 704, 944, 60, 66 });
+	back_gun_attack.PushBack({ 792, 944, 58, 66 });
+	back_gun_attack.PushBack({ 882, 944, 58, 66 });
 	back_gun_attack.PushBack({ 976, 946, 42, 66 });
 	back_gun_attack.speed = 0.1f;
 
@@ -92,7 +92,7 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 	path.PushBack({ 0.0f, 0.0f }, 50, &front_melee_attack);
 	path.PushBack({ 1.0f, 0.0f }, 150, &back);
 
-	collider = App->collisions->AddCollider({ 0, 0, 24, 24 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ 0, 0, 50, 66 }, Collider::Type::ENEMY, (Module*)App->enemies);
 }
 
 void Enemy_Orange::Update()
@@ -100,7 +100,8 @@ void Enemy_Orange::Update()
 	path.Update();
 	position = spawnPos + path.GetRelativePosition();
 	currentAnim = path.GetCurrentAnimation();
-
+	
+	
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
 	Enemy::Update();

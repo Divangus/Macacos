@@ -463,22 +463,21 @@ update_status ModulePlayer::PostUpdate()
 		GodMode();
 	}
 
-	if (App->input->keys[SDL_SCANCODE_ESCAPE] == KEY_STATE::KEY_DOWN) {
-		return update_status::UPDATE_STOP;
-	}
-
 	return update_status::UPDATE_CONTINUE;
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1 == collider && destroyed == false)
+	if (c1 == collider && destroyed == false && god == false)
 	{
-
+		HP -= 1;
+	}
+	if (c1 == collider && destroyed == false && HP==0) {
+		destroyed = true;
 	}
 }
 
 void ModulePlayer::GodMode() {
-	//Quan hi hagi vida la posarà al màxim
+	HP = Max_HP;
 	//Quan fagi mal matarà d'un cop
 }
