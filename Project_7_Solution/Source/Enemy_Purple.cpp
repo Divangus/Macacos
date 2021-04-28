@@ -16,8 +16,8 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	front.PushBack({ 430, 1890, 86, 90 });
 	front.speed = 0.1f;
 
-	stop.PushBack({ 1032,2340,86,90 });
-	stop.speed = 0.0f;
+	/*stop.PushBack({ 1032,2340,86,90 });
+	stop.speed = 0.0f;*/
 	
 	back.PushBack({ 0, 453, 86, 90 });
 	back.PushBack({ 86, 453, 86, 90 });
@@ -90,7 +90,7 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	path.PushBack({ -0.8f, 0.0f }, 150, &front);
 	path.PushBack({ 0.0f, 0.0f }, 50, &front_punch);
 	path.PushBack({ 0.8f, 0.0f }, 150, &back);
-	path.PushBack({ 0.0f, 0.0f }, 150, &stop);
+	/*path.PushBack({ 0.0f, 0.0f }, 150, &stop);*/
 
 	/*path.PushBack({ -0.3f, 0.0f }, 150, &front);
 	path.PushBack({ 0.2f, 0.0f }, 30, &front_hit_ground);
