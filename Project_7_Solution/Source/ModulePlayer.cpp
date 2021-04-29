@@ -73,26 +73,26 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	downAnimL.speed = 0.2f;
 
 	// right move down
-	downAnimR.PushBack({ 38, 926, 77, 90 });
-	downAnimR.PushBack({ 134, 926 ,77, 90 });
-	downAnimR.PushBack({ 230, 926 ,77 ,90 });
-	downAnimR.PushBack({ 316 ,926 ,77 ,90 });
-	downAnimR.PushBack({ 412 ,926 ,77 ,90 });
-	downAnimR.PushBack({ 508 ,926 ,77 ,90 });
-	downAnimR.PushBack({ 604,926 ,77 ,90 });
-	downAnimR.PushBack({ 700, 926, 77 ,90 });
+	downAnimR.PushBack({ 38, 927, 77, 90 });
+	downAnimR.PushBack({ 134, 927 ,77, 90 });
+	downAnimR.PushBack({ 230, 927 ,77 ,90 });
+	downAnimR.PushBack({ 316 ,927 ,77 ,90 });
+	downAnimR.PushBack({ 412 ,927 ,77 ,90 });
+	downAnimR.PushBack({ 508 ,927 ,77 ,90 });
+	downAnimR.PushBack({ 604,927 ,77 ,90 });
+	downAnimR.PushBack({ 700, 927, 77 ,90 });
 	downAnimR.loop = true;
 	downAnimR.speed = 0.2f;
 
 	// Move right
-	rightAnim.PushBack({ 38, 926, 77, 90 });
-	rightAnim.PushBack({ 134, 926 ,77, 90 });
-	rightAnim.PushBack({ 230, 926 ,77 ,90 });
-	rightAnim.PushBack({ 316 ,926 ,77 ,90 });
-	rightAnim.PushBack({ 412 ,926 ,77 ,90 });
-	rightAnim.PushBack({ 508 ,926 ,77 ,90 });
-	rightAnim.PushBack({ 604,926 ,77 ,90 });
-	rightAnim.PushBack({ 700, 926, 77 ,90 });
+	rightAnim.PushBack({ 38, 927, 77, 90 });
+	rightAnim.PushBack({ 134, 927 ,77, 90 });
+	rightAnim.PushBack({ 230, 927 ,77 ,90 });
+	rightAnim.PushBack({ 316 ,927 ,77 ,90 });
+	rightAnim.PushBack({ 412 ,927 ,77 ,90 });
+	rightAnim.PushBack({ 508 ,927 ,77 ,90 });
+	rightAnim.PushBack({ 604,927 ,77 ,90 });
+	rightAnim.PushBack({ 700, 927, 77 ,90 });
 	rightAnim.loop = true;
 	rightAnim.speed = 0.2f;
 
@@ -217,14 +217,14 @@ update_status ModulePlayer::Update()
 	if (position.x < App->render->LimitPL) {
 		position.x = App->render->LimitPL;
 	}
-	if (position.x > 1371){
-		position.x = 1371;
+	if (position.x > 1280){
+		position.x = 1280;
 	}
-	if (position.y > 140) { //bottom
-		position.y = 140; 
+	if (position.y > 130) { //bottom
+		position.y = 130; 
 	}
-	if (position.y < 80) {//top
-		position.y = 80;
+	if (position.y < 75) {//top
+		position.y = 75;
 	}
 	if (position.x < 0) {
 		position.x = 0;
