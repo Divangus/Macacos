@@ -70,7 +70,6 @@ private:
 	// Spawns a new enemy using the data from the queue
 	void SpawnEnemy(const EnemySpawnpoint& info);
 
-private:
 	// A queue with all spawn points information
 	EnemySpawnpoint spawnQueue[MAX_ENEMIES];
 
@@ -84,5 +83,4 @@ private:
 	// The audio fx for destroying an enemy
 	int enemyDestroyedFx = 0;
 };
-
 #endif // __MODULE_ENEMIES_H__

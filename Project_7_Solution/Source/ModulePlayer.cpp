@@ -499,7 +499,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	{
 		HP -= 1;
 	}
-	if (c1 == collider && destroyed == false && HP==0) {
+	if (c1 == collider && destroyed == false && god == false && HP == 0) {
 		destroyed = true;
 	}
 }
