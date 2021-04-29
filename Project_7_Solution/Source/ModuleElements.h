@@ -27,10 +27,11 @@ public:
 
 private:
 	SDL_Texture* texture = nullptr;
-
-	SDL_Texture* FireTexture = nullptr;
-
+	//SDL_Texture* Texture_Quote = nullptr;
+	SDL_Texture* Texture_Fire = nullptr;
 	iPoint position;
+
+	int speed = 2;
 
 	Animation Fire;
 

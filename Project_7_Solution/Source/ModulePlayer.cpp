@@ -176,9 +176,11 @@ bool ModulePlayer::Start()
 	texture = App->textures->Load("Assets/leonardo.png");
 	currentAnimation = &idleAnimR;
 
+	PlayerAttack = App->audio->LoadFx("Assets/Fx/PlayerAttack.wav");
+	AttackQuote = App->audio->LoadFx("Assets/Fx/AttackQuote.wav");
 
 	position.x = 40;
-	position.y = 120;
+	position.y = 130;
 
 	Player_Position = true;
 
@@ -366,7 +368,7 @@ update_status ModulePlayer::Update()
 				currentAnimation = &attackAnimL;
 			}
 			
-
+			App->audio->PlayFx(PlayerAttack);
 		}
 	}
 		

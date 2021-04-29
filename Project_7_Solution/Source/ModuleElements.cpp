@@ -13,6 +13,13 @@
 ModuleElements::ModuleElements(bool enabled) : Module(enabled){
 
 	Fire.PushBack({ 25, 1, 308, 67 });
+	Fire.PushBack({ 25,70,308,67 });
+	Fire.PushBack({ 28,138,308,67 });
+	Fire.PushBack({ 343,4,308,67 });
+	Fire.PushBack({ 343,72,308,67 });
+	Fire.PushBack({ 343,137,308,67 });
+	Fire.PushBack({ 659,1,308,67 });
+	Fire.PushBack({ 659,71,308,67 });
 	Fire.loop = true;
 	Fire.speed = 0.2f;
 
@@ -28,7 +35,8 @@ bool ModuleElements::Start() {
 
 	bool ret = true;
 
-	FireTexture = App->textures->Load("Assets/fire.png");
+	Texture_Fire = App->textures->Load("Assets/frontFire.png");
+	//Texture_Quote = App->textures->Load("Assets/Quotes.png");
 
 	
 	position.x = 0;
@@ -40,7 +48,7 @@ bool ModuleElements::Start() {
 
 update_status ModuleElements::Update() {
 	Fire.Update();
-	App->render->Blit(FireTexture, 0, 150, &(Fire.GetCurrentFrame())); 
+	
 	
 
 	return update_status::UPDATE_CONTINUE;
@@ -51,9 +59,10 @@ update_status ModuleElements::PostUpdate()
 	if (!destroyed)
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
-		App->render->Blit(FireTexture, position.x + 5, position.y + 5, &rect);
+		App->render->Blit(texture, 10, 10, &rect);
 	}
 
+	App->render->Blit(texture, 0, 222, &(Fire.GetCurrentFrame()), 1);
 
 
 	return update_status::UPDATE_CONTINUE;
