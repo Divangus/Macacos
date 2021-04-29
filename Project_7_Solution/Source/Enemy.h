@@ -31,7 +31,6 @@ public:
 	// Triggers an animation and a sound fx
 	virtual void OnCollision(Collider* collider);
 
-public:
 	// The current position in the world
 	iPoint position;
 
@@ -50,6 +49,10 @@ protected:
 
 	// Original spawn position. Stored for movement calculations
 	iPoint spawnPos;
+
+	int HP = 3;
+
+	bool destroyed = false;
 };
 
 #endif // __ENEMY_H__

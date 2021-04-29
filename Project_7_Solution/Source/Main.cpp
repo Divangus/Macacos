@@ -68,6 +68,7 @@ int main(int argc, char* argv[])
 				}
 			}	break;
 
+
 			case main_states::MAIN_FINISH:
 			{
 				LOG("Application Finish --------------\n");
