@@ -1,4 +1,4 @@
-#include "ModuleIntroScene.h"
+#include "ModuleOver.h"
 
 #include "Application.h"
 #include "ModuleTextures.h"
@@ -9,18 +9,18 @@
 #include "SDL/include/SDL_Scancode.h"
 
 
-ModuleIntroScene::ModuleIntroScene(bool startEnabled) : Module(startEnabled)
+ModuleOver::ModuleOver(bool startEnabled) : Module(startEnabled)
 {
 
 }
 
-ModuleIntroScene::~ModuleIntroScene()
+ModuleOver::~ModuleOver()
 {
 
 }
 
 // Load assets
-bool ModuleIntroScene::Start()
+bool ModuleOver::Start()
 {
 	LOG("Loading background assets");
 
@@ -34,7 +34,7 @@ bool ModuleIntroScene::Start()
 	return ret;
 }
 
-update_status ModuleIntroScene::Update()
+update_status ModuleOver::Update()
 {
 
 
@@ -47,7 +47,7 @@ update_status ModuleIntroScene::Update()
 }
 
 // Update: draw background
-update_status ModuleIntroScene::PostUpdate()
+update_status ModuleOver::PostUpdate()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);
