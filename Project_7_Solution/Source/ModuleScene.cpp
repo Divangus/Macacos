@@ -43,6 +43,7 @@ bool ModuleScene::Start()
 	bgTexture = App->textures->Load("Assets/background.png");
 	Fire_Texture = App->textures->Load("Assets/frontFire.png");
 	Elements_Texture = App->textures->Load("Assets/scene.png");
+	Quotes_Texture = App->textures->Load("Assets/Quotes.png");
 	App->audio->PlayMusic("Assets/stage1.ogg", 1.0f);
 
 
@@ -66,6 +67,7 @@ update_status ModuleScene::Update()
 	Fire.Update();
 	Door.Update();
 	lift.Update();
+	AttackQuote.Update();
 
 	if (App->input->keys[SDL_SCANCODE_F3] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->over, 90);
@@ -85,6 +87,7 @@ update_status ModuleScene::PostUpdate()
 	App->render->Blit(Fire_Texture, 250, 160, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 495, 160, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 740, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 1048, 160, &(Fire.GetCurrentFrame()), 1);
 
 	//Doors closed
 	App->render->Blit(Elements_Texture, 411, 49, &(Door.GetCurrentFrame()), 1);
@@ -94,6 +97,10 @@ update_status ModuleScene::PostUpdate()
 	//Lift Closed
 	App->render->Blit(Elements_Texture, 949, 50, &(lift.GetCurrentFrame()), 1);
 	App->render->Blit(Elements_Texture, 1077, 50, &(lift.GetCurrentFrame()), 1);
+
+	//Attack Quote
+	App->render->Blit(Quotes_Texture, 10, 115, &(AttackQuote.GetCurrentFrame()), 1);
+
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -103,6 +110,7 @@ bool ModuleScene::CleanUp() {
 	App->textures->Unload(bgTexture);
 	App->textures->Unload(Fire_Texture);
 	App->textures->Unload(Elements_Texture);
+	App->textures->Unload(Quotes_Texture);
 
 	return true;
 }

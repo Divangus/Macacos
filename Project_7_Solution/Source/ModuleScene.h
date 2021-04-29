@@ -38,9 +38,12 @@ public:
 
 	SDL_Texture* Elements_Texture = nullptr;
 
+	SDL_Texture* Quotes_Texture = nullptr;
+
 	Animation Fire,
 		Door,
-		lift;
+		lift,
+		AttackQuote;
 };
 
 #endif

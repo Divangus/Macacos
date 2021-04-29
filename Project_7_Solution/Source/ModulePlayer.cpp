@@ -140,26 +140,28 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	jumpAnimL.speed = 0.3f;
 
 	//right attack
-	attackAnimR.PushBack({ 29,170,77,84 });
-	attackAnimR.PushBack({ 120,170,77,88 });
-	attackAnimR.PushBack({ 225,170,77,88 });
-	attackAnimR.PushBack({ 309,170,77,88 });
-	attackAnimR.PushBack({ 403,170,77,88 });
-	attackAnimR.PushBack({ 503,170,77,88 });
-	attackAnimR.PushBack({ 30, 0, 77, 88 });
-	attackAnimR.loop = false;
-	attackAnimR.speed = 0.3f;
+	FrontSwordAttackR.PushBack({ 29,170,77,84 });
+	FrontSwordAttackR.PushBack({ 120,170,77,88 });
+	FrontSwordAttackR.PushBack({ 225,170,77,88 });
+	FrontSwordAttackR.PushBack({ 309,170,77,88 });
+	FrontSwordAttackR.PushBack({ 403,170,77,88 });
+	FrontSwordAttackR.PushBack({ 503,170,77,88 });
+	FrontSwordAttackR.PushBack({ 30, 0, 77, 88 });
+	FrontSwordAttackR.loop = false;
+	FrontSwordAttackR.speed = 0.3f;
 
 	//left attack
-	attackAnimL.PushBack({1706,2259,77,82});
-	attackAnimL.PushBack({ 1609,2259,77,88 });
-	attackAnimL.PushBack({ 1526,2259,77,88 });
-	attackAnimL.PushBack({ 1422,2259,77,88 });
-	attackAnimL.PushBack({ 1329,2259,77,88 });
-	attackAnimL.PushBack({ 1240,2259,77,88 });
-	attackAnimL.PushBack({ 1708, 2087, 77, 90 });
-	attackAnimL.loop = false;
-	attackAnimL.speed = 0.3f;
+	FrontSwordAttackL.PushBack({1706,2259,77,82});
+	FrontSwordAttackL.PushBack({ 1609,2259,77,88 });
+	FrontSwordAttackL.PushBack({ 1526,2259,77,88 });
+	FrontSwordAttackL.PushBack({ 1422,2259,77,88 });
+	FrontSwordAttackL.PushBack({ 1329,2259,77,88 });
+	FrontSwordAttackL.PushBack({ 1240,2259,77,88 });
+	FrontSwordAttackL.PushBack({ 1708, 2087, 77, 90 });
+	FrontSwordAttackL.loop = false;
+	FrontSwordAttackL.speed = 0.3f;
+
+
 
 }
 
@@ -181,7 +183,7 @@ bool ModulePlayer::Start()
 	AttackQuote = App->audio->LoadFx("Assets/Fx/AttackQuote.wav");
 
 	position.x = 40;
-	position.y = 130;
+	position.y = 120;
 
 	Player_Position = true;
 
@@ -270,8 +272,8 @@ update_status ModulePlayer::Update()
 	//left and up
 	else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
-		
-		if (currentAnimation != &upAnimL && currentAnimation != &leftAnim)
+		currentAnimation = &upAnimL;
+		if (currentAnimation != &upAnimL)
 		{
 			upAnimL.Reset();
 			currentAnimation = &upAnimL;
@@ -282,11 +284,11 @@ update_status ModulePlayer::Update()
 	//left and down
 	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
-		
-		if (currentAnimation != &downAnimR)
+		currentAnimation = &downAnimL;
+		if (currentAnimation != &downAnimL)
 		{
-			downAnimR.Reset();
-			currentAnimation = &downAnimR;
+			downAnimL.Reset();
+			currentAnimation = &downAnimL;
 			Player_Position = false;
 		}
 	}
@@ -294,7 +296,7 @@ update_status ModulePlayer::Update()
 	//right and up
 	else if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
-		
+		currentAnimation = &upAnimR;
 		if (currentAnimation != &upAnimR)
 		{
 			upAnimR.Reset();
@@ -306,7 +308,7 @@ update_status ModulePlayer::Update()
 	//right and down
 	else if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
-		
+		currentAnimation = &downAnimR;
 		if (currentAnimation != &downAnimR)
 		{
 			downAnimR.Reset();
@@ -352,17 +354,17 @@ update_status ModulePlayer::Update()
 	//attack
 	if (App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_DOWN)
 	{
-		if (currentAnimation != &attackAnimR && currentAnimation != &attackAnimL)
+		if (currentAnimation != &FrontSwordAttackR && currentAnimation != &FrontSwordAttackL)
 		{
 			if (Player_Position == true) {
-				attackAnimR.Reset();
-				currentAnimation = &attackAnimR;
+				FrontSwordAttackR.Reset();
+				currentAnimation = &FrontSwordAttackR;
 				colliderAttack->SetPos(position.x + 25, position.y + 25);
 				
 			}
 			if (Player_Position == false) {
-				attackAnimL.Reset();
-				currentAnimation = &attackAnimL;
+				FrontSwordAttackL.Reset();
+				currentAnimation = &FrontSwordAttackL;
 				colliderAttack->SetPos(position.x +2, position.y + 25);
 			}
 			
@@ -436,8 +438,8 @@ update_status ModulePlayer::Update()
 			&& currentAnimation != &idleAnimL
 			&& currentAnimation != &jumpAnimR
 			&& currentAnimation != &jumpAnimL
-			&& currentAnimation != &attackAnimR
-			&& currentAnimation != &attackAnimL)
+			&& currentAnimation != &FrontSwordAttackR
+			&& currentAnimation != &FrontSwordAttackL)
 		{
 			if (Player_Position == true) {
 				idleAnimR.Reset();
