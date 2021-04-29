@@ -5,11 +5,6 @@
 
 #define MAX_ENEMIES 100
 
-// TODO 2: Add a new enemy: Brown Cookies!
-
-// TODO 3: Have the Brown Cookies describe a path in the screen
-
-// TODO 4: Create a new enemy type: the Mech
 
 enum class ENEMY_TYPE
 {
@@ -69,6 +64,8 @@ public:
 private:
 	// Spawns a new enemy using the data from the queue
 	void SpawnEnemy(const EnemySpawnpoint& info);
+
+private:
 
 	// A queue with all spawn points information
 	EnemySpawnpoint spawnQueue[MAX_ENEMIES];

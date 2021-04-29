@@ -81,10 +81,10 @@ update_status ModuleScene::PostUpdate()
 	App->render->Blit(bgTexture, 0, 0, NULL);
 
 	//Big Fire
-	App->render->Blit(Fire_Texture, -5, 160, &(Fire.GetCurrentFrame()), 0);
-	App->render->Blit(Fire_Texture, 250, 160, &(Fire.GetCurrentFrame()), 0);
-	App->render->Blit(Fire_Texture, 495, 160, &(Fire.GetCurrentFrame()), 0);
-	App->render->Blit(Fire_Texture, 740, 160, &(Fire.GetCurrentFrame()), 0);
+	App->render->Blit(Fire_Texture, -5, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 250, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 495, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 740, 160, &(Fire.GetCurrentFrame()), 1);
 
 	//Doors closed
 	App->render->Blit(Elements_Texture, 411, 49, &(Door.GetCurrentFrame()), 1);
@@ -93,7 +93,7 @@ update_status ModuleScene::PostUpdate()
 
 	//Lift Closed
 	App->render->Blit(Elements_Texture, 949, 50, &(lift.GetCurrentFrame()), 1);
-	App->render->Blit(Elements_Texture, 1079, 50, &(lift.GetCurrentFrame()), 1);
+	App->render->Blit(Elements_Texture, 1077, 50, &(lift.GetCurrentFrame()), 1);
 	return update_status::UPDATE_CONTINUE;
 }
 
