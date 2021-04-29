@@ -23,7 +23,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	idleAnimR.PushBack({ 498, 0, 77, 90 });
 	idleAnimR.PushBack({ 30, 0, 77, 90 });
 	idleAnimR.loop = false;
-	idleAnimR.speed = 0.2f;
+	idleAnimR.speed = 0.095f;
 
 	//left idle
 	idleAnimL.PushBack({ 1708, 2087, 77, 90 });
@@ -34,7 +34,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	idleAnimL.PushBack({ 1240,  2087, 77, 90 });
 	idleAnimL.PushBack({ 1708,2087, 77, 90 });
 	idleAnimL.loop = false;
-	idleAnimL.speed = 0.2f;
+	idleAnimL.speed = 0.095f;
 
 	// rigt move upwards
 	upAnimR.PushBack({ 39, 1010, 77, 90 });
@@ -366,6 +366,7 @@ update_status ModulePlayer::Update()
 			if (Player_Position == false) {
 				attackAnimL.Reset();
 				currentAnimation = &attackAnimL;
+				colliderAttack->SetPos(position.x +2, position.y + 25);
 			}
 			
 			App->audio->PlayFx(PlayerAttack);
