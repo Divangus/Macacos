@@ -5,10 +5,8 @@
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
 #include "ModuleInput.h"
-#include "ModuleFadeToBlack.h"
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
-#include "SDL/include/SDL_Scancode.h"
 
 
 ModuleOver::ModuleOver(bool startEnabled) : Module(startEnabled)
@@ -51,4 +49,12 @@ update_status ModuleOver::PostUpdate()
 	App->render->Blit(bgTexture, 0, 0, NULL);
 
 	return update_status::UPDATE_CONTINUE;
+}
+
+bool ModuleOver::CleanUp() {
+	LOG("Clearing Over");
+
+	App->textures->Unload(bgTexture);
+
+	return true;
 }

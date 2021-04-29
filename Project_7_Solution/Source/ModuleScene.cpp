@@ -8,8 +8,9 @@
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
-#include "SDL/include/SDL_Scancode.h"
 #include "ModuleInput.h"
+
+#include "SDL/include/SDL_Scancode.h"
 
 ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled) {
 	Fire.PushBack({ 25, 1, 308, 67 });
@@ -66,8 +67,9 @@ update_status ModuleScene::Update()
 	Door.Update();
 	lift.Update();
 
-	if(App->input->keys[SDL_SCANCODE_F3] == KEY_DOWN)
+	if (App->input->keys[SDL_SCANCODE_F3] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->over, 90);
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -93,4 +95,14 @@ update_status ModuleScene::PostUpdate()
 	App->render->Blit(Elements_Texture, 949, 49, &(lift.GetCurrentFrame()), 1);
 	App->render->Blit(Elements_Texture, 1033, 49, &(lift.GetCurrentFrame()), 1);
 	return update_status::UPDATE_CONTINUE;
+}
+
+bool ModuleScene::CleanUp() {
+	LOG("Clearing Over");
+
+	App->textures->Unload(bgTexture);
+	App->textures->Unload(Fire_Texture);
+	App->textures->Unload(Elements_Texture);
+
+	return true;
 }
