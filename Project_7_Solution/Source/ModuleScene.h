@@ -34,6 +34,13 @@ public:
 	
 	// The sprite rectangle for the ground
 	SDL_Texture* starsTexture = nullptr;
+
+	SDL_Texture* Fire_Texture = nullptr;
+
+	SDL_Texture* Elements_Texture = nullptr;
+
+	Animation Fire,
+		Door;
 };
 
 #endif
