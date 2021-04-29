@@ -15,7 +15,7 @@ This game is a tribute of the original TMNT game, developed by [Konami](https://
 - Space - Jump
 - K -Attack
 
-###Debug functionality
+### Debug functionality
 
 - F1 - Colisions
 - F2 - God Mode
