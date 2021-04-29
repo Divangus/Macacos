@@ -31,6 +31,7 @@ public:
 	// Triggers an animation and a sound fx
 	virtual void OnCollision(Collider* collider);
 
+public:
 	// The current position in the world
 	iPoint position;
 
