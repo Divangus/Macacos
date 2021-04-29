@@ -14,6 +14,7 @@
 #include "ModuleIntroScene.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleOver.h"
+#include "ModuleUI.h"
 
 Application::Application()
 {
@@ -33,6 +34,7 @@ Application::Application()
 	modules[10] = fade = new ModuleFadeToBlack(true);
 	modules[11] = render = new ModuleRender(true);
 	//modules[12] = over = new ModuleOver(false);
+	//modules[13] = UI = new ModuleUI(false);
 }
 
 Application::~Application()

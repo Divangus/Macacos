@@ -19,6 +19,7 @@ class ModuleRender;
 class ModuleIntroScene;
 class ModuleFadeToBlack;
 //class ModuleOver;
+//class ModuleUI;
 
 class Application
 {
@@ -61,6 +62,7 @@ public:
 
 	ModuleRender* render = nullptr;
 	//ModuleOver* over = nullptr;
+	//ModuleUI* UI = nullptr;
 };
 
 // Global var made extern for Application ---
