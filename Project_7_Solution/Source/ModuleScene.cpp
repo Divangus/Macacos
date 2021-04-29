@@ -27,7 +27,7 @@ ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled) {
 	Door.PushBack({ 268,239,33,79 });
 	Door.speed = 0.1f;
 
-	lift.PushBack({268,332,45,79});
+	lift.PushBack({268,332,44,77});
 	lift.speed = 0.1f;
 }
 
@@ -81,10 +81,10 @@ update_status ModuleScene::PostUpdate()
 	App->render->Blit(bgTexture, 0, 0, NULL);
 
 	//Big Fire
-	App->render->Blit(Fire_Texture, -5, 160, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 250, 160, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 495, 160, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 740, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, -5, 160, &(Fire.GetCurrentFrame()), 0);
+	App->render->Blit(Fire_Texture, 250, 160, &(Fire.GetCurrentFrame()), 0);
+	App->render->Blit(Fire_Texture, 495, 160, &(Fire.GetCurrentFrame()), 0);
+	App->render->Blit(Fire_Texture, 740, 160, &(Fire.GetCurrentFrame()), 0);
 
 	//Doors closed
 	App->render->Blit(Elements_Texture, 411, 49, &(Door.GetCurrentFrame()), 1);
@@ -92,8 +92,8 @@ update_status ModuleScene::PostUpdate()
 	App->render->Blit(Elements_Texture, 827, 49, &(Door.GetCurrentFrame()), 1);
 
 	//Lift Closed
-	App->render->Blit(Elements_Texture, 949, 49, &(lift.GetCurrentFrame()), 1);
-	App->render->Blit(Elements_Texture, 1033, 49, &(lift.GetCurrentFrame()), 1);
+	App->render->Blit(Elements_Texture, 949, 50, &(lift.GetCurrentFrame()), 1);
+	App->render->Blit(Elements_Texture, 1079, 50, &(lift.GetCurrentFrame()), 1);
 	return update_status::UPDATE_CONTINUE;
 }
 
