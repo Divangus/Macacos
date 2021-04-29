@@ -1,5 +1,4 @@
 # Teen Mutant Ninja Turtles
-(https://github.com/Divangus/Macacos)
 
 ## Description
 
