@@ -12,7 +12,7 @@
 
 ModuleElements::ModuleElements(bool enabled) : Module(enabled){
 
-	Fire.PushBack({ 24, 1, 308, 67 });
+	Fire.PushBack({ 25, 1, 308, 67 });
 	Fire.loop = true;
 	Fire.speed = 0.2f;
 
@@ -28,7 +28,7 @@ bool ModuleElements::Start() {
 
 	bool ret = true;
 
-	FireTexture = App->textures->Load("Assets/scene.png");
+	FireTexture = App->textures->Load("Assets/fire.png");
 
 	
 	position.x = 0;
