@@ -8,12 +8,13 @@ This game is a tribute of the original TMNT game, developed by [Konami](https://
 
  - 1 player
  - Control with the keyboard
+ - Press Space to start the game
  
 ## Controls
 
 - W, A, S, D  - Movement
 - Space - Jump
-- K -Attack
+- K - Attack
 
 ### Debug functionality
 
