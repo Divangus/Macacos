@@ -22,11 +22,11 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY_ATTACK] = false;
 
 	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::PLAYER] = false;
-	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::ENEMY] = true;
+	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::PLAYER_ATTACK] = false;
 	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::ENEMY_ATTACK] = false;
 
-	matrix[Collider::Type::ENEMY_ATTACK][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::ENEMY_ATTACK][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::ENEMY_ATTACK][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::ENEMY_ATTACK][Collider::Type::PLAYER_ATTACK] = false;
 	matrix[Collider::Type::ENEMY_ATTACK][Collider::Type::ENEMY_ATTACK] = false;

@@ -91,7 +91,8 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 	path.PushBack({ -1.0f, 0.0f }, 150, &front);
 	path.PushBack({ 1.0f, 0.0f }, 150, &back);
 
-	collider = App->collisions->AddCollider({ 0, 0, 44, 66 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	//Per un tema de debug per al god mode les col·lisions d'aquest enemic estàn en mode atac ja que els enemics encara no ataquen
+	collider = App->collisions->AddCollider({ 0, 0, 44, 66 }, Collider::Type::ENEMY_ATTACK, (Module*)App->enemies);
 }
 
 void Enemy_Orange::Update()

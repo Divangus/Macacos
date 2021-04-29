@@ -42,9 +42,10 @@ bool ModuleOver::Start()
 
 update_status ModuleOver::Update()
 {
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+	//El següent if serveix per a reiniciar el joc des del game over però falta fer un reset a tots els elements del joc
+	//if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->title, 90);
+		//App->fade->FadeToBlack(this, (Module*)App->title, 90);
 	}
 	return update_status::UPDATE_CONTINUE;
 }
@@ -54,7 +55,6 @@ update_status ModuleOver::PostUpdate()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);
-
 	return update_status::UPDATE_CONTINUE;
 }
 
