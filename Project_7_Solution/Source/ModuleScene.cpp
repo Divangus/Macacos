@@ -8,7 +8,24 @@
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 
-ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled) {}
+ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled) {
+	Fire.PushBack({ 25, 1, 308, 67 });
+	Fire.PushBack({ 25,70,308,67 });
+	Fire.PushBack({ 28,138,308,67 });
+	Fire.PushBack({ 343,4,308,67 });
+	Fire.PushBack({ 343,72,308,67 });
+	Fire.PushBack({ 343,137,308,67 });
+	Fire.PushBack({ 659,1,308,67 });
+	Fire.PushBack({ 659,71,308,67 });
+	//Fire.loop = true;
+	Fire.speed = 0.1f;
+
+	Door.PushBack({ 268,239,33,79 });
+	Door.speed = 0.1f;
+
+	lift.PushBack({268,332,45,79});
+	lift.speed = 0.1f;
+}
 
 ModuleScene::~ModuleScene() {}
 
@@ -20,6 +37,8 @@ bool ModuleScene::Start()
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/background.png");
+	Fire_Texture = App->textures->Load("Assets/frontFire.png");
+	Elements_Texture = App->textures->Load("Assets/scene.png");
 	App->audio->PlayMusic("Assets/stage1.ogg", 1.0f);
 
 
@@ -40,6 +59,10 @@ update_status ModuleScene::Update()
 {
 	App->render->camera.x += 0;
 
+	Fire.Update();
+	Door.Update();
+	lift.Update();
+
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -49,5 +72,19 @@ update_status ModuleScene::PostUpdate()
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);
 
+	//Big Fire
+	App->render->Blit(Fire_Texture, -5, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 250, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 495, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 740, 160, &(Fire.GetCurrentFrame()), 1);
+
+	//Doors closed
+	App->render->Blit(Elements_Texture, 411, 49, &(Door.GetCurrentFrame()), 1);
+	App->render->Blit(Elements_Texture, 699, 49, &(Door.GetCurrentFrame()), 1);
+	App->render->Blit(Elements_Texture, 827, 49, &(Door.GetCurrentFrame()), 1);
+
+	//Lift Closed
+	App->render->Blit(Elements_Texture, 949, 49, &(lift.GetCurrentFrame()), 1);
+	App->render->Blit(Elements_Texture, 1033, 49, &(lift.GetCurrentFrame()), 1);
 	return update_status::UPDATE_CONTINUE;
 }
