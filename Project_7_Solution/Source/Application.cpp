@@ -32,9 +32,10 @@ Application::Application()
 	modules[8] = enemies = new ModuleEnemies(false);
 	modules[9] = collisions = new ModuleCollisions(true);
 	modules[10] = fade = new ModuleFadeToBlack(true);
-	modules[11] = render = new ModuleRender(true);
-	modules[12] = over = new ModuleOver(false);
-	modules[13] = title = new ModuleTitle(false);
+	modules[11] = over = new ModuleOver(false);
+	modules[12] = title = new ModuleTitle(false);
+	modules[13] = render = new ModuleRender(true);
+
 }
 
 Application::~Application()
