@@ -27,7 +27,7 @@ bool ModuleTitle::Start()
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/Title_Screen.png");
-	App->audio->PlayMusic("Assets/Music/titleMusic.ogg", 1.0f);
+	App->audio->PlayMusic("Assets/titleMusic.ogg", 1.0f);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -52,4 +52,12 @@ update_status ModuleTitle::PostUpdate()
 	App->render->Blit(bgTexture, 0, 0, NULL);
 
 	return update_status::UPDATE_CONTINUE;
+}
+
+bool ModuleTitle::CleanUp() {
+	LOG("Clearing Over");
+
+	App->textures->Unload(bgTexture);
+
+	return true;
 }

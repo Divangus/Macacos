@@ -52,3 +52,11 @@ update_status ModuleIntroScene::PostUpdate()
 
 	return update_status::UPDATE_CONTINUE;
 }
+
+bool ModuleIntroScene::CleanUp(){
+	LOG("Clearing Intro");
+
+	App->textures->Unload(bgTexture);
+
+	return true;
+}
