@@ -7,6 +7,9 @@
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
+#include "ModuleFadeToBlack.h"
+#include "SDL/include/SDL_Scancode.h"
+#include "ModuleInput.h"
 
 ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled) {
 	Fire.PushBack({ 25, 1, 308, 67 });
@@ -62,6 +65,9 @@ update_status ModuleScene::Update()
 	Fire.Update();
 	Door.Update();
 	lift.Update();
+
+	if(App->input->keys[SDL_SCANCODE_F3] == KEY_DOWN)
+		App->fade->FadeToBlack(this, (Module*)App->over, 90);
 
 	return update_status::UPDATE_CONTINUE;
 }
