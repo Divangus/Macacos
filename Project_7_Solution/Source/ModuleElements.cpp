@@ -8,6 +8,7 @@
 #include "ModuleAudio.h"
 #include "ModuleCollisions.h"
 
+#include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_scancode.h"
 
 ModuleElements::ModuleElements(bool enabled) : Module(enabled){
@@ -20,7 +21,7 @@ ModuleElements::ModuleElements(bool enabled) : Module(enabled){
 	Fire.PushBack({ 343,137,308,67 });
 	Fire.PushBack({ 659,1,308,67 });
 	Fire.PushBack({ 659,71,308,67 });
-	Fire.loop = true;
+	//Fire.loop = true;
 	Fire.speed = 0.2f;
 
 }
@@ -49,20 +50,12 @@ bool ModuleElements::Start() {
 update_status ModuleElements::Update() {
 	Fire.Update();
 	
-	
-
 	return update_status::UPDATE_CONTINUE;
 }
 
 update_status ModuleElements::PostUpdate()
 {
-	if (!destroyed)
-	{
-		SDL_Rect rect = currentAnimation->GetCurrentFrame();
-		App->render->Blit(texture, 10, 10, &rect);
-	}
-
-	App->render->Blit(texture, 0, 222, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Texture_Fire, 50, 104, &(Fire.GetCurrentFrame()),0.2f);
 
 
 	return update_status::UPDATE_CONTINUE;

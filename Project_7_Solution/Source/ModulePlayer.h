@@ -45,6 +45,7 @@ private:
 
 	bool Player_Position;
 
+	
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;
 	
