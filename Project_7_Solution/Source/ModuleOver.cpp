@@ -26,8 +26,7 @@ bool ModuleIntroScene::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/a.png");
-	App->audio->PlayMusic("Assets/introTitle.ogg", 1.0f);
+	bgTexture = App->textures->Load("Assets/Game_Over.png");
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -44,7 +43,7 @@ update_status ModuleIntroScene::Update()
 		App->fade->FadeToBlack(this, (Module*)App->scene, 90);
 	}
 
-	return update_status::UPDATE_CONTINUE;
+	return update_status::UPDATE_STOP;
 }
 
 // Update: draw background

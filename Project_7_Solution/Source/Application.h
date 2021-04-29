@@ -18,6 +18,7 @@ class ModuleEnemies;
 class ModuleRender;
 class ModuleIntroScene;
 class ModuleFadeToBlack;
+class ModuleOver;
 
 class Application
 {
@@ -55,13 +56,11 @@ public:
 	ModuleEnemies* enemies = nullptr;
 	ModuleParticles* particles = nullptr;
 
-
-
-
 	ModuleCollisions* collisions = nullptr;
 	ModuleFadeToBlack* fade = nullptr;
 
 	ModuleRender* render = nullptr;
+	ModuleOver* over = nullptr;
 };
 
 // Global var made extern for Application ---

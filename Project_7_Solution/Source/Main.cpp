@@ -13,6 +13,7 @@ enum class main_states
 {
 	MAIN_CREATION,
 	MAIN_START,
+	MAIN_OVER,
 	MAIN_UPDATE,
 	MAIN_FINISH,
 	MAIN_EXIT
