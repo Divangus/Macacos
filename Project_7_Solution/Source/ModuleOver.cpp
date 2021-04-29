@@ -8,6 +8,7 @@
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleCollisions.h"
 
 #include "SDL_mixer/include/SDL_mixer.h"
 #include "SDL/include/SDL_Scancode.h"
@@ -35,6 +36,7 @@ bool ModuleOver::Start()
 	
 	bgTexture = App->textures->Load("Assets/Game_Over.png");
 	Mix_FadeOutMusic(0.0);
+	App->collisions->CleanUp();
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
