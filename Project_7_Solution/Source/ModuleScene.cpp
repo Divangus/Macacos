@@ -21,6 +21,9 @@ ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled) {
 
 	Door.PushBack({ 268,239,33,79 });
 	Door.speed = 0.1f;
+
+	lift.PushBack({268,332,45,79});
+	lift.speed = 0.1f;
 }
 
 ModuleScene::~ModuleScene() {}
@@ -55,6 +58,7 @@ update_status ModuleScene::Update()
 
 	Fire.Update();
 	Door.Update();
+	lift.Update();
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -75,5 +79,9 @@ update_status ModuleScene::PostUpdate()
 	App->render->Blit(Elements_Texture, 411, 49, &(Door.GetCurrentFrame()), 1);
 	App->render->Blit(Elements_Texture, 699, 49, &(Door.GetCurrentFrame()), 1);
 	App->render->Blit(Elements_Texture, 827, 49, &(Door.GetCurrentFrame()), 1);
+
+	//Lift Closed
+	App->render->Blit(Elements_Texture, 949, 49, &(lift.GetCurrentFrame()), 1);
+	App->render->Blit(Elements_Texture, 1033, 49, &(lift.GetCurrentFrame()), 1);
 	return update_status::UPDATE_CONTINUE;
 }

@@ -40,7 +40,8 @@ public:
 	SDL_Texture* Elements_Texture = nullptr;
 
 	Animation Fire,
-		Door;
+		Door,
+		lift;
 };
 
 #endif
