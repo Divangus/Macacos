@@ -26,7 +26,7 @@ bool ModuleIntroScene::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/StartScreen.png");
+	bgTexture = App->textures->Load("Assets/IntroScreen.png");
 	App->audio->PlayMusic("Assets/Music/introTitle.ogg", 1.0f);
 
 	App->render->camera.x = 0;
