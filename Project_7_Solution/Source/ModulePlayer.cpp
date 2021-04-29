@@ -186,6 +186,7 @@ bool ModulePlayer::Start()
 	position.y = 120;
 
 	Player_Position = true;
+	destroyed = false;
 
 	collider = App->collisions->AddCollider({position.x, position.y, 30, 55 }, Collider::Type::PLAYER, this);
 	colliderAttack = App->collisions->AddCollider({ position.x, position.y, 30, 55 }, Collider::Type::PLAYER_ATTACK, this);
@@ -360,12 +361,12 @@ update_status ModulePlayer::Update()
 				FrontSwordAttackR.Reset();
 				currentAnimation = &FrontSwordAttackR;
 				colliderAttack->SetPos(position.x + 25, position.y + 25);
-				
 			}
 			if (Player_Position == false) {
 				FrontSwordAttackL.Reset();
 				currentAnimation = &FrontSwordAttackL;
 				colliderAttack->SetPos(position.x +2, position.y + 25);
+
 			}
 			
 			App->audio->PlayFx(PlayerAttack);
