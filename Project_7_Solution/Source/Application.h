@@ -63,6 +63,7 @@ public:
 	ModuleRender* render = nullptr;
 	ModuleOver* over = nullptr;
 	ModuleTitle* title = nullptr;
+	
 };
 
 // Global var made extern for Application ---

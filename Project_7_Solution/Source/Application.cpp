@@ -16,6 +16,7 @@
 #include "ModuleOver.h"
 #include "ModuleTitle.h"
 
+
 Application::Application()
 {
 	// The order in which the modules are added is very important.
@@ -35,7 +36,7 @@ Application::Application()
 	modules[11] = over = new ModuleOver(false);
 	modules[12] = title = new ModuleTitle(false);
 	modules[13] = render = new ModuleRender(true);
-
+	
 }
 
 Application::~Application()

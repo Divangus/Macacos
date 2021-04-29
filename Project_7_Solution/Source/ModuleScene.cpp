@@ -13,6 +13,8 @@
 #include "SDL/include/SDL_Scancode.h"
 
 ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled) {
+	
+
 	Fire.PushBack({ 25, 1, 308, 67 });
 	Fire.PushBack({ 25,70,308,67 });
 	Fire.PushBack({ 28,138,308,67 });
@@ -41,6 +43,7 @@ bool ModuleScene::Start()
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/background.png");
+	hudTexture = App->textures->Load("Assets/hud.png");
 	Fire_Texture = App->textures->Load("Assets/frontFire.png");
 	Elements_Texture = App->textures->Load("Assets/scene.png");
 	Quotes_Texture = App->textures->Load("Assets/Quotes.png");
@@ -81,6 +84,7 @@ update_status ModuleScene::PostUpdate()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);
+	App->render->Blit(hudTexture, 0, 0, NULL);
 
 	//Big Fire
 	App->render->Blit(Fire_Texture, -5, 160, &(Fire.GetCurrentFrame()), 1);
@@ -110,6 +114,7 @@ bool ModuleScene::CleanUp() {
 	LOG("Clearing Over");
 
 	App->textures->Unload(bgTexture);
+	App->textures->Unload(hudTexture);
 	App->textures->Unload(Fire_Texture);
 	App->textures->Unload(Elements_Texture);
 	App->textures->Unload(Quotes_Texture);
