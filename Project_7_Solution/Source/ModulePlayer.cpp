@@ -7,6 +7,7 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleCollisions.h"
+#include "ModuleFadeToBlack.h"
 
 #include "SDL/include/SDL_scancode.h"
 
@@ -501,6 +502,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	}
 	if (c1 == collider && destroyed == false && god == false && HP == 0) {
 		destroyed = true;
+		App->fade->FadeToBlack((Module*)App->scene, (Module*)App->sceneIntro, 60);
 	}
 }
 

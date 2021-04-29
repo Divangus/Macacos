@@ -6,6 +6,7 @@
 #include "ModuleAudio.h"
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
+#include "ModulePlayer.h"
 
 ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled) {}
 
@@ -29,6 +30,8 @@ bool ModuleScene::Start()
 	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 500, 120);
 	App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 400, 100);
 
+	App->enemies->Enable();
+	App->player->Enable();
 
 	return ret;
 }
