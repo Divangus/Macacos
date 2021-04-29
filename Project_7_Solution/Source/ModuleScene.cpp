@@ -73,5 +73,7 @@ update_status ModuleScene::PostUpdate()
 
 	//Doors closed
 	App->render->Blit(Elements_Texture, 411, 49, &(Door.GetCurrentFrame()), 1);
+	App->render->Blit(Elements_Texture, 699, 49, &(Door.GetCurrentFrame()), 1);
+	App->render->Blit(Elements_Texture, 827, 49, &(Door.GetCurrentFrame()), 1);
 	return update_status::UPDATE_CONTINUE;
 }
