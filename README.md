@@ -2,7 +2,7 @@
 
 ## Description
 
-This game is a tribute of the original TMNT game, developed by Konami.
+This game is a tribute of the original TMNT game, developed by [Konami](https://www.konami.com/en/).
 
 ## Key Features
 
@@ -24,10 +24,10 @@ This game is a tribute of the original TMNT game, developed by Konami.
 ## Developers
 [Macacos](https://github.com/Divangus/Macacos) team:
 
- - David Benages
- - Joan Castellvi
- - Marina Albalà
- - Albert Martín
+ - David Benages - Github: [Divangus](https://github.com/Divangus)
+ - Joan Castellvi - Github: [PinChimera](https://github.com/PinChimera)
+ - Marina Albalà - Github: [Marina](https://github.com/Vizalt)
+ - Albert Martín - Github: [T4skar](https://github.com/T4skar)
  
 
 ## License
