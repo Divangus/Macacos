@@ -32,7 +32,6 @@ Application::Application()
 	modules[9] = collisions = new ModuleCollisions(false);
 	modules[10] = fade = new ModuleFadeToBlack(true);
 	modules[11] = render = new ModuleRender(true);
-	modules[12] = over = new ModuleOver(false);
 }
 
 Application::~Application()
