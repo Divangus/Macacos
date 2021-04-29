@@ -49,7 +49,7 @@ public:
 		}
 	}
 
-	const SDL_Rect& GetCurrentFrame() const
+	SDL_Rect& GetCurrentFrame()
 	{
 		int actualFrame = currentFrame;
 		if (pingpongDirection == -1)
@@ -57,6 +57,8 @@ public:
 
 		return frames[actualFrame];
 	}
+
+		
 };
 
 #endif

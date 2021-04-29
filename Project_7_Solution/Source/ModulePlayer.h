@@ -45,6 +45,7 @@ private:
 
 	bool Player_Position;
 
+	
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;
 	
@@ -69,6 +70,7 @@ private:
 
 	// The player's collider
 	Collider* collider = nullptr;
+	Collider* colliderAttack = nullptr;
 
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
@@ -77,8 +79,8 @@ private:
 	uint destroyedCountdown = 120;
 
 	// Sound effects indices
-	uint laserFx = 0;
-	uint explosionFx = 0;
+	uint PlayerAttack = 0;
+	uint AttackQuote = 0;
 
 	bool god = false;
 

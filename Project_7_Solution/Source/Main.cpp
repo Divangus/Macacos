@@ -13,6 +13,7 @@ enum class main_states
 {
 	MAIN_CREATION,
 	MAIN_START,
+	MAIN_OVER,
 	MAIN_UPDATE,
 	MAIN_FINISH,
 	MAIN_EXIT
@@ -66,6 +67,7 @@ int main(int argc, char* argv[])
 					state = main_states::MAIN_FINISH;
 				}
 			}	break;
+
 
 			case main_states::MAIN_FINISH:
 			{

@@ -7,6 +7,7 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleCollisions.h"
+#include "ModuleFadeToBlack.h"
 
 #include "SDL/include/SDL_scancode.h"
 
@@ -23,7 +24,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	idleAnimR.PushBack({ 498, 0, 77, 90 });
 	idleAnimR.PushBack({ 30, 0, 77, 90 });
 	idleAnimR.loop = false;
-	idleAnimR.speed = 0.2f;
+	idleAnimR.speed = 0.095f;
 
 	//left idle
 	idleAnimL.PushBack({ 1708, 2087, 77, 90 });
@@ -34,7 +35,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	idleAnimL.PushBack({ 1240,  2087, 77, 90 });
 	idleAnimL.PushBack({ 1708,2087, 77, 90 });
 	idleAnimL.loop = false;
-	idleAnimL.speed = 0.2f;
+	idleAnimL.speed = 0.095f;
 
 	// rigt move upwards
 	upAnimR.PushBack({ 39, 1010, 77, 90 });
@@ -73,26 +74,26 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	downAnimL.speed = 0.2f;
 
 	// right move down
-	downAnimR.PushBack({ 38, 926, 77, 90 });
-	downAnimR.PushBack({ 134, 926 ,77, 90 });
-	downAnimR.PushBack({ 230, 926 ,77 ,90 });
-	downAnimR.PushBack({ 316 ,926 ,77 ,90 });
-	downAnimR.PushBack({ 412 ,926 ,77 ,90 });
-	downAnimR.PushBack({ 508 ,926 ,77 ,90 });
-	downAnimR.PushBack({ 604,926 ,77 ,90 });
-	downAnimR.PushBack({ 700, 926, 77 ,90 });
+	downAnimR.PushBack({ 38, 927, 77, 90 });
+	downAnimR.PushBack({ 134, 927 ,77, 90 });
+	downAnimR.PushBack({ 230, 927 ,77 ,90 });
+	downAnimR.PushBack({ 316 ,927 ,77 ,90 });
+	downAnimR.PushBack({ 412 ,927 ,77 ,90 });
+	downAnimR.PushBack({ 508 ,927 ,77 ,90 });
+	downAnimR.PushBack({ 604,927 ,77 ,90 });
+	downAnimR.PushBack({ 700, 927, 77 ,90 });
 	downAnimR.loop = true;
 	downAnimR.speed = 0.2f;
 
 	// Move right
-	rightAnim.PushBack({ 38, 926, 77, 90 });
-	rightAnim.PushBack({ 134, 926 ,77, 90 });
-	rightAnim.PushBack({ 230, 926 ,77 ,90 });
-	rightAnim.PushBack({ 316 ,926 ,77 ,90 });
-	rightAnim.PushBack({ 412 ,926 ,77 ,90 });
-	rightAnim.PushBack({ 508 ,926 ,77 ,90 });
-	rightAnim.PushBack({ 604,926 ,77 ,90 });
-	rightAnim.PushBack({ 700, 926, 77 ,90 });
+	rightAnim.PushBack({ 38, 927, 77, 90 });
+	rightAnim.PushBack({ 134, 927 ,77, 90 });
+	rightAnim.PushBack({ 230, 927 ,77 ,90 });
+	rightAnim.PushBack({ 316 ,927 ,77 ,90 });
+	rightAnim.PushBack({ 412 ,927 ,77 ,90 });
+	rightAnim.PushBack({ 508 ,927 ,77 ,90 });
+	rightAnim.PushBack({ 604,927 ,77 ,90 });
+	rightAnim.PushBack({ 700, 927, 77 ,90 });
 	rightAnim.loop = true;
 	rightAnim.speed = 0.2f;
 
@@ -176,13 +177,16 @@ bool ModulePlayer::Start()
 	texture = App->textures->Load("Assets/leonardo.png");
 	currentAnimation = &idleAnimR;
 
+	PlayerAttack = App->audio->LoadFx("Assets/Fx/PlayerAttack.wav");
+	AttackQuote = App->audio->LoadFx("Assets/Fx/AttackQuote.wav");
 
 	position.x = 40;
-	position.y = 120;
+	position.y = 130;
 
 	Player_Position = true;
 
 	collider = App->collisions->AddCollider({position.x, position.y, 30, 55 }, Collider::Type::PLAYER, this);
+	colliderAttack = App->collisions->AddCollider({ position.x, position.y, 30, 55 }, Collider::Type::PLAYER_ATTACK, this);
 
 	return ret;
 }
@@ -196,18 +200,17 @@ update_status ModulePlayer::Update()
 	if (Player_Position == false) {
 		collider->SetPos(position.x+5, position.y + 25);
 	}
-	if (currentAnimation == &attackAnimR) {
-		collider->SetPos(position.x + 25, position.y + 28);
-	}
-	if (currentAnimation == &attackAnimL) {
-		collider->SetPos(position.x + 2, position.y + 28);
-	}
 	if (currentAnimation == &jumpAnimR) {
 		collider->SetPos(position.x + 5, position.y + 5);
 	}
 	if (currentAnimation == &jumpAnimL) {
 		collider->SetPos(position.x + 5, position.y + 5);
 	}
+	/*if (currentAnimation == &attackAnimR) {
+		colliderAttack->SetPos(position.x + 25, position.y + 25);
+	}*/
+
+		
 	
 
 	// Moving the player with the camera scroll
@@ -217,14 +220,14 @@ update_status ModulePlayer::Update()
 	if (position.x < App->render->LimitPL) {
 		position.x = App->render->LimitPL;
 	}
-	if (position.x > 1371){
-		position.x = 1371;
+	if (position.x > 1280){
+		position.x = 1280;
 	}
-	if (position.y > 140) { //bottom
-		position.y = 140; 
+	if (position.y > 130) { //bottom
+		position.y = 130; 
 	}
-	if (position.y < 80) {//top
-		position.y = 80;
+	if (position.y < 75) {//top
+		position.y = 75;
 	}
 	if (position.x < 0) {
 		position.x = 0;
@@ -358,13 +361,16 @@ update_status ModulePlayer::Update()
 			if (Player_Position == true) {
 				attackAnimR.Reset();
 				currentAnimation = &attackAnimR;
+				colliderAttack->SetPos(position.x + 25, position.y + 25);
+				
 			}
 			if (Player_Position == false) {
 				attackAnimL.Reset();
 				currentAnimation = &attackAnimL;
+				colliderAttack->SetPos(position.x +2, position.y + 25);
 			}
 			
-
+			App->audio->PlayFx(PlayerAttack);
 		}
 	}
 		
@@ -432,10 +438,10 @@ update_status ModulePlayer::Update()
 		{
 		if (currentAnimation != &idleAnimR
 			&& currentAnimation != &idleAnimL
-			&& currentAnimation != &attackAnimR
-			&& currentAnimation != &attackAnimL
 			&& currentAnimation != &jumpAnimR
-			&& currentAnimation != &jumpAnimL)
+			&& currentAnimation != &jumpAnimL
+			&& currentAnimation != &attackAnimR
+			&& currentAnimation != &attackAnimL)
 		{
 			if (Player_Position == true) {
 				idleAnimR.Reset();
@@ -494,8 +500,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	{
 		HP -= 1;
 	}
-	if (c1 == collider && destroyed == false && HP==0) {
+	if (c1 == collider && destroyed == false && god == false && HP == 0) {
 		destroyed = true;
+		App->fade->FadeToBlack((Module*)App->scene, (Module*)App->sceneIntro, 60);
 	}
 }
 

@@ -28,7 +28,8 @@ bool ModuleEnemies::Start()
 {
 	texture = App->textures->Load("Assets/Orange_Soldier.png");
 	texture2 = App->textures->Load("Assets/enemy_purple.png");
-	enemyDestroyedFx = App->audio->LoadFx("Assets/explosion.wav");
+	enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/EnemyDying.wav");
+
 
 	return true;
 }
@@ -55,7 +56,6 @@ update_status ModuleEnemies::PostUpdate()
 		if (enemies[i] != nullptr)
 			enemies[i]->Draw();
 	}
-
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -165,10 +165,10 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
-
 			delete enemies[i];
 			enemies[i] = nullptr;
 			break;
 		}
 	}
+	
 }
