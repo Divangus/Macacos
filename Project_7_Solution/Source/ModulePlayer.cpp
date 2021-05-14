@@ -202,8 +202,9 @@ bool ModulePlayer::Start()
 	Player_Position = true;
 	destroyed = false;
 
-	collider = App->collisions->AddCollider({position.x, position.y, 30, 55 }, Collider::Type::PLAYER, this);
-	colliderAttack = App->collisions->AddCollider({ position.x, position.y, 30, 55 }, Collider::Type::PLAYER_ATTACK, this);
+	collider = App->collisions->AddCollider({position.x, position.y, 30, 20 }, Collider::Type::PLAYER, this);
+	/*colliderAttack = App->collisions->AddCollider({ position.x, position.y, 30, 20 }, Collider::Type::PLAYER_ATTACK);*/
+	
 
 	return ret;
 }
@@ -212,20 +213,34 @@ update_status ModulePlayer::Update()
 {
 	//player collider
 	if (Player_Position == true) {
-		collider->SetPos(position.x+5, position.y + 25);
+		collider->SetPos(position.x+5, position.y + 60);
+		
 	}
 	if (Player_Position == false) {
-		collider->SetPos(position.x+5, position.y + 25);
+		collider->SetPos(position.x+5, position.y + 60);
+		
 	}
 	if (currentAnimation == &jumpAnimR) {
 		collider->SetPos(position.x + 5, position.y + 5);
+		
 	}
 	if (currentAnimation == &jumpAnimL) {
 		collider->SetPos(position.x + 5, position.y + 5);
+		
 	}
-	/*if (currentAnimation == &attackAnimR) {
-		colliderAttack->SetPos(position.x + 25, position.y + 25);
-	}*/
+	if (currentAnimation == &FrontSwordAttackR) {
+		if (colliderAttack == nullptr) {
+			colliderAttack = App->collisions->AddCollider({ position.x, position.y, 30, 20 }, Collider::Type::PLAYER_ATTACK);
+			colliderAttack->SetPos(position.x + 25, position.y + 25);
+		}
+		
+	}
+	
+	if (currentAnimation != &FrontSwordAttackR && colliderAttack != nullptr) {
+		colliderAttack->pendingToDelete = true;
+		colliderAttack = nullptr;
+	
+	}
 
 		
 	
@@ -369,22 +384,21 @@ update_status ModulePlayer::Update()
 	//Front attack
 	if (App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_DOWN)
 	{
-		if (currentAnimation != &FrontSwordAttackR && currentAnimation != &FrontSwordAttackL)
-		{
+		
+					
 			if (Player_Position == true) {
 				FrontSwordAttackR.Reset();
 				currentAnimation = &FrontSwordAttackR;
-				colliderAttack->SetPos(position.x + 25, position.y + 25);
+				
 			}
 			if (Player_Position == false) {
 				FrontSwordAttackL.Reset();
 				currentAnimation = &FrontSwordAttackL;
-				colliderAttack->SetPos(position.x +2, position.y + 25);
 
 			}
 			
 			App->audio->PlayFx(PlayerAttack);
-		}
+	
 	}
 
 	/*Leg Attack
