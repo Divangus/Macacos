@@ -203,7 +203,7 @@ bool ModulePlayer::Start()
 	destroyed = false;
 
 	collider = App->collisions->AddCollider({position.x, position.y, 30, 20 }, Collider::Type::PLAYER, this);
-	/*colliderAttack = App->collisions->AddCollider({ position.x, position.y, 30, 20 }, Collider::Type::PLAYER_ATTACK);*/
+	colliderAttack = App->collisions->AddCollider({ position.x, position.y, 30, 20 }, Collider::Type::PLAYER_ATTACK, this);
 	
 
 	return ret;
@@ -211,35 +211,30 @@ bool ModulePlayer::Start()
 
 update_status ModulePlayer::Update()
 {
+	App->collisions->matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = false;
 	//player collider
 	if (Player_Position == true) {
 		collider->SetPos(position.x+5, position.y + 60);
+		colliderAttack->SetPos(position.x + 15, position.y + 60);
 		
 	}
 	if (Player_Position == false) {
 		collider->SetPos(position.x+5, position.y + 60);
-		
+		colliderAttack->SetPos(position.x + 15, position.y + 60);
 	}
 	if (currentAnimation == &jumpAnimR) {
 		collider->SetPos(position.x + 5, position.y + 5);
-		
+		colliderAttack->SetPos(position.x + 15, position.y + 60);
 	}
 	if (currentAnimation == &jumpAnimL) {
 		collider->SetPos(position.x + 5, position.y + 5);
-		
+		colliderAttack->SetPos(position.x + 15, position.y + 60);
 	}
-	if (currentAnimation == &FrontSwordAttackR) {
-		if (colliderAttack == nullptr) {
-			colliderAttack = App->collisions->AddCollider({ position.x, position.y, 30, 20 }, Collider::Type::PLAYER_ATTACK);
-			colliderAttack->SetPos(position.x + 25, position.y + 25);
-		}
-		
+	if (currentAnimation == &FrontSwordAttackR || currentAnimation == &FrontSwordAttackL) {
+		App->collisions->matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = true;
 	}
-	
-	if (currentAnimation != &FrontSwordAttackR && colliderAttack != nullptr) {
-		colliderAttack->pendingToDelete = true;
-		colliderAttack = nullptr;
-	
+	else {
+		App->collisions->matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = false;
 	}
 
 		
