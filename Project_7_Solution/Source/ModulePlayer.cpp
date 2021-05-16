@@ -203,7 +203,7 @@ bool ModulePlayer::Start()
 	destroyed = false;
 
 	collider = App->collisions->AddCollider({position.x, position.y, 30, 20 }, Collider::Type::PLAYER, this);
-	colliderAttack = App->collisions->AddCollider({ position.x, position.y, 30, 20 }, Collider::Type::PLAYER_ATTACK, this);
+	colliderAttack = App->collisions->AddCollider({ position.x, position.y, 20, 20 }, Collider::Type::PLAYER_ATTACK, this);
 	
 
 	return ret;
@@ -214,13 +214,12 @@ update_status ModulePlayer::Update()
 	App->collisions->matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = false;
 	//player collider
 	if (Player_Position == true) {
-		collider->SetPos(position.x+5, position.y + 60);
-		colliderAttack->SetPos(position.x + 15, position.y + 60);
-		
+		collider->SetPos(position.x+5, position.y + 66);
+		colliderAttack->SetPos(position.x + 35, position.y + 66);
 	}
 	if (Player_Position == false) {
-		collider->SetPos(position.x+5, position.y + 60);
-		colliderAttack->SetPos(position.x + 15, position.y + 60);
+		collider->SetPos(position.x+18, position.y + 66);
+		colliderAttack->SetPos(position.x -2, position.y + 66);
 	}
 	if (currentAnimation == &jumpAnimR) {
 		collider->SetPos(position.x + 5, position.y + 5);
@@ -230,7 +229,7 @@ update_status ModulePlayer::Update()
 		collider->SetPos(position.x + 5, position.y + 5);
 		colliderAttack->SetPos(position.x + 15, position.y + 60);
 	}
-	if (currentAnimation == &FrontSwordAttackR || currentAnimation == &FrontSwordAttackL) {
+	if (currentAnimation == &FrontSwordAttackR || currentAnimation == &FrontSwordAttackR) {
 		App->collisions->matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = true;
 	}
 	else {
@@ -253,8 +252,8 @@ update_status ModulePlayer::Update()
 	if (position.y > 130) { //bottom
 		position.y = 130; 
 	}
-	if (position.y < 75) {//top
-		position.y = 75;
+	if (position.y < 70) {//top
+		position.y = 70;
 	}
 	if (position.x < 0) {
 		position.x = 0;
@@ -373,6 +372,28 @@ update_status ModulePlayer::Update()
 				upAnimL.Reset();
 				currentAnimation = &upAnimL;
 			}
+		}
+	}
+
+	//Attack + move
+	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT)
+	{
+		currentAnimation = &FrontSwordAttackR;
+		if (currentAnimation != &FrontSwordAttackR)
+		{
+			FrontSwordAttackR.Reset();
+			currentAnimation = &FrontSwordAttackR;
+			Player_Position = true;
+		}
+	}
+	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT)
+	{
+		currentAnimation = &FrontSwordAttackL;
+		if (currentAnimation != &FrontSwordAttackL)
+		{
+			FrontSwordAttackL.Reset();
+			currentAnimation = &FrontSwordAttackL;
+			Player_Position = true;
 		}
 	}
 
