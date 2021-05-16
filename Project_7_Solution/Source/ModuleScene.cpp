@@ -27,9 +27,24 @@ ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled) {
 	Fire.speed = 0.1f;
 
 	Door.PushBack({ 268,239,33,79 });
+	Door.PushBack({ 307,239,33,79 });
+	Door.PushBack({ 347,239,49,79 });
+	Door.PushBack({ 400,239,60,79 });
 	Door.speed = 0.1f;
 
+	DoorFire.PushBack({ 481,238,35,81 });
+	DoorFire.PushBack({ 516,238,35,81 });
+	DoorFire.PushBack({ 551,238,35,81 });
+	DoorFire.PushBack({ 586,238,35,81 });
+	DoorFire.PushBack({ 621,238,35,81 });
+	DoorFire.PushBack({ 656,238,35,81 });
+	DoorFire.PushBack({ 691,238,35,81 });
+	DoorFire.loop = true;
+	DoorFire.speed = 0.1f;
+
 	lift.PushBack({268,332,44,77});
+	lift.PushBack({ 312,332,44,77 });
+	lift.PushBack({ 359,332,44,77 });
 	lift.speed = 0.1f;
 }
 
@@ -70,6 +85,8 @@ update_status ModuleScene::Update()
 	Fire.Update();
 	Door.Update();
 	lift.Update();
+	DoorFire.Update();
+	liftFire.Update();
 	AttackQuote.Update();
 
 	if (App->input->keys[SDL_SCANCODE_F3] == KEY_DOWN) {
@@ -94,11 +111,15 @@ update_status ModuleScene::PostUpdate()
 	App->render->Blit(Fire_Texture, 1018, 160, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 1065, 160, &(Fire.GetCurrentFrame()), 1);
 	
-
 	//Doors closed
 	App->render->Blit(Elements_Texture, 411, 49, &(Door.GetCurrentFrame()), 1);
 	App->render->Blit(Elements_Texture, 699, 49, &(Door.GetCurrentFrame()), 1);
 	App->render->Blit(Elements_Texture, 827, 49, &(Door.GetCurrentFrame()), 1);
+
+	//Door Fire
+	App->render->Blit(Elements_Texture, 411, 49, &(DoorFire.GetCurrentFrame()), 1);
+	App->render->Blit(Elements_Texture, 699, 49, &(DoorFire.GetCurrentFrame()), 1);
+	App->render->Blit(Elements_Texture, 827, 49, &(DoorFire.GetCurrentFrame()), 1);
 
 	//Lift Closed
 	App->render->Blit(Elements_Texture, 949, 50, &(lift.GetCurrentFrame()), 1);

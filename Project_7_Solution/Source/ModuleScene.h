@@ -44,7 +44,9 @@ public:
 
 	Animation Fire,
 		Door,
+		DoorFire,
 		lift,
+		liftFire,
 		AttackQuote;
 };
 
