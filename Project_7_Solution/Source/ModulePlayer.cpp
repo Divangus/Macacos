@@ -14,7 +14,13 @@
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
-	
+	//Attack Quote
+	QuoteAttack.PushBack({259,167,66,34});
+	QuoteAttack.PushBack({ 259,167,66,34 });
+	QuoteAttack.loop = false;
+	QuoteAttack.speed = 0.01f;
+
+	//Player
 	//right idle
 	idleAnimR.PushBack({ 30, 0, 77, 90 });
 	idleAnimR.PushBack({122, 0, 77, 90 });
@@ -212,6 +218,7 @@ bool ModulePlayer::Start()
 	bool ret = true;
 
 	texture = App->textures->Load("Assets/leonardo.png");
+	QuoteTexture = App->textures->Load("Assets/Quotes.png");
 	currentAnimation = &idleAnimR;
 
 	PlayerAttack = App->audio->LoadFx("Assets/Fx/PlayerAttack.wav");
@@ -258,6 +265,9 @@ update_status ModulePlayer::Update()
 	}
 
 
+	//Attack Quote
+	QuoteAttack.Update();
+
 	// Moving the player with the camera scroll
 	App->player->position.x += 0;
 
@@ -271,8 +281,8 @@ update_status ModulePlayer::Update()
 	if (position.y > 130) { //bottom
 		position.y = 130; 
 	}
-	if (position.y < 70) {//top
-		position.y = 70;
+	if (position.y < 55) {//top
+		position.y = 55;
 	}
 	if (position.x < 0) {
 		position.x = 0;
@@ -422,9 +432,10 @@ update_status ModulePlayer::Update()
 		
 					
 			if (Player_Position == true) {
-				FrontSwordAttackR.Reset();
-				currentAnimation = &FrontSwordAttackR;
 				
+				currentAnimation = &FrontSwordAttackR;
+				FrontSwordAttackR.Reset();
+				currentAnimation = &idleAnimR;
 			}
 			if (Player_Position == false) {
 				FrontSwordAttackL.Reset();
@@ -557,9 +568,6 @@ update_status ModulePlayer::Update()
 		}
 	}
 		
-	
-	
-
 	currentAnimation->Update();
 
 	if (destroyed)
@@ -583,6 +591,8 @@ update_status ModulePlayer::Update()
 
 update_status ModulePlayer::PostUpdate()
 {
+	App->render->Blit(QuoteTexture, 50, 120, &(QuoteAttack.GetCurrentFrame()), 0);
+
 	if (!destroyed)
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
@@ -592,6 +602,7 @@ update_status ModulePlayer::PostUpdate()
 	if (god == true) {
 		GodMode();
 	}
+	
 
 	return update_status::UPDATE_CONTINUE;
 }
