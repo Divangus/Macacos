@@ -161,21 +161,21 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	FrontSwordAttackL.loop = false;
 	FrontSwordAttackL.speed = 0.3f;
 
-	/*Right Attack With Leg
-	LegAttackR.PushBack({ 37,84,77,88});
-	LegAttackR.PushBack({ 149,84,77,88 });
-	LegAttackR.PushBack({ 224,84,77,88 });
-	LegAttackR.PushBack({ 330,84,77,88 });
+	/*Right Attack With Leg*/
+	LegAttackR.PushBack({ 37,86,77,85});
+	LegAttackR.PushBack({ 125,86,72,88 });
+	LegAttackR.PushBack({ 224,86,90,88 });
+	LegAttackR.PushBack({ 314,86,77,88 });
 	LegAttackR.loop = false;
-	LegAttackR.speed = 0.3f;*/
+	LegAttackR.speed = 0.3f;
 
-	/*Left Attack With Leg
-	LegAttackL.PushBack({1681,2220,77,88});
-	LegAttackL.PushBack({ 1651,2220,77,88 });
-	LegAttackL.PushBack({ 1555,2220,77,88 });
-	LegAttackL.PushBack({ 1429,2220,77,88 });
+	/*Left Attack With Leg*/
+	LegAttackL.PushBack({1705,2174,77,83});
+	LegAttackL.PushBack({ 1618,2174,77,88 });
+	LegAttackL.PushBack({ 1504,2174,77,88 });
+	LegAttackL.PushBack({ 1427,2174,77,88 });
 	LegAttackL.loop = false;
-	LegAttackL.speed = 0.3f;*/
+	LegAttackL.speed = 0.3f;
 
 }
 
@@ -221,14 +221,14 @@ update_status ModulePlayer::Update()
 		collider->SetPos(position.x+18, position.y + 66);
 		colliderAttack->SetPos(position.x -2, position.y + 66);
 	}
-	if (currentAnimation == &jumpAnimR) {
+	/*if (currentAnimation == &jumpAnimR) {
 		collider->SetPos(position.x + 5, position.y + 5);
 		colliderAttack->SetPos(position.x + 15, position.y + 60);
 	}
 	if (currentAnimation == &jumpAnimL) {
 		collider->SetPos(position.x + 5, position.y + 5);
 		colliderAttack->SetPos(position.x + 15, position.y + 60);
-	}
+	}*/
 	if (currentAnimation == &FrontSwordAttackR || currentAnimation == &FrontSwordAttackL) {
 		App->collisions->matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = true;
 	}
@@ -236,8 +236,6 @@ update_status ModulePlayer::Update()
 		App->collisions->matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = false;
 	}
 
-		
-	
 
 	// Moving the player with the camera scroll
 	App->player->position.x += 0;
@@ -417,27 +415,22 @@ update_status ModulePlayer::Update()
 	
 	}
 
-	/*Leg Attack
+	//Leg Attack
 	if (App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_DOWN)
 	{
 		
-		if (currentAnimation != &LegAttackR && currentAnimation != &LegAttackL)
-		{
 			if (Player_Position == true) {
 				LegAttackR.Reset();
 				currentAnimation = &LegAttackR;
-				colliderAttack->SetPos(position.x + 25, position.y + 25);
 
 			}
 			if (Player_Position == false) {
 				LegAttackL.Reset();
 				currentAnimation = &LegAttackL;
-				colliderAttack->SetPos(position.x + 2, position.y + 25);
 			}
 
-			App->audio->PlayFx(PlayerAttack);
-		}
-	}*/
+		App->audio->PlayFx(PlayerAttack);
+	}
 		
 	//jump
 	else if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT)
@@ -499,6 +492,7 @@ update_status ModulePlayer::Update()
 		&& App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
 		&& App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE 
 		&& App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE
+		&& App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE
 		&& App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_IDLE)
 		{
 		if (currentAnimation != &idleAnimR
@@ -506,7 +500,9 @@ update_status ModulePlayer::Update()
 			&& currentAnimation != &jumpAnimR
 			&& currentAnimation != &jumpAnimL
 			&& currentAnimation != &FrontSwordAttackR
-			&& currentAnimation != &FrontSwordAttackL)
+			&& currentAnimation != &FrontSwordAttackL
+			&& currentAnimation != &LegAttackR
+			&& currentAnimation != &LegAttackL)
 		{
 			if (Player_Position == true) {
 				idleAnimR.Reset();
