@@ -9,6 +9,7 @@
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleInput.h"
+#include "ModulePlayer.h"
 
 #include "SDL/include/SDL_Scancode.h"
 
@@ -30,6 +31,7 @@ ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled) {
 	Door.PushBack({ 307,239,33,79 });
 	Door.PushBack({ 347,239,49,79 });
 	Door.PushBack({ 400,239,60,79 });
+	Door.loop = false;
 	Door.speed = 0.1f;
 
 	DoorFire.PushBack({ 481,238,35,81 });
@@ -40,12 +42,23 @@ ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled) {
 	DoorFire.PushBack({ 656,238,35,81 });
 	DoorFire.PushBack({ 691,238,35,81 });
 	DoorFire.loop = true;
-	DoorFire.speed = 0.1f;
+	DoorFire.speed = 0.2f;
 
 	lift.PushBack({268,332,44,77});
 	lift.PushBack({ 312,332,44,77 });
 	lift.PushBack({ 359,332,44,77 });
+	lift.loop = false;
 	lift.speed = 0.1f;
+
+	liftFire.PushBack({ 405,331,46,79 });
+	liftFire.PushBack({ 451,331,46,79 });
+	liftFire.PushBack({ 497,331,46,79 });
+	liftFire.PushBack({ 543,331,46,79 });
+	liftFire.PushBack({ 589,331,46,79 });
+	liftFire.PushBack({ 635,331,46,79 });
+	liftFire.PushBack({ 681,331,46,79 });
+	liftFire.loop = true;
+	liftFire.speed = 0.1f;
 }
 
 ModuleScene::~ModuleScene() {}
@@ -83,11 +96,14 @@ update_status ModuleScene::Update()
 	App->render->camera.x += 0;
 
 	Fire.Update();
-	Door.Update();
+	
 	lift.Update();
-	DoorFire.Update();
+	
 	liftFire.Update();
 	AttackQuote.Update();
+
+	Door.Update();
+	DoorFire.Update();
 
 	if (App->input->keys[SDL_SCANCODE_F3] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->over, 90);
@@ -121,10 +137,13 @@ update_status ModuleScene::PostUpdate()
 	App->render->Blit(Elements_Texture, 699, 49, &(DoorFire.GetCurrentFrame()), 1);
 	App->render->Blit(Elements_Texture, 827, 49, &(DoorFire.GetCurrentFrame()), 1);
 
-	//Lift Closed
+	//Lift
 	App->render->Blit(Elements_Texture, 949, 50, &(lift.GetCurrentFrame()), 1);
 	App->render->Blit(Elements_Texture, 1077, 50, &(lift.GetCurrentFrame()), 1);
 
+	//Fire Lift
+	App->render->Blit(Elements_Texture, 949, 50, &(liftFire.GetCurrentFrame()), 1);
+	App->render->Blit(Elements_Texture, 1077, 50, &(liftFire.GetCurrentFrame()), 1);
 	//Attack Quote
 	App->render->Blit(Quotes_Texture, 10, 115, &(AttackQuote.GetCurrentFrame()), 1);
 

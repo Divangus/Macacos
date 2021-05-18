@@ -229,7 +229,7 @@ update_status ModulePlayer::Update()
 		collider->SetPos(position.x + 5, position.y + 5);
 		colliderAttack->SetPos(position.x + 15, position.y + 60);
 	}
-	if (currentAnimation == &FrontSwordAttackR || currentAnimation == &FrontSwordAttackR) {
+	if (currentAnimation == &FrontSwordAttackR || currentAnimation == &FrontSwordAttackL) {
 		App->collisions->matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = true;
 	}
 	else {

@@ -48,6 +48,9 @@ public:
 		lift,
 		liftFire,
 		AttackQuote;
+
+	uint DoorBrake = 0;
+	uint OpenLift = 0;
 };
 
 #endif
