@@ -432,15 +432,12 @@ update_status ModulePlayer::Update()
 		
 					
 			if (Player_Position == true) {
-				
 				currentAnimation = &FrontSwordAttackR;
 				FrontSwordAttackR.Reset();
-				currentAnimation = &idleAnimR;
 			}
 			if (Player_Position == false) {
 				FrontSwordAttackL.Reset();
 				currentAnimation = &FrontSwordAttackL;
-
 			}
 			
 			App->audio->PlayFx(PlayerAttack);
