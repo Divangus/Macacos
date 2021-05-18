@@ -56,20 +56,22 @@ private:
 
 
 	// A set of animations
-	Animation idleAnimR;
-	Animation idleAnimL;
-	Animation upAnimR;
-	Animation downAnimR;
-	Animation upAnimL;
-	Animation downAnimL;
-	Animation rightAnim;
-	Animation leftAnim;
-	Animation jumpAnimR;
-	Animation jumpAnimL;
-	Animation FrontSwordAttackR;
-	Animation FrontSwordAttackL;
-	Animation LegAttackR;
-	Animation LegAttackL;
+	Animation idleAnimR,
+		idleAnimL,
+		upAnimR,
+		downAnimR,
+		upAnimL,
+		downAnimL,
+		rightAnim,
+		leftAnim,
+		jumpAnimR,
+		jumpAnimL,
+		FrontSwordAttackR,
+		FrontSwordAttackL,
+		LegAttackR,
+		LegAttackL,
+		TwoSwordAttackR,
+		TwoSwordAttackL;
 
 	// The player's collider
 	Collider* collider = nullptr;

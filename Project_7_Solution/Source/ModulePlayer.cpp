@@ -177,6 +177,15 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	LegAttackL.loop = false;
 	LegAttackL.speed = 0.3f;
 
+	//Right Sword Attack
+	TwoSwordAttackR.PushBack({ 16,338,77,88 });
+	TwoSwordAttackR.PushBack({ 113,338,77,88 });
+	TwoSwordAttackR.PushBack({ 203,338,88,88 });
+	TwoSwordAttackR.PushBack({ 301,338,88,88 });
+	TwoSwordAttackR.PushBack({ 409,338,77,88 });
+	TwoSwordAttackR.PushBack({ 482,338,77,88 });
+	TwoSwordAttackR.loop = false;
+	TwoSwordAttackR.speed = 0.08f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -229,7 +238,7 @@ update_status ModulePlayer::Update()
 		collider->SetPos(position.x + 5, position.y + 5);
 		colliderAttack->SetPos(position.x + 15, position.y + 60);
 	}*/
-	if (currentAnimation == &FrontSwordAttackR || currentAnimation == &FrontSwordAttackL) {
+	if (currentAnimation == &FrontSwordAttackR || currentAnimation == &FrontSwordAttackL || currentAnimation==&LegAttackR || currentAnimation == &LegAttackL || currentAnimation == &TwoSwordAttackR || currentAnimation == &TwoSwordAttackL) {
 		App->collisions->matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = true;
 	}
 	else {
@@ -431,6 +440,23 @@ update_status ModulePlayer::Update()
 
 		App->audio->PlayFx(PlayerAttack);
 	}
+
+	//Two Sword Attack
+	if (App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_DOWN)
+	{
+
+		if (Player_Position == true) {
+			TwoSwordAttackR.Reset();
+			currentAnimation = &TwoSwordAttackR;
+
+		}
+		if (Player_Position == false) {
+			TwoSwordAttackL.Reset();
+			currentAnimation = &TwoSwordAttackL;
+		}
+
+		App->audio->PlayFx(PlayerAttack);
+	}
 		
 	//jump
 	else if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT)
@@ -493,6 +519,7 @@ update_status ModulePlayer::Update()
 		&& App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE 
 		&& App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE
 		&& App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE
+		&& App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE
 		&& App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_IDLE)
 		{
 		if (currentAnimation != &idleAnimR
@@ -502,7 +529,9 @@ update_status ModulePlayer::Update()
 			&& currentAnimation != &FrontSwordAttackR
 			&& currentAnimation != &FrontSwordAttackL
 			&& currentAnimation != &LegAttackR
-			&& currentAnimation != &LegAttackL)
+			&& currentAnimation != &LegAttackL
+			&& currentAnimation != &TwoSwordAttackR
+			&& currentAnimation != &TwoSwordAttackL)
 		{
 			if (Player_Position == true) {
 				idleAnimR.Reset();
