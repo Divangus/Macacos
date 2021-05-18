@@ -185,7 +185,19 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	TwoSwordAttackR.PushBack({ 409,338,77,88 });
 	TwoSwordAttackR.PushBack({ 482,338,77,88 });
 	TwoSwordAttackR.loop = false;
-	TwoSwordAttackR.speed = 0.08f;
+	TwoSwordAttackR.speed = 0.3f;
+
+	//Left Sword Attack
+	TwoSwordAttackL.PushBack({ 1727,2425,77,88 });
+	TwoSwordAttackL.PushBack({ 1617,2425,77,88 });
+	TwoSwordAttackL.PushBack({ 1503,2425,77,88 });
+	TwoSwordAttackL.PushBack({ 1409,2425,77,88 });
+	TwoSwordAttackL.PushBack({ 1341,2425,77,88 });
+	TwoSwordAttackL.PushBack({ 1230,2425,77,88 });
+	TwoSwordAttackL.loop = false;
+	TwoSwordAttackL.speed = 0.3f;
+
+	/*PlayerDeathR.PushBack({})*/
 }
 
 ModulePlayer::~ModulePlayer()

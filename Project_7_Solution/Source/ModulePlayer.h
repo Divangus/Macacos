@@ -71,7 +71,10 @@ private:
 		LegAttackR,
 		LegAttackL,
 		TwoSwordAttackR,
-		TwoSwordAttackL;
+		TwoSwordAttackL,
+		PlayerDeathR,
+		PlayerDeathL;
+
 
 	// The player's collider
 	Collider* collider = nullptr;
