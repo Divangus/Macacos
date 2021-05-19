@@ -15,8 +15,8 @@
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 	//Attack Quote
-	QuoteAttack.PushBack({259,167,66,34});
-	QuoteAttack.PushBack({ 259,167,66,34 });
+	QuoteAttack.PushBack({ 0,0,64,32 });
+	QuoteAttack.PushBack({ 0,0,0,0 });
 	QuoteAttack.loop = false;
 	QuoteAttack.speed = 0.01f;
 
@@ -218,11 +218,11 @@ bool ModulePlayer::Start()
 	bool ret = true;
 
 	texture = App->textures->Load("Assets/leonardo.png");
-	QuoteTexture = App->textures->Load("Assets/Quotes.png");
+	QuoteTexture = App->textures->Load("Assets/FireQuote.png");
 	currentAnimation = &idleAnimR;
 
-	PlayerAttack = App->audio->LoadFx("Assets/Fx/PlayerAttack.wav");
-	AttackQuote = App->audio->LoadFx("Assets/Fx/AttackQuote.wav");
+	PlayerAttackFx = App->audio->LoadFx("Assets/Fx/PlayerAttackFx.wav");
+	FireQuoteFx = App->audio->LoadFx("Assets/Fx/FireQuoteFx.wav");
 
 	position.x = 40;
 	position.y = 120;
@@ -278,8 +278,8 @@ update_status ModulePlayer::Update()
 	if (position.x > 1280){
 		position.x = 1280;
 	}
-	if (position.y > 130) { //bottom
-		position.y = 130; 
+	if (position.y > 135) { //bottom
+		position.y = 135; 
 	}
 	if (position.y < 55) {//top
 		position.y = 55;
@@ -440,7 +440,7 @@ update_status ModulePlayer::Update()
 				currentAnimation = &FrontSwordAttackL;
 			}
 			
-			App->audio->PlayFx(PlayerAttack);
+			App->audio->PlayFx(PlayerAttackFx);
 	
 	}
 
@@ -458,7 +458,7 @@ update_status ModulePlayer::Update()
 				currentAnimation = &LegAttackL;
 			}
 
-		App->audio->PlayFx(PlayerAttack);
+		App->audio->PlayFx(PlayerAttackFx);
 	}
 
 	//Two Sword Attack
@@ -475,7 +475,7 @@ update_status ModulePlayer::Update()
 			currentAnimation = &TwoSwordAttackL;
 		}
 
-		App->audio->PlayFx(PlayerAttack);
+		App->audio->PlayFx(PlayerAttackFx);
 	}
 		
 	//jump
@@ -589,6 +589,8 @@ update_status ModulePlayer::Update()
 update_status ModulePlayer::PostUpdate()
 {
 	App->render->Blit(QuoteTexture, 50, 120, &(QuoteAttack.GetCurrentFrame()), 0);
+	App->audio->PlayFx(FireQuoteFx);
+	
 
 	if (!destroyed)
 	{

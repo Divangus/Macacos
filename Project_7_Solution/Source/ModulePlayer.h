@@ -90,8 +90,8 @@ private:
 	uint destroyedCountdown = 120;
 
 	// Sound effects indices
-	uint PlayerAttack = 0;
-	uint AttackQuote = 0;
+	uint PlayerAttackFx = 0;
+	uint FireQuoteFx = 0;
 
 	bool god = false;
 
