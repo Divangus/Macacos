@@ -589,11 +589,11 @@ update_status ModulePlayer::Update()
 update_status ModulePlayer::PostUpdate()
 {
 	App->render->Blit(QuoteTexture, 50, 120, &(QuoteAttack.GetCurrentFrame()), 0);
-	if (App->render->camera.x == 0) {
-		App->audio->PlayFx(FireQuoteFx);
-	}
 
-	
+	//if (App->render->camera.x == 0) {
+	//	App->audio->PlayFx(FireQuoteFx);
+	//}
+
 
 	if (!destroyed)
 	{
