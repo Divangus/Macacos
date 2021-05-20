@@ -47,19 +47,19 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	
 
 	collider = App->collisions->AddCollider({0,0, 30, 20}, Collider::Type::ENEMY, (Module*)App->enemies);
-	colliderAttack = App->collisions->AddCollider({ 0, 0, 20, 20 }, Collider::Type::ENEMY_ATTACK, (Module*)App->enemies);
+	colliderAttack = App->collisions->AddCollider({ 0, 0, 20, 20 }, Collider::Type::PURPLE_ATTACK, (Module*)App->enemies);
 	
 }
 
 void Enemy_Purple::Update()
 {
-	App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_ATTACK] = false;
+	App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = false;
 	
 	if (currentAnim == &front_punch) {
-		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_ATTACK] = true;
+		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = true;
 	}
 	else {
-		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_ATTACK] = false;
+		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = false;
 	}
 
 	path.Update();

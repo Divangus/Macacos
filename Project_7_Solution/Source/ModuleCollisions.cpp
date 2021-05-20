@@ -14,22 +14,26 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER_ATTACK] = false;
-	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_ATTACK] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::ORANGE_ATTACK] = true;
 
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = false;
-	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY_ATTACK] = false;
+	matrix[Collider::Type::ENEMY][Collider::Type::PURPLE_ATTACK] = false;
+	matrix[Collider::Type::ENEMY][Collider::Type::ORANGE_ATTACK] = false;
 
 	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::PLAYER_ATTACK] = false;
-	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::ENEMY_ATTACK] = false;
+	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::PURPLE_ATTACK] = false;
+	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::ORANGE_ATTACK] = false;
 
-	matrix[Collider::Type::ENEMY_ATTACK][Collider::Type::PLAYER] = false;
-	matrix[Collider::Type::ENEMY_ATTACK][Collider::Type::ENEMY] = false;
-	matrix[Collider::Type::ENEMY_ATTACK][Collider::Type::PLAYER_ATTACK] = false;
-	matrix[Collider::Type::ENEMY_ATTACK][Collider::Type::ENEMY_ATTACK] = false;
+	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::PLAYER] = false;
+	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::PLAYER_ATTACK] = false;
+	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::PURPLE_ATTACK] = false;
+	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::ORANGE_ATTACK] = false;
 }
 
 // Destructor
@@ -128,7 +132,7 @@ void ModuleCollisions::DebugDraw()
 			case Collider::Type::PLAYER_ATTACK: // yellow
 			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
 			break;
-			case Collider::Type::ENEMY_ATTACK: // magenta
+			case Collider::Type::PURPLE_ATTACK: // magenta
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
 			break;
 		}
