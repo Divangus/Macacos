@@ -91,12 +91,21 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 	path.PushBack({ -1.0f, 0.0f }, 150, &front);
 	path.PushBack({ 1.0f, 0.0f }, 150, &back);
 
-	//Per un tema de debug per al god mode les col·lisions d'aquest enemic estàn en mode atac ja que els enemics encara no ataquen
-	collider = App->collisions->AddCollider({ 0, 0, 44, 66 }, Collider::Type::ENEMY_ATTACK, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ 0,0, 30, 20 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	colliderAttack = App->collisions->AddCollider({ 0, 0, 20, 20 }, Collider::Type::ENEMY_ATTACK, (Module*)App->enemies);
 }
 
 void Enemy_Orange::Update()
 {
+	App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_ATTACK] = false;
+
+	if (currentAnim == &front_melee_attack) {
+		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_ATTACK] = true;
+	}
+	else {
+		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_ATTACK] = false;
+	}
+
 	path.Update();
 	position = spawnPos + path.GetRelativePosition();
 	currentAnim = path.GetCurrentAnimation();

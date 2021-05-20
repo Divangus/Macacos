@@ -16,6 +16,8 @@ Enemy::~Enemy()
 {
 	if (collider != nullptr)
 		collider->pendingToDelete = true;
+	if (colliderAttack != nullptr)
+		colliderAttack->pendingToDelete = true;
 }
 
 const Collider* Enemy::GetCollider() const
@@ -28,8 +30,11 @@ void Enemy::Update()
 	if (currentAnim != nullptr)
 		currentAnim->Update();
 
-	if (collider != nullptr)
-		collider->SetPos(position.x, position.y);
+	if (collider != nullptr )
+		collider->SetPos(position.x+28, position.y+66);
+	
+	if (colliderAttack != nullptr)
+		colliderAttack->SetPos(position.x+20, position.y+66);
 }
 
 void Enemy::Draw()
