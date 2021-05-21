@@ -91,12 +91,16 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 	path.PushBack({ -1.0f, 0.0f }, 150, &front);
 	path.PushBack({ 1.0f, 0.0f }, 150, &back);
 
-	collider = App->collisions->AddCollider({ 0,0, 30, 20 }, Collider::Type::ENEMY, (Module*)App->enemies);
-	colliderAttack = App->collisions->AddCollider({ 0, 0, 20, 20 }, Collider::Type::ORANGE_ATTACK, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ position.x,position.y, 30, 20 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	colliderAttack = App->collisions->AddCollider({ position.x, position.y, 20, 20 }, Collider::Type::ORANGE_ATTACK, (Module*)App->enemies);
+
 }
 
 void Enemy_Orange::Update()
 {
+
+	collider->SetPos(position.x + 5, position.y + 66);
+	colliderAttack->SetPos(position.x - 35, position.y - 66);
 	App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::ORANGE_ATTACK] = false;
 
 	if (currentAnim == &front_melee_attack) {

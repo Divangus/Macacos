@@ -15,7 +15,7 @@
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 	//Attack Quote
-	QuoteAttack.PushBack({ 0,0,64,32 });
+	QuoteAttack.PushBack({ 115,167,66,34 });
 	QuoteAttack.PushBack({ 0,0,0,0 });
 	QuoteAttack.loop = false;
 	QuoteAttack.speed = 0.01f;
@@ -203,7 +203,12 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	TwoSwordAttackL.loop = false;
 	TwoSwordAttackL.speed = 0.3f;
 
-	/*PlayerDeathR.PushBack({})*/
+	//player death
+	PlayerDeathR.PushBack({35,1942,77,88});
+	PlayerDeathR.PushBack({ 124,1942,77,88 });
+	PlayerDeathR.PushBack({ 35,1942,77,88 });
+	PlayerDeathR.loop = false;
+	PlayerDeathR.speed = 0.3f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -218,11 +223,11 @@ bool ModulePlayer::Start()
 	bool ret = true;
 
 	texture = App->textures->Load("Assets/leonardo.png");
-	QuoteTexture = App->textures->Load("Assets/FireQuote.png");
+	QuoteTexture = App->textures->Load("Assets/Quotes.png");
 	currentAnimation = &idleAnimR;
 
 	PlayerAttackFx = App->audio->LoadFx("Assets/Fx/PlayerAttackFx.wav");
-	FireQuoteFx = App->audio->LoadFx("Assets/Fx/FireQuoteFx.wav");
+	AttackQuoteFx = App->audio->LoadFx("Assets/Fx/AttackQuoteFx.wav");
 
 	position.x = 40;
 	position.y = 120;
@@ -532,6 +537,10 @@ update_status ModulePlayer::Update()
 		}
 	}
 
+	if (HP == 0) {
+
+	}
+
 	// If no up/down movement detected, set the current animation back to idle
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
 		&& App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE 
@@ -591,14 +600,14 @@ update_status ModulePlayer::PostUpdate()
 	App->render->Blit(QuoteTexture, 50, 120, &(QuoteAttack.GetCurrentFrame()), 0);
 
 	//if (App->render->camera.x == 0) {
-	//	App->audio->PlayFx(FireQuoteFx);
+	//	App->audio->PlayFx(AttackQuoteFx);
 	//}
 
 
 	if (!destroyed)
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
-		App->render->Blit(texture, position.x, position.y, &rect);
+		App->render->Blit(texture, position.x-10, position.y+20, &rect);//draw player
 	}
 
 	if (god == true) {
@@ -616,6 +625,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		HP -= 1;
 	}
 	if (c1 == collider && destroyed == false && god == false && HP == 0) {
+		if (Player_Position == true) {
+			currentAnimation = &PlayerDeathR;
+		}
+		else {
+			currentAnimation = &PlayerDeathL;
+		}
+		
 		destroyed = true;
 		App->fade->FadeToBlack((Module*)App->scene, (Module*)App->over, 60);
 	}
