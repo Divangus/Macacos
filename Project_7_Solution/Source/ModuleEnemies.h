@@ -2,6 +2,9 @@
 #define __MODULE_ENEMIES_H__
 
 #include "Module.h"
+#include <vector>
+#include <algorithm>
+
 
 #define MAX_ENEMIES 100
 
@@ -72,6 +75,8 @@ private:
 
 	// All spawned enemies in the scene
 	Enemy* enemies[MAX_ENEMIES] = { nullptr };
+	
+	
 
 	// The enemies sprite sheet
 	SDL_Texture* texture = nullptr;

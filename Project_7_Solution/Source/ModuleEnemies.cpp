@@ -34,6 +34,11 @@ bool ModuleEnemies::Start()
 	return true;
 }
 
+//bool my_cmp(const Enemy& a, const Enemy& b) {
+//
+//	return a.position.y < b.position.y;
+//}
+
 update_status ModuleEnemies::Update()
 {
 	HandleEnemiesSpawn();
@@ -53,6 +58,8 @@ update_status ModuleEnemies::PostUpdate()
 {
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
+		/*std::vector<Enemy> myvector(enemies, enemies + MAX_ENEMIES);
+		sort(myvector.begin(), myvector.end(), my_cmp);*/
 
 		if (enemies[i] != nullptr)
 			enemies[i]->Draw();

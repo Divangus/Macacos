@@ -1,5 +1,8 @@
 #include <windows.h>
 #include <stdio.h>
+#include <vector>
+#include <algorithm>
+
 
 void log(const char file[], int line, const char* format, ...)
 {
