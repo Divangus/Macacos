@@ -91,7 +91,7 @@ private:
 
 	// Sound effects indices
 	uint PlayerAttackFx = 0;
-	uint FireQuoteFx = 0;
+	uint AttackQuoteFx = 0;
 
 	bool god = false;
 
