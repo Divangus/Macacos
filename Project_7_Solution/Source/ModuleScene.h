@@ -36,7 +36,7 @@ public:
 
 	SDL_Texture* hudTexture = nullptr;
 
-	/*SDL_Texture* Fire_Texture = nullptr;*/
+	SDL_Texture* Fire_Texture = nullptr;
 
 	SDL_Texture* Elements_Texture = nullptr;
 
