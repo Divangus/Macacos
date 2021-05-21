@@ -30,11 +30,14 @@ void Enemy::Update()
 	if (currentAnim != nullptr)
 		currentAnim->Update();
 
-	if (collider != nullptr )
+	if (collider != nullptr)
 		collider->SetPos(position.x+28, position.y+66);
 	
-	if (colliderAttack != nullptr)
+	if (colliderAttack != nullptr && Purple_Position == true)
 		colliderAttack->SetPos(position.x+20, position.y+66);
+	
+	else if (colliderAttack != nullptr && Purple_Position == false)
+		colliderAttack->SetPos(position.x + 50, position.y + 66);
 }
 
 void Enemy::Draw()

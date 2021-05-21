@@ -54,6 +54,13 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 void Enemy_Purple::Update()
 {
 	App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = false;
+
+	if (currentAnim == &back) {
+		Purple_Position = false;
+	}
+	else {
+		Purple_Position = true;
+	}
 	
 	if (currentAnim == &front_punch) {
 		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = true;

@@ -42,6 +42,10 @@ public:
 	int destroyedFx = 0;
 
 protected:
+
+	bool Purple_Position = true;
+	bool Orange_Position = true;
+
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
 
