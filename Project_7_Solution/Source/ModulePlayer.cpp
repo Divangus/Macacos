@@ -612,12 +612,7 @@ update_status ModulePlayer::Update()
 update_status ModulePlayer::PostUpdate()
 {
 	//Big Fire
-	App->render->Blit(Fire_Texture, -5, 160, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 250, 160, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 504, 160, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 760, 160, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 1018, 160, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 1065, 160, &(Fire.GetCurrentFrame()), 1);
+
 
 	App->render->Blit(QuoteTexture, 50, 120, &(QuoteAttack.GetCurrentFrame()), 0);
 
@@ -635,7 +630,13 @@ update_status ModulePlayer::PostUpdate()
 	if (god == true) {
 		GodMode();
 	}
-	
+
+	App->render->Blit(Fire_Texture, -5, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 250, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 504, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 760, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 1018, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 1065, 160, &(Fire.GetCurrentFrame()), 1);
 
 	return update_status::UPDATE_CONTINUE;
 }
