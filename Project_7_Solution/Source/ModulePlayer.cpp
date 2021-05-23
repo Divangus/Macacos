@@ -1,5 +1,6 @@
 #include "ModulePlayer.h"
 
+
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
@@ -8,12 +9,17 @@
 #include "ModuleAudio.h"
 #include "ModuleCollisions.h"
 #include "ModuleFadeToBlack.h"
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include "SDL/include/SDL_scancode.h"
 
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
+
+	srand(time(NULL));
+
 	//Attack Quote
 	QuoteAttack.PushBack({ 115,167,66,34 });
 	QuoteAttack.PushBack({ 0,0,0,0 });
@@ -209,6 +215,17 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	PlayerDeathR.PushBack({ 35,1942,77,88 });
 	PlayerDeathR.loop = false;
 	PlayerDeathR.speed = 0.3f;
+
+	Fire.PushBack({ 25, 1, 308, 67 });
+	Fire.PushBack({ 25,70,308,67 });
+	Fire.PushBack({ 28,138,308,67 });
+	Fire.PushBack({ 343,4,308,67 });
+	Fire.PushBack({ 343,72,308,67 });
+	Fire.PushBack({ 343,137,308,67 });
+	Fire.PushBack({ 659,1,308,67 });
+	Fire.PushBack({ 659,71,308,67 });
+	//Fire.loop = true;
+	Fire.speed = 0.1f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -224,6 +241,7 @@ bool ModulePlayer::Start()
 
 	texture = App->textures->Load("Assets/leonardo.png");
 	QuoteTexture = App->textures->Load("Assets/Quotes.png");
+	Fire_Texture = App->textures->Load("Assets/frontFire.png");
 	currentAnimation = &idleAnimR;
 
 	PlayerAttackFx = App->audio->LoadFx("Assets/Fx/PlayerAttackFx.wav");
@@ -244,6 +262,9 @@ bool ModulePlayer::Start()
 
 update_status ModulePlayer::Update()
 {
+
+	Fire.Update();
+
 	App->collisions->matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = false;
 	//player collider
 	if (Player_Position == true) {
@@ -434,55 +455,48 @@ update_status ModulePlayer::Update()
 	//Front attack
 	if (App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_DOWN)
 	{
-		
-					
+		int num = (rand() % 3);
+		if (num == 0) {
+				if (Player_Position == true) {
+						currentAnimation = &FrontSwordAttackR;
+						FrontSwordAttackR.Reset();
+				}
+				if (Player_Position == false) {
+					FrontSwordAttackL.Reset();
+					currentAnimation = &FrontSwordAttackL;
+				}
+			
+				App->audio->PlayFx(PlayerAttackFx);
+		}
+
+		if (num == 1) {
+				if (Player_Position == true) {
+					LegAttackR.Reset();
+					currentAnimation = &LegAttackR;
+				}
+				if (Player_Position == false) {
+					LegAttackL.Reset();
+					currentAnimation = &LegAttackL;
+				}
+
+			App->audio->PlayFx(PlayerAttackFx);
+		}
+		if (num == 2) {
 			if (Player_Position == true) {
-				currentAnimation = &FrontSwordAttackR;
-				FrontSwordAttackR.Reset();
+				TwoSwordAttackR.Reset();
+				currentAnimation = &TwoSwordAttackR;
+
 			}
 			if (Player_Position == false) {
-				FrontSwordAttackL.Reset();
-				currentAnimation = &FrontSwordAttackL;
+				TwoSwordAttackL.Reset();
+				currentAnimation = &TwoSwordAttackL;
 			}
-			
+
 			App->audio->PlayFx(PlayerAttackFx);
+		}
 	
 	}
 
-	//Leg Attack
-	if (App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_DOWN)
-	{
-		
-			if (Player_Position == true) {
-				LegAttackR.Reset();
-				currentAnimation = &LegAttackR;
-
-			}
-			if (Player_Position == false) {
-				LegAttackL.Reset();
-				currentAnimation = &LegAttackL;
-			}
-
-		App->audio->PlayFx(PlayerAttackFx);
-	}
-
-	//Two Sword Attack
-	if (App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_DOWN)
-	{
-
-		if (Player_Position == true) {
-			TwoSwordAttackR.Reset();
-			currentAnimation = &TwoSwordAttackR;
-
-		}
-		if (Player_Position == false) {
-			TwoSwordAttackL.Reset();
-			currentAnimation = &TwoSwordAttackL;
-		}
-
-		App->audio->PlayFx(PlayerAttackFx);
-	}
-		
 	//jump
 	else if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT)
 	{
@@ -597,6 +611,14 @@ update_status ModulePlayer::Update()
 
 update_status ModulePlayer::PostUpdate()
 {
+	//Big Fire
+	App->render->Blit(Fire_Texture, -5, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 250, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 504, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 760, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 1018, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 1065, 160, &(Fire.GetCurrentFrame()), 1);
+
 	App->render->Blit(QuoteTexture, 50, 120, &(QuoteAttack.GetCurrentFrame()), 0);
 
 	//if (App->render->camera.x == 0) {
