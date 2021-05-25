@@ -31,8 +31,17 @@ ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled) {
 	Door.PushBack({ 307,239,33,79 });
 	Door.PushBack({ 347,239,49,79 });
 	Door.PushBack({ 400,239,60,79 });
+	Door.PushBack({ 0,0,0,0 });
 	Door.loop = false;
 	Door.speed = 0.1f;
+
+	Door1.PushBack({ 268,239,33,79 });
+	Door1.PushBack({ 307,239,33,79 });
+	Door1.PushBack({ 347,239,49,79 });
+	Door1.PushBack({ 400,239,60,79 });
+	Door1.PushBack({ 0,0,0,0 });
+	Door1.loop = false;
+	Door1.speed = 0.1f;
 
 	DoorFire.PushBack({ 481,238,35,81 });
 	DoorFire.PushBack({ 516,238,35,81 });
@@ -88,21 +97,32 @@ bool ModuleScene::Start()
 	App->enemies->Enable();
 	App->player->Enable();
 
+	Door.Reset();
+	lift.Reset();
+
 	return ret;
 }
 
 update_status ModuleScene::Update()
 {
 	App->render->camera.x += 0;
-
-	//Fire.Update();
 	
-	lift.Update();
+	//Fire.Update();
+	if (App->render->camera.x > 850) {
+		lift.Update();
+	}
+
+	if (App->render->camera.x > 260) {
+		Door1.Update();
+	}
+	if (App->render->camera.x > 550) {
+		Door.Update();
+	}
 	
 	liftFire.Update();
 	AttackQuote.Update();
 
-	Door.Update();
+	
 	DoorFire.Update();
 
 	if (App->input->keys[SDL_SCANCODE_F3] == KEY_DOWN) {
@@ -126,24 +146,27 @@ update_status ModuleScene::PostUpdate()
 	//App->render->Blit(Fire_Texture, 760, 160, &(Fire.GetCurrentFrame()), 1);
 	//App->render->Blit(Fire_Texture, 1018, 160, &(Fire.GetCurrentFrame()), 1);
 	//App->render->Blit(Fire_Texture, 1065, 160, &(Fire.GetCurrentFrame()), 1);
-	
-	//Doors closed
-	App->render->Blit(Elements_Texture, 411, 49, &(Door.GetCurrentFrame()), 1);
-	App->render->Blit(Elements_Texture, 699, 49, &(Door.GetCurrentFrame()), 1);
-	App->render->Blit(Elements_Texture, 827, 49, &(Door.GetCurrentFrame()), 1);
-
+	// 
 	//Door Fire
 	App->render->Blit(Elements_Texture, 411, 49, &(DoorFire.GetCurrentFrame()), 1);
 	App->render->Blit(Elements_Texture, 699, 49, &(DoorFire.GetCurrentFrame()), 1);
 	App->render->Blit(Elements_Texture, 827, 49, &(DoorFire.GetCurrentFrame()), 1);
 
-	//Lift
-	App->render->Blit(Elements_Texture, 949, 50, &(lift.GetCurrentFrame()), 1);
-	App->render->Blit(Elements_Texture, 1077, 50, &(lift.GetCurrentFrame()), 1);
+	//Doors closed
+	App->render->Blit(Elements_Texture, 699, 49, &(Door.GetCurrentFrame()), 1);
+	App->render->Blit(Elements_Texture, 827, 49, &(Door.GetCurrentFrame()), 1);
+
+	//FirstDoor
+	App->render->Blit(Elements_Texture, 411, 49, &(Door1.GetCurrentFrame()), 1);
 
 	//Fire Lift
 	App->render->Blit(Elements_Texture, 949, 50, &(liftFire.GetCurrentFrame()), 1);
 	App->render->Blit(Elements_Texture, 1077, 50, &(liftFire.GetCurrentFrame()), 1);
+	//Lift
+	App->render->Blit(Elements_Texture, 949, 50, &(lift.GetCurrentFrame()), 1);
+	App->render->Blit(Elements_Texture, 1077, 50, &(lift.GetCurrentFrame()), 1);
+
+	
 	//Attack Quote
 	App->render->Blit(Quotes_Texture, 10, 115, &(AttackQuote.GetCurrentFrame()), 1);
 

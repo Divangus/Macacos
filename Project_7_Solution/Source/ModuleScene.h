@@ -43,6 +43,7 @@ public:
 	SDL_Texture* Quotes_Texture = nullptr;
 
 	Animation Fire,
+		Door1,
 		Door,
 		DoorFire,
 		lift,
