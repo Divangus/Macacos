@@ -458,8 +458,8 @@ update_status ModulePlayer::Update()
 		int num = (rand() % 3);
 		if (num == 0) {
 				if (Player_Position == true) {
-						currentAnimation = &FrontSwordAttackR;
-						FrontSwordAttackR.Reset();
+					FrontSwordAttackR.Reset();
+					currentAnimation = &FrontSwordAttackR;
 				}
 				if (Player_Position == false) {
 					FrontSwordAttackL.Reset();
@@ -631,12 +631,12 @@ update_status ModulePlayer::PostUpdate()
 		GodMode();
 	}
 
-	App->render->Blit(Fire_Texture, -5, 160, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 250, 160, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 504, 160, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 760, 160, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 1018, 160, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 1065, 160, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, -5, 165, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 250, 165, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 504, 165, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 760, 165, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 1018, 165, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 1065, 165, &(Fire.GetCurrentFrame()), 1);
 
 	return update_status::UPDATE_CONTINUE;
 }
