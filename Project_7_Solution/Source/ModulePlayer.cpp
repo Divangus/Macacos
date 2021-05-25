@@ -307,8 +307,8 @@ update_status ModulePlayer::Update()
 	if (position.y > 135) { //bottom
 		position.y = 135; 
 	}
-	if (position.y < 55) {//top
-		position.y = 55;
+	if (position.y < 50) {//top
+		position.y = 50;
 	}
 	if (position.x < 0) {
 		position.x = 0;
