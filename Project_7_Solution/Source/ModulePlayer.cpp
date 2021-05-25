@@ -253,7 +253,7 @@ bool ModulePlayer::Start()
 	Player_Position = true;
 	destroyed = false;
 
-	collider = App->collisions->AddCollider({position.x, position.y, 30, 20 }, Collider::Type::PLAYER, this);
+	collider = App->collisions->AddCollider({position.x, position.y, 35, 20 }, Collider::Type::PLAYER, this);
 	colliderAttack = App->collisions->AddCollider({ position.x, position.y, 20, 20 }, Collider::Type::PLAYER_ATTACK, this);
 	
 
@@ -268,12 +268,12 @@ update_status ModulePlayer::Update()
 	App->collisions->matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = false;
 	//player collider
 	if (Player_Position == true) {
-		collider->SetPos(position.x+5, position.y + 66);
-		colliderAttack->SetPos(position.x + 35, position.y + 66);
+		collider->SetPos(position.x-5, position.y + 85);
+		colliderAttack->SetPos(position.x + 30, position.y + 85);
 	}
 	if (Player_Position == false) {
-		collider->SetPos(position.x+18, position.y + 66);
-		colliderAttack->SetPos(position.x -2, position.y + 66);
+		collider->SetPos(position.x+18, position.y + 85);
+		colliderAttack->SetPos(position.x -2, position.y + 85);
 	}
 	/*if (currentAnimation == &jumpAnimR) {
 		collider->SetPos(position.x + 5, position.y + 5);
@@ -328,6 +328,7 @@ update_status ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 		position.x -= speed;
+
 		if (currentAnimation != &leftAnim)
 		{
 			leftAnim.Reset();
