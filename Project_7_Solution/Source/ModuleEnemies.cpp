@@ -34,20 +34,16 @@ bool ModuleEnemies::Start()
 	return true;
 }
 
-//bool my_cmp(const Enemy& a, const Enemy& b) {
-//
-//	return a.position.y < b.position.y;
-//}
-
 update_status ModuleEnemies::Update()
 {
 	HandleEnemiesSpawn();
-
+	
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if(enemies[i] != nullptr)
 			enemies[i]->Update();
 	}
+	//bubble_sort(enemies, MAX_ENEMIES);
 
 	HandleEnemiesDespawn();
 
@@ -56,11 +52,9 @@ update_status ModuleEnemies::Update()
 
 update_status ModuleEnemies::PostUpdate()
 {
+	
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		/*std::vector<Enemy> myvector(enemies, enemies + MAX_ENEMIES);
-		sort(myvector.begin(), myvector.end(), my_cmp);*/
-
 		if (enemies[i] != nullptr)
 			enemies[i]->Draw();
 	}
@@ -120,7 +114,28 @@ void ModuleEnemies::HandleEnemiesSpawn()
 			}
 		}
 	}
+	//RelocateEnemies();
 }
+
+//void ModuleEnemies::bubble_sort(Enemy* arr[], int size) {
+//	
+//	for (auto i = 0; i < size - 1; i++) {
+//		for (auto j = 0; j < size - 1 - i; j++)
+//		{
+//			if (arr[j] == nullptr || arr[j + 1] == nullptr) {
+//				break;
+//			}
+//			
+//			if (arr[j]->position.y > arr[j + 1]->position.y)
+//			{
+//				Enemy* t = arr[j];
+//				arr[j] = arr[j + 1];
+//				arr[j + 1] = t;
+//			}
+//			
+//		}
+//	}
+//}
 
 void ModuleEnemies::HandleEnemiesDespawn()
 {

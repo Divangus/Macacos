@@ -101,10 +101,10 @@ bool ModuleScene::Start()
 
 	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 200, 120);
 	App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 200, 100);
-	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 300, 120);
+	/*App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 300, 120);
 	App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 300, 100);
 	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 500, 120);
-	App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 400, 100);
+	App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 400, 100);*/
 
 	App->enemies->Enable();
 	App->player->Enable();
