@@ -178,6 +178,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	LegAttackR.PushBack({ 125,86,72,88 });
 	LegAttackR.PushBack({ 224,86,90,88 });
 	LegAttackR.PushBack({ 314,86,77,88 });
+	LegAttackR.PushBack({ 30, 0, 77, 90 });
 	LegAttackR.loop = false;
 	LegAttackR.speed = 0.3f;
 
@@ -186,6 +187,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	LegAttackL.PushBack({ 1618,2174,77,88 });
 	LegAttackL.PushBack({ 1504,2174,77,88 });
 	LegAttackL.PushBack({ 1427,2174,77,88 });
+	LegAttackL.PushBack({ 1049, 3013, 77, 90 });
 	LegAttackL.loop = false;
 	LegAttackL.speed = 0.3f;
 
@@ -196,6 +198,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	TwoSwordAttackR.PushBack({ 301,338,88,88 });
 	TwoSwordAttackR.PushBack({ 409,338,77,88 });
 	TwoSwordAttackR.PushBack({ 482,338,77,88 });
+	TwoSwordAttackR.PushBack({ 30, 0, 77, 90 });
 	TwoSwordAttackR.loop = false;
 	TwoSwordAttackR.speed = 0.3f;
 
@@ -206,6 +209,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	TwoSwordAttackL.PushBack({ 1409,2425,77,88 });
 	TwoSwordAttackL.PushBack({ 1341,2425,77,88 });
 	TwoSwordAttackL.PushBack({ 1230,2425,77,88 });
+	TwoSwordAttackL.PushBack({ 1049, 3013, 77, 90 });
 	TwoSwordAttackL.loop = false;
 	TwoSwordAttackL.speed = 0.3f;
 
@@ -216,16 +220,16 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	PlayerDeathR.loop = false;
 	PlayerDeathR.speed = 0.3f;
 
-	Fire.PushBack({ 25, 1, 308, 67 });
-	Fire.PushBack({ 25,70,308,67 });
-	Fire.PushBack({ 28,138,308,67 });
-	Fire.PushBack({ 343,4,308,67 });
-	Fire.PushBack({ 343,72,308,67 });
-	Fire.PushBack({ 343,137,308,67 });
-	Fire.PushBack({ 659,1,308,67 });
-	Fire.PushBack({ 659,71,308,67 });
-	//Fire.loop = true;
-	Fire.speed = 0.1f;
+	//Fire.PushBack({ 25, 1, 308, 67 });
+	//Fire.PushBack({ 25,70,308,67 });
+	//Fire.PushBack({ 28,138,308,67 });
+	//Fire.PushBack({ 343,4,308,67 });
+	//Fire.PushBack({ 343,72,308,67 });
+	//Fire.PushBack({ 343,137,308,67 });
+	//Fire.PushBack({ 659,1,308,67 });
+	//Fire.PushBack({ 659,71,308,67 });
+	////Fire.loop = true;
+	//Fire.speed = 0.1f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -241,7 +245,7 @@ bool ModulePlayer::Start()
 
 	texture = App->textures->Load("Assets/leonardo.png");
 	QuoteTexture = App->textures->Load("Assets/Quotes.png");
-	Fire_Texture = App->textures->Load("Assets/frontFire.png");
+	/*Fire_Texture = App->textures->Load("Assets/frontFire.png");*/
 	currentAnimation = &idleAnimR;
 
 	PlayerAttackFx = App->audio->LoadFx("Assets/Fx/PlayerAttackFx.wav");
@@ -263,7 +267,7 @@ bool ModulePlayer::Start()
 update_status ModulePlayer::Update()
 {
 
-	Fire.Update();
+	//Fire.Update();
 
 	App->collisions->matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = false;
 	//player collider
@@ -515,6 +519,38 @@ update_status ModulePlayer::Update()
 			}
 		}
 	}
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT&& App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	{
+		if (currentAnimation != &jumpAnimR && currentAnimation != &jumpAnimL)
+		{
+			if (Player_Position == true) {
+				position.y -= 1;
+				jumpAnimR.Reset();
+				currentAnimation = &jumpAnimR;
+			}
+			else {
+				position.y -= 1;
+				jumpAnimL.Reset();
+				currentAnimation = &jumpAnimL;
+			}
+		}
+	}
+	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT)
+	{
+		if (currentAnimation != &jumpAnimR && currentAnimation != &jumpAnimL)
+		{
+			if (Player_Position == true) {
+				position.y -= 1;
+				jumpAnimR.Reset();
+				currentAnimation = &jumpAnimR;
+			}
+			else {
+				position.y -= 1;
+				jumpAnimL.Reset();
+				currentAnimation = &jumpAnimL;
+			}
+		}
+	}
 
 	//left and right pressed
 	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
@@ -632,12 +668,12 @@ update_status ModulePlayer::PostUpdate()
 		GodMode();
 	}
 
-	App->render->Blit(Fire_Texture, -5, 165, &(Fire.GetCurrentFrame()), 1);
+	/*App->render->Blit(Fire_Texture, -5, 165, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 250, 165, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 504, 165, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 760, 165, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 1018, 165, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 1065, 165, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 1065, 165, &(Fire.GetCurrentFrame()), 1);*/
 
 	return update_status::UPDATE_CONTINUE;
 }

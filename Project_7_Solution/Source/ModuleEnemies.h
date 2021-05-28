@@ -2,12 +2,14 @@
 #define __MODULE_ENEMIES_H__
 
 #include "Module.h"
+#include "Animation.h"
 #include <vector>
 #include <algorithm>
 
 
 #define MAX_ENEMIES 100
 
+struct SDL_Texture;
 
 enum class ENEMY_TYPE
 {
@@ -71,6 +73,7 @@ private:
 	void SpawnEnemy(const EnemySpawnpoint& info);
 
 private:
+	SDL_Texture* Fire_Texture = nullptr;
 
 	// A queue with all spawn points information
 	EnemySpawnpoint spawnQueue[MAX_ENEMIES];
@@ -78,6 +81,7 @@ private:
 	// All spawned enemies in the scene
 	Enemy* enemies[MAX_ENEMIES] = { nullptr };
 	
+	Animation Fire;
 	
 
 	// The enemies sprite sheet

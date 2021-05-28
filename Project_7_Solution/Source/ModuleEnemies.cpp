@@ -17,6 +17,17 @@ ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
 {
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 		enemies[i] = nullptr;
+
+	Fire.PushBack({ 25, 1, 308, 67 });
+	Fire.PushBack({ 25,70,308,67 });
+	Fire.PushBack({ 28,138,308,67 });
+	Fire.PushBack({ 343,4,308,67 });
+	Fire.PushBack({ 343,72,308,67 });
+	Fire.PushBack({ 343,137,308,67 });
+	Fire.PushBack({ 659,1,308,67 });
+	Fire.PushBack({ 659,71,308,67 });
+	//Fire.loop = true;
+	Fire.speed = 0.1f;
 }
 
 ModuleEnemies::~ModuleEnemies()
@@ -29,13 +40,14 @@ bool ModuleEnemies::Start()
 	texture = App->textures->Load("Assets/Orange_Soldier.png");
 	texture2 = App->textures->Load("Assets/enemy_purple.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/EnemyDying.wav");
-
+	Fire_Texture = App->textures->Load("Assets/frontFire.png");
 
 	return true;
 }
 
 update_status ModuleEnemies::Update()
 {
+	Fire.Update();
 	HandleEnemiesSpawn();
 	
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
@@ -57,8 +69,16 @@ update_status ModuleEnemies::PostUpdate()
 	{
 		if (enemies[i] != nullptr)
 			enemies[i]->Draw();
-	}
+	}	
+	App->render->Blit(Fire_Texture, -5, 165, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 250, 165, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 504, 165, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 760, 165, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 1018, 165, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 1065, 165, &(Fire.GetCurrentFrame()), 1);
 	return update_status::UPDATE_CONTINUE;
+
+
 }
 
 // Called before quitting
