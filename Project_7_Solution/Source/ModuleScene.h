@@ -44,7 +44,8 @@ public:
 
 	Animation Fire,
 		Door1,
-		Door,
+		Door2,
+		Door3,
 		DoorFire,
 		lift,
 		liftFire,
