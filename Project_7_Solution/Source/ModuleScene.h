@@ -49,7 +49,8 @@ public:
 		lift,
 		liftFire,
 		AttackQuote,
-		Ball;
+		Ball,
+		hud;
 
 	uint DoorBrake = 0;
 	uint OpenLift = 0;

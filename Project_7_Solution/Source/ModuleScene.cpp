@@ -27,6 +27,10 @@ ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled) {
 	////Fire.loop = true;
 	//Fire.speed = 0.1f;
 
+	hud.PushBack({ 0,0,304,222 });
+	hud.loop = false;
+	
+
 	Door.PushBack({ 268,239,33,79 });
 	Door.PushBack({ 307,239,33,79 });
 	Door.PushBack({ 347,239,49,79 });
@@ -137,7 +141,6 @@ update_status ModuleScene::PostUpdate()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);
-	App->render->Blit(hudTexture, 0, 0, NULL);
 
 	////Big Fire
 	//App->render->Blit(Fire_Texture, -5, 160, &(Fire.GetCurrentFrame()), 1);
@@ -170,6 +173,8 @@ update_status ModuleScene::PostUpdate()
 	//Attack Quote
 	App->render->Blit(Quotes_Texture, 10, 115, &(AttackQuote.GetCurrentFrame()), 1);
 
+	//hud
+	App->render->Blit(hudTexture, 0, 0, &(hud.GetCurrentFrame()), 0);
 	return update_status::UPDATE_CONTINUE;
 }
 
