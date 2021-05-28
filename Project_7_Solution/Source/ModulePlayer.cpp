@@ -245,7 +245,6 @@ bool ModulePlayer::Start()
 
 	texture = App->textures->Load("Assets/leonardo.png");
 	QuoteTexture = App->textures->Load("Assets/Quotes.png");
-	/*Fire_Texture = App->textures->Load("Assets/frontFire.png");*/
 	currentAnimation = &idleAnimR;
 
 	PlayerAttackFx = App->audio->LoadFx("Assets/Fx/PlayerAttackFx.wav");
@@ -648,9 +647,6 @@ update_status ModulePlayer::Update()
 
 update_status ModulePlayer::PostUpdate()
 {
-	//Big Fire
-
-
 	App->render->Blit(QuoteTexture, 50, 120, &(QuoteAttack.GetCurrentFrame()), 0);
 
 	//if (App->render->camera.x == 0) {
@@ -668,12 +664,7 @@ update_status ModulePlayer::PostUpdate()
 		GodMode();
 	}
 
-	/*App->render->Blit(Fire_Texture, -5, 165, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 250, 165, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 504, 165, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 760, 165, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 1018, 165, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 1065, 165, &(Fire.GetCurrentFrame()), 1);*/
+
 
 	return update_status::UPDATE_CONTINUE;
 }

@@ -27,7 +27,7 @@ ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
 	Fire.PushBack({ 659,1,308,67 });
 	Fire.PushBack({ 659,71,308,67 });
 	//Fire.loop = true;
-	Fire.speed = 0.1f;
+	Fire.speed = 0.05f;
 }
 
 ModuleEnemies::~ModuleEnemies()
@@ -69,13 +69,21 @@ update_status ModuleEnemies::PostUpdate()
 	{
 		if (enemies[i] != nullptr)
 			enemies[i]->Draw();
-	}	
+	}
+
+	/*App->render->Blit(Fire_Texture, -5, 165, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 250, 165, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 504, 165, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 760, 165, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 1018, 165, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 1065, 165, &(Fire.GetCurrentFrame()), 1);*/
 	App->render->Blit(Fire_Texture, -5, 165, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 250, 165, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 504, 165, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 760, 165, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 1018, 165, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 1065, 165, &(Fire.GetCurrentFrame()), 1);
+
 	return update_status::UPDATE_CONTINUE;
 
 
