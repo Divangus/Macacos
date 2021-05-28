@@ -38,6 +38,12 @@ void Enemy::Update()
 	
 	else if (colliderAttack != nullptr && Purple_Position == false)
 		colliderAttack->SetPos(position.x + 50, position.y + 66);
+
+	if (colliderAttack != nullptr && Orange_Position == true)
+		colliderAttack->SetPos(position.x + 20, position.y + 66);
+
+	else if (colliderAttack != nullptr && Orange_Position == false)
+		colliderAttack->SetPos(position.x + 50, position.y + 66);
 }
 
 void Enemy::Draw()

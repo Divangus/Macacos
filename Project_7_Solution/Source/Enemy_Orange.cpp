@@ -2,7 +2,7 @@
 
 #include "Application.h"
 #include "ModuleCollisions.h"
-#include "ModulePlayer.h"
+//#include "ModulePlayer.h"
 
 Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 {
@@ -98,10 +98,14 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 
 void Enemy_Orange::Update()
 {
-
-	collider->SetPos(position.x + 5, position.y + 66);
-	colliderAttack->SetPos(position.x - 35, position.y - 66);
 	App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::ORANGE_ATTACK] = false;
+
+	if (currentAnim == &back) {
+		Orange_Position = false;
+	}
+	else {
+		Orange_Position = true;
+	}
 
 	if (currentAnim == &front_melee_attack) {
 		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::ORANGE_ATTACK] = true;
