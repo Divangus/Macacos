@@ -220,16 +220,16 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	PlayerDeathR.loop = false;
 	PlayerDeathR.speed = 0.3f;
 
-	Fire.PushBack({ 25, 1, 308, 67 });
-	Fire.PushBack({ 25,70,308,67 });
-	Fire.PushBack({ 28,138,308,67 });
-	Fire.PushBack({ 343,4,308,67 });
-	Fire.PushBack({ 343,72,308,67 });
-	Fire.PushBack({ 343,137,308,67 });
-	Fire.PushBack({ 659,1,308,67 });
-	Fire.PushBack({ 659,71,308,67 });
-	//Fire.loop = true;
-	Fire.speed = 0.1f;
+	//Fire.PushBack({ 25, 1, 308, 67 });
+	//Fire.PushBack({ 25,70,308,67 });
+	//Fire.PushBack({ 28,138,308,67 });
+	//Fire.PushBack({ 343,4,308,67 });
+	//Fire.PushBack({ 343,72,308,67 });
+	//Fire.PushBack({ 343,137,308,67 });
+	//Fire.PushBack({ 659,1,308,67 });
+	//Fire.PushBack({ 659,71,308,67 });
+	////Fire.loop = true;
+	//Fire.speed = 0.1f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -245,7 +245,7 @@ bool ModulePlayer::Start()
 
 	texture = App->textures->Load("Assets/leonardo.png");
 	QuoteTexture = App->textures->Load("Assets/Quotes.png");
-	Fire_Texture = App->textures->Load("Assets/frontFire.png");
+	/*Fire_Texture = App->textures->Load("Assets/frontFire.png");*/
 	currentAnimation = &idleAnimR;
 
 	PlayerAttackFx = App->audio->LoadFx("Assets/Fx/PlayerAttackFx.wav");
@@ -267,7 +267,7 @@ bool ModulePlayer::Start()
 update_status ModulePlayer::Update()
 {
 
-	Fire.Update();
+	//Fire.Update();
 
 	App->collisions->matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = false;
 	//player collider
@@ -668,12 +668,12 @@ update_status ModulePlayer::PostUpdate()
 		GodMode();
 	}
 
-	App->render->Blit(Fire_Texture, -5, 165, &(Fire.GetCurrentFrame()), 1);
+	/*App->render->Blit(Fire_Texture, -5, 165, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 250, 165, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 504, 165, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 760, 165, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 1018, 165, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 1065, 165, &(Fire.GetCurrentFrame()), 1);
+	App->render->Blit(Fire_Texture, 1065, 165, &(Fire.GetCurrentFrame()), 1);*/
 
 	return update_status::UPDATE_CONTINUE;
 }
