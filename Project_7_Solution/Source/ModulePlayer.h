@@ -51,6 +51,8 @@ private:
 	SDL_Texture* texture = nullptr;
 
 	SDL_Texture* QuoteTexture = nullptr;
+
+	SDL_Texture* FireAnimTexture = nullptr;
 	
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
@@ -77,6 +79,8 @@ private:
 		TwoSwordAttackL,
 		PlayerDeathR,
 		PlayerDeathL;
+
+	Animation LittleFire;
 
 	// The player's collider
 	Collider* collider = nullptr;

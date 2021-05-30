@@ -18,6 +18,17 @@
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 
+	//Fire Anim
+
+	LittleFire.PushBack({ 2,3,59,42 });
+	LittleFire.PushBack({ 66,0,59,42 });
+	LittleFire.PushBack({ 137,2,59,42 });
+	LittleFire.PushBack({ 2,50,59,42 });
+	LittleFire.PushBack({ 66,46,59,42 });
+	LittleFire.PushBack({ 135,46,59,42 });
+	LittleFire.speed = 0.2f;
+	LittleFire.loop = true;
+
 	srand(time(NULL));
 
 	//Attack Quote
@@ -245,6 +256,7 @@ bool ModulePlayer::Start()
 
 	texture = App->textures->Load("Assets/leonardo.png");
 	QuoteTexture = App->textures->Load("Assets/Quotes.png");
+	FireAnimTexture = App->textures->Load("Assets/LittleFire.png");
 	currentAnimation = &idleAnimR;
 
 	PlayerAttackFx = App->audio->LoadFx("Assets/Fx/PlayerAttackFx.wav");
@@ -266,7 +278,7 @@ bool ModulePlayer::Start()
 update_status ModulePlayer::Update()
 {
 
-	//Fire.Update();
+	LittleFire.Update();
 
 	App->collisions->matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = false;
 	//player collider
@@ -655,9 +667,19 @@ update_status ModulePlayer::PostUpdate()
 
 
 	if (!destroyed)
-	{
-		SDL_Rect rect = currentAnimation->GetCurrentFrame();
-		App->render->Blit(texture, position.x-10, position.y+20, &rect);//draw player
+	{	
+		if (App->player->position.y > 69) {
+			App->render->Blit(FireAnimTexture, 314, 138, &(LittleFire.GetCurrentFrame()), 1);
+			SDL_Rect rect = currentAnimation->GetCurrentFrame();
+			App->render->Blit(texture, position.x - 10, position.y + 20, &rect);//draw player
+		}
+		else {
+			SDL_Rect rect = currentAnimation->GetCurrentFrame();
+			App->render->Blit(texture, position.x - 10, position.y + 20, &rect);//draw player
+			App->render->Blit(FireAnimTexture, 314, 138, &(LittleFire.GetCurrentFrame()), 1);
+		}
+		//SDL_Rect rect = currentAnimation->GetCurrentFrame();
+		//App->render->Blit(texture, position.x-10, position.y+20, &rect);//draw player
 	}
 
 	if (god == true) {
