@@ -34,6 +34,12 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::PLAYER_ATTACK] = false;
 	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::PURPLE_ATTACK] = false;
 	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::ORANGE_ATTACK] = false;
+
+	matrix[Collider::Type::ORANGE_ATTACK][Collider::Type::PLAYER] = false;
+	matrix[Collider::Type::ORANGE_ATTACK][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::ORANGE_ATTACK][Collider::Type::PLAYER_ATTACK] = false;
+	matrix[Collider::Type::ORANGE_ATTACK][Collider::Type::PURPLE_ATTACK] = false;
+	matrix[Collider::Type::ORANGE_ATTACK][Collider::Type::ORANGE_ATTACK] = false;
 }
 
 // Destructor
@@ -135,6 +141,9 @@ void ModuleCollisions::DebugDraw()
 			case Collider::Type::PURPLE_ATTACK: // magenta
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
 			break;
+			case Collider::Type::ORANGE_ATTACK: // magenta
+				App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
+				break;
 		}
 	}
 }
