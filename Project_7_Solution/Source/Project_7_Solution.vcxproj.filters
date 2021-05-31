@@ -64,9 +64,6 @@
     <ClInclude Include="ModuleWindow.h">
       <Filter>Source Files\Modules\Core</Filter>
     </ClInclude>
-    <ClInclude Include="ModulePlayer.h">
-      <Filter>Source Files\Modules\Gameplay</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleScene.h">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClInclude>
@@ -106,6 +103,9 @@
     <ClInclude Include="ModuleTitle.h">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClInclude>
+    <ClInclude Include="ModulePlayer.h">
+      <Filter>Source Files\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Module.cpp">
@@ -137,9 +137,6 @@
     </ClCompile>
     <ClCompile Include="ModuleWindow.cpp">
       <Filter>Source Files\Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="ModulePlayer.cpp">
-      <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="ModuleScene.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
@@ -179,6 +176,9 @@
     </ClCompile>
     <ClCompile Include="ModuleTitle.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePlayer.cpp">
+      <Filter>Source Files\Entities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
