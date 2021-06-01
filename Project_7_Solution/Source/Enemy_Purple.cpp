@@ -2,6 +2,7 @@
 
 #include "Application.h"
 #include "ModuleCollisions.h"
+#include "ModulePlayer.h"
 
 Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 {
@@ -41,11 +42,11 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	front_punch.speed = 0.22f;
 
 	
-	path.PushBack({ -0.8f, 0.0f }, 150, &front);
+	//path.PushBack({ -0.8f, 0.0f }, 150, &front);
 	path.PushBack({ 0.0f, 0.0f }, 50, &front_punch);
 	path.PushBack({ 0.8f, 0.0f }, 150, &back);
 	
-
+	//currentAnim = &front;
 	collider = App->collisions->AddCollider({0,0, 30, 20}, Collider::Type::ENEMY, (Module*)App->enemies);
 	colliderAttack = App->collisions->AddCollider({ 0, 0, 20, 20 }, Collider::Type::PURPLE_ATTACK, (Module*)App->enemies);
 	
@@ -55,12 +56,40 @@ void Enemy_Purple::Update()
 {
 	App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = false;
 
-	if (currentAnim == &back) {
+	if (position.x > App->player->position.x) {
+		position.x -= enemy_speed;
+		if (currentAnim != &front)
+		{
+			front.Reset();
+			currentAnim = &front;
+			Purple_Position = true;
+		}
+	}
+
+	if (position.x < App->player->position.x){
+		position.x += enemy_speed;
+		if (currentAnim != &back)
+		{
+			back.Reset();
+			currentAnim = &back;
+			Purple_Position = false;
+		}
+	}
+
+	if (position.y > App->player->position.y) {
+		position.y -= enemy_speed;
+	}
+	if (position.y < App->player->position.y) {
+		position.y += enemy_speed;
+	}
+
+
+	/*if (currentAnim == &back) {
 		Purple_Position = false;
 	}
 	else {
 		Purple_Position = true;
-	}
+	}*/
 	
 	if (currentAnim == &front_punch) {
 		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = true;
@@ -69,9 +98,9 @@ void Enemy_Purple::Update()
 		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = false;
 	}
 
-	path.Update();
+	/*path.Update();
 	position = spawnPos + path.GetRelativePosition();
-	currentAnim = path.GetCurrentAnimation();
+	currentAnim = path.GetCurrentAnimation();*/
 
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
