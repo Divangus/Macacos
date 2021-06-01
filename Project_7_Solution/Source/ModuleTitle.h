@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "Animation.h"
+#include "Path.h"
 
 struct SDL_Texture;
 
@@ -31,7 +32,20 @@ public:
 
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
-	SDL_Texture* bgTexture = nullptr;
+	SDL_Texture* bgTexture;
+	/*SDL_Texture* BackgroundTexture;
+	SDL_Texture* BuildingsTexture;
+	SDL_Texture* CloudTexture;
+	SDL_Texture* StreetTexture;
+	SDL_Texture* TurtlesImagesTexture;
+
+	Path BackgroundPath;
+
+	Animation BackgroundCity;
+
+	iPoint Background, SpawnPosBackground;*/
+
+
 };
 
 #endif
