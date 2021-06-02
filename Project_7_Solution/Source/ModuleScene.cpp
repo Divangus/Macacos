@@ -205,6 +205,8 @@ bool ModuleScene::CleanUp() {
 	/*App->textures->Unload(Fire_Texture);*/
 	App->textures->Unload(Elements_Texture);
 	App->textures->Unload(Quotes_Texture);
+	App->player->Disable();
+	App->enemies->Disable();
 
 	return true;
 }

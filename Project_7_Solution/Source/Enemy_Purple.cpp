@@ -52,8 +52,8 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	//path.loop = false;
 	
 	//currentAnim = &front;
-	collider = App->collisions->AddCollider({0,0, 30, 20}, Collider::Type::ENEMY, (Module*)App->enemies);
-	colliderAttack = App->collisions->AddCollider({ 0, 0, 20, 20 }, Collider::Type::PURPLE_ATTACK, (Module*)App->enemies);
+	PurpleCollider = App->collisions->AddCollider({0,0, 30, 20}, Collider::Type::ENEMY, (Module*)App->enemies);
+	PurpleColliderAttack = App->collisions->AddCollider({ 0, 0, 20, 20 }, Collider::Type::PURPLE_ATTACK, (Module*)App->enemies);
 	
 }
 
@@ -140,16 +140,24 @@ void Enemy_Purple::Update()
 					{
 						front.Reset();
 						currentAnim = &front;
-						Purple_Position = false;
+						Purple_Position = true;
 					}
 				}
 			}
 		}	
 	}
 
-	
+	if (currentAnim == &front) {
+		Purple_Position = true;
+	}
+
+	if (currentAnim == &back) {
+		Purple_Position = false;
+	}
+
 	if (currentAnim == &front_punch) {
 		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = true;
+		Purple_Position = true;
 	}
 	else {
 		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = false;

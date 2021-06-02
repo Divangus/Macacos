@@ -202,10 +202,12 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 				case ENEMY_TYPE::PURPLE:
 					enemies[i] = new Enemy_Purple(info.x, info.y);
 					enemies[i]->texture = texture2;
+					enemies[i]->EnemyType = 1;
 					break;
 				case ENEMY_TYPE::ORANGE:
 					enemies[i] = new Enemy_Orange(info.x, info.y);
 					enemies[i]->texture = texture;
+					enemies[i]->EnemyType = 2;
 					break;
 			}
 			
@@ -219,6 +221,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 	{
+		//if(enemies[i].type)
 		if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
@@ -227,5 +230,6 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 			break;
 		}
 	}
+	
 	
 }

@@ -31,8 +31,8 @@ bool ModuleOver::Start()
 
 	bool ret = true;
 
-	App->enemies->Disable();
-	App->player->Disable();
+	/*App->enemies->Disable();
+	App->player->Disable();*/
 	
 	bgTexture = App->textures->Load("Assets/Game_Over.png");
 	Mix_FadeOutMusic(0.0);
@@ -50,6 +50,7 @@ update_status ModuleOver::Update()
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->title, 90);
+
 	}
 	return update_status::UPDATE_CONTINUE;
 }

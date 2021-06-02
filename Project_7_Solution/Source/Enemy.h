@@ -42,6 +42,8 @@ public:
 	// Sound fx when destroyed
 	int destroyedFx = 0;
 
+	int EnemyType = 0;
+
 protected:
 
 	bool Purple_Position = true;
@@ -50,9 +52,13 @@ protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
 
+	
+
 	// The enemy's collider
-	Collider* collider = nullptr;
-	Collider* colliderAttack = nullptr;
+	Collider* PurpleCollider = nullptr;
+	Collider* PurpleColliderAttack = nullptr;
+	Collider* OrangeCollider = nullptr;
+	Collider* OrangeColliderAttack = nullptr;
 
 	// Original spawn position. Stored for movement calculations
 	fPoint spawnPos;
