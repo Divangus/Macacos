@@ -31,6 +31,12 @@ ModuleTitle::ModuleTitle(bool startEnabled) : Module(startEnabled)
 	PressEnter.loop = true;
 	PressEnter.speed = 0.08f;
 
+	tmntred.PushBack({ 48,8,225,28 });
+	tmntred.loop = false;
+
+	tmntgreen.PushBack({21,46,266,80});
+	tmntgreen.loop = false;
+	
 	InsertCoins.PushBack({ 4,1,67,19 });
 	InsertCoins.PushBack({ 82,26,67,19 });
 	InsertCoins.PushBack({ 82,1,67,19 });
@@ -38,6 +44,9 @@ ModuleTitle::ModuleTitle(bool startEnabled) : Module(startEnabled)
 	InsertCoins.PushBack({ 3,26,67,19 });
 	InsertCoins.loop = true;
 	InsertCoins.speed = 0.15f;
+
+	PathTMNTRed.PushBack({ 0.0f, 1.0f }, 150, &tmntred);
+	PathTMNTGreen.PushBack({ -1.0f, 0.0f }, 150, &tmntgreen);
 }
 
 ModuleTitle::~ModuleTitle()
@@ -52,11 +61,12 @@ bool ModuleTitle::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/Title_Screen.png");
+	bgTexture = App->textures->Load("Assets/BlueScreen.png");
 	EnterCoinsTitleTexture = App->textures->Load("Assets/IntroCoin.png");
 	PressEnterTexture = App->textures->Load("Assets/PressStart.png");
 	InsertCoinsTexture = App->textures->Load("Assets/InsertCoins.png");
 	HudTexture = App->textures->Load("Assets/hud.png");
+	TitleTexture = App->textures->Load("Assets/IntroScreen.png");
 	TurtleTexture = App->textures->Load("Assets/TurtleSmile.png");
 	/*App->audio->PlayMusic("Assets/titleMusic.ogg", 1.0f);*/
 	MusicIntro = App->audio->LoadFx("Assets/titleMusic.ogg");
@@ -70,6 +80,8 @@ bool ModuleTitle::Start()
 
 update_status ModuleTitle::Update()
 {
+	
+
 	if (coins > 0) {
 		PressEnter.Update();
 	}
@@ -79,6 +91,7 @@ update_status ModuleTitle::Update()
 	}
 	/*App->render->Blit(bgTexture, 0, 0, &(TitleScreen.GetCurrentFrame()), 1);*/
 	if (screenupdate==true) {
+		
 		InsertCoins.Update();
 		TurtleSmile.Update();
 		App->render->Blit(EnterCoinsTitleTexture, 0, 0, &(TitleEnterCoin.GetCurrentFrame()), 1);
@@ -96,6 +109,12 @@ update_status ModuleTitle::Update()
 		
 		App->render->Blit(bgTexture, 0, 0, &(TitleScreen.GetCurrentFrame()), 1);
 		/*App->audio->PlayMusic(MusicIntro);*/
+		PathTMNTRed.Update();
+		PathTMNTGreen.Update();
+		tmntred.Update();
+		tmntgreen.Update();
+		positionTMNTred = spawnPosRed + PathTMNTRed.GetRelativePosition();
+		/*tmntred = PathTMNTRed.GetCurrentAnimation();*/
 	}
 	
 	return update_status::UPDATE_CONTINUE;
@@ -104,6 +123,10 @@ update_status ModuleTitle::Update()
 // Update: draw background
 update_status ModuleTitle::PostUpdate()
 {
+	if (screenupdate == false) {
+		App->render->Blit(TitleTexture, 39, 10, &(tmntred.GetCurrentFrame()), 1);
+	}
+	
 	// Draw everything --------------------------------------
 	if (screenupdate == true && coins > 0) {
 		App->render->Blit(PressEnterTexture, 5, 35, &(PressEnter.GetCurrentFrame()), 1);
@@ -128,6 +151,7 @@ bool ModuleTitle::CleanUp() {
 	App->textures->Unload(InsertCoinsTexture);
 	App->textures->Unload(HudTexture);
 	App->textures->Unload(TurtleTexture);
+	App->textures->Unload(TitleTexture);
 
 
 	return true;
