@@ -55,34 +55,69 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 void Enemy_Purple::Update()
 {
 	App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = false;
+	/*if (follow == true) {*/
+		if (position.x > App->player->position.x + 10 || position.x < App->player->position.x - 10 || position.y != App->player->position.y + 20) {
+			if (position.x > App->player->position.x) {
+				position.x = position.x - enemy_speed;
+				if (currentAnim != &front)
+				{
+					front.Reset();
+					currentAnim = &front;
+					Purple_Position = true;
+				}
+			}
 
-	if (position.x > App->player->position.x) {
-		position.x -= enemy_speed;
-		if (currentAnim != &front)
+			if (position.x < App->player->position.x) {
+				position.x = position.x + enemy_speed;
+				if (currentAnim != &back)
+				{
+					back.Reset();
+					currentAnim = &back;
+					Purple_Position = false;
+				}
+			}
+
+			if (position.y > App->player->position.y + 20) {
+				position.y = position.y - enemy_speed;
+			}
+			if (position.y < App->player->position.y + 20) {
+				position.y = position.y + enemy_speed;
+			}
+		}
+		else {
+			follow = false;
+		}
+	//}
+	/*else {
+		currentAnim = &front_punch;
+		Purple_Position = true;
+		if (position.x > App->player->position.x + 180) {
+			follow = true;
+		}
+		else {
+			position.x = position.x + enemy_speed;
+			currentAnim = &back;
+			if (currentAnim != &back)
+			{
+				back.Reset();
+				currentAnim = &back;
+				Purple_Position = false;
+			}
+		}*/
+		/*if (currentAnim != &front_punch)
 		{
-			front.Reset();
-			currentAnim = &front;
+			front_punch.Reset();
+			currentAnim = &front_punch;
 			Purple_Position = true;
 		}
-	}
 
-	if (position.x < App->player->position.x){
-		position.x += enemy_speed;
 		if (currentAnim != &back)
 		{
 			back.Reset();
 			currentAnim = &back;
 			Purple_Position = false;
-		}
-	}
-
-	if (position.y > App->player->position.y) {
-		position.y -= enemy_speed;
-	}
-	if (position.y < App->player->position.y) {
-		position.y += enemy_speed;
-	}
-
+		}*/
+	//}
 
 	/*if (currentAnim == &back) {
 		Purple_Position = false;
@@ -106,3 +141,4 @@ void Enemy_Purple::Update()
 	// It will update the collider depending on the position
 	Enemy::Update();
 }
+

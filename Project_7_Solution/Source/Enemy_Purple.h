@@ -19,6 +19,8 @@ private:
 	// The path that will define the position in the world
 	Path path;
 
+	bool follow = true;
+
 	// Enemy animations
 	Animation front, back, stop,
 		front_hit, back_hit, front_punch, back_punch,

@@ -33,8 +33,8 @@ public:
 
 public:
 	// The current position in the world
-	iPoint position;
-	float enemy_speed = 0.5;
+	fPoint position;
+	float enemy_speed = 0.8;
 
 	// The enemy's texture
 	SDL_Texture* texture = nullptr;
@@ -55,7 +55,7 @@ protected:
 	Collider* colliderAttack = nullptr;
 
 	// Original spawn position. Stored for movement calculations
-	iPoint spawnPos;
+	fPoint spawnPos;
 
 	int HP = 3;
 
