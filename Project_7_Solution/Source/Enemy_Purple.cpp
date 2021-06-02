@@ -106,7 +106,7 @@ void Enemy_Purple::Update()
 		}
 		else  {
 			//attack == false;
-			if (position.x > App->player->position.x + 186 || position.x < App->player->position.x - 186) {
+			if (position.x > App->player->position.x + 100 || position.x < App->player->position.x - 100) {
 				follow = true;
 			}
 			else {
