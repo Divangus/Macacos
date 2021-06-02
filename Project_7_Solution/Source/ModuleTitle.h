@@ -31,20 +31,21 @@ public:
 	bool CleanUp() override;
 
 public:
+
+	bool screenupdate = false;
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture;
-	/*SDL_Texture* BackgroundTexture;
-	SDL_Texture* BuildingsTexture;
-	SDL_Texture* CloudTexture;
-	SDL_Texture* StreetTexture;
-	SDL_Texture* TurtlesImagesTexture;
+	SDL_Texture* EnterCoinsTitleTexture;
+	SDL_Texture* PressEnterTexture;
+	SDL_Texture* HudTexture;
+	SDL_Texture* TurtleTexture;
+	SDL_Texture* InsertCoinsTexture = nullptr;
+	 
+	Animation TitleEnterCoin,TitleScreen,PressEnter, InsertCoins,Hud, TurtleSmile;
+	int coins = 0;
 
-	Path BackgroundPath;
-
-	Animation BackgroundCity;
-
-	iPoint Background, SpawnPosBackground;*/
-
+	uint MusicIntro = 0;
+	uint MusicEnterCoinScreen = 0;
 
 };
 

@@ -668,10 +668,7 @@ update_status ModulePlayer::Update()
 
 update_status ModulePlayer::PostUpdate()
 {
-	App->render->Blit(QuoteTexture, 50, 120, &(QuoteAttack.GetCurrentFrame()), 0);
-	App->render->Blit(InsertCoinsTexture, 83, 18, &(InsertCoins.GetCurrentFrame()), 0);
-	App->render->Blit(InsertCoinsTexture, 151, 18, &(InsertCoins.GetCurrentFrame()), 0);
-	App->render->Blit(InsertCoinsTexture, 219, 18, &(InsertCoins.GetCurrentFrame()), 0);
+	
 	//if (App->render->camera.x == 0) {
 	//	App->audio->PlayFx(AttackQuoteFx);
 	//}
@@ -696,7 +693,10 @@ update_status ModulePlayer::PostUpdate()
 	if (god == true) {
 		GodMode();
 	}
-
+	App->render->Blit(QuoteTexture, 50, 120, &(QuoteAttack.GetCurrentFrame()), 0);
+	App->render->Blit(InsertCoinsTexture, 83, 18, &(InsertCoins.GetCurrentFrame()), 0);
+	App->render->Blit(InsertCoinsTexture, 151, 18, &(InsertCoins.GetCurrentFrame()), 0);
+	App->render->Blit(InsertCoinsTexture, 219, 18, &(InsertCoins.GetCurrentFrame()), 0);
 
 
 	return update_status::UPDATE_CONTINUE;
