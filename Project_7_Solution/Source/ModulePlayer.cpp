@@ -539,7 +539,7 @@ update_status ModulePlayer::Update()
 			}
 		}
 	}
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT&& App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
 		if (currentAnimation != &jumpAnimR && currentAnimation != &jumpAnimL)
 		{
@@ -555,7 +555,7 @@ update_status ModulePlayer::Update()
 			}
 		}
 	}
-	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
 		if (currentAnimation != &jumpAnimR && currentAnimation != &jumpAnimL)
 		{
@@ -708,16 +708,19 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	{
 		HP -= 1;
 	}
+
 	if (c1 == collider && destroyed == false && god == false && HP == 0) {
 		if (Player_Position == true) {
 			currentAnimation = &PlayerDeathR;
+			destroyed = true;
+			App->fade->FadeToBlack((Module*)App->scene, (Module*)App->over, 60);
 		}
 		else {
 			currentAnimation = &PlayerDeathL;
+			destroyed = true;
+			App->fade->FadeToBlack((Module*)App->scene, (Module*)App->over, 60);
 		}
 		
-		destroyed = true;
-		App->fade->FadeToBlack((Module*)App->scene, (Module*)App->over, 60);
 	}
 }
 
