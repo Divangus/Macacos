@@ -28,7 +28,11 @@ ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
 	Fire.PushBack({ 659,71,308,67 });
 	//Fire.loop = true;
 	Fire.speed = 0.05f;
+
+	
+
 }
+
 
 ModuleEnemies::~ModuleEnemies()
 {
@@ -41,6 +45,7 @@ bool ModuleEnemies::Start()
 	texture2 = App->textures->Load("Assets/enemy_purple.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/EnemyDying.wav");
 	Fire_Texture = App->textures->Load("Assets/frontFire.png");
+	
 
 	return true;
 }
@@ -83,6 +88,7 @@ update_status ModuleEnemies::PostUpdate()
 	App->render->Blit(Fire_Texture, 760, 165, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 1018, 165, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 1065, 165, &(Fire.GetCurrentFrame()), 1);
+
 
 	return update_status::UPDATE_CONTINUE;
 

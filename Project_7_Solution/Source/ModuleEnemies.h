@@ -75,6 +75,7 @@ private:
 private:
 	SDL_Texture* Fire_Texture = nullptr;
 
+
 	// A queue with all spawn points information
 	EnemySpawnpoint spawnQueue[MAX_ENEMIES];
 

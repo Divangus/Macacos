@@ -53,6 +53,8 @@ private:
 	SDL_Texture* QuoteTexture = nullptr;
 
 	SDL_Texture* FireAnimTexture = nullptr;
+
+	SDL_Texture* InsertCoinsTexture = nullptr;
 	
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
@@ -80,7 +82,7 @@ private:
 		PlayerDeathR,
 		PlayerDeathL;
 
-	Animation LittleFire;
+	Animation LittleFire, InsertCoins;
 
 	// The player's collider
 	Collider* collider = nullptr;

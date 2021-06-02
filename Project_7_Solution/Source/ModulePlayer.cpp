@@ -17,7 +17,14 @@
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
-
+	//Insert Coins Animation
+	InsertCoins.PushBack({ 4,1,67,19 });
+	InsertCoins.PushBack({ 82,26,67,19 });
+	InsertCoins.PushBack({ 82,1,67,19 });
+	InsertCoins.PushBack({ 152,1,67,19 });
+	InsertCoins.PushBack({ 3,26,67,19 });
+	InsertCoins.loop = true;
+	InsertCoins.speed = 0.15f;
 	//Fire Anim
 
 	LittleFire.PushBack({ 2,3,59,42 });
@@ -254,6 +261,7 @@ bool ModulePlayer::Start()
 
 	bool ret = true;
 
+	InsertCoinsTexture = App->textures->Load("Assets/InsertCoins.png");
 	texture = App->textures->Load("Assets/leonardo.png");
 	QuoteTexture = App->textures->Load("Assets/Quotes.png");
 	FireAnimTexture = App->textures->Load("Assets/LittleFire.png");
@@ -279,6 +287,7 @@ update_status ModulePlayer::Update()
 {
 
 	LittleFire.Update();
+	InsertCoins.Update();
 
 	App->collisions->matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = false;
 	//player collider
@@ -660,7 +669,9 @@ update_status ModulePlayer::Update()
 update_status ModulePlayer::PostUpdate()
 {
 	App->render->Blit(QuoteTexture, 50, 120, &(QuoteAttack.GetCurrentFrame()), 0);
-
+	App->render->Blit(InsertCoinsTexture, 83, 18, &(InsertCoins.GetCurrentFrame()), 0);
+	App->render->Blit(InsertCoinsTexture, 151, 18, &(InsertCoins.GetCurrentFrame()), 0);
+	App->render->Blit(InsertCoinsTexture, 219, 18, &(InsertCoins.GetCurrentFrame()), 0);
 	//if (App->render->camera.x == 0) {
 	//	App->audio->PlayFx(AttackQuoteFx);
 	//}
