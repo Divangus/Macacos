@@ -16,6 +16,10 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	front.PushBack({ 516, 1890, 86, 90 });
 	front.PushBack({ 430, 1890, 86, 90 });
 	front.speed = 0.1f;
+
+	back_iddle.PushBack({ 0, 360, 86, 90 });
+
+	front_iddle.PushBack({ 1032, 1800, 86, 90 });
 	
 	//------------------------------------------- Caminar -->
 	back.PushBack({ 0, 453, 86, 90 });
@@ -44,7 +48,8 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	
 	//path.PushBack({ -0.8f, 0.0f }, 150, &front);
 	path.PushBack({ 0.0f, 0.0f }, 50, &front_punch);
-	path.PushBack({ 0.8f, 0.0f }, 150, &back);
+	path.PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
+	//path.loop = false;
 	
 	//currentAnim = &front;
 	collider = App->collisions->AddCollider({0,0, 30, 20}, Collider::Type::ENEMY, (Module*)App->enemies);
@@ -55,8 +60,9 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 void Enemy_Purple::Update()
 {
 	App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = false;
-	/*if (follow == true) {*/
-		if (position.x > App->player->position.x + 10 || position.x < App->player->position.x - 10 || position.y != App->player->position.y + 20) {
+	if (follow == true) {
+		attack = true;
+		if (position.x > App->player->position.x + 10 || position.x < App->player->position.x) {
 			if (position.x > App->player->position.x) {
 				position.x = position.x - enemy_speed;
 				if (currentAnim != &front)
@@ -76,55 +82,71 @@ void Enemy_Purple::Update()
 					Purple_Position = false;
 				}
 			}
-
-			if (position.y > App->player->position.y + 20) {
-				position.y = position.y - enemy_speed;
+			if (position.y != App->player->position.y + 20) {
+				if (position.y > App->player->position.y + 20) {
+					position.y = position.y - enemy_speed;
+				}
+				if (position.y < App->player->position.y + 20) {
+					position.y = position.y + enemy_speed;
+				}
 			}
-			if (position.y < App->player->position.y + 20) {
-				position.y = position.y + enemy_speed;
-			}
+			
 		}
 		else {
 			follow = false;
 		}
-	//}
-	/*else {
-		currentAnim = &front_punch;
-		Purple_Position = true;
-		if (position.x > App->player->position.x + 180) {
-			follow = true;
-		}
-		else {
-			position.x = position.x + enemy_speed;
-			currentAnim = &back;
-			if (currentAnim != &back)
-			{
-				back.Reset();
-				currentAnim = &back;
-				Purple_Position = false;
-			}
-		}*/
-		/*if (currentAnim != &front_punch)
-		{
-			front_punch.Reset();
-			currentAnim = &front_punch;
-			Purple_Position = true;
-		}
-
-		if (currentAnim != &back)
-		{
-			back.Reset();
-			currentAnim = &back;
-			Purple_Position = false;
-		}*/
-	//}
-
-	/*if (currentAnim == &back) {
-		Purple_Position = false;
 	}
 	else {
-		Purple_Position = true;
-	}*/
+		if (attack == true) {
+			path.Update();
+			currentAnim = path.GetCurrentAnimation();
+			if (path.GetCurrentAnimation() == &front_iddle) {
+				attack = false;
+			}
+		}
+		else  {
+			//attack == false;
+			if (position.x > App->player->position.x + 186 || position.x < App->player->position.x - 186) {
+				follow = true;
+			}
+			else {
+				if (position.x > App->player->position.x) {
+					position.x = position.x + enemy_speed;
+					/*if (position.y < App->player->position.y) {
+						position.y = position.y - enemy_speed;
+					}
+					else {
+						position.y = position.y + enemy_speed;
+					}*/
+					currentAnim = &back;
+					if (currentAnim != &back)
+					{
+						back.Reset();
+						currentAnim = &back;
+						Purple_Position = false;
+					}
+				}
+				else {
+					position.x = position.x - enemy_speed;
+					/*if (position.y < App->player->position.y) {
+						position.y = position.y - enemy_speed;
+					}
+					else {
+						position.y = position.y + enemy_speed;
+					}*/
+					
+					currentAnim = &front;
+					if (currentAnim != &front)
+					{
+						front.Reset();
+						currentAnim = &front;
+						Purple_Position = false;
+					}
+				}
+			}
+		}	
+	}
+
 	
 	if (currentAnim == &front_punch) {
 		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = true;

@@ -20,9 +20,10 @@ private:
 	Path path;
 
 	bool follow = true;
+	bool attack = true;
 
 	// Enemy animations
-	Animation front, back, stop,
+	Animation front, back, front_iddle, back_iddle,
 		front_hit, back_hit, front_punch, back_punch,
 		front_hit_ground, front_hit_ground_behind, front_ground, front_ground_behind,
 		front_recovery, front_recovery_behind,
