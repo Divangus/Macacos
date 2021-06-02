@@ -15,6 +15,11 @@ ModuleTitle::ModuleTitle(bool startEnabled) : Module(startEnabled)
 	TitleEnterCoin.PushBack({ 0,0,304,222 });
 	TitleEnterCoin.loop = false;
 
+	TurtleSmile.PushBack({ 9,10,25,21 });
+	TurtleSmile.PushBack({ 40,9,25,21 });
+	TurtleSmile.loop = true;
+	TurtleSmile.speed = 0.05f;
+
 	Hud.PushBack({ 0,0,304,222 });
 	Hud.loop = false;
 
@@ -52,6 +57,7 @@ bool ModuleTitle::Start()
 	PressEnterTexture = App->textures->Load("Assets/PressStart.png");
 	InsertCoinsTexture = App->textures->Load("Assets/InsertCoins.png");
 	HudTexture = App->textures->Load("Assets/hud.png");
+	TurtleTexture = App->textures->Load("Assets/TurtleSmile.png");
 	/*App->audio->PlayMusic("Assets/titleMusic.ogg", 1.0f);*/
 	MusicIntro = App->audio->LoadFx("Assets/titleMusic.ogg");
 
@@ -74,7 +80,9 @@ update_status ModuleTitle::Update()
 	/*App->render->Blit(bgTexture, 0, 0, &(TitleScreen.GetCurrentFrame()), 1);*/
 	if (screenupdate==true) {
 		InsertCoins.Update();
+		TurtleSmile.Update();
 		App->render->Blit(EnterCoinsTitleTexture, 0, 0, &(TitleEnterCoin.GetCurrentFrame()), 1);
+
 		//App->audio->PlayMusic("Assets/titleMusic.ogg", 1.0f);
 		if (App->input->keys[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN) {
 				coins++;
@@ -104,7 +112,8 @@ update_status ModuleTitle::PostUpdate()
 		App->render->Blit(InsertCoinsTexture, 83, 18, &(InsertCoins.GetCurrentFrame()), 0);
 		App->render->Blit(InsertCoinsTexture, 151, 18, &(InsertCoins.GetCurrentFrame()), 0);
 		App->render->Blit(InsertCoinsTexture, 219, 18, &(InsertCoins.GetCurrentFrame()), 0);
-		App->render->Blit(HudTexture,0,0,&(Hud.GetCurrentFrame()), 0);
+		App->render->Blit(HudTexture, 0, 0, &(Hud.GetCurrentFrame()), 0);
+		App->render->Blit(TurtleTexture, 50, 20, &(TurtleSmile.GetCurrentFrame()), 1);
 	}
 	
 	return update_status::UPDATE_CONTINUE;
@@ -118,6 +127,7 @@ bool ModuleTitle::CleanUp() {
 	App->textures->Unload(PressEnterTexture);
 	App->textures->Unload(InsertCoinsTexture);
 	App->textures->Unload(HudTexture);
+	App->textures->Unload(TurtleTexture);
 
 
 	return true;

@@ -38,9 +38,10 @@ public:
 	SDL_Texture* EnterCoinsTitleTexture;
 	SDL_Texture* PressEnterTexture;
 	SDL_Texture* HudTexture;
+	SDL_Texture* TurtleTexture;
 	SDL_Texture* InsertCoinsTexture = nullptr;
 	 
-	Animation TitleEnterCoin,TitleScreen,PressEnter, InsertCoins,Hud;
+	Animation TitleEnterCoin,TitleScreen,PressEnter, InsertCoins,Hud, TurtleSmile;
 	int coins = 0;
 
 	uint MusicIntro = 0;

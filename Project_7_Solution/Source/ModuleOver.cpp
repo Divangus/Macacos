@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
+#include "ModuleTitle.h"
 #include "ModuleAudio.h"
 #include "ModuleInput.h"
 #include "ModuleEnemies.h"
@@ -30,6 +31,8 @@ bool ModuleOver::Start()
 	LOG("Loading background assets");
 
 	bool ret = true;
+	
+	App->title->coins = 0;
 
 	App->enemies->Disable();
 	App->player->Disable();
