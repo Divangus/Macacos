@@ -16,7 +16,7 @@ public:
 	// Destructor
 	~ModuleEntities();
 
-	virtual int HP;
+	//virtual int HP;
 
 	bool destroyed = false;
 

@@ -22,7 +22,7 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	texture = App->textures->Load("Assets/particles.png");
+	texture = App->textures->Load("Assets/Orange_Soldier.png");
 
 	// Explosion particle
 	explosion.anim.PushBack({274, 296, 33, 30});
@@ -33,6 +33,15 @@ bool ModuleParticles::Start()
 	explosion.anim.PushBack({457, 296, 33, 30});
 	explosion.anim.loop = false;
 	explosion.anim.speed = 0.3f;
+
+	shot.anim.PushBack({ 1006, 52, 11, 18 });
+	shot.anim.PushBack({ 917, 52, 16, 12 });
+	shot.anim.PushBack({ 830, 52, 16, 12 });
+	shot.anim.PushBack({ 739, 52, 16, 12 });
+	shot.anim.PushBack({ 651, 52, 16, 12 });
+	shot.speed.x = 1;
+	shot.lifetime = 120;
+	shot.anim.speed = 0.2f;
 
 	return true;
 }
@@ -61,7 +70,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if (particles[i] != nullptr && particles[i]->collider == c1)
 		{
-			AddParticle(explosion, particles[i]->position.x, particles[i]->position.y);
+			//AddParticle(explosion, particles[i]->position.x, particles[i]->position.y);
 
 			delete particles[i];
 			particles[i] = nullptr;

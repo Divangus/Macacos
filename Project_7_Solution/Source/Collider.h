@@ -15,6 +15,7 @@ struct Collider
 		PLAYER_ATTACK,
 		PURPLE_ATTACK,
 		ORANGE_ATTACK,
+		ENEMY_SHOT,
 
 		MAX
 	};

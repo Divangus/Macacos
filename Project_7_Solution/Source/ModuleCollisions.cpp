@@ -16,30 +16,42 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER_ATTACK] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::ORANGE_ATTACK] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_SHOT] = true;
 
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::PURPLE_ATTACK] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::ORANGE_ATTACK] = false;
+	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY_SHOT] = false;
 
 	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::PLAYER_ATTACK] = false;
 	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::PURPLE_ATTACK] = false;
 	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::ORANGE_ATTACK] = false;
+	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::ENEMY_SHOT] = false;
 
 	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::PLAYER_ATTACK] = false;
 	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::PURPLE_ATTACK] = false;
 	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::ORANGE_ATTACK] = false;
+	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::ENEMY_SHOT] = false;
 
 	matrix[Collider::Type::ORANGE_ATTACK][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::ORANGE_ATTACK][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::ORANGE_ATTACK][Collider::Type::PLAYER_ATTACK] = false;
 	matrix[Collider::Type::ORANGE_ATTACK][Collider::Type::PURPLE_ATTACK] = false;
 	matrix[Collider::Type::ORANGE_ATTACK][Collider::Type::ORANGE_ATTACK] = false;
+	matrix[Collider::Type::ORANGE_ATTACK][Collider::Type::ENEMY_SHOT] = false;
+
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER_ATTACK] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PURPLE_ATTACK] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ORANGE_ATTACK] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ENEMY_SHOT] = false;
 }
 
 // Destructor
@@ -142,6 +154,9 @@ void ModuleCollisions::DebugDraw()
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
 			break;
 			case Collider::Type::ORANGE_ATTACK: // magenta
+				App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
+				break;
+			case Collider::Type::ENEMY_SHOT: // magenta
 				App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
 				break;
 		}

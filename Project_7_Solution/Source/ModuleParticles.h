@@ -58,6 +58,8 @@ private:
 public:
 	//Template particle for an explosion
 	Particle explosion;
+
+	Particle shot;
 };
 
 #endif // !__MODULEPARTICLES_H__

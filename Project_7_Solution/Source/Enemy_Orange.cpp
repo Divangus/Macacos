@@ -2,6 +2,7 @@
 
 #include "Application.h"
 #include "ModuleCollisions.h"
+#include "ModuleParticles.h"
 //#include "ModulePlayer.h"
 
 Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
@@ -87,8 +88,10 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 	back_getting_hit.PushBack({ 534, 818, 48, 66 });
 	back_getting_hit.speed = 0.1f;
 
-	path.PushBack({ 0.0f, -0.0f }, 150, &front_iddle);
+	//path.PushBack({ 0.0f, -0.0f }, 150, &front_iddle);
 	path.PushBack({ -1.0f, 0.0f }, 150, &front);
+	path.PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
+	path.PushBack({ 0.0f, 0.0f }, 60, &front_gun_attack);
 	path.PushBack({ 1.0f, 0.0f }, 150, &back);
 
 	OrangeCollider = App->collisions->AddCollider({ 0,0, 30, 20 }, Collider::Type::ENEMY, (Module*)App->enemies);
@@ -113,6 +116,18 @@ void Enemy_Orange::Update()
 	}
 	else {
 		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::ORANGE_ATTACK] = false;
+	}
+
+	if (currentAnim == &front_iddle)
+	{
+		App->particles->shot.speed.x = -1;
+		App->particles->AddParticle(App->particles->shot, position.x - 20, position.y + 20, Collider::Type::ENEMY_SHOT);
+	}
+
+	if (currentAnim == &back_iddle)
+	{
+		App->particles->shot.speed.x = 1;
+		App->particles->AddParticle(App->particles->shot, position.x + 20, position.y, Collider::Type::ENEMY_SHOT);
 	}
 
 	path.Update();
