@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "p2Point.h"
+#include "Path.h"
 
 struct SDL_Texture;
 struct Collider;
@@ -89,23 +90,19 @@ private:
 
 	bool god = false;
 
-	int HP override = 10;
+	int HP = 10;
 };
 
 class Enemies : public ModuleEntities {
 	// Constructor
 	// Saves the spawn position for later movement calculations
-	Enemy(int x, int y);
+	Enemies(int x, int y);
 
 	// Destructor
-	virtual ~Enemy();
+	virtual ~Enemies();
 
 	// Returns the enemy's collider
 	const Collider* GetCollider() const;
-
-	// Called from inhering enemies' Udpate
-	// Updates animation and collider position
-	virtual void Update();
 
 	// Called from ModuleEnemies' Update
 	virtual void Draw();
@@ -114,7 +111,6 @@ class Enemies : public ModuleEntities {
 	// Triggers an animation and a sound fx
 	virtual void OnCollision(Collider* collider);
 
-public:
 	// The current position in the world
 	fPoint position;
 	float enemy_speed = 0.8;
@@ -140,9 +136,62 @@ protected:
 	// Original spawn position. Stored for movement calculations
 	fPoint spawnPos;
 
-	int HP override= 3;
+	int HP = 3;
 };
 
-bool Orange_Position = true;
+class Enemy_Orange : public Enemies
+{
+public:
+	// Constructor (x y coordinates in the world)
+	// Creates animation and movement data and the collider
+	Enemy_Orange(int x, int y);
+
+	~Enemy_Orange();
+
+private:
+	// The path that will define the position in the world
+	Path path;
+
+	// Enemy animations
+	Animation front,
+		up_front,
+		back,
+		up_back,
+		front_melee_attack,
+		back_melee_attack,
+		front_gun_attack,
+		back_gun_attack,
+		front_getting_hit,
+		back_getting_hit,
+		front_iddle,
+		back_iddle;
+
+	bool melee_attack = false;
+};
+
+class Enemy_Purple : public Enemies
+{
+public:
+	// Constructor (x y coordinates in the world)
+	// Creates animation and movement data and the collider
+	Enemy_Purple(int x, int y);
+
+	~Enemy_Purple();
+
+private:
+	// The path that will define the position in the world
+	Path path;
+
+	bool follow = true;
+	bool attack = true;
+
+	// Enemy animations
+	Animation front, back, front_iddle, back_iddle,
+		front_hit, back_hit, front_punch, back_punch,
+		front_hit_ground, front_hit_ground_behind, front_ground, front_ground_behind,
+		front_recovery, front_recovery_behind,
+		back_hit_ground, back_hit_ground_behind, back_ground, back_ground_behind,
+		back_recovery, back_recovery_behind;
+};
 
 #endif
