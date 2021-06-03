@@ -20,6 +20,10 @@ public:
 private:
 	// The path that will define the position in the world
 	Path path;
+	Path path1;
+
+	bool follow = true;
+	bool attack = true;
 
 	// Enemy animations
 	Animation front,
@@ -27,13 +31,15 @@ private:
 		back,
 		up_back,
 		front_melee_attack,
-		back_melee_attack,		
+		back_melee_attack,
 		front_gun_attack,
 		back_gun_attack,
 		front_getting_hit,
 		back_getting_hit,
 		front_iddle,
-		back_iddle;
+		back_iddle,
+		front_shot,
+		back_shot;
 
 	bool melee_attack = false;
 };

@@ -46,6 +46,9 @@ public:
 
 	// The particle's collider
 	Collider* collider = nullptr;
+
+	//0 = explosion, 1 = shot
+	int type = 0;
 };
 
 #endif //__PARTICLE_H__

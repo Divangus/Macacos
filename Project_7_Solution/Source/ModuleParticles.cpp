@@ -25,24 +25,17 @@ bool ModuleParticles::Start()
 	texture = App->textures->Load("Assets/Orange_Soldier.png");
 
 	// Explosion particle
-	explosion.anim.PushBack({274, 296, 33, 30});
-	explosion.anim.PushBack({313, 296, 33, 30});
-	explosion.anim.PushBack({346, 296, 33, 30});
-	explosion.anim.PushBack({382, 296, 33, 30});
-	explosion.anim.PushBack({419, 296, 33, 30});
-	explosion.anim.PushBack({457, 296, 33, 30});
-	explosion.anim.loop = false;
-	explosion.anim.speed = 0.3f;
+	shot_explosion.anim.PushBack({ 739, 52, 16, 18 });
+	shot_explosion.anim.PushBack({ 651, 52, 16, 18 });
+	shot_explosion.anim.loop = false;
+	shot_explosion.anim.speed = 0.2f;
 
 	shot.anim.PushBack({ 1006, 52, 11, 18 });
-	shot.anim.PushBack({ 917, 52, 16, 12 });
-	shot.anim.PushBack({ 830, 52, 16, 12 });
-	shot.anim.PushBack({ 739, 52, 16, 12 });
-	shot.anim.PushBack({ 651, 52, 16, 12 });
+	shot.anim.PushBack({ 917, 52, 16, 18 });
+	shot.anim.PushBack({ 830, 52, 16, 18 });
 	shot.speed.x = 1;
 	shot.lifetime = 120;
 	shot.anim.speed = 0.2f;
-
 	return true;
 }
 
@@ -70,7 +63,10 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if (particles[i] != nullptr && particles[i]->collider == c1)
 		{
-			//AddParticle(explosion, particles[i]->position.x, particles[i]->position.y);
+			if (particles[i]->type == 1) {
+				AddParticle(shot_explosion, particles[i]->position.x, particles[i]->position.y, 0);
+			}
+			
 
 			delete particles[i];
 			particles[i] = nullptr;
@@ -114,7 +110,7 @@ update_status ModuleParticles::PostUpdate()
 	return update_status::UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType, uint delay)
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y, int type, Collider::Type colliderType, uint delay)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
@@ -123,6 +119,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collid
 		{
 			Particle* p = new Particle(particle);
 
+			p->type = type;
 			p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
 			p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
 			p->position.y = y;

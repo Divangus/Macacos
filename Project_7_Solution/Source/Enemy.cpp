@@ -69,7 +69,7 @@ void Enemy::OnCollision(Collider* collider)
 {
 	HP -= 1;
 	if (HP == 0) {
-		App->particles->AddParticle(App->particles->explosion, position.x, position.y);
+		App->particles->AddParticle(App->particles->shot_explosion, position.x, position.y, 0);
 		App->audio->PlayFx(destroyedFx);
 
 		destroyed = true;

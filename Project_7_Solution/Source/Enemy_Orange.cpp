@@ -3,6 +3,8 @@
 #include "Application.h"
 #include "ModuleCollisions.h"
 #include "ModuleParticles.h"
+#include "ModulePlayer.h"
+#include "SDL/include/SDL.h"
 //#include "ModulePlayer.h"
 
 Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
@@ -48,7 +50,11 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 
 	front_iddle.PushBack({ 370, 140, 48, 66 });
 
+	front_shot.PushBack({ 370, 140, 48, 66 });
+
 	back_iddle.PushBack({ 620, 946, 48, 66 });
+
+	back_shot.PushBack({ 620, 946, 48, 66 });
 
 	front_melee_attack.PushBack({ 374, 73, 46, 66 });
 	front_melee_attack.PushBack({ 262, 73, 92, 66 });
@@ -89,10 +95,19 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 	back_getting_hit.speed = 0.1f;
 
 	//path.PushBack({ 0.0f, -0.0f }, 150, &front_iddle);
-	path.PushBack({ -1.0f, 0.0f }, 150, &front);
+	//path.PushBack({ -1.0f, 0.0f }, 150, &front);
+	/*path.PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
+	path.PushBack({ 0.0f, 0.0f }, 60, &front_gun_attack);*/
+
+	path.PushBack({ 0.0f, 0.0f }, 0, &front_shot);
+	path.PushBack({ 0.0f, 0.0f }, 30, &front_gun_attack);
 	path.PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
-	path.PushBack({ 0.0f, 0.0f }, 60, &front_gun_attack);
-	path.PushBack({ 1.0f, 0.0f }, 150, &back);
+
+	path1.PushBack({ 0.0f, 0.0f }, 0, &back_shot);
+	path1.PushBack({ 0.0f, 0.0f }, 30, &back_gun_attack);
+	path1.PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
+
+	//path.PushBack({ 1.0f, 0.0f }, 150, &back);
 
 	OrangeCollider = App->collisions->AddCollider({ 0,0, 30, 20 }, Collider::Type::ENEMY, (Module*)App->enemies);
 	OrangeColliderAttack = App->collisions->AddCollider({ 0, 0, 20, 20 }, Collider::Type::ORANGE_ATTACK, (Module*)App->enemies);
@@ -118,21 +133,135 @@ void Enemy_Orange::Update()
 		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::ORANGE_ATTACK] = false;
 	}
 
-	if (currentAnim == &front_iddle)
+		if (currentAnim == &front_shot)
 	{
 		App->particles->shot.speed.x = -1;
-		App->particles->AddParticle(App->particles->shot, position.x - 20, position.y + 20, Collider::Type::ENEMY_SHOT);
+		App->particles->AddParticle(App->particles->shot, position.x - 20, position.y + 20, 1, Collider::Type::ENEMY_SHOT);
+		//Orange_Position = true;
 	}
 
-	if (currentAnim == &back_iddle)
+	if (currentAnim == &back_shot)
 	{
 		App->particles->shot.speed.x = 1;
-		App->particles->AddParticle(App->particles->shot, position.x + 20, position.y, Collider::Type::ENEMY_SHOT);
+		App->particles->AddParticle(App->particles->shot, position.x + 20, position.y + 20, 1, Collider::Type::ENEMY_SHOT);
+		//Orange_Position = false;
 	}
 
-	path.Update();
-	position = spawnPos + path.GetRelativePosition();
-	currentAnim = path.GetCurrentAnimation();
+	if (follow == true) {
+		attack = true;
+		if (position.x > App->player->position.x + 120 || position.x < App->player->position.x - 120) {
+			if (position.x > App->player->position.x) {
+				position.x = position.x - enemy_speed;
+				if (currentAnim != &front)
+				{
+					front.Reset();
+					currentAnim = &front;
+					Orange_Position = true;
+				}
+			}
+
+			if (position.x < App->player->position.x) {
+				position.x = position.x + enemy_speed;
+				if (currentAnim != &back)
+				{
+					back.Reset();
+					currentAnim = &back;
+					Orange_Position = false;
+				}
+			}
+			if (position.y != App->player->position.y + 46) {
+				if (position.y > App->player->position.y + 46) {
+					position.y = position.y - enemy_speed;
+				}
+				if (position.y < App->player->position.y + 46) {
+					position.y = position.y + enemy_speed;
+				}
+			}
+
+		}
+		else {
+			follow = false;
+		}
+	}
+	else {
+		if (attack == true) {
+			//if (position.x > App->player->position.x) {
+			//	path.Update();
+			//	currentAnim = path.GetCurrentAnimation();
+			//}
+			//if (position.x < App->player->position.x){
+			//	path1.Update();
+			//	currentAnim = path1.GetCurrentAnimation();
+			//}
+			//
+			//if (path.GetCurrentAnimation() == &front_iddle /*|| path1.GetCurrentAnimation() == &back_iddle*/) {
+			//	attack = false;
+			//}
+			//if (path1.GetCurrentAnimation() == &back_iddle) {
+			//	attack = false;
+			//}
+			if (Orange_Position == true) {
+				/*App->particles->shot.speed.x = -1;
+				App->particles->AddParticle(App->particles->shot, position.x - 20, position.y + 20, 1, Collider::Type::ENEMY_SHOT);*/
+				path.Update();
+				currentAnim = path.GetCurrentAnimation();
+				if (currentAnim == &front_iddle) {
+					attack = false;
+				}		
+			}
+			else {
+				/*App->particles->shot.speed.x = 1;
+				App->particles->AddParticle(App->particles->shot, position.x + 20, position.y + 20, 1, Collider::Type::ENEMY_SHOT);*/
+				path1.Update();
+				currentAnim = path1.GetCurrentAnimation();
+				if (currentAnim == &back_iddle) {
+					attack = false;
+				}
+			}
+			
+		}
+		else {
+			//attack == false;
+			if (position.x > App->player->position.x + 180 || position.x < App->player->position.x - 180) {
+				follow = true;
+			}
+			else {
+				if (position.x > App->player->position.x) {
+					position.x = position.x + enemy_speed;
+					/*if (position.y < App->player->position.y) {
+						position.y = position.y - enemy_speed;
+					}
+					else {
+						position.y = position.y + enemy_speed;
+					}*/
+					currentAnim = &back;
+					if (currentAnim != &back)
+					{
+						back.Reset();
+						currentAnim = &back;
+						Orange_Position = false;
+					}
+				}
+				else {
+					position.x = position.x - enemy_speed;
+					/*if (position.y < App->player->position.y) {
+						position.y = position.y - enemy_speed;
+					}
+					else {
+						position.y = position.y + enemy_speed;
+					}*/
+
+					currentAnim = &front;
+					if (currentAnim != &front)
+					{
+						front.Reset();
+						currentAnim = &front;
+						Orange_Position = true;
+					}
+				}
+			}
+		}
+	}
 	
 	
 	// Call to the base class. It must be called at the end
