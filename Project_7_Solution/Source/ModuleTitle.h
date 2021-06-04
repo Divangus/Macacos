@@ -41,12 +41,17 @@ public:
 	SDL_Texture* TurtleTexture;
 	SDL_Texture* TitleTexture;
 	SDL_Texture* InsertCoinsTexture = nullptr;
+	SDL_Texture* CoinsTexture = nullptr;
 	 
 	Path PathTMNTRed, PathTMNTGreen;
 
+	Animation coin1, coin2, coin3, coin4, coin5, coin6, coin7, coin8, coin9;
 	Animation TitleEnterCoin,TitleScreen,PressEnter, InsertCoins,Hud, TurtleSmile, tmntgreen;
 	Animation tmntred;
 	int coins = 0;
+	int Blue = 0;
+
+
 
 	fPoint positionTMNTred, spawnPosRed;
 

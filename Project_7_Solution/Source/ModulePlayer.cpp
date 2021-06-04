@@ -3,6 +3,7 @@
 
 #include "Application.h"
 #include "ModuleTextures.h"
+#include "ModuleTitle.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
@@ -17,6 +18,35 @@
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
+	
+
+	coin1.PushBack({6,4,6,13});
+	coin1.loop = false;
+
+	coin2.PushBack({ 11,4,9,13 });
+	coin2.loop = false;
+
+	coin3.PushBack({ 20,4,9,13 });
+	coin3.loop = false;
+
+	coin4.PushBack({ 28,4,9,13 });
+	coin4.loop = false;
+
+	coin5.PushBack({ 36,4,9,13 });
+	coin5.loop = false;
+
+	coin6.PushBack({ 44,4,9,13 });
+	coin6.loop = false;
+
+	coin7.PushBack({ 52,4,9,13 });
+	coin7.loop = false;
+
+	coin8.PushBack({ 60,4,9,13 });
+	coin8.loop = false;
+
+	coin9.PushBack({ 70,4,9,13 });
+	coin9.loop = false;
+
 	//Insert Coins Animation
 	InsertCoins.PushBack({ 4,1,67,19 });
 	InsertCoins.PushBack({ 82,26,67,19 });
@@ -47,16 +77,25 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	//Player
 	//right idle
 	idleAnimR.PushBack({ 30, 0, 77, 90 });
+	idleAnimR.PushBack({ 30, 0, 77, 90 });
+	idleAnimR.PushBack({ 30, 0, 77, 90 });
 	idleAnimR.PushBack({122, 0, 77, 90 });
 	idleAnimR.PushBack({ 216, 0, 77, 90 });
 	idleAnimR.PushBack({ 310, 0, 77, 90 });
 	idleAnimR.PushBack({ 404, 0, 77,90 });
 	idleAnimR.PushBack({ 498, 0, 77, 90 });
 	idleAnimR.PushBack({ 30, 0, 77, 90 });
-	idleAnimR.loop = false;
+	idleAnimR.PushBack({ 30, 0, 77, 90 });
+	idleAnimR.PushBack({ 30, 0, 77, 90 });
+	idleAnimR.PushBack({ 30, 0, 77, 90 });
+	idleAnimR.PushBack({ 30, 0, 77, 90 });
+	idleAnimR.loop = true;
 	idleAnimR.speed = 0.095f;
 
 	//left idle
+	idleAnimL.PushBack({ 1708, 2087, 77, 90 });
+	idleAnimL.PushBack({ 1708, 2087, 77, 90 });
+	idleAnimL.PushBack({ 1708, 2087, 77, 90 });
 	idleAnimL.PushBack({ 1708, 2087, 77, 90 });
 	idleAnimL.PushBack({ 1616,  2087, 77, 90 });
 	idleAnimL.PushBack({ 1522,   2087, 77, 90 });
@@ -64,7 +103,10 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	idleAnimL.PushBack({ 1334, 2087, 77, 90 });
 	idleAnimL.PushBack({ 1240,  2087, 77, 90 });
 	idleAnimL.PushBack({ 1708,2087, 77, 90 });
-	idleAnimL.loop = false;
+	idleAnimL.PushBack({ 1708, 2087, 77, 90 });
+	idleAnimL.PushBack({ 1708, 2087, 77, 90 });
+	idleAnimL.PushBack({ 1708, 2087, 77, 90 });
+	idleAnimL.loop = true;
 	idleAnimL.speed = 0.095f;
 
 	// rigt move upwards
@@ -260,11 +302,15 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 
 	bool ret = true;
+	
+	LifeCoins = App->title->coins;
+	LifesBlue = App->title->Blue;
 
 	InsertCoinsTexture = App->textures->Load("Assets/InsertCoins.png");
 	texture = App->textures->Load("Assets/leonardo.png");
 	QuoteTexture = App->textures->Load("Assets/Quotes.png");
 	FireAnimTexture = App->textures->Load("Assets/LittleFire.png");
+	CoinsTexture = App->textures->Load("Assets/coins.png");
 	currentAnimation = &idleAnimR;
 
 	PlayerAttackFx = App->audio->LoadFx("Assets/Fx/PlayerAttackFx.wav");
@@ -347,6 +393,9 @@ update_status ModulePlayer::Update()
 			App->render->camera.x += App->render->cameraSpeed;
 		}
 	}
+
+
+
 
 	//left
 	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
@@ -517,9 +566,9 @@ update_status ModulePlayer::Update()
 				currentAnimation = &TwoSwordAttackL;
 			}
 
-			App->audio->PlayFx(PlayerAttackFx);
+			
 		}
-	
+		App->audio->PlayFx(PlayerAttackFx);
 	}
 
 	//jump
@@ -618,12 +667,16 @@ update_status ModulePlayer::Update()
 		&& App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
 		&& App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE 
 		&& App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE
 		&& App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_IDLE)
 		{
 		if (currentAnimation != &idleAnimR
 			&& currentAnimation != &idleAnimL
+			/*&& currentAnimation != &upAnimR
+			&& currentAnimation != &upAnimL
+			&& currentAnimation != &downAnimR
+			&& currentAnimation != &downAnimL
+			&& currentAnimation != &leftAnim
+			&& currentAnimation != &rightAnim*/
 			&& currentAnimation != &jumpAnimR
 			&& currentAnimation != &jumpAnimL
 			&& currentAnimation != &FrontSwordAttackR
@@ -663,11 +716,20 @@ update_status ModulePlayer::Update()
 		}
 	}
 
+	//lives
+	if (App->input->keys[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN) {
+		LifeCoins++;
+		for (int i = 0; i < 10; i++) {
+			LifesBlue++;
+		}
+	}
+
 	return update_status::UPDATE_CONTINUE;
 }
 
 update_status ModulePlayer::PostUpdate()
 {
+	
 	
 	//if (App->render->camera.x == 0) {
 	//	App->audio->PlayFx(AttackQuoteFx);
@@ -690,13 +752,46 @@ update_status ModulePlayer::PostUpdate()
 		//App->render->Blit(texture, position.x-10, position.y+20, &rect);//draw player
 	}
 
+	if (LifeCoins == 0 && LifesBlue == 0 && Player_Position == true) {
+		currentAnimation = &PlayerDeathR;
+	}
+
 	if (god == true) {
 		GodMode();
 	}
+
 	App->render->Blit(QuoteTexture, 50, 120, &(QuoteAttack.GetCurrentFrame()), 0);
 	App->render->Blit(InsertCoinsTexture, 83, 18, &(InsertCoins.GetCurrentFrame()), 0);
 	App->render->Blit(InsertCoinsTexture, 151, 18, &(InsertCoins.GetCurrentFrame()), 0);
 	App->render->Blit(InsertCoinsTexture, 219, 18, &(InsertCoins.GetCurrentFrame()), 0);
+
+	if (LifeCoins == 1) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin1.GetCurrentFrame()), 0);
+	}
+	if (LifeCoins == 2) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin2.GetCurrentFrame()), 0);
+	}
+	if (LifeCoins == 3) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin3.GetCurrentFrame()), 0);
+	}
+	if (LifeCoins == 4) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin4.GetCurrentFrame()), 0);
+	}
+	if (LifeCoins == 5) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin5.GetCurrentFrame()), 0);
+	}
+	if (LifeCoins == 6) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin6.GetCurrentFrame()), 0);
+	}
+	if (LifeCoins == 7) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin7.GetCurrentFrame()), 0);
+	}
+	if (LifeCoins == 8) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin8.GetCurrentFrame()), 0);
+	}
+	if (LifeCoins == 9) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin9.GetCurrentFrame()), 0);
+	}
 
 
 	return update_status::UPDATE_CONTINUE;
@@ -704,12 +799,16 @@ update_status ModulePlayer::PostUpdate()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1 == collider && destroyed == false && god == false)
+	if (c1 == collider && destroyed == false && god == false && LifeCoins>-1)
 	{
-		HP -= 1;
+		LifesBlue--;
+	}
+	
+	if (LifesBlue == 0) {
+		LifeCoins--;
 	}
 
-	if (c1 == collider && destroyed == false && god == false && HP == 0) {
+	if (c1 == collider && destroyed == false && god == false && LifeCoins ==-1 &&LifesBlue==0) {
 		if (Player_Position == true) {
 			currentAnimation = &PlayerDeathR;
 			destroyed = true;

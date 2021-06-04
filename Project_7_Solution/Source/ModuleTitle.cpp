@@ -47,6 +47,33 @@ ModuleTitle::ModuleTitle(bool startEnabled) : Module(startEnabled)
 
 	PathTMNTRed.PushBack({ 0.0f, 1.0f }, 150, &tmntred);
 	PathTMNTGreen.PushBack({ -1.0f, 0.0f }, 150, &tmntgreen);
+
+	coin1.PushBack({ 6,4,6,13 });
+	coin1.loop = false;
+
+	coin2.PushBack({ 11,4,9,13 });
+	coin2.loop = false;
+
+	coin3.PushBack({ 20,4,9,13 });
+	coin3.loop = false;
+
+	coin4.PushBack({ 28,4,9,13 });
+	coin4.loop = false;
+
+	coin5.PushBack({ 36,4,9,13 });
+	coin5.loop = false;
+
+	coin6.PushBack({ 44,4,9,13 });
+	coin6.loop = false;
+
+	coin7.PushBack({ 52,4,9,13 });
+	coin7.loop = false;
+
+	coin8.PushBack({ 60,4,9,13 });
+	coin8.loop = false;
+
+	coin9.PushBack({ 70,4,9,13 });
+	coin9.loop = false;
 }
 
 ModuleTitle::~ModuleTitle()
@@ -68,6 +95,7 @@ bool ModuleTitle::Start()
 	HudTexture = App->textures->Load("Assets/hud.png");
 	TitleTexture = App->textures->Load("Assets/IntroScreen.png");
 	TurtleTexture = App->textures->Load("Assets/TurtleSmile.png");
+	CoinsTexture = App->textures->Load("Assets/coins.png");
 	/*App->audio->PlayMusic("Assets/titleMusic.ogg", 1.0f);*/
 	MusicIntro = App->audio->LoadFx("Assets/titleMusic.ogg");
 
@@ -99,6 +127,9 @@ update_status ModuleTitle::Update()
 		//App->audio->PlayMusic("Assets/titleMusic.ogg", 1.0f);
 		if (App->input->keys[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN) {
 				coins++;
+				for (int i = 0; i < 10; i++) {
+					Blue++;
+				}
 		}
 		if (App->input->keys[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN && coins>0)
 		{
@@ -139,6 +170,33 @@ update_status ModuleTitle::PostUpdate()
 		App->render->Blit(TurtleTexture, 50, 20, &(TurtleSmile.GetCurrentFrame()), 1);
 	}
 	
+	if (coins == 1) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin1.GetCurrentFrame()), 0);
+	}
+	if (coins == 2) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin2.GetCurrentFrame()), 0);
+	}
+	if (coins == 3) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin3.GetCurrentFrame()), 0);
+	}
+	if (coins == 4) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin4.GetCurrentFrame()), 0);
+	}
+	if (coins == 5) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin5.GetCurrentFrame()), 0);
+	}
+	if (coins == 6) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin6.GetCurrentFrame()), 0);
+	}
+	if (coins == 7) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin7.GetCurrentFrame()), 0);
+	}
+	if (coins == 8) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin8.GetCurrentFrame()), 0);
+	}
+	if (coins == 9) {
+		App->render->Blit(CoinsTexture, 30, 20, &(coin9.GetCurrentFrame()), 0);
+	}
 	return update_status::UPDATE_CONTINUE;
 }
 

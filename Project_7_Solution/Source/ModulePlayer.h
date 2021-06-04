@@ -2,6 +2,9 @@
 #define __MODULE_PLAYER_H__
 
 #include "Module.h"
+
+#include "ModuleTitle.h"
+#include "Application.h"
 #include "Animation.h"
 #include "p2Point.h"
 
@@ -38,6 +41,8 @@ public:
 	// Position of the player in the map
 	iPoint position;
 
+	int LifeCoins = 0;
+	int LifesBlue = 0;
 
 private:
 
@@ -55,6 +60,8 @@ private:
 	SDL_Texture* FireAnimTexture = nullptr;
 
 	SDL_Texture* InsertCoinsTexture = nullptr;
+
+	SDL_Texture* CoinsTexture = nullptr;
 	
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
@@ -83,6 +90,8 @@ private:
 		PlayerDeathL;
 
 	Animation LittleFire, InsertCoins;
+
+	Animation coin1, coin2, coin3, coin4, coin5, coin6, coin7, coin8, coin9;
 
 	// The player's collider
 	Collider* collider = nullptr;
