@@ -14,6 +14,7 @@
 #include "ModuleIntroScene.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleOver.h"
+#include "ModuleChooseCharacter.h"
 #include "ModuleTitle.h"
 
 
@@ -34,8 +35,9 @@ Application::Application()
 	modules[9] = collisions = new ModuleCollisions(true);
 	modules[10] = fade = new ModuleFadeToBlack(true);
 	modules[11] = over = new ModuleOver(false);
-	modules[12] = title = new ModuleTitle(false);
-	modules[13] = render = new ModuleRender(true);
+	modules[12] = character = new ModuleChooseCharacter(false);
+	modules[13] = title = new ModuleTitle(false);
+	modules[14] = render = new ModuleRender(true);
 	
 }
 

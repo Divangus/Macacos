@@ -1,8 +1,10 @@
+
 #include "ModulePlayer.h"
 
 
 #include "Application.h"
 #include "ModuleTextures.h"
+#include "ModuleChooseCharacter.h"
 #include "ModuleTitle.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
@@ -280,16 +282,6 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	PlayerDeathR.loop = false;
 	PlayerDeathR.speed = 0.3f;
 
-	//Fire.PushBack({ 25, 1, 308, 67 });
-	//Fire.PushBack({ 25,70,308,67 });
-	//Fire.PushBack({ 28,138,308,67 });
-	//Fire.PushBack({ 343,4,308,67 });
-	//Fire.PushBack({ 343,72,308,67 });
-	//Fire.PushBack({ 343,137,308,67 });
-	//Fire.PushBack({ 659,1,308,67 });
-	//Fire.PushBack({ 659,71,308,67 });
-	////Fire.loop = true;
-	//Fire.speed = 0.1f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -303,8 +295,8 @@ bool ModulePlayer::Start()
 
 	bool ret = true;
 	
-	LifeCoins = App->title->coins;
-	LifesBlue = App->title->Blue;
+	LifeCoins = App->character->coins;
+	LifesBlue = App->character->Blue;
 
 	InsertCoinsTexture = App->textures->Load("Assets/InsertCoins.png");
 	texture = App->textures->Load("Assets/leonardo.png");

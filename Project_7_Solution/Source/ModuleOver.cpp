@@ -4,6 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleTitle.h"
+#include"ModuleChooseCharacter.h"
 #include "ModuleAudio.h"
 #include "ModuleInput.h"
 #include "ModuleEnemies.h"
@@ -32,7 +33,7 @@ bool ModuleOver::Start()
 
 	bool ret = true;
 	
-	App->title->coins = 0;
+	App->character->coins = 0;
 
 	/*App->enemies->Disable();
 	App->player->Disable();*/

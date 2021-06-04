@@ -28,7 +28,7 @@ ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
 	Fire.PushBack({ 659,1,308,67 });
 	Fire.PushBack({ 659,71,308,67 });
 	//Fire.loop = true;
-	Fire.speed = 0.05f;
+	Fire.speed = 0.1f;
 
 	
 
