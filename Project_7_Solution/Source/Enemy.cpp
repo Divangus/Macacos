@@ -24,6 +24,10 @@ Enemy::~Enemy()
 		OrangeCollider->pendingToDelete = true;
 	if (OrangeColliderAttack != nullptr)
 		OrangeColliderAttack->pendingToDelete = true;
+	if (WhiteCollider != nullptr)
+		WhiteCollider->pendingToDelete = true;
+	if (WhiteColliderAttack != nullptr)
+		WhiteColliderAttack->pendingToDelete = true;
 }
 
 const Collider* Enemy::GetCollider() const {
@@ -32,6 +36,9 @@ const Collider* Enemy::GetCollider() const {
 	}
 	if (EnemyType == 2) {
 		return OrangeCollider;
+	}
+	if (EnemyType == 3) {
+		return WhiteCollider;
 	}
 }
 
@@ -45,6 +52,9 @@ void Enemy::Update()
 	
 	if (OrangeCollider != nullptr)
 		OrangeCollider->SetPos(position.x + 8, position.y + 46);
+
+	if (WhiteCollider != nullptr)
+		WhiteCollider->SetPos(position.x + 27, position.y + 75);
 	
 	if (PurpleColliderAttack != nullptr && Purple_Position == true)
 		PurpleColliderAttack->SetPos(position.x+20, position.y+66);
@@ -57,6 +67,12 @@ void Enemy::Update()
 
 	else if (OrangeColliderAttack != nullptr && Orange_Position == false)
 		OrangeColliderAttack->SetPos(position.x + 30, position.y + 46);
+
+	if (WhiteColliderAttack != nullptr && White_Position == true)
+		WhiteColliderAttack->SetPos(position.x + 19, position.y + 75);
+
+	else if (WhiteColliderAttack != nullptr && White_Position == false)
+		WhiteColliderAttack->SetPos(position.x + 49, position.y + 75);
 }
 
 void Enemy::Draw()
@@ -69,7 +85,7 @@ void Enemy::OnCollision(Collider* collider)
 {
 	HP -= 1;
 	if (HP == 0) {
-		App->particles->AddParticle(App->particles->shot_explosion, position.x, position.y, 0);
+		//App->particles->AddParticle(App->particles->shuriken_explosion, position.x, position.y, 0);
 		App->audio->PlayFx(destroyedFx);
 
 		destroyed = true;

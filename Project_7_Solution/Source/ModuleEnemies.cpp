@@ -9,6 +9,7 @@
 #include "Enemy.h"
 #include "Enemy_Purple.h"
 #include "Enemy_Orange.h"
+#include "Enemy_White.h"
 
 #define SPAWN_MARGIN 50
 
@@ -43,6 +44,7 @@ bool ModuleEnemies::Start()
 {
 	texture = App->textures->Load("Assets/Orange_Soldier.png");
 	texture2 = App->textures->Load("Assets/enemy_purple.png");
+	texture3 = App->textures->Load("Assets/White_Soldier.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/EnemyDying.wav");
 	Fire_Texture = App->textures->Load("Assets/frontFire.png");
 	
@@ -208,6 +210,11 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 					enemies[i] = new Enemy_Orange(info.x, info.y);
 					enemies[i]->texture = texture;
 					enemies[i]->EnemyType = 2;
+					break;
+				case ENEMY_TYPE::WHITE:
+					enemies[i] = new Enemy_White(info.x, info.y);
+					enemies[i]->texture = texture3;
+					enemies[i]->EnemyType = 3;
 					break;
 			}
 			

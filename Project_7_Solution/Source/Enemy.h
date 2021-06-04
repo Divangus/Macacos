@@ -48,6 +48,7 @@ protected:
 
 	bool Purple_Position = true;
 	bool Orange_Position = true;
+	bool White_Position = true;
 
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
@@ -59,6 +60,8 @@ protected:
 	Collider* PurpleColliderAttack = nullptr;
 	Collider* OrangeCollider = nullptr;
 	Collider* OrangeColliderAttack = nullptr;
+	Collider* WhiteCollider = nullptr;
+	Collider* WhiteColliderAttack = nullptr;
 
 	// Original spawn position. Stored for movement calculations
 	fPoint spawnPos;

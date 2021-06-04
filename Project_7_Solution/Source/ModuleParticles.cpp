@@ -23,19 +23,41 @@ bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
 	texture = App->textures->Load("Assets/Orange_Soldier.png");
+	texture2 = App->textures->Load("Assets/White_Soldier.png");
 
 	// Explosion particle
-	shot_explosion.anim.PushBack({ 739, 52, 16, 18 });
-	shot_explosion.anim.PushBack({ 651, 52, 16, 18 });
-	shot_explosion.anim.loop = false;
-	shot_explosion.anim.speed = 0.2f;
+	shuriken_explosion.anim.PushBack({ 739, 52, 16, 18 });
+	shuriken_explosion.anim.PushBack({ 651, 52, 16, 18 });
+	shuriken_explosion.anim.loop = false;
+	shuriken_explosion.anim.speed = 0.2f;
+	shuriken_explosion.lifetime = 120;
 
-	shot.anim.PushBack({ 1006, 52, 11, 18 });
-	shot.anim.PushBack({ 917, 52, 16, 18 });
-	shot.anim.PushBack({ 830, 52, 16, 18 });
-	shot.speed.x = 1;
-	shot.lifetime = 120;
-	shot.anim.speed = 0.2f;
+	knife_explosion.anim.PushBack({ 99, 1056, 99, 88 });
+	knife_explosion.anim.PushBack({ 198, 1056, 99, 88 });
+	knife_explosion.anim.PushBack({ 297, 1056, 99, 88 });
+	knife_explosion.anim.PushBack({ 396, 1056, 99, 88 });
+	knife_explosion.anim.PushBack({ 495, 1056, 99, 88 });
+	knife_explosion.anim.loop = false;
+	knife_explosion.anim.speed = 0.2f;
+	knife_explosion.lifetime = 120;
+
+	shuriken.anim.PushBack({ 1006, 52, 11, 18 });
+	shuriken.anim.PushBack({ 917, 52, 16, 18 });
+	shuriken.anim.PushBack({ 830, 52, 16, 18 });
+	shuriken.speed.x = 1;
+	shuriken.lifetime = 120;
+	shuriken.anim.speed = 0.2f;
+
+	knife.anim.PushBack({ 0, 1056, 99, 88 });
+	knife.speed.x = 1;
+	knife.lifetime = 120;
+	knife.anim.speed = 0.2f;
+
+	knife_front.anim.PushBack({ 792, 2200, 90, 88 });
+	knife_front.speed.x = 1;
+	knife_front.lifetime = 120;
+	knife_front.anim.speed = 0.2f;
+
 	return true;
 }
 
@@ -63,9 +85,15 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if (particles[i] != nullptr && particles[i]->collider == c1)
 		{
-			if (particles[i]->type == 1) {
-				AddParticle(shot_explosion, particles[i]->position.x, particles[i]->position.y, 0);
+			/*if (particles[i]->type == 1) {
+				AddParticle(shuriken_explosion, particles[i]->position.x, particles[i]->position.y, particles[i]->type);
+				particles[i]->type == 0;
 			}
+
+			if (particles[i]->type == 2) {
+				AddParticle(knife_explosion, particles[i]->position.x, particles[i]->position.y, particles[i]->type);
+				particles[i]->type == 0;
+			}*/
 			
 
 			delete particles[i];
@@ -86,6 +114,13 @@ update_status ModuleParticles::Update()
 		// Call particle Update. If it has reached its lifetime, destroy it
 		if(particle->Update() == false)
 		{
+			/*if (particles[i]->type == 1) {
+				AddParticle(shuriken_explosion, particles[i]->position.x, particles[i]->position.y, 1);
+			}
+
+			if (particles[i]->type == 2) {
+				AddParticle(knife_explosion, particles[i]->position.x, particles[i]->position.y, 2);
+			}*/
 			delete particle;
 			particles[i] = nullptr;
 		}
@@ -103,7 +138,12 @@ update_status ModuleParticles::PostUpdate()
 
 		if (particle != nullptr && particle->isAlive)
 		{
+			if(particle->type == 1){
 			App->render->Blit(texture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+			}
+			if (particle->type == 2) {
+				App->render->Blit(texture2, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+			}
 		}
 	}
 
@@ -125,8 +165,12 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, int ty
 			p->position.y = y;
 
 			//Adding the particle's collider
-			if (colliderType != Collider::Type::NONE)
+			if (colliderType != Collider::Type::NONE && p->type == 2)
+				p->collider = App->collisions->AddCollider({ 0, 0, 30, 10 }, colliderType, this);
+			
+			else {
 				p->collider = App->collisions->AddCollider(p->anim.GetCurrentFrame(), colliderType, this);
+			}
 
 			particles[i] = p;
 			break;

@@ -47,7 +47,7 @@ public:
 	// The particle's collider
 	Collider* collider = nullptr;
 
-	//0 = explosion, 1 = shot
+	//1 = shuriken, 2 = knife
 	int type = 0;
 };
 

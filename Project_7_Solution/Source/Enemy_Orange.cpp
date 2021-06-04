@@ -144,15 +144,15 @@ void Enemy_Orange::Update()
 
 		if (currentAnim == &front_shot)
 	{
-		App->particles->shot.speed.x = -1;
-		App->particles->AddParticle(App->particles->shot, position.x - 20, position.y + 20, 1, Collider::Type::ENEMY_SHOT);
+		App->particles->shuriken.speed.x = -1;
+		App->particles->AddParticle(App->particles->shuriken, position.x - 20, position.y + 20, 1, Collider::Type::ENEMY_SHOT);
 		//Orange_Position = true;
 	}
 
 	if (currentAnim == &back_shot)
 	{
-		App->particles->shot.speed.x = 1;
-		App->particles->AddParticle(App->particles->shot, position.x + 20, position.y + 20, 1, Collider::Type::ENEMY_SHOT);
+		App->particles->shuriken.speed.x = 1;
+		App->particles->AddParticle(App->particles->shuriken, position.x + 20, position.y + 20, 1, Collider::Type::ENEMY_SHOT);
 		//Orange_Position = false;
 	}
 

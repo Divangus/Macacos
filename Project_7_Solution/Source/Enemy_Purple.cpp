@@ -130,7 +130,7 @@ void Enemy_Purple::Update()
 		}
 		else  {
 			//attack == false;
-			if (position.x > App->player->position.x + 100 || position.x < App->player->position.x - 100) {
+			if (position.x > App->player->position.x + 100 || position.x < App->player->position.x - 120) {
 				follow = true;
 			}
 			else {
@@ -171,17 +171,16 @@ void Enemy_Purple::Update()
 		}	
 	}
 
-	if (currentAnim == &front) {
+	if (currentAnim == &front || currentAnim == &front_punch) {
 		Purple_Position = true;
 	}
 
-	if (currentAnim == &back) {
+	if (currentAnim == &back || currentAnim == &back_punch) {
 		Purple_Position = false;
 	}
 
-	if (currentAnim == &front_punch) {
+	if (currentAnim == &front_punch || currentAnim == &back_punch) {
 		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = true;
-		Purple_Position = true;
 	}
 	else {
 		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = false;

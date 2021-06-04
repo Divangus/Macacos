@@ -99,8 +99,13 @@ bool ModuleScene::Start()
 	App->audio->PlayMusic("Assets/stage1.ogg", 1.0f);
 
 
+	
 	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 220, 120);
 	App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 335, 110);
+	App->enemies->AddEnemy(ENEMY_TYPE::WHITE, 600, 120);
+
+	//App->enemies->AddEnemy(ENEMY_TYPE::WHITE, 220, 120);
+
 	/*App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 300, 120);
 	App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 300, 100);
 	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 500, 120);

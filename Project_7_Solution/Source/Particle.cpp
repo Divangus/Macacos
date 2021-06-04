@@ -47,8 +47,14 @@ bool Particle::Update()
 		position.x += speed.x;
 		position.y += speed.y;
 
-		if (collider != nullptr)
+		if (collider != nullptr){
+			if (type == 1){
 			collider->SetPos(position.x, position.y + 26);
+			}
+			if (type == 2) {
+				collider->SetPos(position.x + 35, position.y + 100);
+			}
+		}
 	}
 
 	return ret;
