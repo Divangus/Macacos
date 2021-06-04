@@ -34,12 +34,12 @@ public:
 
 	bool screenupdate = false;
 	// The scene sprite sheet loaded into an SDL_Texture
-	SDL_Texture* bgTexture;
-	SDL_Texture* EnterCoinsTitleTexture;
-	SDL_Texture* PressEnterTexture;
-	SDL_Texture* HudTexture;
-	SDL_Texture* TurtleTexture;
-	SDL_Texture* TitleTexture;
+	SDL_Texture* bgTexture = nullptr;
+	SDL_Texture* EnterCoinsTitleTexture = nullptr;
+	SDL_Texture* PressEnterTexture = nullptr;
+	SDL_Texture* HudTexture = nullptr;
+	SDL_Texture* TurtleTexture = nullptr;
+	SDL_Texture* TitleTexture = nullptr;
 	SDL_Texture* InsertCoinsTexture = nullptr;
 	SDL_Texture* CoinsTexture = nullptr;
 	 
