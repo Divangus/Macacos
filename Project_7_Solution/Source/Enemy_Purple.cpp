@@ -45,11 +45,26 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	front_punch.PushBack({ 258, 2790, 86, 90 });
 	front_punch.speed = 0.22f;
 
+	back_punch.PushBack({ 0, 1351, 86, 90 });
+	back_punch.PushBack({ 86, 1351, 86, 90 });
+	back_punch.PushBack({ 172, 1351, 86, 90 });
+	back_punch.PushBack({ 258, 1351, 86, 90 });
+	back_punch.PushBack({ 344, 1351, 86, 90 });
+	back_punch.PushBack({ 430, 1351, 86, 90 });
+	back_punch.PushBack({ 516, 1351, 86, 90 });
+	back_punch.PushBack({ 602, 1351, 86, 90 });
+	back_punch.PushBack({ 688, 1351, 86, 90 });
+	back_punch.PushBack({ 774, 1351, 86, 90 });
+	back_punch.speed = 0.22f;
+
 	
 	//path.PushBack({ -0.8f, 0.0f }, 150, &front);
 	path.PushBack({ 0.0f, 0.0f }, 50, &front_punch);
 	path.PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
 	//path.loop = false;
+
+	path1.PushBack({ 0.0f, 0.0f }, 50, &back_punch);
+	path1.PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
 	
 	//currentAnim = &front;
 	PurpleCollider = App->collisions->AddCollider({0,0, 30, 20}, Collider::Type::ENEMY, (Module*)App->enemies);
@@ -62,7 +77,7 @@ void Enemy_Purple::Update()
 	App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = false;
 	if (follow == true) {
 		attack = true;
-		if (position.x > App->player->position.x + 10 || position.x < App->player->position.x) {
+		if (position.x > App->player->position.x + 5 || position.x < App->player->position.x - 60) {
 			if (position.x > App->player->position.x) {
 				position.x = position.x - enemy_speed;
 				if (currentAnim != &front)
@@ -98,10 +113,19 @@ void Enemy_Purple::Update()
 	}
 	else {
 		if (attack == true) {
-			path.Update();
-			currentAnim = path.GetCurrentAnimation();
-			if (path.GetCurrentAnimation() == &front_iddle) {
-				attack = false;
+			if (position.x > App->player->position.x) {
+				path.Update();
+				currentAnim = path.GetCurrentAnimation();
+				if (currentAnim == &front_iddle) {
+					attack = false;
+				}
+			}
+			else {
+				path1.Update();
+				currentAnim = path1.GetCurrentAnimation();
+				if (currentAnim == &back_iddle) {
+					attack = false;
+				}
 			}
 		}
 		else  {

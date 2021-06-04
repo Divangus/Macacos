@@ -3,6 +3,7 @@
 
 #include "Enemy.h"
 #include "Path.h"
+#include "Path2.h"
 
 class Enemy_Purple : public Enemy
 {
@@ -18,6 +19,7 @@ public:
 private:
 	// The path that will define the position in the world
 	Path path;
+	Path2 path1;
 
 	bool follow = true;
 	bool attack = true;
