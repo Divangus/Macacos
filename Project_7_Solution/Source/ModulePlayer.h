@@ -42,7 +42,7 @@ public:
 	iPoint position;
 
 	int LifeCoins = 0;
-	int LifesBlue = 0;
+	int LifesBlue = 10;
 
 private:
 

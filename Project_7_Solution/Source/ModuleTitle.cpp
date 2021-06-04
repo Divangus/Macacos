@@ -14,23 +14,83 @@ ModuleTitle::ModuleTitle(bool startEnabled) : Module(startEnabled)
 {
 
 	AnimTitle.PushBack({0,0,304,222});
-	AnimTitle.PushBack({394,0,304,222 });
-	AnimTitle.PushBack({ 785,0,304,222 });
-	AnimTitle.PushBack({ 1166,0,304,222 });
-	AnimTitle.PushBack({ 0,248,304,222 });
-	AnimTitle.PushBack({ 394,248,304,222 });
-	AnimTitle.PushBack({ 785,248,304,222 });
-	AnimTitle.PushBack({ 1166,248,304,222 });
-	AnimTitle.PushBack({ 0,522,304,222 });
-	AnimTitle.PushBack({ 394,522,304,222 });
-	AnimTitle.PushBack({ 785,522,304,222 });
-	AnimTitle.PushBack({ 1166,522,304,222 });
-	AnimTitle.PushBack({ 0,829,304,222 });
-	AnimTitle.PushBack({ 394,829,304,222 });
-	AnimTitle.PushBack({ 785,829,304,222 });
-	AnimTitle.PushBack({ 1166,829,304,222 });
+	AnimTitle.PushBack({306,0,304,222 });
+	AnimTitle.PushBack({ 612,0,304,222 });
+	AnimTitle.PushBack({ 918,0,304,222 });
+	AnimTitle.PushBack({ 1224,0,304,222 });
+	AnimTitle.PushBack({ 1530,0,304,222 });
+	AnimTitle.PushBack({ 0,232,304,222 });
+	AnimTitle.PushBack({ 306,232,304,222 });
+	AnimTitle.PushBack({ 612,232,304,222 });
+	AnimTitle.PushBack({ 918,232,304,222 });
+	AnimTitle.PushBack({ 1224,232,304,222 });
+	AnimTitle.PushBack({ 1530,232,304,222 });
+	AnimTitle.PushBack({ 0,458,304,222 });
+	AnimTitle.PushBack({ 306,458,304,222 });
+	AnimTitle.PushBack({ 612,458,304,222 });
+	AnimTitle.PushBack({ 918,458,304,222 });
+	AnimTitle.PushBack({ 1224,458,304,222 });
+	AnimTitle.PushBack({ 1530,458,304,222 });
+	AnimTitle.PushBack({ 0,687,304,222 });
+	AnimTitle.PushBack({ 306,687,304,222 });
+	AnimTitle.PushBack({ 612,687,304,222 });
+	AnimTitle.PushBack({ 918,687,304,222 });
+	AnimTitle.PushBack({ 1224,687,304,222 });
+	AnimTitle.PushBack({ 1530,687,304,222 });
+	AnimTitle.PushBack({ 0,916,304,222 });
+	AnimTitle.PushBack({ 306,916,304,222 });
+	AnimTitle.PushBack({ 612,916,304,222 });
+	AnimTitle.PushBack({ 918,916,304,222 });
+	AnimTitle.PushBack({ 1224,916,304,222 });
+	AnimTitle.PushBack({ 1530,916,304,222 });
+	AnimTitle.PushBack({ 0,1140,304,222 });
+	AnimTitle.PushBack({ 306,1140,304,222 });
+	AnimTitle.PushBack({ 612,1140,304,222 });
+	AnimTitle.PushBack({ 918,1140,304,222 });
+	AnimTitle.PushBack({ 1224,1140,304,222 });
+	AnimTitle.PushBack({ 1530,1140,304,222 });
+	AnimTitle.PushBack({ 0,1374,304,222 });
+	AnimTitle.PushBack({ 306,1374,304,222 });
+	AnimTitle.PushBack({ 612,1374,304,222 });
+	AnimTitle.PushBack({ 918,1374,304,222 });
+	AnimTitle.PushBack({ 1224,1374,304,222 });
+	AnimTitle.PushBack({ 1530,1374,304,222 });
+	AnimTitle.PushBack({ 0,1603,304,222 });
+	AnimTitle.PushBack({ 306,1603,304,222 });
+	AnimTitle.PushBack({ 612,1603,304,222 });
+	AnimTitle.PushBack({ 918,1603,304,222 });
+	AnimTitle.PushBack({ 1224,1603,304,222 });
+	AnimTitle.PushBack({ 1530,1603,304,222 });
+	AnimTitle.PushBack({ 0,1832,304,222 });
+	AnimTitle.PushBack({ 306,1832,304,222 });
+	AnimTitle.PushBack({ 612,1832,304,222 });
+	AnimTitle.PushBack({ 918,1832,304,222 });
+	AnimTitle.PushBack({ 1224,1832,304,222 });
+	AnimTitle.PushBack({ 1530,1832,304,222 });
+	AnimTitle.PushBack({ 0,1832,304,222 });
+	AnimTitle.PushBack({ 306,1832,304,222 });
+	AnimTitle.PushBack({ 612,1832,304,222 });
+	AnimTitle.PushBack({ 918,1832,304,222 });
+	AnimTitle.PushBack({ 1224,1832,304,222 });
+	AnimTitle.PushBack({ 1530,1832,304,222 });
+	AnimTitle.PushBack({ 12,2062,304,222 });
+	AnimTitle.PushBack({ 406,2062,304,222 });
+	AnimTitle.PushBack({ 797,2062,304,222 });
+	AnimTitle.PushBack({ 1178,2062,304,222 });
+	AnimTitle.PushBack({ 12,2309,304,222 });
+	AnimTitle.PushBack({ 406,2309,304,222 });
+	AnimTitle.PushBack({ 797,2309,304,222 });
+	AnimTitle.PushBack({ 1178,2309,304,222 });
+	AnimTitle.PushBack({ 12,2583,304,222 });
+	AnimTitle.PushBack({ 406,2583,304,222 });
+	AnimTitle.PushBack({ 797,2583,304,222 });
+	AnimTitle.PushBack({ 1178,2583,304,222 });
+	AnimTitle.PushBack({ 12,2848,304,222 });
+	AnimTitle.PushBack({ 406,2848,304,222 });
+	AnimTitle.PushBack({ 797,2848,304,222 });
+	AnimTitle.PushBack({ 1178,2848,304,222 });
 	AnimTitle.loop = false;
-	AnimTitle.speed = 0.35f;
+	AnimTitle.speed = 0.2f;
 
 	TitleEnterCoin.PushBack({ 0,0,304,222 });
 	TitleEnterCoin.loop = false;
@@ -100,7 +160,7 @@ bool ModuleTitle::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/AnimTitleBlue.png");
+	bgTexture = App->textures->Load("Assets/AnimTitle.png");
 	EnterCoinsTitleTexture = App->textures->Load("Assets/IntroCoin.png");
 	PressEnterTexture = App->textures->Load("Assets/PressStart.png");
 	InsertCoinsTexture = App->textures->Load("Assets/InsertCoins.png");
@@ -162,13 +222,18 @@ update_status ModuleTitle::Update()
 update_status ModuleTitle::PostUpdate()
 {
 	if (screenupdate == false) {
-		App->render->Blit(bgTexture, 0, 0, &(AnimTitle.GetCurrentFrame()), 1);
+		App->render->Blit(bgTexture, 0, 0, &(AnimTitle.GetCurrentFrame()), 0);
 	}
 	// Draw everything --------------------------------------
 	if (screenupdate == true && coins > 0) {
 		App->render->Blit(PressEnterTexture, 5, 35, &(PressEnter.GetCurrentFrame()), 1);
+		App->render->Blit(InsertCoinsTexture, 83, 18, &(InsertCoins.GetCurrentFrame()), 0);
+		App->render->Blit(InsertCoinsTexture, 151, 18, &(InsertCoins.GetCurrentFrame()), 0);
+		App->render->Blit(InsertCoinsTexture, 219, 18, &(InsertCoins.GetCurrentFrame()), 0);
+		App->render->Blit(HudTexture, 0, 0, &(Hud.GetCurrentFrame()), 0);
+
 	}
-	if (screenupdate == true) {
+	if (screenupdate == true&&coins==0) {
 		App->render->Blit(InsertCoinsTexture, 83, 18, &(InsertCoins.GetCurrentFrame()), 0);
 		App->render->Blit(InsertCoinsTexture, 151, 18, &(InsertCoins.GetCurrentFrame()), 0);
 		App->render->Blit(InsertCoinsTexture, 219, 18, &(InsertCoins.GetCurrentFrame()), 0);
