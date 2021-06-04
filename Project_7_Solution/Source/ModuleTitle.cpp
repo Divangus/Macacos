@@ -12,6 +12,26 @@
 
 ModuleTitle::ModuleTitle(bool startEnabled) : Module(startEnabled)
 {
+
+	AnimTitle.PushBack({0,0,304,222});
+	AnimTitle.PushBack({394,0,304,222 });
+	AnimTitle.PushBack({ 785,0,304,222 });
+	AnimTitle.PushBack({ 1166,0,304,222 });
+	AnimTitle.PushBack({ 0,248,304,222 });
+	AnimTitle.PushBack({ 394,248,304,222 });
+	AnimTitle.PushBack({ 785,248,304,222 });
+	AnimTitle.PushBack({ 1166,248,304,222 });
+	AnimTitle.PushBack({ 0,522,304,222 });
+	AnimTitle.PushBack({ 394,522,304,222 });
+	AnimTitle.PushBack({ 785,522,304,222 });
+	AnimTitle.PushBack({ 1166,522,304,222 });
+	AnimTitle.PushBack({ 0,829,304,222 });
+	AnimTitle.PushBack({ 394,829,304,222 });
+	AnimTitle.PushBack({ 785,829,304,222 });
+	AnimTitle.PushBack({ 1166,829,304,222 });
+	AnimTitle.loop = false;
+	AnimTitle.speed = 0.35f;
+
 	TitleEnterCoin.PushBack({ 0,0,304,222 });
 	TitleEnterCoin.loop = false;
 
@@ -31,12 +51,6 @@ ModuleTitle::ModuleTitle(bool startEnabled) : Module(startEnabled)
 	PressEnter.loop = true;
 	PressEnter.speed = 0.08f;
 
-	tmntred.PushBack({ 48,8,225,28 });
-	tmntred.loop = false;
-
-	tmntgreen.PushBack({21,46,266,80});
-	tmntgreen.loop = false;
-	
 	InsertCoins.PushBack({ 4,1,67,19 });
 	InsertCoins.PushBack({ 82,26,67,19 });
 	InsertCoins.PushBack({ 82,1,67,19 });
@@ -45,9 +59,7 @@ ModuleTitle::ModuleTitle(bool startEnabled) : Module(startEnabled)
 	InsertCoins.loop = true;
 	InsertCoins.speed = 0.15f;
 
-	PathTMNTRed.PushBack({ 0.0f, 1.0f }, 150, &tmntred);
-	PathTMNTGreen.PushBack({ -1.0f, 0.0f }, 150, &tmntgreen);
-
+	
 	coin1.PushBack({ 6,4,6,13 });
 	coin1.loop = false;
 
@@ -88,7 +100,7 @@ bool ModuleTitle::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/BlueScreen.png");
+	bgTexture = App->textures->Load("Assets/AnimTitleBlue.png");
 	EnterCoinsTitleTexture = App->textures->Load("Assets/IntroCoin.png");
 	PressEnterTexture = App->textures->Load("Assets/PressStart.png");
 	InsertCoinsTexture = App->textures->Load("Assets/InsertCoins.png");
@@ -96,13 +108,13 @@ bool ModuleTitle::Start()
 	TitleTexture = App->textures->Load("Assets/IntroScreen.png");
 	TurtleTexture = App->textures->Load("Assets/TurtleSmile.png");
 	CoinsTexture = App->textures->Load("Assets/coins.png");
-	/*App->audio->PlayMusic("Assets/titleMusic.ogg", 1.0f);*/
+	App->audio->PlayMusic("Assets/titleMusic.ogg", 1.0f);
 	MusicIntro = App->audio->LoadFx("Assets/titleMusic.ogg");
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
-	/*BackgroundPath.Reset();*/
+	
 	return ret;
 }
 
@@ -138,14 +150,9 @@ update_status ModuleTitle::Update()
 	}
 	else {
 		
-		App->render->Blit(bgTexture, 0, 0, &(TitleScreen.GetCurrentFrame()), 1);
+		
 		/*App->audio->PlayMusic(MusicIntro);*/
-		PathTMNTRed.Update();
-		PathTMNTGreen.Update();
-		tmntred.Update();
-		tmntgreen.Update();
-		positionTMNTred = spawnPosRed + PathTMNTRed.GetRelativePosition();
-		/*tmntred = PathTMNTRed.GetCurrentAnimation();*/
+		AnimTitle.Update();
 	}
 	
 	return update_status::UPDATE_CONTINUE;
@@ -155,9 +162,8 @@ update_status ModuleTitle::Update()
 update_status ModuleTitle::PostUpdate()
 {
 	if (screenupdate == false) {
-		App->render->Blit(TitleTexture, 39, 10, &(tmntred.GetCurrentFrame()), 1);
+		App->render->Blit(bgTexture, 0, 0, &(AnimTitle.GetCurrentFrame()), 1);
 	}
-	
 	// Draw everything --------------------------------------
 	if (screenupdate == true && coins > 0) {
 		App->render->Blit(PressEnterTexture, 5, 35, &(PressEnter.GetCurrentFrame()), 1);
