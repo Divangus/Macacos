@@ -29,6 +29,15 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 	up_front.PushBack({ 28, 276, 42, 66 });
 	up_front.speed = 0.1f;
 
+	front_shuriken.PushBack({ 17, 0, 54, 69 });
+	front_shuriken.PushBack({ 105, 0, 54, 69 });
+	front_shuriken.speed = 0.1f;
+
+	back_shuriken.PushBack({ 968, 806, 54, 69 });
+	back_shuriken.PushBack({ 882, 806, 54, 69 });
+	back_shuriken.speed = 0.1f;
+	
+
 	back.PushBack({ 446, 1015, 52, 66 });
 	back.PushBack({ 536, 1015, 52, 66 });
 	back.PushBack({ 526, 1015, 52, 66 });
@@ -99,12 +108,12 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 	/*path.PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
 	path.PushBack({ 0.0f, 0.0f }, 60, &front_gun_attack);*/
 
+	path.PushBack({ 0.0f, 0.0f }, 15, &front_shuriken);
 	path.PushBack({ 0.0f, 0.0f }, 0, &front_shot);
-	path.PushBack({ 0.0f, 0.0f }, 30, &front_gun_attack);
 	path.PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
 
+	path1.PushBack({ 0.0f, 0.0f }, 15, &back_shuriken);
 	path1.PushBack({ 0.0f, 0.0f }, 0, &back_shot);
-	path1.PushBack({ 0.0f, 0.0f }, 30, &back_gun_attack);
 	path1.PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
 
 	//path.PushBack({ 1.0f, 0.0f }, 150, &back);
@@ -185,24 +194,8 @@ void Enemy_Orange::Update()
 	}
 	else {
 		if (attack == true) {
-			//if (position.x > App->player->position.x) {
-			//	path.Update();
-			//	currentAnim = path.GetCurrentAnimation();
-			//}
-			//if (position.x < App->player->position.x){
-			//	path1.Update();
-			//	currentAnim = path1.GetCurrentAnimation();
-			//}
-			//
-			//if (path.GetCurrentAnimation() == &front_iddle /*|| path1.GetCurrentAnimation() == &back_iddle*/) {
-			//	attack = false;
-			//}
-			//if (path1.GetCurrentAnimation() == &back_iddle) {
-			//	attack = false;
-			//}
+			
 			if (position.x > App->player->position.x) {
-				/*App->particles->shot.speed.x = -1;
-				App->particles->AddParticle(App->particles->shot, position.x - 20, position.y + 20, 1, Collider::Type::ENEMY_SHOT);*/
 				path.Update();
 				currentAnim = path.GetCurrentAnimation();
 				if (currentAnim == &front_iddle) {
@@ -210,8 +203,6 @@ void Enemy_Orange::Update()
 				}		
 			}
 			else {
-				/*App->particles->shot.speed.x = 1;
-				App->particles->AddParticle(App->particles->shot, position.x + 20, position.y + 20, 1, Collider::Type::ENEMY_SHOT);*/
 				path1.Update();
 				currentAnim = path1.GetCurrentAnimation();
 				if (currentAnim == &back_iddle) {

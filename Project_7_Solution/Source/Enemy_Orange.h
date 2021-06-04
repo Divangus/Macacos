@@ -40,7 +40,9 @@ private:
 		front_iddle,
 		back_iddle,
 		front_shot,
-		back_shot;
+		back_shot,
+		front_shuriken,
+		back_shuriken;
 
 	bool melee_attack = false;
 };
