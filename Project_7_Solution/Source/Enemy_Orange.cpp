@@ -200,7 +200,7 @@ void Enemy_Orange::Update()
 			//if (path1.GetCurrentAnimation() == &back_iddle) {
 			//	attack = false;
 			//}
-			if (Orange_Position == true) {
+			if (position.x > App->player->position.x) {
 				/*App->particles->shot.speed.x = -1;
 				App->particles->AddParticle(App->particles->shot, position.x - 20, position.y + 20, 1, Collider::Type::ENEMY_SHOT);*/
 				path.Update();
