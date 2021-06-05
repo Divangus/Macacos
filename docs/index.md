@@ -43,7 +43,7 @@ Code and UI
 
 ### Menu
 
--SHIFT - Add two lives
+- SHIFT - Add two lives
 - O - Start playing
 
 ### Ingame 
