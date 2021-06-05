@@ -45,6 +45,10 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	front_punch.PushBack({ 258, 2790, 86, 90 });
 	front_punch.speed = 0.22f;
 
+	front_hit.PushBack({ 1032, 2790, 86, 90 });
+
+	back_hit.PushBack({ 0, 1351, 86, 90 });
+
 	back_punch.PushBack({ 0, 1351, 86, 90 });
 	back_punch.PushBack({ 86, 1351, 86, 90 });
 	back_punch.PushBack({ 172, 1351, 86, 90 });
@@ -59,10 +63,12 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 
 	
 	//path.PushBack({ -0.8f, 0.0f }, 150, &front);
+	path[0].PushBack({ 0.0f, 0.0f }, 0, &front_hit);
 	path[0].PushBack({ 0.0f, 0.0f }, 50, &front_punch);
 	path[0].PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
 	//path.loop = false;
 
+	path[1].PushBack({ 0.0f, 0.0f }, 0, &back_hit);
 	path[1].PushBack({ 0.0f, 0.0f }, 50, &back_punch);
 	path[1].PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
 	
@@ -171,15 +177,15 @@ void Enemy_Purple::Update()
 		}	
 	}
 
-	if (currentAnim == &front || currentAnim == &front_punch) {
+	if (currentAnim == &front || currentAnim == &front_punch || currentAnim == &front_hit) {
 		Purple_Position = true;
 	}
 
-	if (currentAnim == &back || currentAnim == &back_punch) {
+	if (currentAnim == &back || currentAnim == &back_punch || currentAnim == &back_hit) {
 		Purple_Position = false;
 	}
 
-	if (currentAnim == &front_punch || currentAnim == &back_punch) {
+	if (currentAnim == &front_hit || currentAnim == &back_hit) {
 		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = true;
 	}
 	else {

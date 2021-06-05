@@ -54,6 +54,7 @@ private:
 
 	bool Player_Position=true;
 
+	Path attack[6];
 	
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;
@@ -92,7 +93,9 @@ private:
 		TwoSwordAttackR,
 		TwoSwordAttackL,
 		PlayerDeathR,
-		PlayerDeathL;
+		PlayerDeathL,
+		dmg,
+		sdmg;
 
 	Animation LittleFire, InsertCoins;
 
