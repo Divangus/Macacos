@@ -51,6 +51,10 @@ Enemy_White::Enemy_White(int x, int y) : Enemy(x, y)
 	front_knife.PushBack({ 297, 1760, 99, 88 });
 	front_knife.speed = 0.1f;
 
+	front_hit.PushBack({ 792, 1760, 90, 88 });
+
+	back_hit.PushBack({ 0, 528, 99, 88 });
+
 	back_melee_knife.PushBack({ 0, 528, 99, 88 });
 	back_melee_knife.PushBack({ 99, 528, 99, 88 });
 	back_melee_knife.PushBack({ 198, 528, 99, 88 });
@@ -67,9 +71,11 @@ Enemy_White::Enemy_White(int x, int y) : Enemy(x, y)
 
 	back_iddle.PushBack({ 0, 176, 99, 88 });
 
+	path[0].PushBack({ 0.0f, 0.0f }, 0, &front_hit);
 	path[0].PushBack({ 0.0f, 0.0f }, 50, &front_melee_knife);
 	path[0].PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
 
+	path[1].PushBack({ 0.0f, 0.0f }, 0, &back_hit);
 	path[1].PushBack({ 0.0f, 0.0f }, 50, &back_melee_knife);
 	path[1].PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
 
@@ -90,14 +96,14 @@ void Enemy_White::Update()
 {
 	App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::WHITE_ATTACK] = false;
 
-	if (currentAnim == &back || currentAnim == &back_melee_knife || currentAnim == &back_iddle || currentAnim == &back_knife) {
+	if (currentAnim == &back || currentAnim == &back_melee_knife || currentAnim == &back_iddle || currentAnim == &back_knife || currentAnim == &back_hit) {
 		White_Position = false;
 	}
 	else {
 		White_Position = true;
 	}
 
-	if (currentAnim == &front_melee_knife || currentAnim == &back_melee_knife) {
+	if (currentAnim == &front_hit || currentAnim == &back_hit) {
 		App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::WHITE_ATTACK] = true;
 	}
 	else {

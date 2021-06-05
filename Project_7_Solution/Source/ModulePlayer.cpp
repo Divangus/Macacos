@@ -866,7 +866,7 @@ update_status ModulePlayer::PostUpdate()
 	}
 	if (LifesBlue==0) {
 		LifeCoins--;
-		if (LifeCoins > 0) {
+		if (LifeCoins >= 0) {
 			LifesBlue = 10;
 		}
 		else {

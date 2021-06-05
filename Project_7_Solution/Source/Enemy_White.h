@@ -27,6 +27,7 @@ private:
 	Animation front, back, front_iddle, back_iddle,
 		front_knife, back_knife, front_melee_knife, back_melee_knife,
 		front_shot, back_shot,
+		front_hit, back_hit,
 		front_death, back_death;
 };
 
