@@ -106,17 +106,19 @@
     <ClInclude Include="ModulePlayer.h">
       <Filter>Source Files\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleEntities.h">
-      <Filter>Source Files\Entities\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy_White.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="ModuleChooseCharacter.h">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="ModuleLevel2.h">
       <Filter>Source Files\Modules\Gameplay</Filter>
+=======
+    <ClInclude Include="Enemy_Boss.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
+>>>>>>> 96edd80929743717ea2abab5f102743a7c9482be
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -192,17 +194,19 @@
     <ClCompile Include="ModulePlayer.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleEntities.cpp">
-      <Filter>Source Files\Entities\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="Enemy_White.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="ModuleChooseCharacter.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="ModuleLevel2.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
+=======
+    <ClCompile Include="Enemy_Boss.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
+>>>>>>> 96edd80929743717ea2abab5f102743a7c9482be
     </ClCompile>
   </ItemGroup>
 </Project>

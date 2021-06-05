@@ -80,6 +80,7 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Enemy_Boss.h" />
     <ClInclude Include="Enemy_Orange.h" />
     <ClInclude Include="Enemy_Purple.h" />
     <ClInclude Include="Enemy_White.h" />
@@ -87,7 +88,6 @@
     <ClInclude Include="ModuleChooseCharacter.h" />
     <ClInclude Include="ModuleCollisions.h" />
     <ClInclude Include="ModuleEnemies.h" />
-    <ClInclude Include="ModuleEntities.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleIntroScene.h" />
     <ClInclude Include="ModuleLevel2.h" />
@@ -111,6 +111,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Enemy_Boss.cpp" />
     <ClCompile Include="Enemy_Orange.cpp" />
     <ClCompile Include="Enemy_Purple.cpp" />
     <ClCompile Include="Enemy_White.cpp" />
@@ -119,7 +120,6 @@
     <ClCompile Include="ModuleChooseCharacter.cpp" />
     <ClCompile Include="ModuleCollisions.cpp" />
     <ClCompile Include="ModuleEnemies.cpp" />
-    <ClCompile Include="ModuleEntities.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleIntroScene.cpp" />
     <ClCompile Include="ModuleLevel2.cpp" />

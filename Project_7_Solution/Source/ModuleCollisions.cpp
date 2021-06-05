@@ -17,6 +17,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::ORANGE_ATTACK] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::WHITE_ATTACK] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::BOSS_ATTACK] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_SHOT] = true;
 
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER] = false;
@@ -25,6 +26,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY][Collider::Type::PURPLE_ATTACK] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::ORANGE_ATTACK] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::WHITE_ATTACK] = false;
+	matrix[Collider::Type::ENEMY][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY_SHOT] = false;
 
 	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::PLAYER] = false;
@@ -33,6 +35,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::PURPLE_ATTACK] = false;
 	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::ORANGE_ATTACK] = false;
 	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::WHITE_ATTACK] = false;
+	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::PLAYER_ATTACK][Collider::Type::ENEMY_SHOT] = false;
 
 	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::PLAYER] = false;
@@ -41,6 +44,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::PURPLE_ATTACK] = false;
 	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::ORANGE_ATTACK] = false;
 	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::WHITE_ATTACK] = false;
+	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::PURPLE_ATTACK][Collider::Type::ENEMY_SHOT] = false;
 
 	matrix[Collider::Type::ORANGE_ATTACK][Collider::Type::PLAYER] = false;
@@ -49,6 +53,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ORANGE_ATTACK][Collider::Type::PURPLE_ATTACK] = false;
 	matrix[Collider::Type::ORANGE_ATTACK][Collider::Type::ORANGE_ATTACK] = false;
 	matrix[Collider::Type::ORANGE_ATTACK][Collider::Type::WHITE_ATTACK] = false;
+	matrix[Collider::Type::ORANGE_ATTACK][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::ORANGE_ATTACK][Collider::Type::ENEMY_SHOT] = false;
 
 	matrix[Collider::Type::WHITE_ATTACK][Collider::Type::PLAYER] = false;
@@ -57,7 +62,17 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::WHITE_ATTACK][Collider::Type::PURPLE_ATTACK] = false;
 	matrix[Collider::Type::WHITE_ATTACK][Collider::Type::ORANGE_ATTACK] = false;
 	matrix[Collider::Type::WHITE_ATTACK][Collider::Type::WHITE_ATTACK] = false;
+	matrix[Collider::Type::WHITE_ATTACK][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::WHITE_ATTACK][Collider::Type::ENEMY_SHOT] = false;
+
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::PLAYER] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::PLAYER_ATTACK] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::PURPLE_ATTACK] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::ORANGE_ATTACK] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::WHITE_ATTACK] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::BOSS_ATTACK] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::ENEMY_SHOT] = false;
 
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ENEMY] = false;
@@ -65,6 +80,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PURPLE_ATTACK] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ORANGE_ATTACK] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::WHITE_ATTACK] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ENEMY_SHOT] = false;
 }
 
