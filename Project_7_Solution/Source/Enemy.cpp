@@ -85,7 +85,7 @@ void Enemy::OnCollision(Collider* collider)
 {
 	HP -= 1;
 	if (HP == 0) {
-		//App->particles->AddParticle(App->particles->shuriken_explosion, position.x, position.y, 0);
+
 		App->audio->PlayFx(destroyedFx);
 
 		destroyed = true;

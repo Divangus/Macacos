@@ -3,9 +3,6 @@
 
 #include "Enemy.h"
 #include "Path.h"
-#include "Path2.h"
-#include "Path3.h"
-#include "Path4.h"
 
 class Enemy_White : public Enemy
 {
@@ -20,10 +17,7 @@ public:
 
 private:
 	// The path that will define the position in the world
-	Path path;
-	Path2 path2;
-	Path3 path3;
-	Path4 path4;
+	Path path[4];
 
 	int num = 0;
 	bool follow = true;
@@ -32,7 +26,8 @@ private:
 	// Enemy animations
 	Animation front, back, front_iddle, back_iddle,
 		front_knife, back_knife, front_melee_knife, back_melee_knife,
-		front_shot, back_shot;
+		front_shot, back_shot,
+		front_death, back_death;
 };
 
 #endif // __ENEMY_WHITE_H__

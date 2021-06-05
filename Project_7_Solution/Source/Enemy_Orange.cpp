@@ -108,13 +108,13 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 	/*path.PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
 	path.PushBack({ 0.0f, 0.0f }, 60, &front_gun_attack);*/
 
-	path.PushBack({ 0.0f, 0.0f }, 15, &front_shuriken);
-	path.PushBack({ 0.0f, 0.0f }, 0, &front_shot);
-	path.PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
+	path[0].PushBack({ 0.0f, 0.0f }, 15, &front_shuriken);
+	path[0].PushBack({ 0.0f, 0.0f }, 0, &front_shot);
+	path[0].PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
 
-	path2.PushBack({ 0.0f, 0.0f }, 15, &back_shuriken);
-	path2.PushBack({ 0.0f, 0.0f }, 0, &back_shot);
-	path2.PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
+	path[1].PushBack({ 0.0f, 0.0f }, 15, &back_shuriken);
+	path[1].PushBack({ 0.0f, 0.0f }, 0, &back_shot);
+	path[1].PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
 
 	//path.PushBack({ 1.0f, 0.0f }, 150, &back);
 
@@ -196,15 +196,15 @@ void Enemy_Orange::Update()
 		if (attack == true) {
 			
 			if (position.x > App->player->position.x) {
-				path.Update();
-				currentAnim = path.GetCurrentAnimation();
+				path[0].Update();
+				currentAnim = path[0].GetCurrentAnimation();
 				if (currentAnim == &front_iddle) {
 					attack = false;
 				}		
 			}
 			else {
-				path2.Update();
-				currentAnim = path2.GetCurrentAnimation();
+				path[1].Update();
+				currentAnim = path[1].GetCurrentAnimation();
 				if (currentAnim == &back_iddle) {
 					attack = false;
 				}

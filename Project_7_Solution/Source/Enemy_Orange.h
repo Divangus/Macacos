@@ -20,8 +20,7 @@ public:
 	
 private:
 	// The path that will define the position in the world
-	Path path;
-	Path2 path2;
+	Path path[2];
 
 	bool follow = true;
 	bool attack = true;

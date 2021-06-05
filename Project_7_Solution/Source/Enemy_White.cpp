@@ -67,19 +67,19 @@ Enemy_White::Enemy_White(int x, int y) : Enemy(x, y)
 
 	back_iddle.PushBack({ 0, 176, 99, 88 });
 
-	path.PushBack({ 0.0f, 0.0f }, 50, &front_melee_knife);
-	path.PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
+	path[0].PushBack({ 0.0f, 0.0f }, 50, &front_melee_knife);
+	path[0].PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
 
-	path2.PushBack({ 0.0f, 0.0f }, 50, &back_melee_knife);
-	path2.PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
+	path[1].PushBack({ 0.0f, 0.0f }, 50, &back_melee_knife);
+	path[1].PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
 
-	path3.PushBack({ 0.0f, 0.0f }, 15, &front_knife);
-	path3.PushBack({ 0.0f, 0.0f }, 0, &front_shot);
-	path3.PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
+	path[2].PushBack({ 0.0f, 0.0f }, 15, &front_knife);
+	path[2].PushBack({ 0.0f, 0.0f }, 0, &front_shot);
+	path[2].PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
 
-	path4.PushBack({ 0.0f, 0.0f }, 15, &back_knife);
-	path4.PushBack({ 0.0f, 0.0f }, 0, &back_shot);
-	path4.PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
+	path[3].PushBack({ 0.0f, 0.0f }, 15, &back_knife);
+	path[3].PushBack({ 0.0f, 0.0f }, 0, &back_shot);
+	path[3].PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
 
 	WhiteCollider = App->collisions->AddCollider({ 0,0, 30, 20 }, Collider::Type::ENEMY, (Module*)App->enemies);
 	WhiteColliderAttack = App->collisions->AddCollider({ 0, 0, 20, 20 }, Collider::Type::WHITE_ATTACK, (Module*)App->enemies);
@@ -159,15 +159,15 @@ void Enemy_White::Update()
 		else {
 			if (attack == true) {
 				if (position.x > App->player->position.x) {
-					path.Update();
-					currentAnim = path.GetCurrentAnimation();
+					path[0].Update();
+					currentAnim = path[0].GetCurrentAnimation();
 					if (currentAnim == &front_iddle) {
 						attack = false;
 					}
 				}
 				else {
-					path2.Update();
-					currentAnim = path2.GetCurrentAnimation();
+					path[1].Update();
+					currentAnim = path[1].GetCurrentAnimation();
 					if (currentAnim == &back_iddle) {
 						attack = false;
 					}
@@ -246,15 +246,15 @@ void Enemy_White::Update()
 			if (attack == true) {
 
 				if (position.x > App->player->position.x) {
-					path3.Update();
-					currentAnim = path3.GetCurrentAnimation();
+					path[2].Update();
+					currentAnim = path[2].GetCurrentAnimation();
 					if (currentAnim == &front_iddle) {
 						attack = false;
 					}
 				}
 				else {
-					path4.Update();
-					currentAnim = path4.GetCurrentAnimation();
+					path[3].Update();
+					currentAnim = path[3].GetCurrentAnimation();
 					if (currentAnim == &back_iddle) {
 						attack = false;
 					}
