@@ -17,19 +17,45 @@ We are macacos a group of four students of UPC (CITM), the university is in Terr
 The members of the group are:
 
 ### David Benages (Leader of the group)
-
+![Si](https://cdn.discordapp.com/attachments/774419181763821609/850797242708918332/264b8ff5-9185-43b8-b90b-b41eb591b9ad.png)
 Code (Enemys)
 
 ### Marina Albalà
-
+![Si]()
 Code (Player) and UI
 
 ### Joan Castellvi
-
+![Si](https://cdn.discordapp.com/attachments/833742498605694976/850796036581490708/Foto.jpg)
 Code (Enemys)
 
 ### Albert Martin
 
+![Si](https://cdnb.artstation.com/p/users/avatars/001/065/821/large/b87c195b4dd6416ba53652656fa7dc95.jpg?1552504970)
+
 Code and UI
+
+
+## Controls
+
+### Intro
+
+- SPACE - Skip intro animation
+
+### Menu
+
+- SHIFT - Add two lives
+- O - Start playing
+
+### Ingame 
+
+- W, A, S, D  - Movement
+- Space - Jump
+- K - Attack
+
+### Debug functionality
+
+- F1 - Colisions
+- F2 - God Mode
+- F3 - Direct win/lose
 
 
