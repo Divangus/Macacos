@@ -3,7 +3,7 @@
 
 #include "Module.h"
 #include "Animation.h"
-#include "Path.h"
+#include "p2Point.h"
 
 struct SDL_Texture;
 
@@ -26,6 +26,10 @@ public:
 private:
 	int speed = 1;
 
-	SDL_Texture* BackgroundLevel2 = nullptr;
+	SDL_Texture* BackgroundLevel2Texture = nullptr;
+
+	SDL_Texture* HudTexture = nullptr;
+
+	Animation BackgroundLevel2, hud;
 };
 #endif
