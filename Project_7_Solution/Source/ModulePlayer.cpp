@@ -47,6 +47,26 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	coin9.PushBack({ 70,4,9,13 });
 	coin9.loop = false;
 
+	LifeBar10.PushBack({ 7,10,21,8 });
+
+	LifeBar9.PushBack({ 30,10,19,8 });
+
+	LifeBar8.PushBack({ 51,10,17,8 });
+
+	LifeBar7.PushBack({ 70,10,15,8 });
+
+	LifeBar6.PushBack({ 87,10,13,8 });
+
+	LifeBar5.PushBack({ 102,10,11,8 });
+
+	LifeBar4.PushBack({ 115,10,9,8 });
+
+	LifeBar3.PushBack({ 126,10,7,8 });
+
+	LifeBar2.PushBack({ 135,10,5,8 });
+
+	LifeBar1.PushBack({ 142,10,3,8 });
+
 	//Insert Coins Animation
 	InsertCoins.PushBack({ 4,1,67,19 });
 	InsertCoins.PushBack({ 82,26,67,19 });
@@ -301,6 +321,7 @@ bool ModulePlayer::Start()
 	QuoteTexture = App->textures->Load("Assets/Quotes.png");
 	FireAnimTexture = App->textures->Load("Assets/LittleFire.png");
 	CoinsTexture = App->textures->Load("Assets/coins.png");
+	LifeBarTexture = App->textures->Load("Assets/lifeBar.png");
 	currentAnimation = &idleAnimR;
 
 	PlayerAttackFx = App->audio->LoadFx("Assets/Fx/PlayerAttackFx.wav");
@@ -816,4 +837,20 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 void ModulePlayer::GodMode() {
 	HP = Max_HP;
 	//Quan fagi mal matarà d'un cop
+}
+
+bool ModulePlayer::CleanUp() {
+
+	LOG("Clearing Over");
+
+
+	App->textures->Unload(texture);
+	App->textures->Unload(QuoteTexture);
+	App->textures->Unload(FireAnimTexture);
+	App->textures->Unload(InsertCoinsTexture);
+	App->textures->Unload(CoinsTexture);
+	App->textures->Unload(LifeBarTexture);
+	
+
+	return true;
 }

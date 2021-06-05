@@ -41,7 +41,7 @@ bool ModuleOver::Start()
 	bgTexture = App->textures->Load("Assets/Game_Over.png");
 	Mix_FadeOutMusic(0.0);
 	App->collisions->CleanUp();
-
+	App->audio->PlayMusic("Assets/Fx/GameOver.ogg", 1.0f);
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 

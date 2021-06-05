@@ -39,6 +39,9 @@ public:
 
 	void GodMode();
 	// Position of the player in the map
+
+	bool CleanUp() override;
+
 	iPoint position;
 
 	int LifeCoins = 0;
@@ -62,6 +65,8 @@ private:
 	SDL_Texture* InsertCoinsTexture = nullptr;
 
 	SDL_Texture* CoinsTexture = nullptr;
+
+	SDL_Texture* LifeBarTexture = nullptr;
 	
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
@@ -93,6 +98,8 @@ private:
 
 	Animation coin1, coin2, coin3, coin4, coin5, coin6, coin7, coin8, coin9;
 
+
+	Animation LifeBar10, LifeBar9, LifeBar8, LifeBar7, LifeBar6, LifeBar5, LifeBar4, LifeBar3, LifeBar2, LifeBar1;
 	// The player's collider
 	Collider* collider = nullptr;
 	Collider* colliderAttack = nullptr;

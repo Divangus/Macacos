@@ -148,7 +148,7 @@ update_status ModuleChooseCharacter::PostUpdate() {
 		App->render->Blit(InsertCoinsTexture, 219, 18, &(InsertCoins.GetCurrentFrame()), 0);
 		App->render->Blit(HudTexture, 0, 0, &(Hud.GetCurrentFrame()), 0);
 		App->render->Blit(LifeBarTexture, 50, 20, &(LifeBar10.GetCurrentFrame()), 1);
-
+		
 	}
 	if (coins == 0) {
 		App->render->Blit(InsertCoinsTexture, 83, 18, &(InsertCoins.GetCurrentFrame()), 0);

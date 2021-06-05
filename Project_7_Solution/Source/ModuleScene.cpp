@@ -15,22 +15,9 @@
 
 ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled) {
 	
-
-	//Fire.PushBack({ 25, 1, 308, 67 });
-	//Fire.PushBack({ 25,70,308,67 });
-	//Fire.PushBack({ 28,138,308,67 });
-	//Fire.PushBack({ 343,4,308,67 });
-	//Fire.PushBack({ 343,72,308,67 });
-	//Fire.PushBack({ 343,137,308,67 });
-	//Fire.PushBack({ 659,1,308,67 });
-	//Fire.PushBack({ 659,71,308,67 });
-	////Fire.loop = true;
-	//Fire.speed = 0.1f;
-
 	hud.PushBack({ 0,0,304,222 });
 	hud.loop = false;
 	
-
 	Door2.PushBack({ 268,239,33,79 });
 	Door2.PushBack({ 307,239,33,79 });
 	Door2.PushBack({ 347,239,49,79 });
@@ -103,6 +90,7 @@ bool ModuleScene::Start()
 	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 220, 120);
 	App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 335, 110);
 	App->enemies->AddEnemy(ENEMY_TYPE::WHITE, 800, 120);
+	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 411, 49);
 
 	//App->enemies->AddEnemy(ENEMY_TYPE::WHITE, 220, 120);
 
@@ -136,6 +124,7 @@ update_status ModuleScene::Update()
 		Door2.Update();
 	}
 	if (App->render->camera.x > 565) {
+		
 		Door3.Update();
 	}
 	

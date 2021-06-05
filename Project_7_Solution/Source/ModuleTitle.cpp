@@ -74,6 +74,9 @@ ModuleTitle::ModuleTitle(bool startEnabled) : Module(startEnabled)
 	AnimTitle.PushBack({ 918,1832,304,222 });
 	AnimTitle.PushBack({ 1224,1832,304,222 });
 	AnimTitle.PushBack({ 1530,1832,304,222 });
+	AnimTitle.PushBack({ 1530,1832,304,222 });
+	AnimTitle.PushBack({ 1530,1832,304,222 });
+	AnimTitle.PushBack({ 1530,1832,304,222 });
 	AnimTitle.PushBack({ 12,2062,304,222 });
 	AnimTitle.PushBack({ 406,2062,304,222 });
 	AnimTitle.PushBack({ 797,2062,304,222 });

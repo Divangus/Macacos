@@ -30,7 +30,8 @@ ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
 	//Fire.loop = true;
 	Fire.speed = 0.1f;
 
-	
+	position.x = 40;
+	position.y = 120;
 
 }
 
@@ -54,6 +55,31 @@ bool ModuleEnemies::Start()
 
 update_status ModuleEnemies::Update()
 {
+
+	if (position.x < App->render->LimitPL) {
+		position.x = App->render->LimitPL;
+	}
+	if (position.x > 1000) {
+		position.x = 1000;
+	}
+	if (position.y > 135) { //bottom
+		position.y = 135;
+	}
+	if (position.y < 50) {//top
+		position.y = 50;
+	}
+	if (position.x < 0) {
+		position.x = 0;
+	}
+
+	if (position.x > (App->render->LimitPR)) {
+		if (App->render->camera.x < LIMIT_CAMERA) {
+			App->render->LimitPR += speed;
+			App->render->LimitPL += speed;
+			App->render->camera.x += App->render->cameraSpeed;
+		}
+	}
+
 	Fire.Update();
 	HandleEnemiesSpawn();
 	

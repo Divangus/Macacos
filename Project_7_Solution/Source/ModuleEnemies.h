@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "Animation.h"
+#include "p2Point.h"
 #include <vector>
 #include <algorithm>
 
@@ -69,6 +70,8 @@ public:
 	// Destroys any enemies that have moved outside the camera limits
 	void HandleEnemiesDespawn();
 
+	iPoint position;
+
 private:
 	// Spawns a new enemy using the data from the queue
 	void SpawnEnemy(const EnemySpawnpoint& info);
@@ -83,7 +86,7 @@ private:
 	// All spawned enemies in the scene
 	Enemy* enemies[MAX_ENEMIES] = { nullptr };
 
-	
+	int speed = 1;
 	
 	Animation Fire;
 	
