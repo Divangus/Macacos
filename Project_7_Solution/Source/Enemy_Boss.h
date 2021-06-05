@@ -25,8 +25,7 @@ private:
 	bool attack = true;
 
 	// Enemy animations
-	Animation front,
-		back;
+	Animation front_iddle, back_iddle, front, back, 
 
 	bool melee_attack = false;
 };
