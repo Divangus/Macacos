@@ -48,7 +48,7 @@ bool ModuleEnemies::Start()
 	texture3 = App->textures->Load("Assets/White_Soldier.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/EnemyDying.wav");
 	Fire_Texture = App->textures->Load("Assets/frontFire.png");
-	
+	EnemyDyingFx = App->audio->LoadFx("Assets/Fx/EnemyDying.wav");
 
 	return true;
 }
@@ -259,6 +259,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 			delete enemies[i];
+		/*	App->audio->LoadFx(EnemyDyingFx);*/
 			enemies[i] = nullptr;
 			break;
 		}

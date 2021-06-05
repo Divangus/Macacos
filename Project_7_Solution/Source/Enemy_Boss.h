@@ -29,7 +29,7 @@ private:
 		front_getting_hit, back_getting_hit, front_spawn_gun, back_spawn_gun, front_gun, back_gun, front_gun_aim,
 		back_gun_aim, front_shoot, back_shoot, front_gun_kick, back_gun_kick, front_gun_getting_hit, back_gun_getting_hit;
 
-	bool melee_attack = false;
+	//bool melee_attack = false;
 };
 
 #endif // __ENEMY_BOSS_H__

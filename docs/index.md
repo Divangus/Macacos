@@ -16,16 +16,19 @@ The story is about rescuing April O'Neil kidnapped by the evil Shredder. The obj
 We are macacos a group of four students of UPC (CITM), the university is in Terrasa, Spain.
 The members of the group are:
 
-### David Benages (Leader of the group)
+### David Benages
 ![Si](https://cdn.discordapp.com/attachments/774419181763821609/850797242708918332/264b8ff5-9185-43b8-b90b-b41eb591b9ad.png)
+
 Code (Enemys)
 
 ### Marina Albalà
-![Si]()
+![Si](https://cdn.discordapp.com/attachments/778645749311340555/850809272744804352/ea7038f7-dbcb-4fdf-8895-18513f05bb64.png)
+
 Code (Player) and UI
 
 ### Joan Castellvi
 ![Si](https://cdn.discordapp.com/attachments/833742498605694976/850796036581490708/Foto.jpg)
+
 Code (Enemys)
 
 ### Albert Martin
@@ -44,7 +47,7 @@ Code and UI
 ### Menu
 
 - SHIFT - Add two lives
-- O - Start playing
+- SPACE - Start playing
 
 ### Ingame 
 

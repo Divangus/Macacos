@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "Animation.h"
+#include "Application.h"
 #include "p2Point.h"
 #include <vector>
 #include <algorithm>
@@ -65,7 +66,7 @@ public:
 	// Iterates the queue and checks for camera position
 	void HandleEnemiesSpawn();
 
-	void bubble_sort(Enemy* arr[], int size);
+	//void bubble_sort(Enemy* arr[], int size);
 
 	// Destroys any enemies that have moved outside the camera limits
 	void HandleEnemiesDespawn();
@@ -89,8 +90,9 @@ private:
 	int speed = 1;
 	
 	Animation Fire;
-	
 
+	uint EnemyDyingFx = 0;
+	
 	// The enemies sprite sheet
 	SDL_Texture* texture = nullptr;
 	SDL_Texture* texture2 = nullptr;
