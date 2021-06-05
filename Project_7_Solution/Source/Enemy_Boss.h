@@ -25,9 +25,9 @@ private:
 	bool attack = true;
 
 	// Enemy animations
-	Animation front_iddle, back_iddle, front, back, 
+	Animation front_iddle, back_iddle, front, back;
 
-	bool melee_attack = false;
+	//bool melee_attack = false;
 };
 
 #endif // __ENEMY_BOSS_H__

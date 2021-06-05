@@ -128,7 +128,7 @@ update_status ModuleChooseCharacter::Update() {
 		Blue = 10;
 
 	}
-	if (App->input->keys[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN && coins > 0)
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN && coins > 0)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->scene, 90);
 	}

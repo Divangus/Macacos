@@ -764,8 +764,8 @@ update_status ModulePlayer::PostUpdate()
 		//App->render->Blit(texture, position.x-10, position.y+20, &rect);//draw player
 	}
 
-	if (LifeCoins == 0 && LifesBlue == 0 && Player_Position == true) {
-		currentAnimation = &PlayerDeathR;
+	if (LifeCoins == 0 && LifesBlue == 0) {
+		App->fade->FadeToBlack((Module*)App->scene, (Module*)App->over, 60);
 	}
 
 	if (god == true) {
@@ -840,35 +840,31 @@ update_status ModulePlayer::PostUpdate()
 		LifesBlue--;
 		hit = false;
 	}
-
+	if (LifesBlue==0) {
+		LifeCoins--;
+		if (LifeCoins > 0) {
+			LifesBlue = 10;
+		}
+		else {
+			LifesBlue = 0;
+		}
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-//	if (c2->type == c2->PURPLE_ATTACK) {
-//		if (LifeCoins >= 0) {
-//			LifeCoins--;
-//		}
-//		else if(LifeCoins<0) {
-//		/*	PlayerDeathR.Reset();*/
-//			currentAnimation = &jumpAnimR;
-//			/*App->fade->FadeToBlack((Module*)App->scene, (Module*)App->over, 60);*/
-//		}
-//	}
 
 	if (c1 == collider && destroyed == false && god == false) {
 
 		hit=true;
     }
 
-	
-
 	if (LifeCoins == -1) {
-		PlayerDeathR.Reset();
-		currentAnimation = &PlayerDeathR;
+		App->fade->FadeToBlack((Module*)App->scene, (Module*)App->over, 60);
 	}
+
 	//	/*if (Player_Position == true) {
 	//		currentAnimation = &PlayerDeathR;
 	//		App->fade->FadeToBlack((Module*)App->scene, (Module*)App->over, 60);
@@ -877,7 +873,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	//		currentAnimation = &PlayerDeathL;
 	//		App->fade->FadeToBlack((Module*)App->scene, (Module*)App->over, 60);
 	//	}*/
-	//	
 	//}
 }
 
