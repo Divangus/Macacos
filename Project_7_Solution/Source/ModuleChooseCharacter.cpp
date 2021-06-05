@@ -64,6 +64,27 @@ ModuleChooseCharacter::ModuleChooseCharacter(bool startEnabled):Module(startEnab
 
 	coin9.PushBack({ 70,4,9,13 });
 	coin9.loop = false;
+
+	LifeBar10.PushBack({7,10,21,8});
+
+	LifeBar9.PushBack({30,10,19,8});
+
+	LifeBar8.PushBack({51,10,17,8});
+
+	LifeBar7.PushBack({70,10,15,8});
+
+	LifeBar6.PushBack({87,10,13,8});
+
+	LifeBar5.PushBack({102,10,11,8});
+
+	LifeBar4.PushBack({115,10,9,8});
+
+	LifeBar3.PushBack({126,10,7,8});
+
+	LifeBar2.PushBack({135,10,5,8});
+
+	LifeBar1.PushBack({142,10,3,8});
+
 }
 
 ModuleChooseCharacter::~ModuleChooseCharacter() {
@@ -81,6 +102,8 @@ bool ModuleChooseCharacter::Start() {
 	TitleTexture = App->textures->Load("Assets/IntroScreen.png");
 	TurtleTexture = App->textures->Load("Assets/TurtleSmile.png");
 	CoinsTexture = App->textures->Load("Assets/coins.png");
+	LifeBarTexture = App->textures->Load("Assets/lifeBar.png");
+	App->audio->PlayMusic("Assets/Fx/SelectionThemeMusic.ogg", 1.0f);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -99,12 +122,13 @@ update_status ModuleChooseCharacter::Update() {
 	TurtleSmile.Update();
 	App->render->Blit(EnterCoinsTitleTexture, 0, 0, &(TitleEnterCoin.GetCurrentFrame()), 1);
 
-	
 	if (App->input->keys[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN) {
 		coins++;
+		LifeBar10.Update();
 		for (int i = 0; i < 10; i++) {
 			Blue++;
 		}
+
 	}
 	if (App->input->keys[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN && coins > 0)
 	{
@@ -123,6 +147,7 @@ update_status ModuleChooseCharacter::PostUpdate() {
 		App->render->Blit(InsertCoinsTexture, 151, 18, &(InsertCoins.GetCurrentFrame()), 0);
 		App->render->Blit(InsertCoinsTexture, 219, 18, &(InsertCoins.GetCurrentFrame()), 0);
 		App->render->Blit(HudTexture, 0, 0, &(Hud.GetCurrentFrame()), 0);
+		App->render->Blit(LifeBarTexture, 50, 20, &(LifeBar10.GetCurrentFrame()), 1);
 
 	}
 	if (coins == 0) {

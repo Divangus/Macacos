@@ -29,14 +29,14 @@ Application::Application()
 	modules[3] = audio = new ModuleAudio(true);
 	modules[4] = sceneIntro = new ModuleIntroScene(true);
 	modules[5] = scene = new ModuleScene(false);
-	modules[6] = player = new ModulePlayer(false);
-	modules[7] = particles = new ModuleParticles(true);
-	modules[8] = enemies = new ModuleEnemies(false);
-	modules[9] = collisions = new ModuleCollisions(true);
-	modules[10] = fade = new ModuleFadeToBlack(true);
-	modules[11] = over = new ModuleOver(false);
-	modules[12] = character = new ModuleChooseCharacter(false);
-	modules[13] = title = new ModuleTitle(false);
+	modules[6] = character = new ModuleChooseCharacter(false);
+	modules[7] = title = new ModuleTitle(false);
+	modules[8] = player = new ModulePlayer(false);
+	modules[9] = particles = new ModuleParticles(true);
+	modules[10] = enemies = new ModuleEnemies(false);
+	modules[11] = collisions = new ModuleCollisions(true);
+	modules[12] = fade = new ModuleFadeToBlack(true);
+	modules[13] = over = new ModuleOver(false);
 	modules[14] = render = new ModuleRender(true);
 	
 }

@@ -14,8 +14,12 @@ ModuleTitle::ModuleTitle(bool startEnabled) : Module(startEnabled)
 {
 
 	AnimTitle.PushBack({0,0,304,222});
+	AnimTitle.PushBack({ 0,0,304,222 });
 	AnimTitle.PushBack({306,0,304,222 });
+	AnimTitle.PushBack({ 306,0,304,222 });
 	AnimTitle.PushBack({ 612,0,304,222 });
+	AnimTitle.PushBack({ 612,0,304,222 });
+	AnimTitle.PushBack({ 918,0,304,222 });
 	AnimTitle.PushBack({ 918,0,304,222 });
 	AnimTitle.PushBack({ 1224,0,304,222 });
 	AnimTitle.PushBack({ 1530,0,304,222 });
@@ -42,6 +46,8 @@ ModuleTitle::ModuleTitle(bool startEnabled) : Module(startEnabled)
 	AnimTitle.PushBack({ 612,916,304,222 });
 	AnimTitle.PushBack({ 918,916,304,222 });
 	AnimTitle.PushBack({ 1224,916,304,222 });
+	AnimTitle.PushBack({ 612,916,304,222 });
+	AnimTitle.PushBack({ 918,916,304,222 });
 	AnimTitle.PushBack({ 1530,916,304,222 });
 	AnimTitle.PushBack({ 0,1140,304,222 });
 	AnimTitle.PushBack({ 306,1140,304,222 });
@@ -53,6 +59,7 @@ ModuleTitle::ModuleTitle(bool startEnabled) : Module(startEnabled)
 	AnimTitle.PushBack({ 306,1374,304,222 });
 	AnimTitle.PushBack({ 612,1374,304,222 });
 	AnimTitle.PushBack({ 918,1374,304,222 });
+	AnimTitle.PushBack({ 1530,1374,304,222 });
 	AnimTitle.PushBack({ 1224,1374,304,222 });
 	AnimTitle.PushBack({ 1530,1374,304,222 });
 	AnimTitle.PushBack({ 0,1603,304,222 });
@@ -72,6 +79,7 @@ ModuleTitle::ModuleTitle(bool startEnabled) : Module(startEnabled)
 	AnimTitle.PushBack({ 797,2062,304,222 });
 	AnimTitle.PushBack({ 1178,2062,304,222 });
 	AnimTitle.PushBack({ 12,2309,304,222 });
+	AnimTitle.PushBack({ 1178,2062,304,222 });
 	AnimTitle.PushBack({ 406,2309,304,222 });
 	AnimTitle.PushBack({ 797,2309,304,222 });
 	AnimTitle.PushBack({ 1178,2309,304,222 });
@@ -132,6 +140,5 @@ bool ModuleTitle::CleanUp() {
 	LOG("Clearing Over");
 
 	App->textures->Unload(bgTexture);
-
 	return true;
 }

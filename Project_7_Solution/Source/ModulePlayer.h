@@ -49,7 +49,7 @@ private:
 	// The speed in which we move the player (pixels per frame)
 	int speed = 1;
 
-	bool Player_Position;
+	bool Player_Position=true;
 
 	
 	// The player spritesheet loaded into an SDL_Texture
