@@ -43,9 +43,9 @@ public:
 	bool CleanUp() override;
 
 	iPoint position;
-
+	bool hit = false;
 	int LifeCoins = 0;
-	int LifesBlue = 10;
+	int LifesBlue = 0;
 
 private:
 
@@ -113,7 +113,7 @@ private:
 	// Sound effects indices
 	uint PlayerAttackFx = 0;
 	uint AttackQuoteFx = 0;
-	uint AprilScreamFx = 0;
+
 
 	bool god = false;
 

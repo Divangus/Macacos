@@ -73,7 +73,7 @@ update_status ModuleEnemies::Update()
 	}
 
 	if (position.x > (App->render->LimitPR)) {
-		if (App->render->camera.x < LIMIT_CAMERA) {
+		if (App->render->camera.x < LIMIT_CAMERA_LEVEL1) {
 			App->render->LimitPR += speed;
 			App->render->LimitPL += speed;
 			App->render->camera.x += App->render->cameraSpeed;

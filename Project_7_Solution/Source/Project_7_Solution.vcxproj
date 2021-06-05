@@ -90,6 +90,7 @@
     <ClInclude Include="ModuleEntities.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleIntroScene.h" />
+    <ClInclude Include="ModuleLevel2.h" />
     <ClInclude Include="ModuleOver.h" />
     <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="ModuleScene.h" />
@@ -121,6 +122,7 @@
     <ClCompile Include="ModuleEntities.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleIntroScene.cpp" />
+    <ClCompile Include="ModuleLevel2.cpp" />
     <ClCompile Include="ModuleOver.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModuleScene.cpp" />

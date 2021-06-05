@@ -55,6 +55,7 @@ public:
 
 	uint DoorBrake = 0;
 	uint OpenLift = 0;
+	uint AprilScreamFx = 0;
 };
 
 #endif

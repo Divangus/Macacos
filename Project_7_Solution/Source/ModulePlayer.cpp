@@ -4,6 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleChooseCharacter.h"
 #include "ModuleTitle.h"
+#include "ModuleLevel2.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
@@ -298,7 +299,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	PlayerDeathR.PushBack({ 124,1942,77,88 });
 	PlayerDeathR.PushBack({ 35,1942,77,88 });
 	PlayerDeathR.loop = false;
-	PlayerDeathR.speed = 0.3f;
+	PlayerDeathR.speed = 0.2f;
 
 }
 
@@ -326,7 +327,7 @@ bool ModulePlayer::Start()
 
 	PlayerAttackFx = App->audio->LoadFx("Assets/Fx/PlayerAttackFx.wav");
 	AttackQuoteFx = App->audio->LoadFx("Assets/Fx/AttackQuote.wav");
-	AprilScreamFx = App->audio->LoadFx("Assets/Fx/AprilScreamFx.wav");
+	
 
 	position.x = 40;
 	position.y = 120;
@@ -344,6 +345,7 @@ bool ModulePlayer::Start()
 update_status ModulePlayer::Update()
 {
 
+
 	LittleFire.Update();
 	InsertCoins.Update();
 
@@ -357,14 +359,6 @@ update_status ModulePlayer::Update()
 		collider->SetPos(position.x+18, position.y + 85);
 		colliderAttack->SetPos(position.x -2, position.y + 85);
 	}
-	/*if (currentAnimation == &jumpAnimR) {
-		collider->SetPos(position.x + 5, position.y + 5);
-		colliderAttack->SetPos(position.x + 15, position.y + 60);
-	}
-	if (currentAnimation == &jumpAnimL) {
-		collider->SetPos(position.x + 5, position.y + 5);
-		colliderAttack->SetPos(position.x + 15, position.y + 60);
-	}*/
 	if (currentAnimation == &FrontSwordAttackR || currentAnimation == &FrontSwordAttackL || currentAnimation==&LegAttackR || currentAnimation == &LegAttackL || currentAnimation == &TwoSwordAttackR || currentAnimation == &TwoSwordAttackL) {
 		App->collisions->matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = true;
 	}
@@ -399,14 +393,19 @@ update_status ModulePlayer::Update()
 
 	//camera
 	if (position.x > (App->render->LimitPR)){
-		if (App->render->camera.x < LIMIT_CAMERA){
+		if (App->render->camera.x < LIMIT_CAMERA_LEVEL1){
 			App->render->LimitPR += speed;
 			App->render->LimitPL += speed;
 			App->render->camera.x += App->render->cameraSpeed;
 		}
 	}
-
-
+	if (position.x > (App->render->LimitPR)) {
+		if (App->render->camera.x < LIMIT_CAMERA_LEVEL2) {
+			App->render->LimitPR += speed;
+			App->render->LimitPL += speed;
+			App->render->camera.x += App->render->cameraSpeed;
+		}
+	}
 
 
 	//left
@@ -731,10 +730,10 @@ update_status ModulePlayer::Update()
 	//lives
 	if (App->input->keys[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN) {
 		LifeCoins++;
-		for (int i = 0; i < 10; i++) {
-			LifesBlue++;
-		}
+		LifesBlue = 10;
 	}
+
+	
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -742,12 +741,8 @@ update_status ModulePlayer::Update()
 update_status ModulePlayer::PostUpdate()
 {
 	
-	/*if (App->render->camera.x == 1375) {
-		App->audio->PlayFx(AprilScreamFx);
-		App->render->camera.x+=1;
-		App->fade->FadeToBlack(this, (Module*)App->level2, 90);
-		
-	}*/
+
+
 	//if (App->render->camera.x == 0) {
 	//	App->audio->PlayFx(AttackQuoteFx);
 	//}
@@ -810,34 +805,80 @@ update_status ModulePlayer::PostUpdate()
 		App->render->Blit(CoinsTexture, 30, 20, &(coin9.GetCurrentFrame()), 0);
 	}
 
+	if (LifesBlue == 10) {
+		App->render->Blit(LifeBarTexture, 50, 20, &(LifeBar10.GetCurrentFrame()), 0);
+	}
+	if (LifesBlue == 9) {
+		App->render->Blit(LifeBarTexture, 50, 20, &(LifeBar9.GetCurrentFrame()), 0);
+	}
+	if (LifesBlue == 8) {
+		App->render->Blit(LifeBarTexture, 50, 20, &(LifeBar8.GetCurrentFrame()), 0);
+	}
+	if (LifesBlue == 7) {
+		App->render->Blit(LifeBarTexture, 50, 20, &(LifeBar7.GetCurrentFrame()), 0);
+	}
+	if (LifesBlue == 6) {
+		App->render->Blit(LifeBarTexture, 50, 20, &(LifeBar6.GetCurrentFrame()), 0);
+	}
+	if (LifesBlue == 5) {
+		App->render->Blit(LifeBarTexture, 50, 20, &(LifeBar5.GetCurrentFrame()), 0);
+	}
+	if (LifesBlue == 4) {
+		App->render->Blit(LifeBarTexture, 50, 20, &(LifeBar4.GetCurrentFrame()), 0);
+	}
+	if (LifesBlue == 3) {
+		App->render->Blit(LifeBarTexture, 50, 20, &(LifeBar3.GetCurrentFrame()), 0);
+	}
+	if (LifesBlue == 2) {
+		App->render->Blit(LifeBarTexture, 50, 20, &(LifeBar2.GetCurrentFrame()), 0);
+	}
+	if (LifesBlue == 1) {
+		App->render->Blit(LifeBarTexture, 50, 20, &(LifeBar1.GetCurrentFrame()), 0);
+	}
+
+	if (hit == true) {
+		LifesBlue--;
+		hit = false;
+	}
+
 
 	return update_status::UPDATE_CONTINUE;
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1 == collider && destroyed == false && god == false && LifeCoins>-1)
-	{
-		LifesBlue--;
-	}
-	
-	if (LifesBlue == 0) {
-		LifeCoins--;
-	}
+//	if (c2->type == c2->PURPLE_ATTACK) {
+//		if (LifeCoins >= 0) {
+//			LifeCoins--;
+//		}
+//		else if(LifeCoins<0) {
+//		/*	PlayerDeathR.Reset();*/
+//			currentAnimation = &jumpAnimR;
+//			/*App->fade->FadeToBlack((Module*)App->scene, (Module*)App->over, 60);*/
+//		}
+//	}
 
-	if (c1 == collider && destroyed == false && god == false && LifeCoins ==-1 &&LifesBlue==0) {
-		if (Player_Position == true) {
-			currentAnimation = &PlayerDeathR;
-			destroyed = true;
-			App->fade->FadeToBlack((Module*)App->scene, (Module*)App->over, 60);
-		}
-		else {
-			currentAnimation = &PlayerDeathL;
-			destroyed = true;
-			App->fade->FadeToBlack((Module*)App->scene, (Module*)App->over, 60);
-		}
-		
+	if (c1 == collider && destroyed == false && god == false) {
+
+		hit=true;
+    }
+
+	
+
+	if (LifeCoins == -1) {
+		PlayerDeathR.Reset();
+		currentAnimation = &PlayerDeathR;
 	}
+	//	/*if (Player_Position == true) {
+	//		currentAnimation = &PlayerDeathR;
+	//		App->fade->FadeToBlack((Module*)App->scene, (Module*)App->over, 60);
+	//	}
+	//	else {
+	//		currentAnimation = &PlayerDeathL;
+	//		App->fade->FadeToBlack((Module*)App->scene, (Module*)App->over, 60);
+	//	}*/
+	//	
+	//}
 }
 
 void ModulePlayer::GodMode() {
@@ -856,6 +897,7 @@ bool ModulePlayer::CleanUp() {
 	App->textures->Unload(InsertCoinsTexture);
 	App->textures->Unload(CoinsTexture);
 	App->textures->Unload(LifeBarTexture);
+	
 	
 
 	return true;

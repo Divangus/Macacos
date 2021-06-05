@@ -23,7 +23,8 @@ typedef unsigned int uint;
 // Window Configuration -----------
 #define SCREEN_WIDTH 304
 #define SCREEN_HEIGHT 222
-#define LIMIT_CAMERA 1375
+#define LIMIT_CAMERA_LEVEL1 1375
+#define LIMIT_CAMERA_LEVEL2 448
 
 #define SCREEN_SIZE 1
 #define WIN_FULLSCREEN 0

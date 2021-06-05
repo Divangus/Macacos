@@ -15,6 +15,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleOver.h"
 #include "ModuleChooseCharacter.h"
+#include "ModuleLevel2.h"
 #include "ModuleTitle.h"
 
 
@@ -36,8 +37,9 @@ Application::Application()
 	modules[10] = enemies = new ModuleEnemies(false);
 	modules[11] = collisions = new ModuleCollisions(true);
 	modules[12] = fade = new ModuleFadeToBlack(true);
-	modules[13] = over = new ModuleOver(false);
-	modules[14] = render = new ModuleRender(true);
+	modules[13] = level2 = new ModuleLevel2(false);
+	modules[14] = over = new ModuleOver(false);
+	modules[15] = render = new ModuleRender(true);
 	
 }
 

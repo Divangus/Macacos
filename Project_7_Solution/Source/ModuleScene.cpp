@@ -84,19 +84,17 @@ bool ModuleScene::Start()
 	Elements_Texture = App->textures->Load("Assets/scene.png");
 	Quotes_Texture = App->textures->Load("Assets/Quotes.png");
 	App->audio->PlayMusic("Assets/stage1.ogg", 1.0f);
+	AprilScreamFx = App->audio->LoadFx("Assets/Fx/AprilScreamFx.wav");
 
 
 	
 	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 220, 120);
 	App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 335, 110);
 	App->enemies->AddEnemy(ENEMY_TYPE::WHITE, 800, 120);
+	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 689, 125);
 
-	//App->enemies->AddEnemy(ENEMY_TYPE::WHITE, 220, 120);
+	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 890, 100);
 
-	/*App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 300, 120);
-	App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 300, 100);
-	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 500, 120);
-	App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 400, 100);*/
 
 	App->enemies->Enable();
 	App->player->Enable();
@@ -142,12 +140,23 @@ update_status ModuleScene::Update()
 		App->fade->FadeToBlack(this, (Module*)App->over, 90);
 	}
 
+	if (App->player->position.x == 1240) {
+		App->audio->PlayFx(AprilScreamFx);
+		App->render->camera.x += 1;
+		App->fade->FadeToBlack(this, (Module*)App->level2, 90);
+
+	}
+
 	return update_status::UPDATE_CONTINUE;
 }
 
 // Update: draw background
 update_status ModuleScene::PostUpdate()
 {
+
+	if (App->render->camera.x == 920) {
+		App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 960, 100);
+	}
 
 	if (App->render->camera.x == 260) {
 		App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 409, 70);
@@ -205,7 +214,6 @@ bool ModuleScene::CleanUp() {
 
 	App->textures->Unload(bgTexture);
 	App->textures->Unload(hudTexture);
-	/*App->textures->Unload(Fire_Texture);*/
 	App->textures->Unload(Elements_Texture);
 	App->textures->Unload(Quotes_Texture);
 	App->player->Disable();

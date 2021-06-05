@@ -125,9 +125,7 @@ update_status ModuleChooseCharacter::Update() {
 	if (App->input->keys[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN) {
 		coins++;
 		LifeBar10.Update();
-		for (int i = 0; i < 10; i++) {
-			Blue++;
-		}
+		Blue = 10;
 
 	}
 	if (App->input->keys[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN && coins > 0)
@@ -185,6 +183,8 @@ update_status ModuleChooseCharacter::PostUpdate() {
 	if (coins == 9) {
 		App->render->Blit(CoinsTexture, 30, 20, &(coin9.GetCurrentFrame()), 0);
 	}
+
+
 	return update_status::UPDATE_CONTINUE;
 
 }
