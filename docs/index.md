@@ -9,7 +9,7 @@ The story is about rescuing April O'Neil kidnapped by the evil Shredder. The obj
 
 ![Si](https://i0.wp.com/vgalmanac.com/wp-content/uploads/2018/04/Screenshot_2018-04-16-19-06-23.png?ssl=1)
 
-`<addr>`
+
 
 ## Who we are?
 
@@ -32,4 +32,4 @@ Code (Enemys)
 
 Code and UI
 
-`<addr>`
+
