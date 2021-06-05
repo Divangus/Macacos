@@ -22,7 +22,7 @@ The members of the group are:
 Code (Enemys)
 
 ### Marina Albalà
-![Si]()
+![Si](blob:https://web.whatsapp.com/ea7038f7-dbcb-4fdf-8895-18513f05bb64)
 
 Code (Player) and UI
 
