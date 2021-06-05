@@ -90,7 +90,6 @@ bool ModuleScene::Start()
 	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 220, 120);
 	App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 335, 110);
 	App->enemies->AddEnemy(ENEMY_TYPE::WHITE, 800, 120);
-	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 411, 49);
 
 	//App->enemies->AddEnemy(ENEMY_TYPE::WHITE, 220, 120);
 
@@ -149,16 +148,26 @@ update_status ModuleScene::Update()
 // Update: draw background
 update_status ModuleScene::PostUpdate()
 {
+
+	if (App->render->camera.x == 260) {
+		App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 409, 70);
+	}
+	if (App->render->camera.x == 545) {
+
+		App->enemies->AddEnemy(ENEMY_TYPE::WHITE, 685, 40);
+	}
+	if (App->render->camera.x == 565) {
+
+		App->enemies->AddEnemy(ENEMY_TYPE::WHITE, 822, 40);
+	}
+	if (App->render->camera.x == 850) {
+		
+		App->enemies->AddEnemy(ENEMY_TYPE::WHITE, 942, 40);
+		App->enemies->AddEnemy(ENEMY_TYPE::WHITE,1070, 40);
+	}
+	
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);
-
-	////Big Fire
-	//App->render->Blit(Fire_Texture, -5, 160, &(Fire.GetCurrentFrame()), 1);
-	//App->render->Blit(Fire_Texture, 250, 160, &(Fire.GetCurrentFrame()), 1);
-	//App->render->Blit(Fire_Texture, 504, 160, &(Fire.GetCurrentFrame()), 1);
-	//App->render->Blit(Fire_Texture, 760, 160, &(Fire.GetCurrentFrame()), 1);
-	//App->render->Blit(Fire_Texture, 1018, 160, &(Fire.GetCurrentFrame()), 1);
-	//App->render->Blit(Fire_Texture, 1065, 160, &(Fire.GetCurrentFrame()), 1);
 
 	//Door Fire
 	App->render->Blit(Elements_Texture, 411, 49, &(DoorFire.GetCurrentFrame()), 1);

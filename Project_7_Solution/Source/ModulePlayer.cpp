@@ -325,7 +325,8 @@ bool ModulePlayer::Start()
 	currentAnimation = &idleAnimR;
 
 	PlayerAttackFx = App->audio->LoadFx("Assets/Fx/PlayerAttackFx.wav");
-	AttackQuoteFx = App->audio->LoadFx("Assets/Fx/AttackQuoteFx.wav");
+	AttackQuoteFx = App->audio->LoadFx("Assets/Fx/AttackQuote.wav");
+	AprilScreamFx = App->audio->LoadFx("Assets/Fx/AprilScreamFx.wav");
 
 	position.x = 40;
 	position.y = 120;
@@ -741,7 +742,12 @@ update_status ModulePlayer::Update()
 update_status ModulePlayer::PostUpdate()
 {
 	
-	
+	/*if (App->render->camera.x == 1375) {
+		App->audio->PlayFx(AprilScreamFx);
+		App->render->camera.x+=1;
+		App->fade->FadeToBlack(this, (Module*)App->level2, 90);
+		
+	}*/
 	//if (App->render->camera.x == 0) {
 	//	App->audio->PlayFx(AttackQuoteFx);
 	//}
