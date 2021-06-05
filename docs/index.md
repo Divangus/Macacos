@@ -30,6 +30,8 @@ Code (Enemys)
 
 ### Albert Martin
 
+![Si](https://cdnb.artstation.com/p/users/avatars/001/065/821/large/b87c195b4dd6416ba53652656fa7dc95.jpg?1552504970)
+
 Code and UI
 
 
@@ -37,12 +39,12 @@ Code and UI
 
 ### Intro
 
--SPACE - Skip intro animation
+- SPACE - Skip intro animation
 
 ### Menu
 
 -SHIFT - Add two lives
--O - Start playing
+- O - Start playing
 
 ### Ingame 
 
@@ -55,17 +57,5 @@ Code and UI
 - F1 - Colisions
 - F2 - God Mode
 - F3 - Direct win/lose
-
-
-
-
-
-
-
-
-
-
-
-
 
 
