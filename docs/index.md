@@ -33,3 +33,39 @@ Code (Enemys)
 Code and UI
 
 
+## Controls
+
+### Intro
+
+-SPACE - Skip intro animation
+
+### Menu
+
+-SHIFT - Add two lives
+-O - Start playing
+
+### Ingame 
+
+- W, A, S, D  - Movement
+- Space - Jump
+- K - Attack
+
+### Debug functionality
+
+- F1 - Colisions
+- F2 - God Mode
+- F3 - Direct win/lose
+
+
+
+
+
+
+
+
+
+
+
+
+
+
