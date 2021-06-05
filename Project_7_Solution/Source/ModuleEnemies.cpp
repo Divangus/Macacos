@@ -10,6 +10,7 @@
 #include "Enemy_Purple.h"
 #include "Enemy_Orange.h"
 #include "Enemy_White.h"
+#include "Enemy_Boss.h"
 
 #define SPAWN_MARGIN 50
 
@@ -46,6 +47,7 @@ bool ModuleEnemies::Start()
 	texture = App->textures->Load("Assets/Orange_Soldier.png");
 	texture2 = App->textures->Load("Assets/enemy_purple.png");
 	texture3 = App->textures->Load("Assets/White_Soldier.png");
+	texture4 = App->textures->Load("Assets/Rocksteady.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/EnemyDying.wav");
 	Fire_Texture = App->textures->Load("Assets/frontFire.png");
 	EnemyDyingFx = App->audio->LoadFx("Assets/Fx/EnemyDying.wav");
