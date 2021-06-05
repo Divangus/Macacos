@@ -17,7 +17,7 @@ We are macacos a group of four students of UPC (CITM), the university is in Terr
 The members of the group are:
 
 ### David Benages (Leader of the group)
-![Si](blob:https://web.whatsapp.com/264b8ff5-9185-43b8-b90b-b41eb591b9ad)
+![Si](https://cdn.discordapp.com/attachments/774419181763821609/850795397051318312/264b8ff5-9185-43b8-b90b-b41eb591b9ad.png)
 Code (Enemys)
 
 ### Marina Albalà
