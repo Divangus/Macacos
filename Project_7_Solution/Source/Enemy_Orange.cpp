@@ -112,9 +112,9 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 	path.PushBack({ 0.0f, 0.0f }, 0, &front_shot);
 	path.PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
 
-	path1.PushBack({ 0.0f, 0.0f }, 15, &back_shuriken);
-	path1.PushBack({ 0.0f, 0.0f }, 0, &back_shot);
-	path1.PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
+	path2.PushBack({ 0.0f, 0.0f }, 15, &back_shuriken);
+	path2.PushBack({ 0.0f, 0.0f }, 0, &back_shot);
+	path2.PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
 
 	//path.PushBack({ 1.0f, 0.0f }, 150, &back);
 
@@ -203,8 +203,8 @@ void Enemy_Orange::Update()
 				}		
 			}
 			else {
-				path1.Update();
-				currentAnim = path1.GetCurrentAnimation();
+				path2.Update();
+				currentAnim = path2.GetCurrentAnimation();
 				if (currentAnim == &back_iddle) {
 					attack = false;
 				}

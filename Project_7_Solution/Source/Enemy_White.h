@@ -4,6 +4,8 @@
 #include "Enemy.h"
 #include "Path.h"
 #include "Path2.h"
+#include "Path3.h"
+#include "Path4.h"
 
 class Enemy_White : public Enemy
 {
@@ -19,8 +21,11 @@ public:
 private:
 	// The path that will define the position in the world
 	Path path;
-	Path2 path1;
+	Path2 path2;
+	Path3 path3;
+	Path4 path4;
 
+	int num = 0;
 	bool follow = true;
 	bool attack = true;
 

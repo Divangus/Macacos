@@ -63,8 +63,8 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	path.PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
 	//path.loop = false;
 
-	path1.PushBack({ 0.0f, 0.0f }, 50, &back_punch);
-	path1.PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
+	path2.PushBack({ 0.0f, 0.0f }, 50, &back_punch);
+	path2.PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
 	
 	//currentAnim = &front;
 	PurpleCollider = App->collisions->AddCollider({0,0, 30, 20}, Collider::Type::ENEMY, (Module*)App->enemies);
@@ -121,8 +121,8 @@ void Enemy_Purple::Update()
 				}
 			}
 			else {
-				path1.Update();
-				currentAnim = path1.GetCurrentAnimation();
+				path2.Update();
+				currentAnim = path2.GetCurrentAnimation();
 				if (currentAnim == &back_iddle) {
 					attack = false;
 				}
