@@ -217,7 +217,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	jumpAnimR.PushBack({ 871,591,77,80 });
 	jumpAnimR.PushBack({ 30, 0, 77, 90 });
 	jumpAnimR.loop = false;
-	jumpAnimR.speed = 0.3f;
+	jumpAnimR.speed = 0.25f;
 
 	//Jump left
 	jumpAnimL.PushBack({1718,2677,77,88 });
@@ -232,7 +232,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	jumpAnimL.PushBack({ 879,2685,77,80 });
 	jumpAnimL.PushBack({ 1708, 2087, 77, 88 });
 	jumpAnimL.loop = false;
-	jumpAnimL.speed = 0.3f;
+	jumpAnimL.speed = 0.25f;
 
 	//right attack
 	FrontSwordAttackR.PushBack({ 29,170,77,84 });
@@ -243,7 +243,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	FrontSwordAttackR.PushBack({ 503,170,77,88 });
 	FrontSwordAttackR.PushBack({ 30, 0, 77, 88 });
 	FrontSwordAttackR.loop = false;
-	FrontSwordAttackR.speed = 0.3f;
+	FrontSwordAttackR.speed = 0.2f;
 
 	//left attack
 	FrontSwordAttackL.PushBack({1706,2259,77,82});
@@ -254,7 +254,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	FrontSwordAttackL.PushBack({ 1240,2259,77,88 });
 	FrontSwordAttackL.PushBack({ 1708, 2087, 77, 90 });
 	FrontSwordAttackL.loop = false;
-	FrontSwordAttackL.speed = 0.3f;
+	FrontSwordAttackL.speed = 0.2f;
 
 	/*Right Attack With Leg*/
 	LegAttackR.PushBack({ 37,86,77,85});
@@ -263,7 +263,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	LegAttackR.PushBack({ 314,86,77,88 });
 	LegAttackR.PushBack({ 30, 0, 77, 90 });
 	LegAttackR.loop = false;
-	LegAttackR.speed = 0.3f;
+	LegAttackR.speed = 0.2f;
 
 	/*Left Attack With Leg*/
 	LegAttackL.PushBack({1705,2174,77,83});
@@ -272,7 +272,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	LegAttackL.PushBack({ 1427,2174,77,88 });
 	LegAttackL.PushBack({ 1049, 3013, 77, 90 });
 	LegAttackL.loop = false;
-	LegAttackL.speed = 0.3f;
+	LegAttackL.speed = 0.2f;
 
 	//Right Sword Attack
 	TwoSwordAttackR.PushBack({ 16,338,77,88 });
@@ -283,7 +283,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	TwoSwordAttackR.PushBack({ 482,338,77,88 });
 	TwoSwordAttackR.PushBack({ 30, 0, 77, 90 });
 	TwoSwordAttackR.loop = false;
-	TwoSwordAttackR.speed = 0.3f;
+	TwoSwordAttackR.speed = 0.2f;
 
 	//Left Sword Attack
 	TwoSwordAttackL.PushBack({ 1727,2425,77,88 });
@@ -294,22 +294,34 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	TwoSwordAttackL.PushBack({ 1230,2425,77,88 });
 	TwoSwordAttackL.PushBack({ 1049, 3013, 77, 90 });
 	TwoSwordAttackL.loop = false;
-	TwoSwordAttackL.speed = 0.3f;
+	TwoSwordAttackL.speed = 0.2f;
 
 	dmg.PushBack({ 1727,2425,77,88 });
 
 	sdmg.PushBack({ 1727,2425,77,88 });
 
 	//player death
-	PlayerDeathR.PushBack({35,1942,77,88});
-	PlayerDeathR.PushBack({ 124,1942,77,88 });
-	PlayerDeathR.PushBack({ 35,1942,77,88 });
+	PlayerDeathR.PushBack({35,1863,77,88});
+	PlayerDeathR.PushBack({ 121,1863,77,88 });
+	PlayerDeathR.PushBack({ 217,1863,77,88 });
+	PlayerDeathR.PushBack({ 320,1863,77,88 });
+	PlayerDeathR.PushBack({ 407,1863,77,88 });
+	PlayerDeathR.PushBack({ 495,1844,77,88 });
+	PlayerDeathR.PushBack({ 598,1844,77,88 });
 	PlayerDeathR.speed = 0.2f;
 
-	PlayerDeathRS.PushBack({ 35,1942,77,88 });
+	PlayerDeathRS.PushBack({ 598,1844,77,88 });
 
-	PlayerDeathL.PushBack({});
+	PlayerDeathL.PushBack({ 1710,3947,77,86 });
+	PlayerDeathL.PushBack({ 1615,3948,77,86 });
+	PlayerDeathL.PushBack({ 1522,3948,77,86 });
+	PlayerDeathL.PushBack({ 1434,3948,77,86 });
+	PlayerDeathL.PushBack({ 1335,3948,77,86 });
+	PlayerDeathL.PushBack({ 1237,3928,77,95 });
+	PlayerDeathL.PushBack({ 1150,3948,77,86 });
 	PlayerDeathL.speed = 0.2f;
+
+	PlayerDeathLS.PushBack({ 1150,3948,77,86 });
 
 	//player hit
 

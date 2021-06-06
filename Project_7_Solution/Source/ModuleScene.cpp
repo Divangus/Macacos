@@ -6,6 +6,7 @@
 #include "ModuleAudio.h"
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
+#include "ModuleLevel2.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleInput.h"
@@ -149,7 +150,8 @@ update_status ModuleScene::Update()
 		App->audio->PlayFx(AprilScreamFx);
 		App->scene->CleanUp();
 		active = false;
-		App->fade->FadeToBlack(this, (Module*)App->level2, 90);
+		App->fade->FadeToBlack(this, (Module*)App->level2, 60);
+		/*App->level2->active = true;*/
 	}
 
 	return update_status::UPDATE_CONTINUE;
