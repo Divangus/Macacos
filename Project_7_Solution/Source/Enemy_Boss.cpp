@@ -123,29 +123,71 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	back_gun_aim.PushBack({ 313, 534, 64, 60 });
 	back_gun_aim.speed = 0.1f;
 
-	front_gun_aim.PushBack({ 504, 1364, 62, 60 });
+	front_gun_aim.PushBack({ 442, 1364, 62, 60 });
+	front_gun_aim.PushBack({ 389, 1364, 53, 60 });
+	front_gun_aim.PushBack({ 328, 1364, 61, 60 });
+	front_gun_aim.PushBack({ 267, 1364, 61, 60 });
+	front_gun_aim.PushBack({ 207, 1364, 60, 60 });
+	front_gun_aim.PushBack({ 143, 1364, 64, 60 });
 	front_gun_aim.speed = 0.1f;
 
 	//Shooting
-	back_shoot.PushBack({ });
+	back_shoot.PushBack({ 15, 670, 79, 70 });
+	back_shoot.PushBack({ 94, 670, 76, 70 });
+	back_shoot.PushBack({ 170, 670, 64, 70 });
+	back_shoot.PushBack({ 234, 670, 62, 70 });
 	back_shoot.speed = 0.1f;
 
-	front_shoot.PushBack({ });
+	front_shoot.PushBack({ 418, 1502, 79, 70 });
+	front_shoot.PushBack({ 342, 1502, 76, 70 });
+	front_shoot.PushBack({ 278, 1502, 64, 70 });
+	front_shoot.PushBack({ 216, 1502, 62, 70 });
 	front_shoot.speed = 0.1f;
 
 	//Kick with gun
-	back_gun_kick.PushBack({ });
+	back_gun_kick.PushBack({ 0, 593, 68, 70 });
+	back_gun_kick.PushBack({ 68, 593, 76, 70 });
 	back_gun_kick.speed = 0.1f;
 
-	front_gun_kick.PushBack({ });
+	front_gun_kick.PushBack({ 444, 1425, 68, 70 });
+	front_gun_kick.PushBack({ 368, 1425, 76, 70 });
 	front_gun_kick.speed = 0.1f;
 
 	//Getting hit with gun
-	back_gun_getting_hit.PushBack({ });
+	back_gun_getting_hit.PushBack({ 8, 754, 69, 72 });
+	back_gun_getting_hit.PushBack({ 77, 754, 58, 72 });
+	back_gun_getting_hit.PushBack({ 135, 754, 72, 72 });
+	back_gun_getting_hit.PushBack({ 207, 754, 71, 72 });
+	back_gun_getting_hit.PushBack({ 278, 754, 55, 72 });
+	back_gun_getting_hit.PushBack({ 333, 754, 57, 72 });
+	back_gun_getting_hit.PushBack({ 390, 754, 62, 72 });
 	back_gun_getting_hit.speed = 0.1f;
 
-	front_gun_getting_hit.PushBack({ });
+	front_gun_getting_hit.PushBack({ 435, 1584, 69, 72 });
+	front_gun_getting_hit.PushBack({ 377, 1584, 58, 72 });
+	front_gun_getting_hit.PushBack({ 305, 1584, 72, 72 });
+	front_gun_getting_hit.PushBack({ 234, 1584, 71, 72 });
+	front_gun_getting_hit.PushBack({ 179, 1584, 55, 72 });
+	front_gun_getting_hit.PushBack({ 122, 1584, 57, 72 });
+	front_gun_getting_hit.PushBack({ 60, 1584, 62, 72 });
 	front_gun_getting_hit.speed = 0.1f;
+
+	//Shot
+	/*
+		
+		Cada vegada que el boss dispara ho fa 4 vegades, es a dir, fa l'animació de disparar 4 vegades i cada cop dispara una bala.
+		Comprova el gameplay de youtube per a veure la velocitat a la que dispara.
+
+		Comprova també el video per a veure quan fa els moviments, per exemple, treu l'arma quan li han tret 5 de vida(en teoria en té 20) i fa l'animació de getting hit cada 5 de mal.
+
+		Com no sabia com posar les bales només les he posat en el modul del boss, no estan al mòdul de les particules.
+
+		El png de l'sprite del boss està inicialitzat com a texture4 en el module enemies però no se si s'ha d'assignar al mòdul del boss ni com fer-ho.
+	
+	*/
+	back_shot.PushBack({ 317, 119, 10, 4 });
+
+	front_shot.PushBack({ 342, 119, 10, 3 });
 
 
 	OrangeCollider = App->collisions->AddCollider({ 0,0, 30, 20 }, Collider::Type::ENEMY, (Module*)App->enemies);
