@@ -7,20 +7,37 @@ This game is a tribute of the original TMNT game, developed by [Konami](https://
 ## Key Features
 
  - 1 player
- - Control with the keyboard
- - Press Space to start the game
+ - Control with the keyboard or gamepad
  
 ## Controls
 
+Keyboard
 - W, A, S, D  - Movement
-- Space - Jump
+- Space - Jump / Start game
 - K - Attack
+- Shift - Add coins(lifes)
+
+Gamepad
+- Left joistick - Movement
+- A - Jump / Start game
+- B - Attack
+- Y - Add coins(lifes)
 
 ### Debug functionality
 
-- F1 - Colisions
+Keyboard
+- F1 - Collisions
 - F2 - God Mode
-- F3 - Direct win/lose
+- F3 - Direct lose
+- F4 - Direct level 2
+- F5 - Direct win
+
+Gamepad
+- R1 - Collisions
+- X - God mode
+- L1 - Direct lose
+- L2 - Direct win
+- R2 - Direct level 2
 
 ## Developers
 [Macacos](https://github.com/Divangus/Macacos) team:
