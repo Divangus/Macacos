@@ -7,6 +7,7 @@
 #include "ModuleTitle.h"
 #include "ModuleLevel2.h"
 #include "ModuleInput.h"
+#include "Module.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
@@ -1089,7 +1090,8 @@ bool ModulePlayer::CleanUp() {
 	App->textures->Unload(InsertCoinsTexture);
 	App->textures->Unload(CoinsTexture);
 	App->textures->Unload(LifeBarTexture);
-	
+
+	isEnabled = true;
 	
 
 	return true;

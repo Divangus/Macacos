@@ -48,8 +48,11 @@ public:
 	int LifeCoins = 0;
 	int LifesBlue = 0;
 
+
+
 private:
 
+	bool isEnabled = true;
 	// The speed in which we move the player (pixels per frame)
 	int speed = 1;
 

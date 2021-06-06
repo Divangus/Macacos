@@ -106,12 +106,7 @@ update_status ModuleEnemies::PostUpdate()
 			enemies[i]->Draw();
 	}
 
-	/*App->render->Blit(Fire_Texture, -5, 165, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 250, 165, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 504, 165, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 760, 165, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 1018, 165, &(Fire.GetCurrentFrame()), 1);
-	App->render->Blit(Fire_Texture, 1065, 165, &(Fire.GetCurrentFrame()), 1);*/
+
 	App->render->Blit(Fire_Texture, -5, 165, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 250, 165, &(Fire.GetCurrentFrame()), 1);
 	App->render->Blit(Fire_Texture, 504, 165, &(Fire.GetCurrentFrame()), 1);

@@ -72,6 +72,7 @@ bool ModuleOver::CleanUp() {
 	LOG("Clearing Over");
 
 	App->textures->Unload(bgTexture);
+	App->player->CleanUp();
 
 	return true;
 }
