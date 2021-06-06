@@ -88,3 +88,7 @@ Art and Website
 - L2 - Direct Win
 - R2 - Direct Level 2
 
+### Game download
+
+Link to the last Release version [here](https://github.com/Divangus/Macacos/releases/tag/v1.0).
+
