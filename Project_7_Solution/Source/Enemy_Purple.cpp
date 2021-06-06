@@ -109,6 +109,7 @@ void Enemy_Purple::Update()
 			position = position + path[2].GetRelativePosition();
 			currentAnim = path[2].GetCurrentAnimation();
 			if (currentAnim == &front_sdmg) {
+				path[2].Reset();
 				god = false;
 			}
 		}
@@ -117,6 +118,7 @@ void Enemy_Purple::Update()
 			position = position + path[3].GetRelativePosition();
 			currentAnim = path[3].GetCurrentAnimation();
 			if (currentAnim == &back_sdmg) {
+				path[3].Reset();
 				god = false;
 			}
 		}

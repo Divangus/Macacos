@@ -303,12 +303,11 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	PlayerDeathR.PushBack({35,1942,77,88});
 	PlayerDeathR.PushBack({ 124,1942,77,88 });
 	PlayerDeathR.PushBack({ 35,1942,77,88 });
-	PlayerDeathR.loop = false;
 	PlayerDeathR.speed = 0.2f;
 
+	PlayerDeathRS.PushBack({ 35,1942,77,88 });
 
 	PlayerDeathL.PushBack({});
-	PlayerDeathL.loop = false;
 	PlayerDeathL.speed = 0.2f;
 
 	//player hit
@@ -318,26 +317,30 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	hitAnimR.PushBack({ 214,1108,77,86 });
 	hitAnimR.PushBack({ 301,1108,77,86 });
 	hitAnimR.PushBack({ 409,1108,77,86 });
-	hitAnimR.loop = false;
 	hitAnimR.speed = 0.2f;
+
+	hitAnimRS.PushBack({ 409,1108,77,86 });
 
 	hitAnimL.PushBack({ 1708,3179,77,86 });
 	hitAnimL.PushBack({ 1620,3179,77,86 });
 	hitAnimL.PushBack({ 1519,3179,77,86 });
 	hitAnimL.PushBack({ 1416,3179,77,86 });
 	hitAnimL.PushBack({ 1338,3179,77,86 });
-	hitAnimL.loop = false;
 	hitAnimL.speed = 0.2f;
 
+	hitAnimLS.PushBack({ 1338,3179,77,86 });
 
-	//FrontSwordAttackR
-	/*attack[0].PushBack({ 0.0f, 0.0f }, 0, &dmg);
-	attack[0].PushBack({ 0.0f, 0.0f }, 15, &FrontSwordAttackR);
-	attack[0].PushBack({ 0.0f, 0.0f }, 0, &sdmg);
+	path[0].PushBack({ 0.0f, 0.0f }, 25, &hitAnimR);
+	path[0].PushBack({ 0.0f, 0.0f }, 0, &hitAnimRS);
 
+	path[1].PushBack({ 0.0f, 0.0f }, 25, &hitAnimL);
+	path[1].PushBack({ 0.0f, 0.0f }, 0, &hitAnimLS);
 
+	path[2].PushBack({ 0.0f, 0.0f }, 50, & PlayerDeathR);
+	path[2].PushBack({ 0.0f, 0.0f }, 0, & PlayerDeathRS);
 
-	attack->loop = true;*/
+	path[3].PushBack({ 0.0f, 0.0f }, 50, & PlayerDeathL);
+	path[3].PushBack({ 0.0f, 0.0f }, 0, & PlayerDeathLS);
 }
 
 ModulePlayer::~ModulePlayer()
@@ -390,9 +393,17 @@ update_status ModulePlayer::Update()
 
 	LittleFire.Update();
 	InsertCoins.Update();
-
 	App->collisions->matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_ATTACK] = false;
 	//player collider
+
+	if (currentAnimation == &hitAnimR || currentAnimation == &hitAnimRS || currentAnimation == &PlayerDeathR || currentAnimation == &PlayerDeathRS) {
+		Player_Position = true;
+	}
+	
+	if (currentAnimation == &hitAnimL || currentAnimation == &hitAnimLS || currentAnimation == &PlayerDeathL || currentAnimation == &PlayerDeathLS) {
+		Player_Position = false;
+	}
+
 	if (Player_Position == true) {
 		collider->SetPos(position.x-5, position.y + 85);
 		colliderAttack->SetPos(position.x + 30, position.y + 85);
@@ -809,10 +820,10 @@ if (position.x > (App->render->LimitPR)) {
 		&& App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE 
 		&& App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE
 		&& App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_IDLE
-		&& pad.left_x==false && pad.left_y==false)
+		&& pad.left_x==false && pad.left_y==false && hit == false && death == false
+		&& currentAnimation != &hitAnimR && currentAnimation != &PlayerDeathR
+		&& currentAnimation != &hitAnimL && currentAnimation != &PlayerDeathL)
 		{
-		/*if (App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE && currentAnimation != &dmg && currentAnimation != &sdmg && currentAnimation != &FrontSwordAttackR)
-		{*/
 			if (currentAnimation != &idleAnimR
 				&& currentAnimation != &idleAnimL
 				/*&& currentAnimation != &upAnimR
@@ -980,16 +991,48 @@ update_status ModulePlayer::PostUpdate()
 	}
 
 	if (hit == true) {
-		LifesBlue--;
-		hit = false;
+		if (Player_Position == true) {
+			path[0].Update();
+			currentAnimation = path[0].GetCurrentAnimation();
+			if (currentAnimation == &hitAnimRS) {
+				path[0].Reset();
+				hit = false;
+			}
+		}
+		else {
+			path[1].Update();
+			currentAnimation = path[1].GetCurrentAnimation();
+			if (currentAnimation == &hitAnimLS) {
+				path[1].Reset();
+				hit = false;
+			}
+		}
 	}
-	if (LifesBlue==0) {
+	/*if (LifesBlue==0) {
 		LifeCoins--;
 		if (LifeCoins >= 0) {
 			LifesBlue = 10;
 		}
 		else {
 			LifesBlue = 0;
+		}
+	}*/
+	if (death == true) {
+		if (Player_Position == true) {
+			path[2].Update();
+			currentAnimation = path[2].GetCurrentAnimation();
+			if (currentAnimation == &PlayerDeathRS) {
+				path[2].Reset();
+				death = false;
+			}
+		}
+		else {
+			path[3].Update();
+			currentAnimation = path[3].GetCurrentAnimation();
+			if (currentAnimation == &PlayerDeathLS) {
+				path[2].Reset();
+				death = false;
+			}
 		}
 	}
 
@@ -1000,11 +1043,22 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 
 	if (c1 == collider && destroyed == false && god == false) {
-
-		hit=true;
+		hit = true;
+		LifesBlue--;
     }
 
-	if (LifeCoins == -1) {
+	if (c1 == collider && destroyed == false && god == false && LifesBlue == 0) {
+		death = true;
+		LifeCoins--;
+		if (LifeCoins >= 0) {
+			LifesBlue = 10;
+		}
+		else {
+			LifesBlue = 0;
+		}
+	}
+
+	if (LifeCoins == -1 /*&& death == false*/) {
 		App->fade->FadeToBlack((Module*)App->scene, (Module*)App->over, 60);
 	}
 

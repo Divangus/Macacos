@@ -44,6 +44,7 @@ public:
 
 	iPoint position;
 	bool hit = false;
+	bool death = false;
 	int LifeCoins = 0;
 	int LifesBlue = 0;
 
@@ -54,7 +55,7 @@ private:
 
 	bool Player_Position=true;
 
-	Path attack[6];
+	Path path[4];
 	
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;
@@ -94,8 +95,12 @@ private:
 		TwoSwordAttackL,
 		PlayerDeathR,
 		PlayerDeathL,
+		PlayerDeathRS,
+		PlayerDeathLS,
 		hitAnimR,
+		hitAnimRS,
 		hitAnimL,
+		hitAnimLS,
 		dmg,
 		sdmg;
 

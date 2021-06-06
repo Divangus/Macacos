@@ -123,6 +123,7 @@ void Enemy_White::Update()
 			position = position + path[4].GetRelativePosition();
 			currentAnim = path[4].GetCurrentAnimation();
 			if (currentAnim == &front_sdmg) {
+				path[4].Reset();
 				god = false;
 			}
 		}
@@ -131,6 +132,7 @@ void Enemy_White::Update()
 			position = position + path[5].GetRelativePosition();
 			currentAnim = path[5].GetCurrentAnimation();
 			if (currentAnim == &back_sdmg) {
+				path[5].Reset();
 				god = false;
 			}
 		}
