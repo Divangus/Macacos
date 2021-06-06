@@ -24,6 +24,7 @@ bool ModuleParticles::Start()
 	LOG("Loading particles");
 	texture = App->textures->Load("Assets/Orange_Soldier.png");
 	texture2 = App->textures->Load("Assets/White_Soldier.png");
+	DeathExplosionTexture = App->textures->Load("Assets/EnemiesExplosionDeath.png");
 
 	// Explosion particle
 	shuriken_explosion.anim.PushBack({ 739, 52, 16, 18 });
@@ -57,6 +58,16 @@ bool ModuleParticles::Start()
 	knife_front.speed.x = 1;
 	knife_front.lifetime = 120;
 	knife_front.anim.speed = 0.2f;
+
+	DeathExplosion.anim.PushBack({ 308,9,46,49 });
+	DeathExplosion.anim.PushBack({ 261,8,46,49 });
+	DeathExplosion.anim.PushBack({ 214,9,46,49 });
+	DeathExplosion.anim.PushBack({ 159,9,46,49 });
+	DeathExplosion.anim.PushBack({ 107,10,46,49 });
+	DeathExplosion.anim.PushBack({ 60,9,46,49 });
+	DeathExplosion.anim.PushBack({ 4,8,46,49 });
+	DeathExplosion.lifetime = 30;
+	DeathExplosion.anim.speed = 0.2f;
 
 	return true;
 }
@@ -143,6 +154,10 @@ update_status ModuleParticles::PostUpdate()
 			}
 			if (particle->type == 2) {
 				App->render->Blit(texture2, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+			}
+
+			if (particle->type == 3) {
+				App->render->Blit(DeathExplosionTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 			}
 		}
 	}

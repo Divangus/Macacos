@@ -99,6 +99,7 @@
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleTextures.h" />
     <ClInclude Include="ModuleTitle.h" />
+    <ClInclude Include="ModuleWin.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="MemLeaks.h" />
@@ -131,6 +132,7 @@
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleTextures.cpp" />
     <ClCompile Include="ModuleTitle.cpp" />
+    <ClCompile Include="ModuleWin.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Module.cpp" />

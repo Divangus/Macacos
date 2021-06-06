@@ -5,6 +5,7 @@
 #include "ModuleRender.h"
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
+#include "ModuleWin.h"
 #include "ModuleAudio.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
@@ -48,12 +49,16 @@ bool ModuleLevel2::Start() {
 	AprilHelpMeFx = App->audio->LoadFx("Assets/Fx/AprilHelpMeFx.wav");
 	App->audio->PlayMusic("Assets/Fx/Level2Music.ogg");
 
+	
+	App->enemies->AddEnemy(ENEMY_TYPE::BOSS, 300, 100);
+
 	App->audio->PlayFx(AprilHelpMeFx);
 
 	App->render->camera.x = 0;
 		
 	App->player->position.x = 20;
 	App->player->position.y = 100;
+
 
 	return ret;
 }
@@ -90,6 +95,9 @@ update_status ModuleLevel2::Update() {
 
 	if (App->input->keys[SDL_SCANCODE_F3] == KEY_DOWN || pad.l1) {
 		App->fade->FadeToBlack(this, (Module*)App->over, 90);
+	}
+	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN || pad.l2) {
+		App->fade->FadeToBlack(this, (Module*)App->winScreen, 90);
 	}
 	
 

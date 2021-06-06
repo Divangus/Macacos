@@ -126,9 +126,12 @@ update_status ModuleChooseCharacter::Update() {
 	App->render->Blit(EnterCoinsTitleTexture, 0, 0, &(TitleEnterCoin.GetCurrentFrame()), 1);
 
 	if (App->input->keys[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN||pad.y) {
-		coins++;
+		coins+=2;
 		LifeBar10.Update();
 		Blue = 10;
+		if (coins > 9) {
+			coins-=1;
+		}
 
 	}
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN && coins > 0||pad.a && coins>0)

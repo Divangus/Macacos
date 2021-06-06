@@ -1,4 +1,4 @@
-#include "ModuleOver.h"
+#include "ModuleWin.h"
 
 #include "Application.h"
 #include "ModuleTextures.h"
@@ -18,70 +18,80 @@
 #include "SDL/include/SDL_Scancode.h"
 
 
-ModuleOver::ModuleOver(bool startEnabled) : Module(startEnabled)
+ModuleWin::ModuleWin(bool startEnabled) : Module(startEnabled)
 {
 
 }
 
-ModuleOver::~ModuleOver()
+ModuleWin::~ModuleWin()
 {
 
 }
 
 // Load assets
-bool ModuleOver::Start()
+bool ModuleWin::Start()
 {
+
 	LOG("Loading background assets");
 
+	App->player->Disable();
+	App->level2->Disable();
+	App->enemies->Disable();
+	App->collisions->Disable();
 	bool ret = true;
-	
+	Mix_FadeOutMusic(0.0);
+	WinTexture = App->textures->Load("Assets/WinScreen.png");
+	App->audio->PlayMusic("Assets/Fx/WinScreenMusic.ogg", 1.0f);
+
 	App->character->coins = 0;
 
-	/*App->enemies->Disable();
-	App->player->Disable();*/
 	
-	bgTexture = App->textures->Load("Assets/Game_Over.png");
-	Mix_FadeOutMusic(0.0);
-	App->collisions->CleanUp();
-	App->audio->PlayMusic("Assets/Fx/GameOver.ogg", 1.0f);
+
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
+
+	
 
 	return ret;
 }
 
-update_status ModuleOver::Update()
+update_status ModuleWin::Update()
 {
 	// Get gamepad info
 	GamePad& pad = App->input->pads[0];
-	//El següent if serveix per a reiniciar el joc des del game over però falta fer un reset a tots els elements del joc
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN|| pad.a)
+
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || pad.a)
 	{
 		CleanUp();
 		App->fade->FadeToBlack(this, (Module*)App->title, 90);
 		App->scene->active = true;
+
 	}
+
+
+
 	return update_status::UPDATE_CONTINUE;
 }
 
 // Update: draw background
-update_status ModuleOver::PostUpdate()
+update_status ModuleWin::PostUpdate()
 {
-	// Draw everything --------------------------------------
-	App->render->Blit(bgTexture, 0, 0, NULL);
+
+	App->render->Blit(WinTexture, 0, 0, NULL);
 	return update_status::UPDATE_CONTINUE;
 }
 
-bool ModuleOver::CleanUp() {
-	LOG("Clearing Over");
+bool ModuleWin::CleanUp() {
+	LOG("Clearing Intro");
 
-	App->textures->Unload(bgTexture);
+	App->textures->Unload(WinTexture);
 	App->player->CleanUp();
 	App->player->Disable();
 	App->enemies->CleanUp();
 	App->enemies->Disable();
 	App->level2->CleanUp();
 	App->scene->active = true;
+	
 
 	return true;
 }

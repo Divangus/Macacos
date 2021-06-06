@@ -5,6 +5,7 @@
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
+#include "ModuleWin.h"
 #include "ModulePlayer.h"
 #include "ModuleScene.h"
 #include "ModuleParticles.h"
@@ -29,17 +30,18 @@ Application::Application()
 	modules[2] = textures = new ModuleTextures(true);
 	modules[3] = audio = new ModuleAudio(true);
 	modules[4] = sceneIntro = new ModuleIntroScene(true);
-	modules[5] = scene = new ModuleScene(false);
-	modules[6] = level2 = new ModuleLevel2(false);
-	modules[7] = character = new ModuleChooseCharacter(false);
-	modules[8] = title = new ModuleTitle(false);
-	modules[9] = player = new ModulePlayer(false);
-	modules[10] = particles = new ModuleParticles(true);
-	modules[11] = enemies = new ModuleEnemies(false);
-	modules[12] = collisions = new ModuleCollisions(true);
-	modules[13] = fade = new ModuleFadeToBlack(true);
-	modules[14] = over = new ModuleOver(false);
-	modules[15] = render = new ModuleRender(true);
+	modules[5] = winScreen = new ModuleWin(false);
+	modules[6] = scene = new ModuleScene(false);
+	modules[7] = level2 = new ModuleLevel2(false);
+	modules[8] = character = new ModuleChooseCharacter(false);
+	modules[9] = title = new ModuleTitle(false);
+	modules[10] = player = new ModulePlayer(false);
+	modules[11] = particles = new ModuleParticles(true);
+	modules[12] = enemies = new ModuleEnemies(false);
+	modules[13] = collisions = new ModuleCollisions(true);
+	modules[14] = fade = new ModuleFadeToBlack(true);
+	modules[15] = over = new ModuleOver(false);
+	modules[16] = render = new ModuleRender(true);
 	
 }
 

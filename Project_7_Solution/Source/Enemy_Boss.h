@@ -27,7 +27,9 @@ private:
 	// Enemy animations
 	Animation front_iddle, back_iddle, front, back, front_charge, back_charge, front_kick, back_kick,
 		front_getting_hit, back_getting_hit, front_spawn_gun, back_spawn_gun, front_gun, back_gun, front_gun_aim,
+		stop,
 		back_gun_aim, front_shoot, back_shoot, front_gun_kick, back_gun_kick, front_gun_getting_hit, back_gun_getting_hit,
+		
 		back_shot, front_shot;
 
 	//bool melee_attack = false;

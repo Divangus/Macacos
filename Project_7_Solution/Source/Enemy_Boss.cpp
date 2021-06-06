@@ -2,8 +2,10 @@
 
 #include "Application.h"
 #include "ModuleCollisions.h"
+#include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
 #include "ModulePlayer.h"
+#include "ModuleWin.h"
 #include "SDL/include/SDL.h"
 //#include "ModulePlayer.h"
 
@@ -172,6 +174,8 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	front_gun_getting_hit.PushBack({ 60, 1584, 62, 72 });
 	front_gun_getting_hit.speed = 0.1f;
 
+	stop.PushBack({ 435, 1584, 69, 72 });
+
 	//Shot
 	/*
 		
@@ -185,18 +189,49 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 		El png de l'sprite del boss està inicialitzat com a texture4 en el module enemies però no se si s'ha d'assignar al mòdul del boss ni com fer-ho.
 	
 	*/
-	back_shot.PushBack({ 317, 119, 10, 4 });
+	/*back_shot.PushBack({ 317, 119, 10, 4 });
 
-	front_shot.PushBack({ 342, 119, 10, 3 });
+	front_shot.PushBack({ 342, 119, 10, 3 });*/
+
+	path[0].PushBack({ 0.0f, 0.0f }, 30, &front_iddle);
+
+	path[1].PushBack({ 0.0f, 0.0f }, 15, &front_getting_hit);
+	path[1].PushBack({ 0.0f, 0.0f }, 0, &stop);
 
 
-	OrangeCollider = App->collisions->AddCollider({ 0,0, 30, 20 }, Collider::Type::ENEMY, (Module*)App->enemies);
-	OrangeColliderAttack = App->collisions->AddCollider({ 0, 0, 20, 20 }, Collider::Type::BOSS_ATTACK, (Module*)App->enemies);
+	BossCollider = App->collisions->AddCollider({ 0,0, 45, 20 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	BossColliderAttack = App->collisions->AddCollider({ 0, 0, 20, 20 }, Collider::Type::BOSS_ATTACK, (Module*)App->enemies);
 }
 
 void Enemy_Boss::Update()
 {
+	App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::BOSS_ATTACK] = false;
 
+	if (god == true) {
+		if (life == 15 || life == 10 || life == 5) {
+			if (position.x > App->player->position.x){
+				path[1].Update();
+				currentAnim = path[1].GetCurrentAnimation();
+				if (currentAnim == &stop) {
+					path[1].Reset();
+					god = false;
+					App->fade->FadeToBlack((Module*)App->level2, (Module*)App->winScreen, 60);
+				}
+			}
+		}
+		else if (life >= 0 ){
+			god = false;
+		}
+
+	}
+	else {
+		path[0].Update();
+		position = spawnPos + path[0].GetRelativePosition();
+		currentAnim = path[0].GetCurrentAnimation();
+	}
+	if (currentAnim == &front_iddle || currentAnim == &front || currentAnim == &front_charge || currentAnim == &front_kick || currentAnim == &front_getting_hit || currentAnim == &front_spawn_gun || currentAnim == &front_gun || currentAnim == &front_gun_aim || currentAnim == &front_shoot || currentAnim == &front_gun_kick) {
+		Boss_Position = true;
+	}
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
 	Enemy::Update();
