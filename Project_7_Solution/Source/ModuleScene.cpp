@@ -146,9 +146,15 @@ update_status ModuleScene::Update()
 		App->fade->FadeToBlack(this, (Module*)App->over, 90);
 	}
 
+	if(App->input->keys[SDL_SCANCODE_F4] == KEY_DOWN || pad.r2) {
+		App->fade->FadeToBlack(this, (Module*)App->level2, 90);
+	}
+
+
 	if (App->player->position.x == 1240) {
 		App->audio->PlayFx(AprilScreamFx);
 		App->scene->CleanUp();
+		active = false;
 		App->fade->FadeToBlack(this, (Module*)App->level2, 90);
 	}
 

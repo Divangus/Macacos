@@ -438,8 +438,8 @@ update_status ModulePlayer::Update()
 	if (position.x < App->render->LimitPL) {
 		position.x = App->render->LimitPL;
 	}
-	if (position.x > 1280){
-		position.x = 1280;
+	if (position.x > 1375){
+		position.x = 1375;
 	}
 	if (position.y > 135) { //bottom
 		position.y = 135; 
@@ -459,7 +459,7 @@ if (position.x > (App->render->LimitPR)){
 			App->render->LimitPL += speed;
 			App->render->camera.x += App->render->cameraSpeed;
 		}
-	}
+}
 
 	
 
@@ -469,7 +469,7 @@ if (position.x > (App->render->LimitPR)) {
 			App->render->LimitPL += speed;
 			App->render->camera.x += App->render->cameraSpeed;
 		}
-	}
+}
 	
 
 
@@ -910,13 +910,11 @@ update_status ModulePlayer::PostUpdate()
 				App->render->Blit(FireAnimTexture, 314, 138, &(LittleFire.GetCurrentFrame()), 1);
 			}
 		}
-		else if (App->scene->active==true) {
+		else if (App->level2->active==true) {
 			SDL_Rect rect = currentAnimation->GetCurrentFrame();
 			App->render->Blit(texture, position.x, position.y, &rect);//draw player
 		}
 		
-		//SDL_Rect rect = currentAnimation->GetCurrentFrame();
-		//App->render->Blit(texture, position.x-10, position.y+20, &rect);//draw player
 	}
 
 	if (LifeCoins == 0 && LifesBlue == 0) {

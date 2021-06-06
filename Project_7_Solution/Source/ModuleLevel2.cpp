@@ -36,6 +36,8 @@ bool ModuleLevel2::Start() {
 
 	bool ret = true;
 
+	active = true;
+
 	App->enemies->Enable();
 	App->player->Enable();
 
@@ -70,8 +72,8 @@ update_status ModuleLevel2::Update() {
 	if (App->player->position.x < App->render->LimitPL) {
 		App->player->position.x = App->render->LimitPL;
 	}
-	if (App->player->position.x > 480) {
-		App->player->position.x = 480;
+	if (App->player->position.x > 300) {
+		App->player->position.x = 300;
 	}
 	if (App->player->position.y > 135) { //bottom
 		App->player->position.y = 135;

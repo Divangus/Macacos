@@ -23,8 +23,12 @@ public:
 
 	iPoint position;
 
+	bool active = false;
 
 private:
+
+	
+
 	int speed = 1;
 
 	SDL_Texture* BackgroundLevel2Texture = nullptr;

@@ -113,6 +113,8 @@ bool ModuleChooseCharacter::Start() {
 }
 
 update_status ModuleChooseCharacter::Update() {
+
+
 	// Get gamepad info
 	GamePad& pad = App->input->pads[0];
 	if (coins > 0) {
@@ -132,6 +134,10 @@ update_status ModuleChooseCharacter::Update() {
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN && coins > 0||pad.a && coins>0)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->scene, 90);
+	}
+
+	if (App->input->keys[SDL_SCANCODE_F4] == KEY_DOWN || pad.r2) {
+		App->fade->FadeToBlack(this, (Module*)App->level2, 90);
 	}
 	
 	return update_status::UPDATE_CONTINUE;

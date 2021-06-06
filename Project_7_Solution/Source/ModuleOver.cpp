@@ -8,6 +8,7 @@
 #include "ModuleAudio.h"
 #include "ModuleInput.h"
 #include "ModuleEnemies.h"
+#include "ModuleLevel2.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleCollisions.h"
@@ -73,6 +74,10 @@ bool ModuleOver::CleanUp() {
 
 	App->textures->Unload(bgTexture);
 	App->player->CleanUp();
+	App->player->Disable();
+	App->enemies->CleanUp();
+	App->enemies->Disable();
+	App->level2->CleanUp();
 
 	return true;
 }
