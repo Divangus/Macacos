@@ -422,7 +422,7 @@ update_status ModulePlayer::Update()
 	App->player->position.x += 0;
 
 	//player limits
-	if (App->scene->active == true) {
+	/*if (App->scene->active == true) {*/
 	if (position.x < App->render->LimitPL) {
 		position.x = App->render->LimitPL;
 	}
@@ -438,26 +438,7 @@ update_status ModulePlayer::Update()
 	if (position.x < 0) {
 		position.x = 0;
 	}
-	}
-	else if (App->scene->active == false) {
-		if (position.x < App->render->LimitPL) {
-			position.x = App->render->LimitPL;
-		}
-		if (position.x > 480) {
-			position.x = 480;
-		}
-		if (position.y > 135) { //bottom
-			position.y = 135;
-		}
-		if (position.y < 50) {//top
-			position.y = 50;
-		}
-		if (position.x < 0) {
-			position.x = 0;
-		}
-	}
-	
-	
+	/*}*/
 
 	
 if (position.x > (App->render->LimitPR)){
@@ -917,9 +898,9 @@ update_status ModulePlayer::PostUpdate()
 				App->render->Blit(FireAnimTexture, 314, 138, &(LittleFire.GetCurrentFrame()), 1);
 			}
 		}
-		else if (App->scene->active==false) {
+		else if (App->scene->active==true) {
 			SDL_Rect rect = currentAnimation->GetCurrentFrame();
-			App->render->Blit(texture, position.x - 10, position.y + 20, &rect);//draw player
+			App->render->Blit(texture, position.x, position.y, &rect);//draw player
 		}
 		
 		//SDL_Rect rect = currentAnimation->GetCurrentFrame();
