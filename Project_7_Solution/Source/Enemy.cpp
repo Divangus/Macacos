@@ -101,7 +101,7 @@ void Enemy::OnCollision(Collider* collider)
 	}
 	if (life == 0 && god == false) {
 		App->audio->PlayFx(destroyedFx);
-		App->particles->AddParticle(App->particles->DeathExplosion, position.x - 20, position.y + 20, 3);
+		App->particles->AddParticle(App->particles->DeathExplosion, position.x + 20, position.y + 20, 3);
 		destroyed = true;
 	}
 }

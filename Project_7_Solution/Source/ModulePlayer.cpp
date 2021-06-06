@@ -894,8 +894,11 @@ if (position.x > (App->render->LimitPR)) {
 
 	//lives
 	if (App->input->keys[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN||pad.y) {
-		LifeCoins++;
+		LifeCoins+=2;
 		LifesBlue = 10;
+		if (LifeCoins > 9) {
+			LifeCoins-=1;
+		}
 	}
 
 	

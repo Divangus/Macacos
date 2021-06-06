@@ -2,8 +2,10 @@
 
 #include "Application.h"
 #include "ModuleCollisions.h"
+#include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
 #include "ModulePlayer.h"
+#include "ModuleWin.h"
 #include "SDL/include/SDL.h"
 //#include "ModulePlayer.h"
 
@@ -213,6 +215,7 @@ void Enemy_Boss::Update()
 				if (currentAnim == &stop) {
 					path[1].Reset();
 					god = false;
+					App->fade->FadeToBlack((Module*)App->level2, (Module*)App->winScreen, 60);
 				}
 			}
 		}

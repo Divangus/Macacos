@@ -66,8 +66,8 @@ bool ModuleParticles::Start()
 	DeathExplosion.anim.PushBack({ 107,10,46,49 });
 	DeathExplosion.anim.PushBack({ 60,9,46,49 });
 	DeathExplosion.anim.PushBack({ 4,8,46,49 });
-	DeathExplosion.lifetime = 60;
-	DeathExplosion.anim.speed = 0.4f;
+	DeathExplosion.lifetime = 30;
+	DeathExplosion.anim.speed = 0.2f;
 
 	return true;
 }
