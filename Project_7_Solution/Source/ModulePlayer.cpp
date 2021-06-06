@@ -384,6 +384,9 @@ bool ModulePlayer::Start()
 	App->player->position.x = 40;
 	App->player->position.y = 120;
 
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
+
 	//position.x = 40;
 	//position.y = 120;
 
