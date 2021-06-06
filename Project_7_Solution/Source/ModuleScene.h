@@ -29,6 +29,9 @@ public:
 
 	bool CleanUp() override;
 
+	bool level1_clear = false;
+	int dead_enemies = 0;
+
 public:
 
 	bool active = true;
