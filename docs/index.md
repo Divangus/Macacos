@@ -10,10 +10,13 @@ The story is about rescuing April O'Neil kidnapped by the evil Shredder. The obj
 ![Si](https://i0.wp.com/vgalmanac.com/wp-content/uploads/2018/04/Screenshot_2018-04-16-19-06-23.png?ssl=1)
 
 
+## Gameplay
+
+
 
 ## Who we are?
 
-We are macacos a group of four students of UPC (CITM), the university is in Terrasa, Spain.
+We are Macacos, a group of four students of UPC (CITM), the university is in Terrasa, Spain.
 The members of the group are:
 
 ### David Benages
@@ -87,4 +90,8 @@ Art and Website
 - L1 - Direct Lose
 - L2 - Direct Win
 - R2 - Direct Level 2
+
+## Game download
+
+Link to the last Release version [here](https://github.com/Divangus/Macacos/releases/tag/v1.0).
 
