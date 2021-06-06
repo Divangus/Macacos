@@ -248,7 +248,7 @@ void Enemy_Orange::Update()
 		}
 		else {
 			//attack == false;
-			if (position.x > App->player->position.x + 180 || position.x < App->player->position.x - 180) {
+			if (position.x > App->player->position.x + 120 || position.x < App->player->position.x - 120) {
 				follow = true;
 			}
 			else {
