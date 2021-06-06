@@ -28,14 +28,14 @@ Gamepad
 Keyboard
 - F1 - Collisions
 - F2 - God Mode
-- F3 - Direct lose
+- F3 - Direct loose
 - F4 - Direct level 2
 - F5 - Direct win
 
 Gamepad
 - R1 - Collisions
 - X - God mode
-- L1 - Direct lose
+- L1 - Direct loose
 - L2 - Direct win
 - R2 - Direct level 2
 
