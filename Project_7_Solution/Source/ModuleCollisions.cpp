@@ -138,7 +138,9 @@ update_status ModuleCollisions::PreUpdate()
 
 update_status ModuleCollisions::Update()
 {
-	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN) {
+	// Get gamepad info
+	GamePad& pad = App->input->pads[0];
+	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN||pad.r1) {
 		if (debug == true) {
 			debug = false;
 		}

@@ -380,7 +380,8 @@ bool ModulePlayer::Start()
 
 update_status ModulePlayer::Update()
 {
-
+	// Get gamepad info
+	GamePad& pad = App->input->pads[0];
 
 	LittleFire.Update();
 	InsertCoins.Update();
@@ -451,7 +452,7 @@ update_status ModulePlayer::Update()
 
 
 	//left
-	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT||pad.left_x < 0.0f)
 	{
 		position.x -= speed;
 
@@ -464,7 +465,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//right
-	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || pad.left_x > 0.0f)
 	{
 		position.x += speed;
 		if (currentAnimation != &rightAnim)
@@ -476,7 +477,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//left and up
-	else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || pad.left_x < 0.0f && pad.left_y < 0.0f)
 	{
 		currentAnimation = &upAnimL;
 		if (currentAnimation != &upAnimL)
@@ -488,7 +489,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//left and down
-	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT || pad.left_x < 0.0f && pad.left_y > 0.0f)
 	{
 		currentAnimation = &downAnimL;
 		if (currentAnimation != &downAnimL)
@@ -500,7 +501,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//right and up
-	else if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
+	else if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || pad.left_x > 0.0f && pad.left_y < 0.0f)
 	{
 		currentAnimation = &upAnimR;
 		if (currentAnimation != &upAnimR)
@@ -512,7 +513,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//right and down
-	else if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+	else if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT || pad.left_x > 0.0f && pad.left_y > 0.0f)
 	{
 		currentAnimation = &downAnimR;
 		if (currentAnimation != &downAnimR)
@@ -524,7 +525,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//down
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT|| pad.left_y > 0.0f)
 	{
 		position.y += speed;
 		if (currentAnimation != &downAnimR && currentAnimation!= &downAnimL)
@@ -541,7 +542,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//up
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || pad.left_y < 0.0f)
 	{
 		position.y -= speed;
 		if (currentAnimation != &upAnimR && currentAnimation != &upAnimL)
@@ -558,32 +559,104 @@ update_status ModulePlayer::Update()
 	}
 
 	//Attack + move
-	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT || pad.left_x > 0.0f && pad.b)
 	{
-		currentAnimation = &FrontSwordAttackR;
-		if (currentAnimation != &FrontSwordAttackR)
-		{
-			FrontSwordAttackR.Reset();
-			currentAnimation = &FrontSwordAttackR;
-			Player_Position = true;
+		int num = (rand() % 3);
+
+		if (num == 0) {
+			if (Player_Position == true) {
+				FrontSwordAttackR.Reset();
+				currentAnimation = &FrontSwordAttackR;
+				/*attack[0].Update();
+				currentAnimation = attack[0].GetCurrentAnimation();*/
+			}
+			if (Player_Position == false) {
+				FrontSwordAttackL.Reset();
+				currentAnimation = &FrontSwordAttackL;
+			}
+
+			App->audio->PlayFx(PlayerAttackFx);
 		}
+
+		if (num == 1) {
+			if (Player_Position == true) {
+				LegAttackR.Reset();
+				currentAnimation = &LegAttackR;
+			}
+			if (Player_Position == false) {
+				LegAttackL.Reset();
+				currentAnimation = &LegAttackL;
+			}
+
+			App->audio->PlayFx(PlayerAttackFx);
+		}
+		if (num == 2) {
+			if (Player_Position == true) {
+				TwoSwordAttackR.Reset();
+				currentAnimation = &TwoSwordAttackR;
+
+			}
+			if (Player_Position == false) {
+				TwoSwordAttackL.Reset();
+				currentAnimation = &TwoSwordAttackL;
+			}
+
+
+		}
+		App->audio->PlayFx(PlayerAttackFx);
 	}
-	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT || pad.left_x < 0.0f && pad.b)
 	{
-		currentAnimation = &FrontSwordAttackL;
-		if (currentAnimation != &FrontSwordAttackL)
-		{
-			FrontSwordAttackL.Reset();
-			currentAnimation = &FrontSwordAttackL;
-			Player_Position = true;
+		int num = (rand() % 3);
+
+		if (num == 0) {
+			if (Player_Position == true) {
+				FrontSwordAttackR.Reset();
+				currentAnimation = &FrontSwordAttackR;
+				/*attack[0].Update();
+				currentAnimation = attack[0].GetCurrentAnimation();*/
+			}
+			if (Player_Position == false) {
+				FrontSwordAttackL.Reset();
+				currentAnimation = &FrontSwordAttackL;
+			}
+
+			App->audio->PlayFx(PlayerAttackFx);
 		}
+
+		if (num == 1) {
+			if (Player_Position == true) {
+				LegAttackR.Reset();
+				currentAnimation = &LegAttackR;
+			}
+			if (Player_Position == false) {
+				LegAttackL.Reset();
+				currentAnimation = &LegAttackL;
+			}
+
+			App->audio->PlayFx(PlayerAttackFx);
+		}
+		if (num == 2) {
+			if (Player_Position == true) {
+				TwoSwordAttackR.Reset();
+				currentAnimation = &TwoSwordAttackR;
+
+			}
+			if (Player_Position == false) {
+				TwoSwordAttackL.Reset();
+				currentAnimation = &TwoSwordAttackL;
+			}
+
+
+		}
+		App->audio->PlayFx(PlayerAttackFx);
 	}
 
 	//Front attack
-	if (App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_DOWN)
+	if (App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_DOWN||pad.b)
 	{
-		//int num = (rand() % 3);
-		int num = 0;
+		int num = (rand() % 3);
+
 		if (num == 0) {
 				if (Player_Position == true) {
 					FrontSwordAttackR.Reset();
@@ -628,7 +701,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//jump
-	else if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT)
+	else if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT||pad.a)
 	{
 		if (currentAnimation != &jumpAnimR && currentAnimation != &jumpAnimL)
 		{
@@ -644,7 +717,8 @@ update_status ModulePlayer::Update()
 			}
 		}
 	}
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || pad.left_x > 0.0f && pad.a)
 	{
 		if (currentAnimation != &jumpAnimR && currentAnimation != &jumpAnimL)
 		{
@@ -660,7 +734,8 @@ update_status ModulePlayer::Update()
 			}
 		}
 	}
-	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+
+	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || pad.left_x < 0.0f && pad.a)
 	{
 		if (currentAnimation != &jumpAnimR && currentAnimation != &jumpAnimL)
 		{
@@ -678,7 +753,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//left and right pressed
-	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || pad.left_x < 0.0f && pad.left_x > 0.0f)
 	{
 		if (currentAnimation != &rightAnim
 			&& currentAnimation != &leftAnim)
@@ -695,7 +770,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//up and down pressed
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT|| pad.left_y > 0.0f && pad.left_y < 0.0f)
 	{
 		if (currentAnimation != &upAnimL
 			&& currentAnimation != &downAnimL
@@ -723,7 +798,8 @@ update_status ModulePlayer::Update()
 		&& App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
 		&& App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE 
 		&& App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_IDLE)
+		&& App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_IDLE
+		&& pad.left_x==false && pad.left_y==false)
 		{
 		/*if (App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE && currentAnimation != &dmg && currentAnimation != &sdmg && currentAnimation != &FrontSwordAttackR)
 		{*/
@@ -766,7 +842,7 @@ update_status ModulePlayer::Update()
 			return update_status::UPDATE_STOP;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_F2] == KEY_DOWN) {
+	if (App->input->keys[SDL_SCANCODE_F2] == KEY_DOWN||pad.x) {
 		if (god == true) {
 			god = false;
 		}

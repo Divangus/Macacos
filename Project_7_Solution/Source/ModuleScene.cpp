@@ -107,6 +107,9 @@ bool ModuleScene::Start()
 
 update_status ModuleScene::Update()
 {
+	// Get gamepad info
+	GamePad& pad = App->input->pads[0];
+
 	App->render->camera.x += 0;
 	
 	//Fire.Update();
@@ -136,7 +139,7 @@ update_status ModuleScene::Update()
 	
 	DoorFire.Update();
 
-	if (App->input->keys[SDL_SCANCODE_F3] == KEY_DOWN) {
+	if (App->input->keys[SDL_SCANCODE_F3] == KEY_DOWN||pad.l1) {
 		App->fade->FadeToBlack(this, (Module*)App->over, 90);
 	}
 
