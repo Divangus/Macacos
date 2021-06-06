@@ -16,7 +16,7 @@ The story is about rescuing April O'Neil kidnapped by the evil Shredder. The obj
 
 ## Who we are?
 
-We are macacos a group of four students of UPC (CITM), the university is in Terrasa, Spain.
+We are Macacos, a group of four students of UPC (CITM), the university is in Terrasa, Spain.
 The members of the group are:
 
 ### David Benages
