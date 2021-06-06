@@ -38,7 +38,7 @@ Code (Enemys)
 Code and UI
 
 
-## Controls
+## Controls (keyboard)
 
 ### Intro
 
@@ -60,5 +60,28 @@ Code and UI
 - F1 - Colisions
 - F2 - God Mode
 - F3 - Direct win/lose
+
+## Controls (gamepad)
+
+### Intro
+
+- A - Skip intro animation
+
+### Menu
+
+- Y - Add two lives
+- A - Start playing
+
+### Ingame 
+
+- Left joystick  - Movement
+- A - Jump
+- B - Attack
+
+### Debug functionality
+
+- R1 - Colisions
+- X - God Mode
+- L1 - Direct win/lose
 
 
