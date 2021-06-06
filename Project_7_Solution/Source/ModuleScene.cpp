@@ -78,6 +78,7 @@ bool ModuleScene::Start()
 
 	bool ret = true;
 
+
 	bgTexture = App->textures->Load("Assets/background.png");
 	hudTexture = App->textures->Load("Assets/hud.png");
 	/*Fire_Texture = App->textures->Load("Assets/frontFire.png");*/
@@ -146,8 +147,8 @@ update_status ModuleScene::Update()
 	if (App->player->position.x == 1240) {
 		App->audio->PlayFx(AprilScreamFx);
 		App->render->camera.x += 1;
+		App->scene->CleanUp();
 		App->fade->FadeToBlack(this, (Module*)App->level2, 90);
-
 	}
 
 	return update_status::UPDATE_CONTINUE;
@@ -221,6 +222,8 @@ bool ModuleScene::CleanUp() {
 	App->textures->Unload(Quotes_Texture);
 	App->player->Disable();
 	App->enemies->Disable();
+
+	active = false;
 
 	return true;
 }

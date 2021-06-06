@@ -26,12 +26,18 @@ bool ModuleLevel2::Start() {
 	bool ret = true;
 
 	BackgroundLevel2Texture = App->textures->Load("Assets/Level2.png");
+	HudTexture = App->textures->Load("Assets/hud.png");
 
+	App->render->camera.x = 0;
+	
 	position.x = 40;
 	position.y = 120;
 
 	App->enemies->Enable();
 	App->player->Enable();
+
+	App->player->position.x = 20;
+	App->player->position.y = 100;
 
 	return ret;
 }
@@ -81,6 +87,7 @@ bool ModuleLevel2::CleanUp() {
 	LOG("Clearing Over");
 
 	App->textures->Unload(BackgroundLevel2Texture);
+	App->textures->Unload(HudTexture);
 
 	return true;
 }

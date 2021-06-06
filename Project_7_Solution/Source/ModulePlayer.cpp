@@ -1,6 +1,7 @@
 #include "ModulePlayer.h"
 
 #include "Application.h"
+#include "ModuleScene.h"
 #include "ModuleTextures.h"
 #include "ModuleChooseCharacter.h"
 #include "ModuleTitle.h"
@@ -417,6 +418,7 @@ update_status ModulePlayer::Update()
 	App->player->position.x += 0;
 
 	//player limits
+	if (App->scene->active == true) {
 	if (position.x < App->render->LimitPL) {
 		position.x = App->render->LimitPL;
 	}
@@ -432,23 +434,46 @@ update_status ModulePlayer::Update()
 	if (position.x < 0) {
 		position.x = 0;
 	}
+	}
+	else if (App->scene->active == false) {
+		if (position.x < App->render->LimitPL) {
+			position.x = App->render->LimitPL;
+		}
+		if (position.x > 480) {
+			position.x = 480;
+		}
+		if (position.y > 135) { //bottom
+			position.y = 135;
+		}
+		if (position.y < 50) {//top
+			position.y = 50;
+		}
+		if (position.x < 0) {
+			position.x = 0;
+		}
+	}
+	
 	
 
-	//camera
-	if (position.x > (App->render->LimitPR)){
+	
+if (position.x > (App->render->LimitPR)){
 		if (App->render->camera.x < LIMIT_CAMERA_LEVEL1){
 			App->render->LimitPR += speed;
 			App->render->LimitPL += speed;
 			App->render->camera.x += App->render->cameraSpeed;
 		}
 	}
-	if (position.x > (App->render->LimitPR)) {
+
+	
+
+if (position.x > (App->render->LimitPR)) {
 		if (App->render->camera.x < LIMIT_CAMERA_LEVEL2) {
 			App->render->LimitPR += speed;
 			App->render->LimitPL += speed;
 			App->render->camera.x += App->render->cameraSpeed;
 		}
 	}
+	
 
 
 	//left
@@ -874,16 +899,23 @@ update_status ModulePlayer::PostUpdate()
 
 	if (!destroyed)
 	{	
-		if (App->player->position.y > 69) {
-			App->render->Blit(FireAnimTexture, 314, 138, &(LittleFire.GetCurrentFrame()), 1);
+		if (App->scene->active==true) {
+			if (App->player->position.y > 69) {
+				App->render->Blit(FireAnimTexture, 314, 138, &(LittleFire.GetCurrentFrame()), 1);
+				SDL_Rect rect = currentAnimation->GetCurrentFrame();
+				App->render->Blit(texture, position.x - 10, position.y + 20, &rect);//draw player
+			}
+			else {
+				SDL_Rect rect = currentAnimation->GetCurrentFrame();
+				App->render->Blit(texture, position.x - 10, position.y + 20, &rect);//draw player
+				App->render->Blit(FireAnimTexture, 314, 138, &(LittleFire.GetCurrentFrame()), 1);
+			}
+		}
+		else if (App->scene->active==false) {
 			SDL_Rect rect = currentAnimation->GetCurrentFrame();
 			App->render->Blit(texture, position.x - 10, position.y + 20, &rect);//draw player
 		}
-		else {
-			SDL_Rect rect = currentAnimation->GetCurrentFrame();
-			App->render->Blit(texture, position.x - 10, position.y + 20, &rect);//draw player
-			App->render->Blit(FireAnimTexture, 314, 138, &(LittleFire.GetCurrentFrame()), 1);
-		}
+		
 		//SDL_Rect rect = currentAnimation->GetCurrentFrame();
 		//App->render->Blit(texture, position.x-10, position.y+20, &rect);//draw player
 	}

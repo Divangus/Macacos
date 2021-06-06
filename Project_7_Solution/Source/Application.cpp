@@ -38,9 +38,8 @@ Application::Application()
 	modules[11] = enemies = new ModuleEnemies(false);
 	modules[12] = collisions = new ModuleCollisions(true);
 	modules[13] = fade = new ModuleFadeToBlack(true);
-	modules[14] = level2 = new ModuleLevel2(false);
-	modules[15] = over = new ModuleOver(false);
-	modules[16] = render = new ModuleRender(true);
+	modules[14] = over = new ModuleOver(false);
+	modules[15] = render = new ModuleRender(true);
 	
 }
 

@@ -30,6 +30,8 @@ public:
 	bool CleanUp() override;
 
 public:
+
+	bool active = true;
 	
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
