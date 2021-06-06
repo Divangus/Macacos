@@ -2,15 +2,16 @@
 #define __MODULEFADETOBLACK_H__
 
 #include "Module.h"
+
 #include "SDL\include\SDL_rect.h"
 
 class ModuleFadeToBlack : public Module
 {
 public:
-	//Constructor
+	// Constructor
 	ModuleFadeToBlack(bool startEnabled);
 
-	//Destructor
+	// Destructor
 	~ModuleFadeToBlack();
 
 	// Called when the module is activated
@@ -52,3 +53,4 @@ private:
 };
 
 #endif //__MODULEFADETOBLACK_H__
+

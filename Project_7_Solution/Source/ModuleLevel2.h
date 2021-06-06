@@ -23,6 +23,7 @@ public:
 
 	iPoint position;
 
+
 private:
 	int speed = 1;
 
@@ -30,6 +31,12 @@ private:
 
 	SDL_Texture* HudTexture = nullptr;
 
-	Animation BackgroundLevel2, hud;
+	SDL_Texture* SmokeTexture = nullptr;
+
+	SDL_Texture* AprilTexture = nullptr;
+
+	Animation BackgroundLevel2, hud, Smoke,April;
+
+	uint AprilHelpMeFx = 0;
 };
 #endif

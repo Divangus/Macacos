@@ -146,7 +146,6 @@ update_status ModuleScene::Update()
 
 	if (App->player->position.x == 1240) {
 		App->audio->PlayFx(AprilScreamFx);
-		App->render->camera.x += 1;
 		App->scene->CleanUp();
 		App->fade->FadeToBlack(this, (Module*)App->level2, 90);
 	}
@@ -220,7 +219,7 @@ bool ModuleScene::CleanUp() {
 	App->textures->Unload(hudTexture);
 	App->textures->Unload(Elements_Texture);
 	App->textures->Unload(Quotes_Texture);
-	App->player->Disable();
+	/*App->player->Disable();*/
 	App->enemies->Disable();
 
 	active = false;
