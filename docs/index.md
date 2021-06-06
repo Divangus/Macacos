@@ -59,7 +59,9 @@ Art and Website
 
 - F1 - Colisions
 - F2 - God Mode
-- F3 - Direct win/lose
+- F3 - Direct loose
+- F4 - Direct level 2
+- F5 - Direct win
 
 ## Controls (gamepad)
 
