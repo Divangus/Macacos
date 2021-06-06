@@ -234,11 +234,19 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 					enemies[i] = new Enemy_Orange(info.x, info.y);
 					enemies[i]->texture = texture;
 					enemies[i]->EnemyType = 2;
+					enemies[i]->life = 3;
 					break;
 				case ENEMY_TYPE::WHITE:
 					enemies[i] = new Enemy_White(info.x, info.y);
 					enemies[i]->texture = texture3;
 					enemies[i]->EnemyType = 3;
+					enemies[i]->life = 3;
+					break;
+				case ENEMY_TYPE::BOSS:
+					enemies[i] = new Enemy_Boss(info.x, info.y);
+					enemies[i]->texture = texture4;
+					enemies[i]->EnemyType = 4;
+					enemies[i]->life = 20;
 					break;
 			}
 			

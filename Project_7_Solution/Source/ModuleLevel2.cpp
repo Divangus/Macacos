@@ -48,12 +48,16 @@ bool ModuleLevel2::Start() {
 	AprilHelpMeFx = App->audio->LoadFx("Assets/Fx/AprilHelpMeFx.wav");
 	App->audio->PlayMusic("Assets/Fx/Level2Music.ogg");
 
+	
+	App->enemies->AddEnemy(ENEMY_TYPE::BOSS, 300, 100);
+
 	App->audio->PlayFx(AprilHelpMeFx);
 
 	App->render->camera.x = 0;
 		
 	App->player->position.x = 20;
 	App->player->position.y = 100;
+
 
 	return ret;
 }
