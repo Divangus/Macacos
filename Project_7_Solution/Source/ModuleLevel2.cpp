@@ -66,19 +66,19 @@ update_status ModuleLevel2::Update() {
 	hud.Update();
 	Smoke.Update();
 
-	if (App->render->camera.x > LIMIT_CAMERA_LEVEL2) {
-		App->render->camera.x = LIMIT_CAMERA_LEVEL2;
-	}
+	//if (App->render->camera.x > LIMIT_CAMERA_LEVEL2) {
+	//	App->render->camera.x = LIMIT_CAMERA_LEVEL2;
+	//}
 	if (App->player->position.x < App->render->LimitPL) {
 		App->player->position.x = App->render->LimitPL;
 	}
 	if (App->player->position.x > 300) {
 		App->player->position.x = 300;
 	}
-	if (App->player->position.y > 140) { //bottom
-		App->player->position.y = 140;
+	if (App->player->position.y > 145) { //bottom
+		App->player->position.y = 145;
 	}
-	if (App->player->position.y < 55) {//top
+	if (App->player->position.y < 60) {//top
 		App->player->position.y = 55;
 	}
 	if (App->player->position.x < 0) {

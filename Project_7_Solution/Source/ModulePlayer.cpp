@@ -322,14 +322,14 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 
 	hitAnimRS.PushBack({ 409,1108,77,86 });
 
-	hitAnimL.PushBack({ 1708,3179,77,86 });
-	hitAnimL.PushBack({ 1620,3179,77,86 });
-	hitAnimL.PushBack({ 1519,3179,77,86 });
-	hitAnimL.PushBack({ 1416,3179,77,86 });
-	hitAnimL.PushBack({ 1338,3179,77,86 });
+	hitAnimL.PushBack({ 1708,3182,77,86 });
+	hitAnimL.PushBack({ 1620,3182,77,86 });
+	hitAnimL.PushBack({ 1519,3182,77,86 });
+	hitAnimL.PushBack({ 1416,3182,77,86 });
+	hitAnimL.PushBack({ 1338,3182,77,86 });
 	hitAnimL.speed = 0.2f;
 
-	hitAnimLS.PushBack({ 1338,3179,77,86 });
+	hitAnimLS.PushBack({ 1338,3182,77,86 });
 
 	path[0].PushBack({ 0.0f, 0.0f }, 25, &hitAnimR);
 	path[0].PushBack({ 0.0f, 0.0f }, 0, &hitAnimRS);
@@ -369,9 +369,11 @@ bool ModulePlayer::Start()
 	PlayerAttackFx = App->audio->LoadFx("Assets/Fx/PlayerAttackFx.wav");
 	AttackQuoteFx = App->audio->LoadFx("Assets/Fx/AttackQuote.wav");
 	
+	App->player->position.x = 40;
+	App->player->position.y = 120;
 
-	position.x = 40;
-	position.y = 120;
+	//position.x = 40;
+	//position.y = 120;
 
 	QuoteAttack.Reset();
 
@@ -410,7 +412,7 @@ update_status ModulePlayer::Update()
 		colliderAttack->SetPos(position.x + 30, position.y + 85);
 	}
 	if (Player_Position == false) {
-		collider->SetPos(position.x+13, position.y + 85);
+		collider->SetPos(position.x + 8, position.y + 85);
 		colliderAttack->SetPos(position.x -2, position.y + 85);
 	}
 	if (currentAnimation == &FrontSwordAttackR || currentAnimation == &FrontSwordAttackL || currentAnimation==&LegAttackR || currentAnimation == &LegAttackL || currentAnimation == &TwoSwordAttackR || currentAnimation == &TwoSwordAttackL) {
@@ -888,13 +890,9 @@ if (position.x > (App->render->LimitPR)) {
 
 update_status ModulePlayer::PostUpdate()
 {
-	
 
-
-	//if (App->render->camera.x == 0) {
-	//	App->audio->PlayFx(AttackQuoteFx);
-	//}
-
+	// Get gamepad info
+	GamePad& pad = App->input->pads[0];
 
 	if (!destroyed)
 	{	
@@ -911,10 +909,11 @@ update_status ModulePlayer::PostUpdate()
 			}
 		}
 		else if (App->level2->active==true) {
-			App->player->position.x = 0;
-			App->player->position.y = 0;
+			/*App->player->position.x = 0;
+			App->player->position.y = 0;*/
+	
 			SDL_Rect rect = currentAnimation->GetCurrentFrame();
-			App->render->Blit(texture, position.x + 10, position.y + 110, &rect);//draw player
+			App->render->Blit(texture, position.x, position.y, &rect);//draw player
 		}
 		
 	}

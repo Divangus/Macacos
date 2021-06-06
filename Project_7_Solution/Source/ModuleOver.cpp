@@ -4,8 +4,9 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleTitle.h"
-#include"ModuleChooseCharacter.h"
+#include "ModuleChooseCharacter.h"
 #include "ModuleAudio.h"
+#include "ModuleScene.h"
 #include "ModuleInput.h"
 #include "ModuleEnemies.h"
 #include "ModuleLevel2.h"
@@ -56,7 +57,7 @@ update_status ModuleOver::Update()
 	{
 		CleanUp();
 		App->fade->FadeToBlack(this, (Module*)App->title, 90);
-
+		App->scene->active = true;
 	}
 	return update_status::UPDATE_CONTINUE;
 }
@@ -78,6 +79,7 @@ bool ModuleOver::CleanUp() {
 	App->enemies->CleanUp();
 	App->enemies->Disable();
 	App->level2->CleanUp();
+	App->scene->active = true;
 
 	return true;
 }
