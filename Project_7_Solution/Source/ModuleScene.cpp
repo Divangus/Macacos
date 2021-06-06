@@ -142,6 +142,10 @@ update_status ModuleScene::Update()
 		App->fade->FadeToBlack(this, (Module*)App->over, 90);
 	}
 
+	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN || pad.l2) {
+		App->fade->FadeToBlack(this, (Module*)App->winScreen, 90);
+	}
+
 	if(App->input->keys[SDL_SCANCODE_F4] == KEY_DOWN || pad.r2) {
 		App->fade->FadeToBlack(this, (Module*)App->level2, 90);
 	}

@@ -5,6 +5,7 @@
 #include "ModuleRender.h"
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
+#include "ModuleWin.h"
 #include "ModuleAudio.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
@@ -94,6 +95,9 @@ update_status ModuleLevel2::Update() {
 
 	if (App->input->keys[SDL_SCANCODE_F3] == KEY_DOWN || pad.l1) {
 		App->fade->FadeToBlack(this, (Module*)App->over, 90);
+	}
+	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN || pad.l2) {
+		App->fade->FadeToBlack(this, (Module*)App->winScreen, 90);
 	}
 	
 

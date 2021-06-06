@@ -31,15 +31,21 @@ ModuleWin::~ModuleWin()
 // Load assets
 bool ModuleWin::Start()
 {
+
 	LOG("Loading background assets");
 
+	App->player->Disable();
+	App->level2->Disable();
+	App->enemies->Disable();
+	App->collisions->Disable();
 	bool ret = true;
-
+	Mix_FadeOutMusic(0.0);
 	WinTexture = App->textures->Load("Assets/WinScreen.png");
+	App->audio->PlayMusic("Assets/Fx/WinScreenMusic.ogg", 1.0f);
 
 	App->character->coins = 0;
 
-	Mix_FadeOutMusic(0.0);
+	
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
