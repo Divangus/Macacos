@@ -852,7 +852,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//lives
-	if (App->input->keys[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN) {
+	if (App->input->keys[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN||pad.y) {
 		LifeCoins++;
 		LifesBlue = 10;
 	}
