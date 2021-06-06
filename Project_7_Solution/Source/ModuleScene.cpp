@@ -87,7 +87,7 @@ bool ModuleScene::Start()
 	App->audio->PlayMusic("Assets/stage1.ogg", 1.0f);
 	AprilScreamFx = App->audio->LoadFx("Assets/Fx/AprilScreamFx.wav");
 
-
+	active = true;
 	
 	//App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 220, 120);
 
@@ -133,12 +133,6 @@ update_status ModuleScene::Update()
 	
 	liftFire.Update();
 	AttackQuote.Update();
-
-	//spawn enemies
-	/*if (App->render->camera.x > 260) {
-		App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 411, 120);
-	}*/
-
 	
 	DoorFire.Update();
 

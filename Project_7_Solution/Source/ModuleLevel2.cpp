@@ -75,11 +75,11 @@ update_status ModuleLevel2::Update() {
 	if (App->player->position.x > 300) {
 		App->player->position.x = 300;
 	}
-	if (App->player->position.y > 135) { //bottom
-		App->player->position.y = 135;
+	if (App->player->position.y > 140) { //bottom
+		App->player->position.y = 140;
 	}
-	if (App->player->position.y < 50) {//top
-		App->player->position.y = 50;
+	if (App->player->position.y < 55) {//top
+		App->player->position.y = 55;
 	}
 	if (App->player->position.x < 0) {
 		App->player->position.x = 0;

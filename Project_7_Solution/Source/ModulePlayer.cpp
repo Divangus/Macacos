@@ -911,8 +911,10 @@ update_status ModulePlayer::PostUpdate()
 			}
 		}
 		else if (App->level2->active==true) {
+			App->player->position.x = 0;
+			App->player->position.y = 0;
 			SDL_Rect rect = currentAnimation->GetCurrentFrame();
-			App->render->Blit(texture, position.x, position.y, &rect);//draw player
+			App->render->Blit(texture, position.x + 10, position.y + 110, &rect);//draw player
 		}
 		
 	}
