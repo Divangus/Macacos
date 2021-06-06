@@ -379,7 +379,7 @@ bool ModulePlayer::Start()
 	Player_Position = true;
 	destroyed = false;
 
-	collider = App->collisions->AddCollider({position.x, position.y, 35, 20 }, Collider::Type::PLAYER, this);
+	collider = App->collisions->AddCollider({position.x, position.y, 45, 20 }, Collider::Type::PLAYER, this);
 	colliderAttack = App->collisions->AddCollider({ position.x, position.y, 20, 20 }, Collider::Type::PLAYER_ATTACK, this);
 	
 
@@ -409,7 +409,7 @@ update_status ModulePlayer::Update()
 		colliderAttack->SetPos(position.x + 30, position.y + 85);
 	}
 	if (Player_Position == false) {
-		collider->SetPos(position.x+18, position.y + 85);
+		collider->SetPos(position.x+13, position.y + 85);
 		colliderAttack->SetPos(position.x -2, position.y + 85);
 	}
 	if (currentAnimation == &FrontSwordAttackR || currentAnimation == &FrontSwordAttackL || currentAnimation==&LegAttackR || currentAnimation == &LegAttackL || currentAnimation == &TwoSwordAttackR || currentAnimation == &TwoSwordAttackL) {
@@ -1058,7 +1058,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		}
 	}
 
-	if (LifeCoins == -1 /*&& death == false*/) {
+	if (LifeCoins == -1 && death == false) {
 		App->fade->FadeToBlack((Module*)App->scene, (Module*)App->over, 60);
 	}
 
