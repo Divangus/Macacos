@@ -30,12 +30,20 @@ public:
 
 	bool CleanUp() override;
 
-
-
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
-	
+	/*SDL_Texture* NightCityTexture = nullptr;
+	SDL_Texture* BuildingsTexture = nullptr;
+	SDL_Texture* CloudTexture = nullptr;
+	SDL_Texture* StreetTexture = nullptr;
+	SDL_Texture* TurtlesImagesTexture = nullptr;
+
+	Path NightcityP;
+
+	Animation NightCity;*/
+
+
 };
 
 #endif

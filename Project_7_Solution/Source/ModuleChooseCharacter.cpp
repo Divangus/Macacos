@@ -117,20 +117,18 @@ update_status ModuleChooseCharacter::Update() {
 	if (coins > 0) {
 		PressEnter.Update();
 	}
-	GamePad& pad = App->input->pads[0];
 
 	InsertCoins.Update();
 	TurtleSmile.Update();
 	App->render->Blit(EnterCoinsTitleTexture, 0, 0, &(TitleEnterCoin.GetCurrentFrame()), 1);
 
-	if (App->input->keys[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN|| pad.y ==true) {
+	if (App->input->keys[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN) {
 		coins++;
 		LifeBar10.Update();
 		Blue = 10;
 
 	}
-
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN && coins > 0|| pad.a == true && coins > 0)
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN && coins > 0)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->scene, 90);
 	}

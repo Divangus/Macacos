@@ -47,16 +47,6 @@ public:
 	int LifeCoins = 0;
 	int LifesBlue = 0;
 
-	// Draws gamepad debug info in the screen
-	void DebugDrawGamepadInfo();
-
-	// Debugdraw for gamepad data
-	bool debugGamepadInfo = false;
-
-	uint score = 000;
-	int scoreFont = -1;
-	char scoreText[150] = { "\0" };
-
 private:
 
 	// The speed in which we move the player (pixels per frame)

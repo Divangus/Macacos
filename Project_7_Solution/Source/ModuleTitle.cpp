@@ -125,11 +125,8 @@ bool ModuleTitle::Start()
 
 update_status ModuleTitle::Update()
 {
-
-	// Get gamepad info
-	GamePad& pad = App->input->pads[0];
 	AnimTitle.Update();
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN||pad.a==true) {
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->character, 90);
 	}
 	return update_status::UPDATE_CONTINUE;

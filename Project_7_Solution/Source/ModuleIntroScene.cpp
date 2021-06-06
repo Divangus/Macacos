@@ -48,10 +48,7 @@ update_status ModuleIntroScene::Update()
 {
 	/*NightCity.Update();
 	NightcityP.Update();*/
-
-	GamePad& pad = App->input->pads[0];
-
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN|| pad.a == true)
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->title, 90);
 	}
