@@ -72,7 +72,7 @@ Code and UI
 - Y - Add two lives
 - A - Start playing
 
-### Ingame 
+### Gamepad
 
 - Left joystick  - Movement
 - A - Jump
@@ -82,6 +82,7 @@ Code and UI
 
 - R1 - Colisions
 - X - God Mode
-- L1 - Direct win/lose
-
+- L1 - Direct Lose
+- L2 - Direct Win
+- R2 - Direct Level 2
 
