@@ -94,6 +94,8 @@ private:
 		TwoSwordAttackL,
 		PlayerDeathR,
 		PlayerDeathL,
+		hitAnimR,
+		hitAnimL,
 		dmg,
 		sdmg;
 

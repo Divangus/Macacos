@@ -305,6 +305,30 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	PlayerDeathR.loop = false;
 	PlayerDeathR.speed = 0.2f;
 
+
+	PlayerDeathL.PushBack({});
+	PlayerDeathL.loop = false;
+	PlayerDeathL.speed = 0.2f;
+
+	//player hit
+
+	hitAnimR.PushBack({ 33,1108,77,86 });
+	hitAnimR.PushBack({ 129,1108,77,86 });
+	hitAnimR.PushBack({ 214,1108,77,86 });
+	hitAnimR.PushBack({ 301,1108,77,86 });
+	hitAnimR.PushBack({ 409,1108,77,86 });
+	hitAnimR.loop = false;
+	hitAnimR.speed = 0.2f;
+
+	hitAnimL.PushBack({ 1708,3179,77,86 });
+	hitAnimL.PushBack({ 1620,3179,77,86 });
+	hitAnimL.PushBack({ 1519,3179,77,86 });
+	hitAnimL.PushBack({ 1416,3179,77,86 });
+	hitAnimL.PushBack({ 1338,3179,77,86 });
+	hitAnimL.loop = false;
+	hitAnimL.speed = 0.2f;
+
+
 	//FrontSwordAttackR
 	/*attack[0].PushBack({ 0.0f, 0.0f }, 0, &dmg);
 	attack[0].PushBack({ 0.0f, 0.0f }, 15, &FrontSwordAttackR);
