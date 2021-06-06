@@ -83,11 +83,12 @@ void Enemy::Draw()
 
 void Enemy::OnCollision(Collider* collider)
 {
-	HP -= 1;
-	if (HP == 0) {
-
+	if (god == false && life > 0) {
+		god = true;
+		life--;
+	}
+	if (life == 0 && god == false) {
 		App->audio->PlayFx(destroyedFx);
-
 		destroyed = true;
 	}
 }

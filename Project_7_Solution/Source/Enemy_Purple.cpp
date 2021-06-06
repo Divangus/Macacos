@@ -4,6 +4,7 @@
 #include "ModuleCollisions.h"
 #include "ModulePlayer.h"
 
+
 Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 {
 	//------------------------------------------- Caminar <--
@@ -61,6 +62,21 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	back_punch.PushBack({ 774, 1351, 86, 90 });
 	back_punch.speed = 0.22f;
 
+	front_dmg.PushBack({ 1032, 1440, 86, 90 });
+	front_dmg.PushBack({ 946, 1440, 86, 90 });
+	front_dmg.PushBack({ 860, 1440, 86, 90 });
+	front_dmg.PushBack({ 774, 1440, 86, 90 });
+	front_dmg.speed = 0.1f;
+
+	front_sdmg.PushBack({ 774, 1440, 86, 90 });
+
+	back_dmg.PushBack({ 0, 0, 86, 90 });
+	back_dmg.PushBack({ 86, 0, 86, 90 });
+	back_dmg.PushBack({ 172, 0, 86, 90 });
+	back_dmg.PushBack({ 258, 0, 86, 90 });
+	back_dmg.speed = 0.1f;
+
+	back_sdmg.PushBack({ 258, 0, 86, 90 });
 	
 	//path.PushBack({ -0.8f, 0.0f }, 150, &front);
 	path[0].PushBack({ 0.0f, 0.0f }, 0, &front_hit);
@@ -71,6 +87,12 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	path[1].PushBack({ 0.0f, 0.0f }, 0, &back_hit);
 	path[1].PushBack({ 0.0f, 0.0f }, 50, &back_punch);
 	path[1].PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
+
+	path[2].PushBack({ 0.0f, 0.0f }, 15, &front_dmg);
+	path[2].PushBack({ 0.0f, 0.0f }, 0, &front_sdmg);
+
+	path[3].PushBack({ 0.0f, 0.0f }, 15, &back_dmg);
+	path[3].PushBack({ 0.0f, 0.0f }, 0, &back_sdmg);
 	
 	//currentAnim = &front;
 	PurpleCollider = App->collisions->AddCollider({0,0, 30, 20}, Collider::Type::ENEMY, (Module*)App->enemies);
@@ -81,91 +103,28 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 void Enemy_Purple::Update()
 {
 	App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::PURPLE_ATTACK] = false;
-	if (follow == true) {
-		attack = true;
-		if (position.x > App->player->position.x + 5 || position.x < App->player->position.x - 60) {
-			if (position.x > App->player->position.x) {
-				position.x = position.x - enemy_speed;
-				if (currentAnim != &front)
-				{
-					front.Reset();
-					currentAnim = &front;
-					Purple_Position = true;
-				}
+	if (god == true) {
+		if (position.x > App->player->position.x){
+			path[2].Update();
+			currentAnim = path[2].GetCurrentAnimation();
+			if (currentAnim == &front_sdmg) {
+				god = false;
 			}
-
-			if (position.x < App->player->position.x) {
-				position.x = position.x + enemy_speed;
-				if (currentAnim != &back)
-				{
-					back.Reset();
-					currentAnim = &back;
-					Purple_Position = false;
-				}
-			}
-			if (position.y != App->player->position.y + 20) {
-				if (position.y > App->player->position.y + 20) {
-					position.y = position.y - enemy_speed;
-				}
-				if (position.y < App->player->position.y + 20) {
-					position.y = position.y + enemy_speed;
-				}
-			}
-			
 		}
 		else {
-			follow = false;
+			path[3].Update();
+			currentAnim = path[3].GetCurrentAnimation();
+			if (currentAnim == &back_sdmg) {
+				god = false;
+			}
 		}
 	}
 	else {
-		if (attack == true) {
-			if (position.x > App->player->position.x) {
-				path[0].Update();
-				currentAnim = path[0].GetCurrentAnimation();
-				if (currentAnim == &front_iddle) {
-					attack = false;
-				}
-			}
-			else {
-				path[1].Update();
-				currentAnim = path[1].GetCurrentAnimation();
-				if (currentAnim == &back_iddle) {
-					attack = false;
-				}
-			}
-		}
-		else  {
-			//attack == false;
-			if (position.x > App->player->position.x + 100 || position.x < App->player->position.x - 120) {
-				follow = true;
-			}
-			else {
+		if (follow == true) {
+			attack = true;
+			if (position.x > App->player->position.x + 5 || position.x < App->player->position.x - 60) {
 				if (position.x > App->player->position.x) {
-					position.x = position.x + enemy_speed;
-					/*if (position.y < App->player->position.y) {
-						position.y = position.y - enemy_speed;
-					}
-					else {
-						position.y = position.y + enemy_speed;
-					}*/
-					currentAnim = &back;
-					if (currentAnim != &back)
-					{
-						back.Reset();
-						currentAnim = &back;
-						Purple_Position = false;
-					}
-				}
-				else {
 					position.x = position.x - enemy_speed;
-					/*if (position.y < App->player->position.y) {
-						position.y = position.y - enemy_speed;
-					}
-					else {
-						position.y = position.y + enemy_speed;
-					}*/
-					
-					currentAnim = &front;
 					if (currentAnim != &front)
 					{
 						front.Reset();
@@ -173,9 +132,91 @@ void Enemy_Purple::Update()
 						Purple_Position = true;
 					}
 				}
+
+				if (position.x < App->player->position.x) {
+					position.x = position.x + enemy_speed;
+					if (currentAnim != &back)
+					{
+						back.Reset();
+						currentAnim = &back;
+						Purple_Position = false;
+					}
+				}
+				if (position.y != App->player->position.y + 20) {
+					if (position.y > App->player->position.y + 20) {
+						position.y = position.y - enemy_speed;
+					}
+					if (position.y < App->player->position.y + 20) {
+						position.y = position.y + enemy_speed;
+					}
+				}
+
 			}
-		}	
-	}
+			else {
+				follow = false;
+			}
+		}
+		else {
+			if (attack == true) {
+				if (position.x > App->player->position.x) {
+					path[0].Update();
+					currentAnim = path[0].GetCurrentAnimation();
+					if (currentAnim == &front_iddle) {
+						attack = false;
+					}
+				}
+				else {
+					path[1].Update();
+					currentAnim = path[1].GetCurrentAnimation();
+					if (currentAnim == &back_iddle) {
+						attack = false;
+					}
+				}
+			}
+			else {
+				//attack == false;
+				if (position.x > App->player->position.x + 100 || position.x < App->player->position.x - 120) {
+					follow = true;
+				}
+				else {
+					if (position.x > App->player->position.x) {
+						position.x = position.x + enemy_speed;
+						/*if (position.y < App->player->position.y) {
+							position.y = position.y - enemy_speed;
+						}
+						else {
+							position.y = position.y + enemy_speed;
+						}*/
+						currentAnim = &back;
+						if (currentAnim != &back)
+						{
+							back.Reset();
+							currentAnim = &back;
+							Purple_Position = false;
+						}
+					}
+					else {
+						position.x = position.x - enemy_speed;
+						/*if (position.y < App->player->position.y) {
+							position.y = position.y - enemy_speed;
+						}
+						else {
+							position.y = position.y + enemy_speed;
+						}*/
+
+						currentAnim = &front;
+						if (currentAnim != &front)
+						{
+							front.Reset();
+							currentAnim = &front;
+							Purple_Position = true;
+						}
+					}
+				}
+			}
+		}
+
+	}	
 
 	if (currentAnim == &front || currentAnim == &front_punch || currentAnim == &front_hit) {
 		Purple_Position = true;

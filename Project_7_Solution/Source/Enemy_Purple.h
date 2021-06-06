@@ -17,7 +17,7 @@ public:
 
 private:
 	// The path that will define the position in the world
-	Path path[2];
+	Path path[4];
 
 	bool follow = true;
 	bool attack = true;
@@ -25,10 +25,8 @@ private:
 	// Enemy animations
 	Animation front, back, front_iddle, back_iddle,
 		front_hit, back_hit, front_punch, back_punch,
-		front_hit_ground, front_hit_ground_behind, front_ground, front_ground_behind,
-		front_recovery, front_recovery_behind,
-		back_hit_ground, back_hit_ground_behind, back_ground, back_ground_behind,
-		back_recovery, back_recovery_behind;
+		front_dmg, back_dmg, front_death, back_death,
+		front_sdmg, back_sdmg, front_sdeath, back_sdeath;
 };
 
 #endif // __ENEMY_PURPLE_H__

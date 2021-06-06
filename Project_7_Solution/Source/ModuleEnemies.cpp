@@ -231,7 +231,7 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 					enemies[i] = new Enemy_Purple(info.x, info.y);
 					enemies[i]->texture = texture2;
 					enemies[i]->EnemyType = 1;
-					//enemies[i]->life = 0;
+					enemies[i]->life = 3;
 					break;
 				case ENEMY_TYPE::ORANGE:
 					enemies[i] = new Enemy_Orange(info.x, info.y);
@@ -259,9 +259,11 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
+			if (enemies[i]->destroyed == true) {
 			delete enemies[i];
 		/*	App->audio->LoadFx(EnemyDyingFx);*/
 			enemies[i] = nullptr;
+			}
 			break;
 		}
 	}

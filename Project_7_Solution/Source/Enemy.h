@@ -36,6 +36,7 @@ public:
 	fPoint position;
 	float enemy_speed = 0.8;
 	int life = 0;
+	bool god = false;
 
 	// The enemy's texture
 	SDL_Texture* texture = nullptr;
@@ -44,6 +45,8 @@ public:
 	int destroyedFx = 0;
 
 	int EnemyType = 0;
+
+	bool destroyed = false;
 
 protected:
 
@@ -69,7 +72,7 @@ protected:
 
 	int HP = 3;
 
-	bool destroyed = false;
+	
 };
 
 #endif // __ENEMY_H__
