@@ -74,19 +74,17 @@ public:
 
 	iPoint position;
 
+	Enemy* enemies[MAX_ENEMIES] = { nullptr };
+
 private:
 	// Spawns a new enemy using the data from the queue
 	void SpawnEnemy(const EnemySpawnpoint& info);
 
-private:
 	SDL_Texture* Fire_Texture = nullptr;
 
 
 	// A queue with all spawn points information
 	EnemySpawnpoint spawnQueue[MAX_ENEMIES];
-
-	// All spawned enemies in the scene
-	Enemy* enemies[MAX_ENEMIES] = { nullptr };
 
 	int speed = 1;
 	

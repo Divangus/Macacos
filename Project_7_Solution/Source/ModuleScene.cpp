@@ -96,6 +96,7 @@ bool ModuleScene::Start()
 	App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 335, 110);
 	App->enemies->AddEnemy(ENEMY_TYPE::WHITE, 800, 120);
 	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 689, 125);
+	App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 960, 100);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 890, 100);
 
@@ -145,8 +146,25 @@ update_status ModuleScene::Update()
 		App->fade->FadeToBlack(this, (Module*)App->level2, 90);
 	}
 
+	//int ban = 0;
+	//while (ban == 0) {
+	//	for (int x = 0; x < 11; x++) {
+	//		if (App->enemies->enemies[x] == nullptr) {
+	//			dead_enemies++;
+	//		}
+	//	}
+	//	if (dead_enemies == 11) {
+	//		level1_clear = true;
+	//	}
+	//	else {
+	//		ban = 1;
+	//		dead_enemies = 0;
+	//	}
+	//}
 
-	if (App->player->position.x == 1240) {
+
+
+	if (App->player->position.x == 1240 /*&& level1_clear == true*/) {
 		App->audio->PlayFx(AprilScreamFx);
 		App->scene->CleanUp();
 		active = false;
@@ -160,26 +178,21 @@ update_status ModuleScene::Update()
 // Update: draw background
 update_status ModuleScene::PostUpdate()
 {
-
-	if (App->render->camera.x == 920) {
-		App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 960, 100);
-	}
-
 	if (App->render->camera.x == 260) {
-		App->enemies->AddEnemy(ENEMY_TYPE::ORANGE, 409, 70);
+		App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 409, 70);
 	}
 	if (App->render->camera.x == 545) {
 
-		App->enemies->AddEnemy(ENEMY_TYPE::WHITE, 685, 40);
+		App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 685, 40);
 	}
 	if (App->render->camera.x == 565) {
 
-		App->enemies->AddEnemy(ENEMY_TYPE::WHITE, 822, 40);
+		App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 822, 40);
 	}
 	if (App->render->camera.x == 850) {
 		
-		App->enemies->AddEnemy(ENEMY_TYPE::WHITE, 942, 40);
-		App->enemies->AddEnemy(ENEMY_TYPE::WHITE,1070, 40);
+		App->enemies->AddEnemy(ENEMY_TYPE::PURPLE, 942, 40);
+		App->enemies->AddEnemy(ENEMY_TYPE::PURPLE,1070, 40);
 	}
 	
 	// Draw everything --------------------------------------
