@@ -21,7 +21,7 @@ ModuleLevel2::ModuleLevel2(bool startEnabled):Module(startEnabled) {
 	Smoke.PushBack({ 0,75,128,65 });
 	Smoke.PushBack({ 0,154,128,65 });
 	Smoke.loop = true;
-	Smoke.speed = 0.3f;
+	Smoke.speed = 0.18f;
 
 	April.PushBack({ 5,6,31,65 });
 	April.PushBack({ 42,6,28,65 });
@@ -57,6 +57,10 @@ bool ModuleLevel2::Start() {
 }
 
 update_status ModuleLevel2::Update() {
+
+	// Get gamepad info
+	GamePad& pad = App->input->pads[0];
+
 	hud.Update();
 	Smoke.Update();
 
@@ -82,7 +86,9 @@ update_status ModuleLevel2::Update() {
 	April.Update();
 	App->player->position.x += 0;
 
-	
+	if (App->input->keys[SDL_SCANCODE_F3] == KEY_DOWN || pad.l1) {
+		App->fade->FadeToBlack(this, (Module*)App->over, 90);
+	}
 	
 
 	return update_status::UPDATE_CONTINUE;

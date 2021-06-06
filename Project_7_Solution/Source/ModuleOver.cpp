@@ -53,6 +53,7 @@ update_status ModuleOver::Update()
 	//El següent if serveix per a reiniciar el joc des del game over però falta fer un reset a tots els elements del joc
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
+		CleanUp();
 		App->fade->FadeToBlack(this, (Module*)App->title, 90);
 
 	}
