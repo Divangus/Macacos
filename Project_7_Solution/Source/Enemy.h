@@ -35,7 +35,7 @@ public:
 	// The current position in the world
 	fPoint position;
 	float enemy_speed = 0.8;
-	int life = 0;
+	int life = 3;
 	bool god = false;
 
 	// The enemy's texture

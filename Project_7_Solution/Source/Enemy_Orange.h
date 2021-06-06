@@ -19,7 +19,7 @@ public:
 	
 private:
 	// The path that will define the position in the world
-	Path path[2];
+	Path path[4];
 
 	bool follow = true;
 	bool attack = true;
@@ -35,8 +35,12 @@ private:
 		back_gun_attack,
 		front_getting_hit,
 		back_getting_hit,
+		front_getting_hitS,
+		back_getting_hitS,
 		front_iddle,
 		back_iddle,
+		front_iddlet,
+		back_iddlet,
 		front_shot,
 		back_shot,
 		front_shuriken,

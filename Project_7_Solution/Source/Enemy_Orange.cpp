@@ -58,10 +58,12 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 	up_back.speed = 0.1f;
 
 	front_iddle.PushBack({ 370, 140, 48, 66 });
+	front_iddlet.PushBack({ 370, 140, 48, 66 });
 
 	front_shot.PushBack({ 370, 140, 48, 66 });
 
 	back_iddle.PushBack({ 620, 946, 48, 66 });
+	back_iddlet.PushBack({ 620, 946, 48, 66 });
 
 	back_shot.PushBack({ 620, 946, 48, 66 });
 
@@ -97,11 +99,15 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 	front_getting_hit.PushBack({ 456, 12, 48, 66 });
 	front_getting_hit.speed = 0.1f;
 
+	front_getting_hitS.PushBack({ 456, 12, 48, 66 });
+
 	back_getting_hit.PushBack({ 792, 818, 58, 66 });
 	back_getting_hit.PushBack({ 706, 818, 46, 66 });
 	back_getting_hit.PushBack({ 614, 818, 60, 66 });
 	back_getting_hit.PushBack({ 534, 818, 48, 66 });
 	back_getting_hit.speed = 0.1f;
+
+	back_getting_hitS.PushBack({ 534, 818, 48, 66 });
 
 	//path.PushBack({ 0.0f, -0.0f }, 150, &front_iddle);
 	//path.PushBack({ -1.0f, 0.0f }, 150, &front);
@@ -110,11 +116,19 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 
 	path[0].PushBack({ 0.0f, 0.0f }, 15, &front_shuriken);
 	path[0].PushBack({ 0.0f, 0.0f }, 0, &front_shot);
+	path[0].PushBack({ 0.0f, 0.0f }, 120, & front_iddlet);
 	path[0].PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
 
 	path[1].PushBack({ 0.0f, 0.0f }, 15, &back_shuriken);
 	path[1].PushBack({ 0.0f, 0.0f }, 0, &back_shot);
+	path[1].PushBack({ 0.0f, 0.0f }, 120, &back_iddlet);
 	path[1].PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
+
+	path[2].PushBack({ 0.1f, 0.0f }, 15, &front_getting_hit);
+	path[2].PushBack({ 0.0f, 0.0f }, 0, &front_getting_hitS);
+
+	path[3].PushBack({ -0.1f, 0.0f }, 15, &back_getting_hit);
+	path[3].PushBack({ 0.0f, 0.0f }, 0, &back_getting_hitS);
 
 	//path.PushBack({ 1.0f, 0.0f }, 150, &back);
 
@@ -127,7 +141,24 @@ Enemy_Orange::Enemy_Orange(int x, int y) : Enemy(x, y)
 void Enemy_Orange::Update()
 {
 	App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::ORANGE_ATTACK] = false;
-
+	if (god == true) {
+		if (position.x > App->player->position.x) {
+			path[2].Update();
+			position = position + path[2].GetRelativePosition();
+			currentAnim = path[2].GetCurrentAnimation();
+			if (currentAnim == &front_getting_hitS) {
+				god = false;
+			}
+		}
+		else {
+			path[3].Update();
+			position = position + path[3].GetRelativePosition();
+			currentAnim = path[3].GetCurrentAnimation();
+			if (currentAnim == &back_getting_hitS) {
+				god = false;
+			}
+		}
+	}
 	if (currentAnim == &back) {
 		Orange_Position = false;
 	}
@@ -155,6 +186,8 @@ void Enemy_Orange::Update()
 		App->particles->AddParticle(App->particles->shuriken, position.x + 20, position.y + 20, 1, Collider::Type::ENEMY_SHOT);
 		//Orange_Position = false;
 	}
+
+	
 
 	if (follow == true) {
 		attack = true;

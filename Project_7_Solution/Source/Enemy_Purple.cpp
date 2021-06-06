@@ -88,10 +88,10 @@ Enemy_Purple::Enemy_Purple(int x, int y) : Enemy(x, y)
 	path[1].PushBack({ 0.0f, 0.0f }, 50, &back_punch);
 	path[1].PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
 
-	path[2].PushBack({ 0.0f, 0.0f }, 15, &front_dmg);
+	path[2].PushBack({ 0.1f, 0.0f }, 15, &front_dmg);
 	path[2].PushBack({ 0.0f, 0.0f }, 0, &front_sdmg);
 
-	path[3].PushBack({ 0.0f, 0.0f }, 15, &back_dmg);
+	path[3].PushBack({ -0.1f, 0.0f }, 15, &back_dmg);
 	path[3].PushBack({ 0.0f, 0.0f }, 0, &back_sdmg);
 	
 	//currentAnim = &front;
@@ -106,6 +106,7 @@ void Enemy_Purple::Update()
 	if (god == true) {
 		if (position.x > App->player->position.x){
 			path[2].Update();
+			position = position + path[2].GetRelativePosition();
 			currentAnim = path[2].GetCurrentAnimation();
 			if (currentAnim == &front_sdmg) {
 				god = false;
@@ -113,6 +114,7 @@ void Enemy_Purple::Update()
 		}
 		else {
 			path[3].Update();
+			position = position + path[3].GetRelativePosition();
 			currentAnim = path[3].GetCurrentAnimation();
 			if (currentAnim == &back_sdmg) {
 				god = false;

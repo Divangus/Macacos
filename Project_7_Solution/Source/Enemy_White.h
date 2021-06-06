@@ -17,7 +17,7 @@ public:
 
 private:
 	// The path that will define the position in the world
-	Path path[4];
+	Path path[6];
 
 	int num = 0;
 	bool follow = true;
@@ -27,8 +27,8 @@ private:
 	Animation front, back, front_iddle, back_iddle,
 		front_knife, back_knife, front_melee_knife, back_melee_knife,
 		front_shot, back_shot,
-		front_hit, back_hit,
-		front_death, back_death;
+		front_hit, back_hit, 
+		front_dmg, back_dmg, front_sdmg, back_sdmg;
 };
 
 #endif // __ENEMY_WHITE_H__

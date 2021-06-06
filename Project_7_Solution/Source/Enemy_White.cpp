@@ -71,6 +71,22 @@ Enemy_White::Enemy_White(int x, int y) : Enemy(x, y)
 
 	back_iddle.PushBack({ 0, 176, 99, 88 });
 
+	front_dmg.PushBack({ 0, 968, 99, 88});
+	front_dmg.PushBack({ 99, 968, 99, 88 });
+	front_dmg.PushBack({ 198, 968, 99, 88 });
+	front_dmg.PushBack({ 297, 968, 99, 88 });
+	front_dmg.speed = 0.1f;
+
+	front_sdmg.PushBack({ 0, 968, 99, 88 });
+
+	back_dmg.PushBack({ 792, 2112, 90, 88 });
+	back_dmg.PushBack({ 693, 2112, 99, 88 });
+	back_dmg.PushBack({ 594, 2112, 99, 88 });
+	back_dmg.PushBack({ 495, 2112, 99, 88 });
+	back_dmg.speed = 0.1f;
+
+	back_sdmg.PushBack({ 792, 2112, 90, 88 });
+
 	path[0].PushBack({ 0.0f, 0.0f }, 0, &front_hit);
 	path[0].PushBack({ 0.0f, 0.0f }, 50, &front_melee_knife);
 	path[0].PushBack({ 0.0f, 0.0f }, 0, &front_iddle);
@@ -87,6 +103,12 @@ Enemy_White::Enemy_White(int x, int y) : Enemy(x, y)
 	path[3].PushBack({ 0.0f, 0.0f }, 0, &back_shot);
 	path[3].PushBack({ 0.0f, 0.0f }, 0, &back_iddle);
 
+	path[4].PushBack({ 0.1f, 0.0f }, 15, &front_dmg);
+	path[4].PushBack({ 0.0f, 0.0f }, 0, &front_sdmg);
+
+	path[5].PushBack({ -0.1f, 0.0f }, 15, &back_dmg);
+	path[5].PushBack({ 0.0f, 0.0f }, 0, &back_sdmg);
+
 	WhiteCollider = App->collisions->AddCollider({ 0,0, 30, 20 }, Collider::Type::ENEMY, (Module*)App->enemies);
 	WhiteColliderAttack = App->collisions->AddCollider({ 0, 0, 20, 20 }, Collider::Type::WHITE_ATTACK, (Module*)App->enemies);
 
@@ -95,6 +117,24 @@ Enemy_White::Enemy_White(int x, int y) : Enemy(x, y)
 void Enemy_White::Update()
 {
 	App->collisions->matrix[Collider::Type::PLAYER][Collider::Type::WHITE_ATTACK] = false;
+	if (god == true) {
+		if (position.x > App->player->position.x) {
+			path[4].Update();
+			position = position + path[4].GetRelativePosition();
+			currentAnim = path[4].GetCurrentAnimation();
+			if (currentAnim == &front_sdmg) {
+				god = false;
+			}
+		}
+		else {
+			path[5].Update();
+			position = position + path[5].GetRelativePosition();
+			currentAnim = path[5].GetCurrentAnimation();
+			if (currentAnim == &back_sdmg) {
+				god = false;
+			}
+		}
+	}
 
 	if (currentAnim == &back || currentAnim == &back_melee_knife || currentAnim == &back_iddle || currentAnim == &back_knife || currentAnim == &back_hit) {
 		White_Position = false;
